@@ -767,6 +767,29 @@ footer p{
     .course-card,
     .team-card{
         width:100%;
+
+       @media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    height:auto;
+    padding:20px;
+}
+
+.nav-links{
+    flex-direction:column;
+    gap:15px;
+}
+
+.nav-buttons{
+    margin-top:15px;
+}
+
+.logo h2{
+    font-size:24px;
+}
+
+}
     }
 
 }
