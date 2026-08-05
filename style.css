@@ -724,15 +724,19 @@ footer p{
 
 }
 
-/* Mobile Responsive */
+/* Mobile View */
 
-@media(max-width:768px){
+@media screen and (max-width:768px){
 
     .navbar{
-        height:auto;
-        padding:15px 5%;
         flex-direction:column;
-        gap:20px;
+        height:auto;
+        padding:20px;
+    }
+
+
+    .logo h2{
+        font-size:24px;
     }
 
 
@@ -744,17 +748,12 @@ footer p{
 
 
     .nav-buttons{
-        justify-content:center;
-    }
-
-
-    .logo h2{
-        font-size:24px;
+        margin-top:15px;
     }
 
 
     .hero h1{
-        font-size:35px;
+        font-size:32px;
     }
 
 
@@ -763,33 +762,17 @@ footer p{
     }
 
 
-    .contact-card,
-    .course-card,
-    .team-card{
+    .container,
+    .cards,
+    .team-container{
         width:100%;
+        flex-direction:column;
+    }
 
-       @media(max-width:768px){
 
-.navbar{
-    flex-direction:column;
-    height:auto;
-    padding:20px;
-}
-
-.nav-links{
-    flex-direction:column;
-    gap:15px;
-}
-
-.nav-buttons{
-    margin-top:15px;
-}
-
-.logo h2{
-    font-size:24px;
-}
-
-}
+    img{
+        max-width:100%;
+        height:auto;
     }
 
 }
