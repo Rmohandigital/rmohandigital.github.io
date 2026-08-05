@@ -723,3 +723,50 @@ footer p{
     transform:translateY(-3px);
 
 }
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .navbar{
+        height:auto;
+        padding:15px 5%;
+        flex-direction:column;
+        gap:20px;
+    }
+
+
+    .nav-links{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+
+    .nav-buttons{
+        justify-content:center;
+    }
+
+
+    .logo h2{
+        font-size:24px;
+    }
+
+
+    .hero h1{
+        font-size:35px;
+    }
+
+
+    .hero p{
+        font-size:16px;
+    }
+
+
+    .contact-card,
+    .course-card,
+    .team-card{
+        width:100%;
+    }
+
+}
