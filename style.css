@@ -821,3 +821,28 @@ footer p{
 .pay-btn:hover{
     background:#0F172A;
 }
+
+.qr-box{
+    text-align:center;
+    background:#111;
+    padding:25px;
+    border-radius:20px;
+    width:300px;
+    margin:30px auto;
+    box-shadow:0 0 20px cyan;
+}
+
+.qr-box img{
+    width:220px;
+    height:220px;
+    border-radius:10px;
+    margin:15px;
+}
+
+.qr-box h2{
+    color:white;
+}
+
+.qr-box p{
+    color:#aaa;
+}
