@@ -138,6 +138,64 @@
     <p>Scan this QR code to pay</p>
 </div>
 
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<div class="payment-box">
+    <h2>Registration Fee: ₹50</h2>
+    <p><strong>Pay using UPI</strong></p>
+    <p>Amount: ₹50</p>
+
+    <a href="upi://pay?pa=9705211396@ibl&pn=R%20Mohan%20Digital&am=50&cu=INR">
+        <button class="pay-btn">💳 Pay ₹50 Now</button>
+    </a>
+
+    <br><br>
+
+    <label><strong>Upload Payment Screenshot</strong></label><br>
+    <input type="file" accept="image/*">
+
+    <br><br>
+
+    <h2>Scan & Pay ₹50</h2>
+    <div id="qrcode"></div>
+</div>
+
+<script>
+new QRCode(document.getElementById("qrcode"), {
+    text: "upi://pay?pa=9705211396@ibl&pn=R%20Mohan%20Digital&am=50&cu=INR",
+    width: 220,
+    height: 220
+});
+</script>
+
+<style>
+.payment-box{
+    background:#111;
+    color:#fff;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    max-width:400px;
+    margin:20px auto;
+    box-shadow:0 0 20px cyan;
+}
+.pay-btn{
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:15px 30px;
+    font-size:18px;
+    border-radius:50px;
+    cursor:pointer;
+}
+#qrcode{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+}
+</style>
+
 </div>
 
     <button id="registerBtn">
