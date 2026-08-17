@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Student Registration | R Mohan Digital</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- IMPORTANT: register.html is in the root folder -->
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- QR Code Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -25,7 +29,10 @@
             padding: 40px 20px;
         }
 
-        /* MAIN CONTAINER */
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
 
         .register-container {
             width: 100%;
@@ -43,7 +50,10 @@
             gap: 30px;
         }
 
-        /* LEFT SIDE */
+
+        /* =========================
+           LEFT SIDE
+        ========================= */
 
         .registration-details {
             padding: 15px;
@@ -56,66 +66,214 @@
             font-size: 28px;
         }
 
+
+        /* =========================
+           NORMAL INPUTS
+        ========================= */
+
         .input-group {
+            width: 100%;
             margin-bottom: 18px;
         }
 
         .input-group input,
         .input-group select {
+
+            display: block;
+
             width: 100%;
+
+            height: 50px;
+
             padding: 14px;
 
             border: 1px solid #ccc;
             border-radius: 10px;
 
             font-size: 16px;
+
             outline: none;
+
+            background: white;
         }
 
         .input-group input:focus,
         .input-group select:focus {
+
             border-color: #2563EB;
-            box-shadow: 0 0 5px rgba(37,99,235,.25);
+
+            box-shadow:
+                0 0 5px rgba(37,99,235,.25);
         }
 
-        /* REGISTER BUTTON */
+
+        /* =========================
+           PASSWORD FIELD
+        ========================= */
+
+        .password-group {
+
+            width: 100%;
+
+            margin-bottom: 18px;
+
+            position: relative;
+        }
+
+        .password-wrapper {
+
+            position: relative;
+
+            width: 100%;
+
+            display: block;
+        }
+
+        .password-wrapper input {
+
+            display: block !important;
+
+            width: 100% !important;
+
+            height: 50px !important;
+
+            padding: 14px 55px 14px 14px !important;
+
+            border: 1px solid #ccc !important;
+
+            border-radius: 10px !important;
+
+            font-size: 16px !important;
+
+            font-family: Arial, sans-serif !important;
+
+            outline: none !important;
+
+            background: white !important;
+
+            box-sizing: border-box !important;
+        }
+
+        .password-wrapper input:focus {
+
+            border-color: #2563EB !important;
+
+            box-shadow:
+                0 0 5px rgba(37,99,235,.25) !important;
+        }
+
+
+        /* =========================
+           EYE BUTTON
+        ========================= */
+
+        .password-toggle {
+
+            position: absolute !important;
+
+            right: 8px !important;
+
+            top: 50% !important;
+
+            transform: translateY(-50%) !important;
+
+            width: 40px !important;
+
+            height: 40px !important;
+
+            padding: 0 !important;
+
+            margin: 0 !important;
+
+            border: none !important;
+
+            background: transparent !important;
+
+            color: #555 !important;
+
+            font-size: 20px !important;
+
+            cursor: pointer !important;
+
+            display: flex !important;
+
+            align-items: center !important;
+
+            justify-content: center !important;
+
+            box-shadow: none !important;
+        }
+
+        .password-toggle:hover {
+
+            background: transparent !important;
+
+            transform: translateY(-50%) !important;
+        }
+
+
+        /* =========================
+           REGISTER BUTTON
+        ========================= */
 
         #registerBtn {
+
             width: 100%;
+
             padding: 14px;
 
             border: none;
+
             background: #2563EB;
+
             color: white;
 
             font-size: 17px;
+
             border-radius: 10px;
 
             cursor: pointer;
+
             margin-top: 5px;
+
+            transition: .3s;
         }
 
         #registerBtn:hover {
+
             background: #0F172A;
         }
 
-        /* LOGIN */
+
+        /* =========================
+           LOGIN
+        ========================= */
 
         .login-link {
+
             margin-top: 20px;
+
             text-align: center;
+
             font-size: 15px;
         }
 
         .login-link a {
+
             color: #2563EB;
+
             text-decoration: none;
+
             font-weight: bold;
         }
 
-        /* RIGHT PAYMENT SIDE */
+
+        /* =========================
+           PAYMENT BOX
+        ========================= */
 
         .payment-box {
+
             background: #111;
 
             color: white;
@@ -129,29 +287,41 @@
             box-shadow: 0 0 25px cyan;
 
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
         }
 
         .payment-box h3 {
+
             color: #2870ff;
+
             font-size: 25px;
+
             margin-bottom: 15px;
         }
 
         .payment-box p {
+
             margin: 6px 0;
+
             font-size: 17px;
         }
 
-        /* PAY BUTTON */
+
+        /* =========================
+           PAY BUTTON
+        ========================= */
 
         .pay-btn {
+
             display: inline-block;
 
             margin-top: 20px;
 
             background: #2563EB;
+
             color: white;
 
             text-decoration: none;
@@ -161,30 +331,44 @@
             padding: 14px 35px;
 
             font-size: 18px;
+
             font-weight: bold;
 
             transition: .2s;
         }
 
         .pay-btn:hover {
+
             background: #1d4ed8;
+
             transform: scale(1.03);
         }
 
-        /* QR TITLE */
+
+        /* =========================
+           QR TITLE
+        ========================= */
 
         .qr-title {
+
             color: #2870ff;
+
             font-size: 22px;
 
             margin-top: 30px;
+
             margin-bottom: 12px;
         }
 
-        /* QR CONTAINER */
+
+        /* =========================
+           QR CONTAINER
+        ========================= */
 
         #qrcode {
+
             width: 240px;
+
             height: 240px;
 
             background: white;
@@ -194,29 +378,39 @@
             border-radius: 10px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             margin-bottom: 25px;
         }
 
         #qrcode img {
+
             width: 220px !important;
+
             height: 220px !important;
         }
 
-        /* SCREENSHOT */
+
+        /* =========================
+           SCREENSHOT
+        ========================= */
 
         .upload-title {
+
             display: block;
 
             font-weight: bold;
 
             margin-top: 5px;
+
             margin-bottom: 10px;
         }
 
         #paymentScreenshot {
+
             width: 100%;
 
             max-width: 350px;
@@ -232,15 +426,20 @@
             font-size: 14px;
         }
 
-        /* MOBILE */
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 768px) {
 
             body {
+
                 padding: 20px 10px;
             }
 
             .register-container {
+
                 grid-template-columns: 1fr;
 
                 padding: 15px;
@@ -249,51 +448,60 @@
             }
 
             .registration-details {
+
                 padding: 10px;
             }
 
             .registration-details h2 {
+
                 font-size: 25px;
             }
 
             .payment-box {
+
                 padding: 25px 15px;
             }
 
             #qrcode {
+
                 width: 230px;
+
                 height: 230px;
             }
 
             #qrcode img {
+
                 width: 210px !important;
+
                 height: 210px !important;
             }
         }
+
     </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ================================================= -->
-<!-- MAIN REGISTRATION CONTAINER -->
-<!-- ================================================= -->
+<!-- ================================
+     MAIN REGISTRATION CONTAINER
+================================ -->
 
 <div class="register-container">
 
 
-    <!-- ================================================= -->
-    <!-- LEFT: REGISTRATION DETAILS -->
-    <!-- ================================================= -->
+    <!-- ================================
+         LEFT SIDE
+    ================================= -->
 
     <div class="registration-details">
 
         <h2>Student Registration</h2>
 
 
-        <!-- NAME -->
+        <!-- FULL NAME -->
 
         <div class="input-group">
 
@@ -301,6 +509,7 @@
                 type="text"
                 id="name"
                 placeholder="Full Name"
+                required
             >
 
         </div>
@@ -314,38 +523,48 @@
                 type="email"
                 id="email"
                 placeholder="Email Address"
+                required
             >
 
         </div>
 
 
         <!-- PASSWORD -->
-<div class="password-wrapper">
-    <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Create New Password"
-        required
-    >
 
-    <button
-        type="button"
-        class="password-toggle"
-        onclick="togglePassword()"
-        aria-label="Show password"
-    >👁</button>
+        <div class="password-group">
 
-</div>
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create New Password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    id="passwordToggle"
+                    onclick="togglePassword()"
+                    aria-label="Show password"
+                >👁</button>
+
+            </div>
+
+        </div>
+
 
         <!-- PHONE -->
 
         <div class="input-group">
 
             <input
-                type="text"
+                type="tel"
                 id="phone"
                 placeholder="Phone Number"
+                required
             >
 
         </div>
@@ -355,29 +574,29 @@
 
         <div class="input-group">
 
-            <select id="course">
+            <select id="course" required>
 
                 <option value="">
                     Select Course
                 </option>
 
-                <option>
+                <option value="Programming">
                     Programming
                 </option>
 
-                <option>
+                <option value="Web Development">
                     Web Development
                 </option>
 
-                <option>
+                <option value="AI Learning">
                     AI Learning
                 </option>
 
-                <option>
+                <option value="Digital Marketing">
                     Digital Marketing
                 </option>
 
-                <option>
+                <option value="Trading">
                     Trading
                 </option>
 
@@ -389,7 +608,9 @@
         <!-- REGISTER -->
 
         <button id="registerBtn">
+
             Register
+
         </button>
 
 
@@ -400,7 +621,9 @@
             Already have an account?
 
             <a href="login.html">
+
                 Login
+
             </a>
 
         </div>
@@ -408,55 +631,67 @@
     </div>
 
 
-    <!-- ================================================= -->
-    <!-- RIGHT: PAYMENT GATEWAY -->
-    <!-- ================================================= -->
+    <!-- ================================
+         RIGHT PAYMENT SIDE
+    ================================= -->
 
     <div class="payment-box">
 
 
         <h3>
+
             Registration Fee: ₹50
+
         </h3>
 
 
         <p>
+
             Pay using UPI
+
         </p>
 
 
         <p>
+
             <b>Amount: ₹50</b>
+
         </p>
 
 
-        <!-- MOBILE UPI BUTTON -->
+        <!-- UPI BUTTON -->
 
         <a
             href="upi://pay?pa=9705211396@ibl&pn=R%20Mohan%20Digital&am=50&cu=INR"
             class="pay-btn"
         >
+
             💳 Pay ₹50 Now
+
         </a>
 
 
         <!-- QR -->
 
         <h2 class="qr-title">
+
             Scan & Pay ₹50
+
         </h2>
 
 
         <div id="qrcode"></div>
 
 
-        <!-- SCREENSHOT -->
+        <!-- PAYMENT SCREENSHOT -->
 
         <label
             class="upload-title"
             for="paymentScreenshot"
         >
+
             Upload Payment Screenshot
+
         </label>
 
 
@@ -473,16 +708,16 @@
 </div>
 
 
-<!-- ================================================= -->
-<!-- YOUR EXISTING REGISTRATION JAVASCRIPT -->
-<!-- ================================================= -->
+<!-- ================================
+     EXISTING REGISTRATION JAVASCRIPT
+================================ -->
 
 <script type="module" src="js/register.js"></script>
 
 
-<!-- ================================================= -->
-<!-- AUTOMATIC QR GENERATION -->
-<!-- ================================================= -->
+<!-- ================================
+     QR GENERATION
+================================ -->
 
 <script>
 
@@ -523,37 +758,51 @@
 
 </script>
 
-<script>
-function togglePassword() {
-    const password = document.getElementById("password");
-    const button = document.querySelector(".password-toggle");
 
-    if (password.type === "password") {
-        password.type = "text";
-        button.textContent = "😑";
-    } else {
-        password.type = "password";
-        button.textContent = "👁";
-    }
-}
-</script>
-
+<!-- ================================
+     PASSWORD SHOW / HIDE
+================================ -->
 
 <script>
+
 function togglePassword() {
-    const password = document.getElementById("password");
-    const button = document.querySelector(".password-toggle");
+
+    const password =
+        document.getElementById("password");
+
+    const button =
+        document.getElementById("passwordToggle");
+
 
     if (password.type === "password") {
+
         password.type = "text";
-        button.textContent = "😑";
+
+        button.textContent = "🙈";
+
+        button.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
+
     } else {
+
         password.type = "password";
+
         button.textContent = "👁";
+
+        button.setAttribute(
+            "aria-label",
+            "Show password"
+        );
+
     }
+
 }
+
 </script>
 
 
 </body>
+
 </html>
