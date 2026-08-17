@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | R Mohan Digital</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(135deg, #020617, #0f172a, #1e3a8a);
+
+            color: white;
+        }
+
+        .admin-box {
+            width: 420px;
+            max-width: 90%;
+
+            padding: 40px;
+
+            background: rgba(15, 23, 42, 0.96);
+
+            border-radius: 20px;
+
+            border: 1px solid #2563eb;
+
+            box-shadow:
+                0 0 40px rgba(37, 99, 235, 0.35);
+
+            text-align: center;
+        }
+
+        .admin-box h1 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .admin-box input {
+            width: 100%;
+
+            padding: 14px;
+
+            margin-bottom: 18px;
+
+            border-radius: 10px;
+
+            border: 1px solid #334155;
+
+            background: #020617;
+
+            color: white;
+
+            outline: none;
+        }
+
+        .admin-box input:focus {
+            border-color: #38bdf8;
+        }
+
+        .admin-box button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                90deg,
+                #2563eb,
+                #06b6d4
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .admin-box button:hover {
+            opacity: 0.9;
+        }
+
+        #adminMessage {
+            margin-top: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-box">
+
+        <h1>R Mohan Digital</h1>
+
+        <p class="subtitle">
+            Admin Login
+        </p>
+
+        <form id="adminLoginForm">
+
+            <input
+                type="email"
+                id="adminEmail"
+                placeholder="Admin Email"
+                required
+            >
+
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Admin Password"
+                required
+            >
+
+            <button type="submit">
+                Admin Login
+            </button>
+
+        </form>
+
+        <div id="adminMessage"></div>
+
+    </div>
+
+
+    <script type="module">
+
+        import { auth } from "./firebase.js";
+
+        import {
+            signInWithEmailAndPassword
+        } from
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+        const form =
+            document.getElementById("adminLoginForm");
+
+        const message =
+            document.getElementById("adminMessage");
+
+
+        form.addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById("adminEmail")
+                .value
+                .trim();
+
+            const password =
+                document.getElementById("adminPassword")
+                .value;
+
+
+            message.style.color = "#38bdf8";
+            message.textContent = "Checking...";
+
+
+            try {
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+                message.style.color = "#4ade80";
+
+                message.textContent =
+                    "Admin login successful!";
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "admin-dashboard.html";
+
+                }, 700);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.style.color = "#f87171";
+
+                message.textContent =
+                    "Invalid admin email or password.";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
