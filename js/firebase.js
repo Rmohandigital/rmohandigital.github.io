@@ -3,32 +3,32 @@
 // ==========================================
 
 import { initializeApp } from
-    "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
 import { getAuth } from
-    "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 import { getFirestore } from
-    "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
 // ==========================================
-// YOUR FIREBASE CONFIG
+// FIREBASE CONFIG
 // ==========================================
 
 const firebaseConfig = {
 
-    apiKey: "PASTE_YOUR_API_KEY_HERE",
+    apiKey: "AIzaSyDarA4FEnJ0Sg7cDxf8uPglDmrfZ6lgJ9I",
 
-    authDomain: "PASTE_YOUR_AUTH_DOMAIN_HERE",
+    authDomain: "r-mohan-digital-e4e4b.firebaseapp.com",
 
-    projectId: "PASTE_YOUR_PROJECT_ID_HERE",
+    projectId: "r-mohan-digital-e4e4b",
 
-    storageBucket: "PASTE_YOUR_STORAGE_BUCKET_HERE",
+    storageBucket: "r-mohan-digital-e4e4b.firebasestorage.app",
 
-    messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID_HERE",
+    messagingSenderId: "56539770062",
 
-    appId: "PASTE_YOUR_APP_ID_HERE"
+    appId: "1:56539770062:web:0c815083264f74a189349f"
 
 };
 
