@@ -539,6 +539,20 @@ function togglePassword() {
 </script>
 
 
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+    const button = document.querySelector(".password-toggle");
+
+    if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "😑";
+    } else {
+        password.type = "password";
+        button.textContent = "👁";
+    }
+}
+</script>
 
 </body>
 </html>
