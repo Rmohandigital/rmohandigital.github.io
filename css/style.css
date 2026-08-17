@@ -655,24 +655,43 @@ footer p{
 }
 
 /* ==============================
-   PASSWORD SHOW / HIDE
+   PASSWORD INPUT
 ============================== */
 
 .password-wrapper {
     position: relative;
     width: 100%;
+    margin-bottom: 15px;
 }
 
 .password-wrapper input {
     width: 100%;
-    padding: 12px 45px 12px 12px;
+    height: 44px;
+    padding: 12px 45px 12px 14px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-family: inherit;
+
+    outline: none;
     box-sizing: border-box;
 }
 
-.password-wrapper .toggle-password {
+.password-wrapper input:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.2);
+}
+
+/* Eye button */
+
+.toggle-password {
     position: absolute;
-    right: 10px;
+
+    right: 8px;
     top: 50%;
+
     transform: translateY(-50%);
 
     width: 35px;
@@ -684,9 +703,7 @@ footer p{
     border: none;
     background: transparent;
 
-    color: #555;
     font-size: 18px;
-
     cursor: pointer;
 
     display: flex;
@@ -694,9 +711,7 @@ footer p{
     justify-content: center;
 }
 
-.password-wrapper .toggle-password:hover {
+.toggle-password:hover {
     background: transparent;
-    color: #2563EB;
     transform: translateY(-50%);
 }
-   
