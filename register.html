@@ -320,12 +320,19 @@
 
 
         <!-- PASSWORD -->
-
-       <div class="password-wrapper">
-    <input type="password" 
+<div class="password-wrapper">
+    <input 
+        type="password" 
         id="password" 
-        placeholder="Create New Password">
-    <button type="button" class="toggle-password" onclick="togglePassword('password', this)">
+        placeholder="Create New Password"
+    >
+
+    <button 
+        type="button" 
+        class="toggle-password" 
+        onclick="togglePassword('password', this)"
+        aria-label="Show or hide password"
+    >
         👁
     </button>
 </div>
