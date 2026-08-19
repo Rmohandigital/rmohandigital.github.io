@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Faculty Dashboard | R Mohan Digital</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Faculty Dashboard | R Mohan Digital
+    </title>
+
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -14,231 +24,1197 @@
             font-family: Arial, sans-serif;
         }
 
+
         body {
+
             background: #0b1020;
+
             color: white;
+
             min-height: 100vh;
+
         }
+
+
+        /* ==========================================
+           HEADER
+        ========================================== */
 
         header {
+
             background: #111a33;
-            padding: 20px;
+
+            padding: 20px 30px;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             border-bottom: 1px solid #26365f;
+
         }
+
 
         header h1 {
+
             color: #00e5ff;
+
+            font-size: 24px;
+
         }
+
 
         #logoutBtn {
+
             background: #ff3b3b;
+
             color: white;
+
             border: none;
+
             padding: 10px 18px;
+
             border-radius: 8px;
+
             cursor: pointer;
+
+            font-weight: bold;
+
         }
+
+
+        #logoutBtn:hover {
+
+            background: #dc2626;
+
+        }
+
+
+        /* ==========================================
+           MAIN CONTAINER
+        ========================================== */
 
         .container {
-            padding: 30px;
+
+            width: 92%;
+
+            max-width: 1200px;
+
+            margin: 30px auto;
+
         }
+
+
+        /* ==========================================
+           WELCOME
+        ========================================== */
 
         .welcome {
+
             background: #111a33;
+
             padding: 25px;
+
             border-radius: 12px;
-            margin-bottom: 25px;
+
+            margin-bottom: 30px;
+
+            border: 1px solid #26365f;
+
         }
+
 
         .welcome h2 {
+
             color: #00e5ff;
-            margin-bottom: 10px;
+
+            margin-bottom: 12px;
+
         }
 
-        .student-card {
+
+        #facultyName {
+
+            font-size: 18px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        #facultyEmail {
+
+            color: #94a3b8;
+
+        }
+
+
+        /* ==========================================
+           STATISTICS
+        ========================================== */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(180px, 1fr)
+                );
+
+            gap: 15px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .stat-card {
+
             background: #111a33;
+
             border: 1px solid #26365f;
+
             padding: 20px;
+
             border-radius: 12px;
-            margin-bottom: 15px;
+
         }
 
-        .student-card h3 {
+
+        .stat-card h3 {
+
+            color: #94a3b8;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .stat-card strong {
+
             color: #00e5ff;
-            margin-bottom: 10px;
+
+            font-size: 28px;
+
         }
 
-        .student-card p {
-            margin: 7px 0;
+
+        /* ==========================================
+           STUDENTS SECTION
+        ========================================== */
+
+        .students-title {
+
+            color: #ffffff;
+
+            margin-bottom: 15px;
+
         }
+
 
         #studentsContainer {
+
             display: grid;
-            gap: 15px;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
+            gap: 18px;
+
         }
 
-        .empty {
+
+        /* ==========================================
+           STUDENT CARD
+        ========================================== */
+
+        .student-card {
+
             background: #111a33;
-            padding: 25px;
+
+            border: 1px solid #26365f;
+
+            padding: 22px;
+
             border-radius: 12px;
-            text-align: center;
-            color: #aaa;
+
+            transition: .2s;
+
         }
+
+
+        .student-card:hover {
+
+            border-color: #00e5ff;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .student-card h3 {
+
+            color: #00e5ff;
+
+            margin-bottom: 15px;
+
+            font-size: 20px;
+
+        }
+
+
+        .student-card p {
+
+            margin: 9px 0;
+
+            color: #dbeafe;
+
+            line-height: 1.5;
+
+        }
+
+
+        .student-card strong {
+
+            color: #94a3b8;
+
+        }
+
+
+        /* ==========================================
+           STATUS
+        ========================================== */
+
+        .student-status {
+
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-top: 5px;
+
+        }
+
+
+        .status-approved {
+
+            background: #14532d;
+
+            color: #86efac;
+
+        }
+
+
+        .status-pending {
+
+            background: #713f12;
+
+            color: #fde68a;
+
+        }
+
+
+        .status-rejected {
+
+            background: #7f1d1d;
+
+            color: #fca5a5;
+
+        }
+
+
+        /* ==========================================
+           EMPTY / LOADING
+        ========================================== */
+
+        .empty {
+
+            background: #111a33;
+
+            border: 1px solid #26365f;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            color: #94a3b8;
+
+            grid-column: 1 / -1;
+
+        }
+
+
+        .loading {
+
+            color: #00e5ff;
+
+        }
+
+
+        .error {
+
+            color: #f87171;
+
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                padding: 15px;
+
+            }
+
+
+            header h1 {
+
+                font-size: 18px;
+
+            }
+
+
+            .container {
+
+                width: 94%;
+
+                margin-top: 20px;
+
+            }
+
+
+            .welcome {
+
+                padding: 20px;
+
+            }
+
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-<header>
-    <h1>R Mohan Digital</h1>
-    <button id="logoutBtn">Logout</button>
-</header>
 
-<div class="container">
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
 
-    <div class="welcome">
-        <h2>Faculty Dashboard</h2>
-        <p id="facultyName">Loading faculty information...</p>
-        <p id="facultyEmail"></p>
-    </div>
+    <header>
 
-    <h2 style="margin-bottom: 15px;">My Students</h2>
+        <h1>
+            R Mohan Digital
+        </h1>
 
-    <div id="studentsContainer">
-        <div class="empty">
-            Loading students...
+
+        <button id="logoutBtn">
+            Logout
+        </button>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         MAIN
+    ========================================== -->
+
+    <div class="container">
+
+
+        <!-- ======================================
+             FACULTY INFORMATION
+        ====================================== -->
+
+        <div class="welcome">
+
+            <h2>
+                Faculty Dashboard
+            </h2>
+
+
+            <p id="facultyName">
+                Loading faculty information...
+            </p>
+
+
+            <p id="facultyEmail">
+                Loading email...
+            </p>
+
         </div>
+
+
+
+        <!-- ======================================
+             STATISTICS
+        ====================================== -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <h3>
+                    My Students
+                </h3>
+
+                <strong id="totalStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Approved
+                </h3>
+
+                <strong id="approvedStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Pending
+                </h3>
+
+                <strong id="pendingStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Rejected
+                </h3>
+
+                <strong id="rejectedStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             STUDENTS
+        ====================================== -->
+
+        <h2 class="students-title">
+            My Students
+        </h2>
+
+
+        <div id="studentsContainer">
+
+            <div class="empty loading">
+                Loading students...
+            </div>
+
+        </div>
+
+
     </div>
 
-</div>
-
-<script type="module">
-
-    import { auth, db } from "./firebase.js";
-
-    import {
-        onAuthStateChanged,
-        signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-    import {
-        collection,
-        query,
-        where,
-        getDocs
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-    const facultyName = document.getElementById("facultyName");
-    const facultyEmail = document.getElementById("facultyEmail");
-    const studentsContainer = document.getElementById("studentsContainer");
-    const logoutBtn = document.getElementById("logoutBtn");
+    <!-- ==========================================
+         FIREBASE
+    ========================================== -->
+
+    <script type="module">
 
 
-    onAuthStateChanged(auth, async (user) => {
+        // ==========================================
+        // FIREBASE IMPORTS
+        // ==========================================
 
-        if (!user) {
-            window.location.href = "login.html";
-            return;
-        }
+        import {
+            auth,
+            db
+        } from "./firebase.js";
 
-        facultyEmail.textContent = user.email;
 
-        try {
+        import {
+            onAuthStateChanged,
+            signOut
+        } from
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-            /*
-             * Find students assigned to this faculty UID.
-             *
-             * IMPORTANT:
-             * Your students collection will need a field:
-             *
-             * assignedFaculty
-             *
-             * containing the faculty UID.
-             */
 
-            const studentsQuery = query(
-                collection(db, "students"),
-                where("assignedFaculty", "==", user.uid)
+        import {
+            collection,
+            query,
+            where,
+            getDocs,
+            doc,
+            getDoc
+        } from
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+
+        // ==========================================
+        // HTML ELEMENTS
+        // ==========================================
+
+        const facultyName =
+            document.getElementById(
+                "facultyName"
             );
 
-            const snapshot = await getDocs(studentsQuery);
 
-            studentsContainer.innerHTML = "";
+        const facultyEmail =
+            document.getElementById(
+                "facultyEmail"
+            );
 
-            if (snapshot.empty) {
 
-                studentsContainer.innerHTML = `
-                    <div class="empty">
-                        No students have been assigned to you yet.
-                    </div>
-                `;
+        const studentsContainer =
+            document.getElementById(
+                "studentsContainer"
+            );
 
-                return;
+
+        const totalStudents =
+            document.getElementById(
+                "totalStudents"
+            );
+
+
+        const approvedStudents =
+            document.getElementById(
+                "approvedStudents"
+            );
+
+
+        const pendingStudents =
+            document.getElementById(
+                "pendingStudents"
+            );
+
+
+        const rejectedStudents =
+            document.getElementById(
+                "rejectedStudents"
+            );
+
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+
+        // ==========================================
+        // CHECK FACULTY LOGIN
+        // ==========================================
+
+        onAuthStateChanged(
+            auth,
+            async (user) => {
+
+
+                // ==================================
+                // NOT LOGGED IN
+                // ==================================
+
+                if (!user) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+
+                try {
+
+
+                    // ==================================
+                    // GET FACULTY PROFILE
+                    // ==================================
+
+                    const facultyRef =
+                        doc(
+                            db,
+                            "users",
+                            user.uid
+                        );
+
+
+                    const facultyDoc =
+                        await getDoc(
+                            facultyRef
+                        );
+
+
+
+                    // ==================================
+                    // PROFILE NOT FOUND
+                    // ==================================
+
+                    if (
+                        !facultyDoc.exists()
+                    ) {
+
+                        alert(
+                            "Faculty profile not found."
+                        );
+
+
+                        await signOut(auth);
+
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+
+                    }
+
+
+
+                    const faculty =
+                        facultyDoc.data();
+
+
+
+                    // ==================================
+                    // CHECK ROLE
+                    // ==================================
+
+                    if (
+                        faculty.role !==
+                        "faculty"
+                    ) {
+
+                        alert(
+                            "You are not authorized to access the Faculty Dashboard."
+                        );
+
+
+                        await signOut(auth);
+
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+
+                    }
+
+
+
+                    // ==================================
+                    // CHECK STATUS
+                    // ==================================
+
+                    if (
+                        faculty.status &&
+                        faculty.status !==
+                        "active"
+                    ) {
+
+                        alert(
+                            "Your faculty account is not active."
+                        );
+
+
+                        await signOut(auth);
+
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+
+                    }
+
+
+
+                    // ==================================
+                    // SHOW FACULTY INFORMATION
+                    // ==================================
+
+                    facultyName.textContent =
+                        "Faculty: " +
+                        (
+                            faculty.name ||
+                            "Faculty"
+                        );
+
+
+                    facultyEmail.textContent =
+                        "Email: " +
+                        (
+                            faculty.email ||
+                            user.email ||
+                            "Not available"
+                        );
+
+
+
+                    // ==================================
+                    // LOAD ASSIGNED STUDENTS
+                    // ==================================
+
+                    await loadMyStudents(
+                        user.uid
+                    );
+
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Faculty authentication error:",
+                        error
+                    );
+
+
+                    facultyName.textContent =
+                        "Unable to load faculty information.";
+
+
+                    studentsContainer.innerHTML = `
+
+                        <div class="empty error">
+
+                            Unable to load your dashboard.
+
+                            <br><br>
+
+                            Please contact the administrator.
+
+                        </div>
+
+                    `;
+
+                }
+
+            }
+        );
+
+
+
+        // ==========================================
+        // LOAD MY STUDENTS
+        // ==========================================
+
+        async function loadMyStudents(
+            facultyUid
+        ) {
+
+
+            try {
+
+
+                // ==================================
+                // QUERY ASSIGNED STUDENTS
+                // ==================================
+
+                const studentsQuery =
+                    query(
+
+                        collection(
+                            db,
+                            "students"
+                        ),
+
+                        where(
+                            "assignedFaculty",
+                            "==",
+                            facultyUid
+                        )
+
+                    );
+
+
+                const snapshot =
+                    await getDocs(
+                        studentsQuery
+                    );
+
+
+
+                // ==================================
+                // CLEAR LOADING
+                // ==================================
+
+                studentsContainer.innerHTML =
+                    "";
+
+
+
+                // ==================================
+                // COUNTERS
+                // ==================================
+
+                let total = 0;
+
+                let approved = 0;
+
+                let pending = 0;
+
+                let rejected = 0;
+
+
+
+                // ==================================
+                // NO STUDENTS
+                // ==================================
+
+                if (
+                    snapshot.empty
+                ) {
+
+                    totalStudents.textContent =
+                        "0";
+
+                    approvedStudents.textContent =
+                        "0";
+
+                    pendingStudents.textContent =
+                        "0";
+
+                    rejectedStudents.textContent =
+                        "0";
+
+
+                    studentsContainer.innerHTML = `
+
+                        <div class="empty">
+
+                            No students have been assigned to you yet.
+
+                            <br><br>
+
+                            Your mentor will assign students to you after approval.
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+
+                // ==================================
+                // DISPLAY STUDENTS
+                // ==================================
+
+                snapshot.forEach(
+                    (studentDoc) => {
+
+
+                        const student =
+                            studentDoc.data();
+
+
+
+                        total++;
+
+
+
+                        // ==================================
+                        // STATUS COUNT
+                        // ==================================
+
+                        if (
+                            student.status ===
+                            "Approved"
+                        ) {
+
+                            approved++;
+
+                        }
+
+                        else if (
+                            student.status ===
+                            "Pending"
+                        ) {
+
+                            pending++;
+
+                        }
+
+                        else if (
+                            student.status ===
+                            "Rejected"
+                        ) {
+
+                            rejected++;
+
+                        }
+
+
+
+                        // ==================================
+                        // STATUS CLASS
+                        // ==================================
+
+                        let statusClass =
+                            "status-pending";
+
+
+                        if (
+                            student.status ===
+                            "Approved"
+                        ) {
+
+                            statusClass =
+                                "status-approved";
+
+                        }
+
+                        else if (
+                            student.status ===
+                            "Rejected"
+                        ) {
+
+                            statusClass =
+                                "status-rejected";
+
+                        }
+
+
+
+                        // ==================================
+                        // CREATE CARD
+                        // ==================================
+
+                        const card =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        card.className =
+                            "student-card";
+
+
+
+                        card.innerHTML = `
+
+                            <h3>
+                                ${
+                                    student.name ||
+                                    "No Name"
+                                }
+                            </h3>
+
+
+                            <p>
+
+                                <strong>
+                                    Email:
+                                </strong>
+
+                                ${
+                                    student.email ||
+                                    "Not available"
+                                }
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Phone:
+                                </strong>
+
+                                ${
+                                    student.phone ||
+                                    "Not available"
+                                }
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Course:
+                                </strong>
+
+                                ${
+                                    student.course ||
+                                    "Not available"
+                                }
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Status:
+                                </strong>
+
+                                <br>
+
+                                <span
+                                    class="student-status ${statusClass}"
+                                >
+
+                                    ${
+                                        student.status ||
+                                        "Not available"
+                                    }
+
+                                </span>
+
+                            </p>
+
+                        `;
+
+
+
+                        studentsContainer.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+
+
+                // ==================================
+                // UPDATE COUNTERS
+                // ==================================
+
+                totalStudents.textContent =
+                    total;
+
+
+                approvedStudents.textContent =
+                    approved;
+
+
+                pendingStudents.textContent =
+                    pending;
+
+
+                rejectedStudents.textContent =
+                    rejected;
+
+
             }
 
-            snapshot.forEach((doc) => {
+            catch (error) {
 
-                const student = doc.data();
+                console.error(
+                    "Error loading assigned students:",
+                    error
+                );
 
-                const card = document.createElement("div");
 
-                card.className = "student-card";
+                studentsContainer.innerHTML = `
 
-                card.innerHTML = `
-                    <h3>${student.name || "No Name"}</h3>
+                    <div class="empty error">
 
-                    <p>
-                        <strong>Email:</strong>
-                        ${student.email || "Not available"}
-                    </p>
+                        Unable to load assigned students.
 
-                    <p>
-                        <strong>Phone:</strong>
-                        ${student.phone || "Not available"}
-                    </p>
+                        <br><br>
 
-                    <p>
-                        <strong>Course:</strong>
-                        ${student.course || "Not available"}
-                    </p>
+                        Error:
+                        ${
+                            error.message ||
+                            "Unknown error"
+                        }
 
-                    <p>
-                        <strong>Status:</strong>
-                        ${student.status || "Not available"}
-                    </p>
+                    </div>
+
                 `;
 
-                studentsContainer.appendChild(card);
+            }
 
-            });
-
-        } catch (error) {
-
-            console.error(error);
-
-            studentsContainer.innerHTML = `
-                <div class="empty">
-                    Unable to load students.
-                </div>
-            `;
         }
 
-    });
 
 
-    logoutBtn.addEventListener("click", async () => {
+        // ==========================================
+        // LOGOUT
+        // ==========================================
 
-        await signOut(auth);
+        logoutBtn.addEventListener(
+            "click",
+            async () => {
 
-        window.location.href = "login.html";
 
-    });
+                try {
 
-</script>
+                    await signOut(
+                        auth
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+
+    </script>
 
 </body>
+
 </html>
