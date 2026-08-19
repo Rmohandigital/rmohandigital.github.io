@@ -1,12 +1,17 @@
 // ==========================================
-// R MOHAN DIGITAL - STUDENT AUTHENTICATION
+// R MOHAN DIGITAL - LOGIN & ROLE SYSTEM
 // ==========================================
 
-import { auth } from "../firebase.js";
+import { auth, db } from "../firebase.js";
 
 import {
     signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
 // ==========================================
@@ -20,7 +25,6 @@ window.toggleLoginPassword = function () {
 
     const button =
         document.querySelector(".toggle-password");
-
 
     if (password.type === "password") {
 
@@ -38,7 +42,7 @@ window.toggleLoginPassword = function () {
 
 
 // ==========================================
-// STUDENT LOGIN
+// LOGIN FORM
 // ==========================================
 
 const loginForm =
@@ -75,7 +79,6 @@ loginForm.addEventListener("submit", async (event) => {
             "Please enter email and password.";
 
         return;
-
     }
 
 
@@ -108,13 +111,56 @@ loginForm.addEventListener("submit", async (event) => {
 
 
         console.log(
-            "Student logged in:",
+            "User logged in:",
             user.uid
         );
 
 
         // ==========================================
-        // SUCCESS
+        // GET USER ROLE FROM FIRESTORE
+        // ==========================================
+
+        const userDocRef =
+            doc(db, "users", user.uid);
+
+        const userDoc =
+            await getDoc(userDocRef);
+
+
+        // ==========================================
+        // USER DOCUMENT NOT FOUND
+        // ==========================================
+
+        if (!userDoc.exists()) {
+
+            loginMessage.style.color = "red";
+
+            loginMessage.textContent =
+                "Account profile not found.";
+
+            return;
+        }
+
+
+        // ==========================================
+        // GET USER DATA
+        // ==========================================
+
+        const userData =
+            userDoc.data();
+
+        const role =
+            userData.role;
+
+
+        console.log(
+            "User role:",
+            role
+        );
+
+
+        // ==========================================
+        // LOGIN SUCCESS
         // ==========================================
 
         loginMessage.style.color = "green";
@@ -124,13 +170,63 @@ loginForm.addEventListener("submit", async (event) => {
 
 
         // ==========================================
-        // OPEN DASHBOARD
+        // ROLE BASED REDIRECT
         // ==========================================
 
         setTimeout(() => {
 
-            window.location.href =
-                "dashboard.html";
+
+            // --------------------------------------
+            // FACULTY
+            // --------------------------------------
+
+            if (role === "faculty") {
+
+                window.location.href =
+                    "faculty.html";
+
+            }
+
+
+            // --------------------------------------
+            // MENTOR / ADMIN
+            // --------------------------------------
+
+            else if (
+                role === "mentor" ||
+                role === "admin"
+            ) {
+
+                window.location.href =
+                    "admin.html";
+
+            }
+
+
+            // --------------------------------------
+            // STUDENT
+            // --------------------------------------
+
+            else if (role === "student") {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }
+
+
+            // --------------------------------------
+            // UNKNOWN ROLE
+            // --------------------------------------
+
+            else {
+
+                loginMessage.style.color = "red";
+
+                loginMessage.textContent =
+                    "Your account role is not configured.";
+
+            }
 
         }, 800);
 
