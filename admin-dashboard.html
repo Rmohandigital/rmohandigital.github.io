@@ -2,12 +2,15 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Admin Dashboard | R Mohan Digital</title>
 
+
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -15,17 +18,22 @@
             font-family: Arial, sans-serif;
         }
 
+
         body {
             min-height: 100vh;
             background: #f1f5f9;
             color: #0f172a;
         }
 
-        /* HEADER */
+
+        /* ==========================================
+           HEADER
+        ========================================== */
 
         header {
             background: #0f172a;
             color: white;
+
             padding: 18px 30px;
 
             display: flex;
@@ -35,29 +43,37 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
         }
 
+
         header h1 {
             color: #38bdf8;
             font-size: 24px;
         }
+
 
         .logout-btn {
             background: #ef4444;
             color: white;
 
             border: none;
+
             padding: 10px 18px;
 
             border-radius: 8px;
 
             cursor: pointer;
+
             font-weight: bold;
         }
+
 
         .logout-btn:hover {
             background: #dc2626;
         }
 
-        /* MAIN */
+
+        /* ==========================================
+           MAIN
+        ========================================== */
 
         .container {
             width: 95%;
@@ -66,19 +82,25 @@
             margin: 30px auto;
         }
 
+
         .welcome {
             margin-bottom: 25px;
         }
+
 
         .welcome h2 {
             margin-bottom: 8px;
         }
 
+
         .welcome p {
             color: #64748b;
         }
 
-        /* STATS */
+
+        /* ==========================================
+           STATISTICS
+        ========================================== */
 
         .stats {
             display: grid;
@@ -90,6 +112,7 @@
 
             margin-bottom: 30px;
         }
+
 
         .stat-card {
             background: white;
@@ -103,19 +126,26 @@
             border-left: 5px solid #2563eb;
         }
 
+
         .stat-card h3 {
             color: #64748b;
+
             font-size: 15px;
 
             margin-bottom: 10px;
         }
 
+
         .stat-card strong {
             font-size: 30px;
+
             color: #0f172a;
         }
 
-        /* STUDENTS */
+
+        /* ==========================================
+           STUDENTS
+        ========================================== */
 
         .student-section {
             background: white;
@@ -129,18 +159,24 @@
             overflow-x: auto;
         }
 
+
         .student-section h2 {
             margin-bottom: 20px;
         }
 
+
         table {
             width: 100%;
+
             border-collapse: collapse;
-            min-width: 850px;
+
+            min-width: 1000px;
         }
+
 
         th {
             background: #0f172a;
+
             color: white;
 
             padding: 14px;
@@ -148,17 +184,24 @@
             text-align: left;
         }
 
+
         td {
             padding: 14px;
 
             border-bottom: 1px solid #e2e8f0;
+
+            vertical-align: top;
         }
+
 
         tr:hover {
             background: #f8fafc;
         }
 
-        /* STATUS */
+
+        /* ==========================================
+           STATUS
+        ========================================== */
 
         .status {
             padding: 6px 10px;
@@ -172,25 +215,35 @@
             display: inline-block;
         }
 
+
         .pending {
             background: #fef3c7;
+
             color: #92400e;
         }
 
+
         .approved {
             background: #dcfce7;
+
             color: #166534;
         }
 
+
         .rejected {
             background: #fee2e2;
+
             color: #991b1b;
         }
 
-        /* APPROVE */
+
+        /* ==========================================
+           APPROVE BUTTON
+        ========================================== */
 
         .approve-btn {
             background: #16a34a;
+
             color: white;
 
             border: none;
@@ -204,14 +257,19 @@
             font-weight: bold;
         }
 
+
         .approve-btn:hover {
             background: #15803d;
         }
 
-        /* REJECT */
+
+        /* ==========================================
+           REJECT BUTTON
+        ========================================== */
 
         .reject-btn {
             background: #dc2626;
+
             color: white;
 
             border: none;
@@ -227,30 +285,122 @@
             margin-left: 5px;
         }
 
+
         .reject-btn:hover {
             background: #b91c1c;
         }
 
+
+        /* ==========================================
+           APPROVED / REJECTED TEXT
+        ========================================== */
+
         .approved-text {
             color: #16a34a;
+
             font-weight: bold;
         }
+
 
         .rejected-text {
             color: #dc2626;
+
             font-weight: bold;
         }
 
-        /* EMPTY */
+
+        /* ==========================================
+           FACULTY ASSIGNMENT
+        ========================================== */
+
+        .assign-box {
+            margin-top: 10px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .faculty-select {
+            width: 100%;
+
+            max-width: 180px;
+
+            padding: 8px;
+
+            border-radius: 7px;
+
+            border: 1px solid #cbd5e1;
+
+            background: white;
+
+            color: #0f172a;
+
+            cursor: pointer;
+        }
+
+
+        .assign-btn {
+            width: fit-content;
+
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 14px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .assign-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        .assigned-text {
+            color: #2563eb;
+
+            font-weight: bold;
+
+            margin-top: 8px;
+
+            font-size: 13px;
+        }
+
+
+        .assignment-loading {
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        /* ==========================================
+           EMPTY
+        ========================================== */
 
         .empty {
             text-align: center;
+
             padding: 30px;
 
             color: #64748b;
         }
 
-        /* LOADING */
+
+        /* ==========================================
+           LOADING
+        ========================================== */
 
         #loading {
             text-align: center;
@@ -262,7 +412,10 @@
             font-weight: bold;
         }
 
-        /* MOBILE */
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
 
         @media (max-width: 600px) {
 
@@ -270,19 +423,23 @@
                 padding: 15px;
             }
 
+
             header h1 {
                 font-size: 18px;
             }
 
+
             .container {
                 width: 94%;
             }
+
 
             .student-section {
                 padding: 15px;
             }
 
         }
+
     </style>
 
 </head>
@@ -291,584 +448,1359 @@
 <body>
 
 
-<header>
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
 
-    <h1>R Mohan Digital - Admin</h1>
+    <header>
 
-    <button
-        class="logout-btn"
-        id="logoutBtn"
-    >
-        Logout
-    </button>
-
-</header>
+        <h1>
+            R Mohan Digital - Admin
+        </h1>
 
 
-<div class="container">
-
-
-    <div class="welcome">
-
-        <h2>Student Approval Panel</h2>
-
-        <p>
-            Review student registrations and approve or reject accounts.
-        </p>
-
-    </div>
-
-
-    <!-- STATISTICS -->
-
-    <div class="stats">
-
-        <div class="stat-card">
-
-            <h3>Total Students</h3>
-
-            <strong id="totalStudents">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <h3>Pending</h3>
-
-            <strong id="pendingStudents">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <h3>Approved</h3>
-
-            <strong id="approvedStudents">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <h3>Rejected</h3>
-
-            <strong id="rejectedStudents">
-                0
-            </strong>
-
-        </div>
-
-    </div>
-
-
-    <!-- STUDENT TABLE -->
-
-    <div class="student-section">
-
-        <h2>Registered Students</h2>
-
-        <div id="loading">
-            Loading students...
-        </div>
-
-
-        <table id="studentsTable" style="display:none;">
-
-            <thead>
-
-                <tr>
-
-                    <th>Name</th>
-
-                    <th>Email</th>
-
-                    <th>Phone</th>
-
-                    <th>Course</th>
-
-                    <th>Status</th>
-
-                    <th>Action</th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="studentsBody">
-
-            </tbody>
-
-        </table>
-
-
-        <div
-            id="emptyMessage"
-            class="empty"
-            style="display:none;"
+        <button
+            class="logout-btn"
+            id="logoutBtn"
         >
-            No students registered yet.
+            Logout
+        </button>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         MAIN CONTAINER
+    ========================================== -->
+
+    <div class="container">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <h2>
+                Student Approval Panel
+            </h2>
+
+            <p>
+                Review student registrations,
+                approve or reject accounts,
+                and assign approved students
+                to teaching faculty.
+            </p>
+
         </div>
+
+
+
+        <!-- ======================================
+             STATISTICS
+        ====================================== -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Total Students
+                </h3>
+
+                <strong id="totalStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Pending
+                </h3>
+
+                <strong id="pendingStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Approved
+                </h3>
+
+                <strong id="approvedStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Rejected
+                </h3>
+
+                <strong id="rejectedStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             STUDENT TABLE
+        ====================================== -->
+
+        <div class="student-section">
+
+
+            <h2>
+                Registered Students
+            </h2>
+
+
+            <div id="loading">
+                Loading students...
+            </div>
+
+
+
+            <table
+                id="studentsTable"
+                style="display:none;"
+            >
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Phone
+                        </th>
+
+                        <th>
+                            Course
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody id="studentsBody">
+
+                </tbody>
+
+            </table>
+
+
+
+            <div
+                id="emptyMessage"
+                class="empty"
+                style="display:none;"
+            >
+                No students registered yet.
+            </div>
+
+
+        </div>
+
 
     </div>
 
 
-</div>
+
+    <!-- ==========================================
+         FIREBASE SCRIPT
+    ========================================== -->
+
+    <script type="module">
 
 
-<script type="module">
+        // ==========================================
+        // FIREBASE IMPORTS
+        // ==========================================
 
-    import { auth, db }
+        import {
+            auth,
+            db
+        }
         from "./firebase.js";
 
 
-    import {
-        onAuthStateChanged,
-        signOut
-    } from
-    "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
-import {
-    collection,
-    getDocs,
-    doc,
-    updateDoc,
-    getDoc
-} from
-"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
-    const studentsBody =
-        document.getElementById("studentsBody");
-
-    const studentsTable =
-        document.getElementById("studentsTable");
-
-    const loading =
-        document.getElementById("loading");
-
-    const emptyMessage =
-        document.getElementById("emptyMessage");
+        import {
+            onAuthStateChanged,
+            signOut
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 
-    const totalStudents =
-        document.getElementById("totalStudents");
+        import {
+            collection,
+            getDocs,
+            doc,
+            updateDoc,
+            getDoc,
+            query,
+            where
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-    const pendingStudents =
-        document.getElementById("pendingStudents");
-
-    const approvedStudents =
-        document.getElementById("approvedStudents");
-
-    const rejectedStudents =
-        document.getElementById("rejectedStudents");
 
 
-    /* ==========================================
-       CHECK ADMIN LOGIN
-    ========================================== */
+        // ==========================================
+        // HTML ELEMENTS
+        // ==========================================
 
-    onAuthStateChanged(auth, async (user) => {
+        const studentsBody =
+            document.getElementById("studentsBody");
 
-    if (!user) {
 
-        window.location.href = "admin.html";
+        const studentsTable =
+            document.getElementById("studentsTable");
 
-        return;
-    }
 
-    try {
+        const loading =
+            document.getElementById("loading");
 
-        const userDoc = await getDoc(
-            doc(db, "users", user.uid)
+
+        const emptyMessage =
+            document.getElementById("emptyMessage");
+
+
+        const totalStudents =
+            document.getElementById("totalStudents");
+
+
+        const pendingStudents =
+            document.getElementById("pendingStudents");
+
+
+        const approvedStudents =
+            document.getElementById("approvedStudents");
+
+
+        const rejectedStudents =
+            document.getElementById("rejectedStudents");
+
+
+
+        // ==========================================
+        // FACULTY LIST
+        // ==========================================
+
+        let facultyMembers = [];
+
+
+
+        // ==========================================
+        // CHECK ADMIN / MENTOR LOGIN
+        // ==========================================
+
+        onAuthStateChanged(
+            auth,
+            async (user) => {
+
+                if (!user) {
+
+                    window.location.href =
+                        "admin.html";
+
+                    return;
+                }
+
+
+                try {
+
+
+                    // ==================================
+                    // GET LOGGED-IN USER
+                    // ==================================
+
+                    const userDoc =
+                        await getDoc(
+                            doc(
+                                db,
+                                "users",
+                                user.uid
+                            )
+                        );
+
+
+                    if (!userDoc.exists()) {
+
+                        alert(
+                            "Your account does not have permission."
+                        );
+
+
+                        await signOut(auth);
+
+
+                        window.location.href =
+                            "admin.html";
+
+
+                        return;
+                    }
+
+
+                    const userData =
+                        userDoc.data();
+
+
+
+                    // ==================================
+                    // CHECK ROLE
+                    // ==================================
+
+                    if (
+
+                        userData.active !== true
+
+                        ||
+
+                        (
+                            userData.role !== "owner"
+
+                            &&
+
+                            userData.role !== "mentor"
+                        )
+
+                    ) {
+
+                        alert(
+                            "You are not authorized to access the admin panel."
+                        );
+
+
+                        await signOut(auth);
+
+
+                        window.location.href =
+                            "admin.html";
+
+
+                        return;
+                    }
+
+
+
+                    // ==================================
+                    // LOAD FACULTY FIRST
+                    // ==================================
+
+                    await loadFaculty();
+
+
+                    // ==================================
+                    // LOAD STUDENTS
+                    // ==================================
+
+                    await loadStudents();
+
+
+                }
+
+                catch (error) {
+
+                    console.error(error);
+
+
+                    alert(
+                        "Unable to verify your permissions."
+                    );
+
+
+                    await signOut(auth);
+
+
+                    window.location.href =
+                        "admin.html";
+
+                }
+
+            }
         );
 
-        if (!userDoc.exists()) {
-
-            alert("Your account does not have permission.");
-
-            await signOut(auth);
-
-            window.location.href = "admin.html";
-
-            return;
-        }
-
-        const userData = userDoc.data();
-
-        if (
-            userData.active !== true ||
-            (
-                userData.role !== "owner" &&
-                userData.role !== "mentor"
-            )
-        ) {
-
-            alert("You are not authorized to access the admin panel.");
-
-            await signOut(auth);
-
-            window.location.href = "admin.html";
-
-            return;
-        }
-
-        loadStudents();
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("Unable to verify your permissions.");
-
-        await signOut(auth);
-
-        window.location.href = "admin.html";
-
-    }
-
-});
 
 
-    /* ==========================================
-       LOAD STUDENTS
-    ========================================== */
+        // ==========================================
+        // LOAD FACULTY
+        // ==========================================
 
-    async function loadStudents() {
+        async function loadFaculty() {
 
-        try {
+            try {
 
-            const snapshot =
-                await getDocs(
-                    collection(db, "students")
+
+                const facultyQuery =
+                    query(
+                        collection(db, "users"),
+
+                        where(
+                            "role",
+                            "==",
+                            "faculty"
+                        )
+                    );
+
+
+                const snapshot =
+                    await getDocs(
+                        facultyQuery
+                    );
+
+
+                facultyMembers = [];
+
+
+                snapshot.forEach(
+                    (facultyDoc) => {
+
+                        const faculty =
+                            facultyDoc.data();
+
+
+                        // Only active faculty
+
+                        if (
+                            faculty.status === "active"
+                        ) {
+
+                            facultyMembers.push({
+
+                                uid:
+                                    facultyDoc.id,
+
+                                name:
+                                    faculty.name
+                                    || "Faculty",
+
+                                email:
+                                    faculty.email
+                                    || ""
+
+                            });
+
+                        }
+
+                    }
                 );
 
 
-            studentsBody.innerHTML = "";
+                // Sort alphabetically
+
+                facultyMembers.sort(
+                    (a, b) =>
+                        a.name.localeCompare(
+                            b.name
+                        )
+                );
 
 
-            let total = 0;
-            let pending = 0;
-            let approved = 0;
-            let rejected = 0;
+                console.log(
+                    "Faculty loaded:",
+                    facultyMembers
+                );
 
 
-            snapshot.forEach((studentDoc) => {
+            }
 
-                const student =
-                    studentDoc.data();
+            catch (error) {
 
-
-                total++;
-
-
-                if (student.status === "Pending") {
-                    pending++;
-                }
-
-                else if (student.status === "Approved") {
-                    approved++;
-                }
-
-                else if (student.status === "Rejected") {
-                    rejected++;
-                }
+                console.error(
+                    "Error loading faculty:",
+                    error
+                );
 
 
-                const row =
-                    document.createElement("tr");
+                facultyMembers = [];
+
+            }
+
+        }
 
 
-                row.innerHTML = `
 
-                    <td>
-                        ${student.name || "-"}
-                    </td>
+        // ==========================================
+        // CREATE FACULTY DROPDOWN
+        // ==========================================
 
-                    <td>
-                        ${student.email || "-"}
-                    </td>
+        function createFacultyDropdown(
+            studentId,
+            assignedFaculty
+        ) {
 
-                    <td>
-                        ${student.phone || "-"}
-                    </td>
 
-                    <td>
-                        ${student.course || "-"}
-                    </td>
+            if (
+                facultyMembers.length === 0
+            ) {
 
-                    <td>
-
-                        <span class="status ${
-                            student.status === "Approved"
-                                ? "approved"
-                                : student.status === "Rejected"
-                                    ? "rejected"
-                                    : "pending"
-                        }">
-
-                            ${student.status || "Pending"}
-
-                        </span>
-
-                    </td>
-
-                    <td>
-
-                        ${
-                            student.status === "Pending"
-
-                            ?
-
-                            `
-                            <button
-                                class="approve-btn"
-                                data-id="${studentDoc.id}"
-                            >
-                                Approve
-                            </button>
-
-                            <button
-                                class="reject-btn"
-                                data-id="${studentDoc.id}"
-                            >
-                                Reject
-                            </button>
-                            `
-
-                            :
-
-                            student.status === "Approved"
-
-                            ?
-
-                            `<span class="approved-text">
-                                ✓ Approved
-                            </span>`
-
-                            :
-
-                            `<span class="rejected-text">
-                                ✕ Rejected
-                            </span>`
-                        }
-
-                    </td>
-
+                return `
+                    <div class="assignment-loading">
+                        No active faculty found.
+                    </div>
                 `;
 
-
-                studentsBody.appendChild(row);
-
-            });
-
-
-            totalStudents.textContent = total;
-
-            pendingStudents.textContent = pending;
-
-            approvedStudents.textContent = approved;
-
-            rejectedStudents.textContent = rejected;
-
-
-            loading.style.display = "none";
-
-
-            if (total === 0) {
-
-                emptyMessage.style.display =
-                    "block";
-
-                studentsTable.style.display =
-                    "none";
-
-            }
-
-            else {
-
-                emptyMessage.style.display =
-                    "none";
-
-                studentsTable.style.display =
-                    "table";
-
             }
 
 
-            /* ==========================================
-               APPROVE BUTTONS
-            ========================================== */
 
-            document
-                .querySelectorAll(".approve-btn")
-                .forEach((button) => {
-
-                    button.addEventListener(
-                        "click",
-                        () => approveStudent(
-                            button.dataset.id
-                        )
-                    );
-
-                });
+            let options = `
+                <option value="">
+                    Select Faculty
+                </option>
+            `;
 
 
-            /* ==========================================
-               REJECT BUTTONS
-            ========================================== */
-
-            document
-                .querySelectorAll(".reject-btn")
-                .forEach((button) => {
-
-                    button.addEventListener(
-                        "click",
-                        () => rejectStudent(
-                            button.dataset.id
-                        )
-                    );
-
-                });
+            facultyMembers.forEach(
+                (faculty) => {
 
 
-        } catch (error) {
-
-            console.error(
-                "Error loading students:",
-                error
-            );
-
-            loading.textContent =
-                "Unable to load students. Check Firestore rules.";
-
-        }
-
-    }
+                    const selected =
+                        assignedFaculty ===
+                        faculty.uid
+                            ? "selected"
+                            : "";
 
 
-    /* ==========================================
-       APPROVE STUDENT
-    ========================================== */
+                    options += `
 
-    async function approveStudent(studentId) {
+                        <option
+                            value="${faculty.uid}"
+                            ${selected}
+                        >
+                            ${faculty.name}
+                        </option>
 
-        const confirmApproval =
-            confirm(
-                "Approve this student?"
-            );
+                    `;
 
-
-        if (!confirmApproval) {
-            return;
-        }
-
-
-        try {
-
-            await updateDoc(
-                doc(db, "students", studentId),
-                {
-                    status: "Approved"
                 }
             );
 
 
-            alert(
-                "Student approved successfully!"
-            );
+            return `
+
+                <div class="assign-box">
+
+                    <select
+                        class="faculty-select"
+                        data-id="${studentId}"
+                    >
+
+                        ${options}
+
+                    </select>
 
 
-            loadStudents();
+                    <button
+                        class="assign-btn"
+                        data-id="${studentId}"
+                    >
 
+                        ${
+                            assignedFaculty
+                                ? "Reassign"
+                                : "Assign"
+                        }
 
-        } catch (error) {
+                    </button>
 
-            console.error(error);
+                </div>
 
-            alert(
-                "Approval failed. Check Firestore rules."
-            );
+            `;
 
         }
 
-    }
 
 
-    /* ==========================================
-       REJECT STUDENT
-    ========================================== */
+        // ==========================================
+        // LOAD STUDENTS
+        // ==========================================
 
-    async function rejectStudent(studentId) {
+        async function loadStudents() {
 
-        const confirmReject =
-            confirm(
-                "Reject this student?"
-            );
+            try {
 
 
-        if (!confirmReject) {
-            return;
+                const snapshot =
+                    await getDocs(
+                        collection(
+                            db,
+                            "students"
+                        )
+                    );
+
+
+                studentsBody.innerHTML =
+                    "";
+
+
+                let total = 0;
+
+                let pending = 0;
+
+                let approved = 0;
+
+                let rejected = 0;
+
+
+
+                snapshot.forEach(
+                    (studentDoc) => {
+
+
+                        const student =
+                            studentDoc.data();
+
+
+                        total++;
+
+
+
+                        // ==================================
+                        // COUNT STATUS
+                        // ==================================
+
+                        if (
+                            student.status ===
+                            "Pending"
+                        ) {
+
+                            pending++;
+
+                        }
+
+                        else if (
+                            student.status ===
+                            "Approved"
+                        ) {
+
+                            approved++;
+
+                        }
+
+                        else if (
+                            student.status ===
+                            "Rejected"
+                        ) {
+
+                            rejected++;
+
+                        }
+
+
+
+                        // ==================================
+                        // CREATE ROW
+                        // ==================================
+
+                        const row =
+                            document.createElement(
+                                "tr"
+                            );
+
+
+
+                        // ==================================
+                        // ACTION HTML
+                        // ==================================
+
+                        let actionHTML = "";
+
+
+
+                        // ==================================
+                        // PENDING
+                        // ==================================
+
+                        if (
+                            student.status ===
+                            "Pending"
+                        ) {
+
+                            actionHTML = `
+
+                                <button
+                                    class="approve-btn"
+                                    data-id="${studentDoc.id}"
+                                >
+                                    Approve
+                                </button>
+
+
+                                <button
+                                    class="reject-btn"
+                                    data-id="${studentDoc.id}"
+                                >
+                                    Reject
+                                </button>
+
+                            `;
+
+                        }
+
+
+
+                        // ==================================
+                        // APPROVED
+                        // ==================================
+
+                        else if (
+                            student.status ===
+                            "Approved"
+                        ) {
+
+
+                            const assignedName =
+                                student.assignedFacultyName
+                                || "";
+
+
+
+                            actionHTML = `
+
+                                <div>
+
+                                    <span
+                                        class="approved-text"
+                                    >
+                                        ✓ Approved
+                                    </span>
+
+
+                                    ${
+                                        assignedName
+
+                                        ?
+
+                                        `
+                                        <div
+                                            class="assigned-text"
+                                        >
+                                            Assigned to:
+                                            ${assignedName}
+                                        </div>
+                                        `
+
+                                        :
+
+                                        ""
+                                    }
+
+
+                                    ${
+
+                                        createFacultyDropdown(
+
+                                            studentDoc.id,
+
+                                            student.assignedFaculty
+                                            || ""
+
+                                        )
+
+                                    }
+
+                                </div>
+
+                            `;
+
+                        }
+
+
+
+                        // ==================================
+                        // REJECTED
+                        // ==================================
+
+                        else {
+
+                            actionHTML = `
+
+                                <span
+                                    class="rejected-text"
+                                >
+                                    ✕ Rejected
+                                </span>
+
+                            `;
+
+                        }
+
+
+
+                        // ==================================
+                        // ROW CONTENT
+                        // ==================================
+
+                        row.innerHTML = `
+
+                            <td>
+                                ${student.name || "-"}
+                            </td>
+
+
+                            <td>
+                                ${student.email || "-"}
+                            </td>
+
+
+                            <td>
+                                ${student.phone || "-"}
+                            </td>
+
+
+                            <td>
+                                ${student.course || "-"}
+                            </td>
+
+
+                            <td>
+
+                                <span
+                                    class="status ${
+                                        student.status ===
+                                        "Approved"
+
+                                            ? "approved"
+
+                                            :
+
+                                        student.status ===
+                                        "Rejected"
+
+                                            ? "rejected"
+
+                                            :
+
+                                        "pending"
+                                    }"
+                                >
+
+                                    ${
+                                        student.status
+                                        || "Pending"
+                                    }
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                ${actionHTML}
+
+                            </td>
+
+                        `;
+
+
+                        studentsBody.appendChild(
+                            row
+                        );
+
+                    }
+                );
+
+
+
+                // ==================================
+                // UPDATE STATISTICS
+                // ==================================
+
+                totalStudents.textContent =
+                    total;
+
+
+                pendingStudents.textContent =
+                    pending;
+
+
+                approvedStudents.textContent =
+                    approved;
+
+
+                rejectedStudents.textContent =
+                    rejected;
+
+
+
+                // ==================================
+                // HIDE LOADING
+                // ==================================
+
+                loading.style.display =
+                    "none";
+
+
+
+                // ==================================
+                // EMPTY STATE
+                // ==================================
+
+                if (
+                    total === 0
+                ) {
+
+                    emptyMessage.style.display =
+                        "block";
+
+
+                    studentsTable.style.display =
+                        "none";
+
+                }
+
+                else {
+
+                    emptyMessage.style.display =
+                        "none";
+
+
+                    studentsTable.style.display =
+                        "table";
+
+                }
+
+
+
+                // ==================================
+                // APPROVE BUTTONS
+                // ==================================
+
+                document
+                    .querySelectorAll(
+                        ".approve-btn"
+                    )
+                    .forEach(
+                        (button) => {
+
+                            button.addEventListener(
+                                "click",
+                                () => {
+
+                                    approveStudent(
+                                        button.dataset.id
+                                    );
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+
+                // ==================================
+                // REJECT BUTTONS
+                // ==================================
+
+                document
+                    .querySelectorAll(
+                        ".reject-btn"
+                    )
+                    .forEach(
+                        (button) => {
+
+                            button.addEventListener(
+                                "click",
+                                () => {
+
+                                    rejectStudent(
+                                        button.dataset.id
+                                    );
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+
+                // ==================================
+                // ASSIGN BUTTONS
+                // ==================================
+
+                document
+                    .querySelectorAll(
+                        ".assign-btn"
+                    )
+                    .forEach(
+                        (button) => {
+
+                            button.addEventListener(
+                                "click",
+                                () => {
+
+                                    const studentId =
+                                        button.dataset.id;
+
+
+                                    const select =
+                                        document.querySelector(
+                                            `.faculty-select[data-id="${studentId}"]`
+                                        );
+
+
+                                    if (!select) {
+
+                                        alert(
+                                            "Faculty selection not found."
+                                        );
+
+                                        return;
+
+                                    }
+
+
+                                    const facultyUid =
+                                        select.value;
+
+
+                                    if (!facultyUid) {
+
+                                        alert(
+                                            "Please select a faculty member."
+                                        );
+
+                                        return;
+
+                                    }
+
+
+                                    const selectedFaculty =
+                                        facultyMembers.find(
+                                            (faculty) =>
+                                                faculty.uid ===
+                                                facultyUid
+                                        );
+
+
+                                    if (
+                                        !selectedFaculty
+                                    ) {
+
+                                        alert(
+                                            "Faculty member not found."
+                                        );
+
+                                        return;
+
+                                    }
+
+
+                                    assignFaculty(
+                                        studentId,
+
+                                        selectedFaculty.uid,
+
+                                        selectedFaculty.name
+                                    );
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Error loading students:",
+                    error
+                );
+
+
+                loading.textContent =
+                    "Unable to load students. Check Firestore rules.";
+
+            }
+
         }
 
 
-        try {
 
-            await updateDoc(
-                doc(db, "students", studentId),
-                {
-                    status: "Rejected"
+        // ==========================================
+        // APPROVE STUDENT
+        // ==========================================
+
+        async function approveStudent(
+            studentId
+        ) {
+
+
+            const confirmApproval =
+                confirm(
+                    "Approve this student?"
+                );
+
+
+            if (!confirmApproval) {
+
+                return;
+
+            }
+
+
+            try {
+
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "students",
+                        studentId
+                    ),
+
+                    {
+                        status: "Approved"
+                    }
+
+                );
+
+
+                alert(
+                    "Student approved successfully!"
+                );
+
+
+                await loadStudents();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                alert(
+                    "Approval failed. Check Firestore rules."
+                );
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // REJECT STUDENT
+        // ==========================================
+
+        async function rejectStudent(
+            studentId
+        ) {
+
+
+            const confirmReject =
+                confirm(
+                    "Reject this student?"
+                );
+
+
+            if (!confirmReject) {
+
+                return;
+
+            }
+
+
+            try {
+
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "students",
+                        studentId
+                    ),
+
+                    {
+                        status: "Rejected"
+                    }
+
+                );
+
+
+                alert(
+                    "Student rejected."
+                );
+
+
+                await loadStudents();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                alert(
+                    "Rejection failed. Check Firestore rules."
+                );
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // ASSIGN FACULTY
+        // ==========================================
+
+        async function assignFaculty(
+            studentId,
+            facultyUid,
+            facultyName
+        ) {
+
+
+            const confirmAssignment =
+                confirm(
+                    "Assign this student to " +
+                    facultyName +
+                    "?"
+                );
+
+
+            if (!confirmAssignment) {
+
+                return;
+
+            }
+
+
+            try {
+
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "students",
+                        studentId
+                    ),
+
+                    {
+
+                        assignedFaculty:
+                            facultyUid,
+
+                        assignedFacultyName:
+                            facultyName
+
+                    }
+
+                );
+
+
+                alert(
+                    "Student assigned to " +
+                    facultyName +
+                    " successfully!"
+                );
+
+
+                await loadStudents();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Faculty assignment error:",
+                    error
+                );
+
+
+                alert(
+                    "Assignment failed. Check Firestore rules."
+                );
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // LOGOUT
+        // ==========================================
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener(
+                "click",
+                async () => {
+
+
+                    await signOut(
+                        auth
+                    );
+
+
+                    window.location.href =
+                        "admin.html";
+
                 }
             );
 
 
-            alert(
-                "Student rejected."
-            );
-
-
-            loadStudents();
-
-
-        } catch (error) {
-
-            console.error(error);
-
-            alert(
-                "Rejection failed. Check Firestore rules."
-            );
-
-        }
-
-    }
-
-
-    /* ==========================================
-       LOGOUT
-    ========================================== */
-
-    document
-        .getElementById("logoutBtn")
-        .addEventListener(
-            "click",
-            async () => {
-
-                await signOut(auth);
-
-                window.location.href =
-                    "admin.html";
-
-            }
-        );
-
-</script>
+    </script>
 
 
 </body>
