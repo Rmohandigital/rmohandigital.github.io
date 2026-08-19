@@ -2,6 +2,7 @@
 // R MOHAN DIGITAL - LOGIN & ROLE SYSTEM
 // ==========================================
 
+// firebase.js is one folder above auth.js
 import { auth, db } from "../firebase.js";
 
 import {
@@ -26,6 +27,10 @@ window.toggleLoginPassword = function () {
     const button =
         document.querySelector(".toggle-password");
 
+    if (!password || !button) {
+        return;
+    }
+
     if (password.type === "password") {
 
         password.type = "text";
@@ -42,7 +47,7 @@ window.toggleLoginPassword = function () {
 
 
 // ==========================================
-// LOGIN FORM
+// GET LOGIN FORM
 // ==========================================
 
 const loginForm =
@@ -52,233 +57,323 @@ const loginMessage =
     document.getElementById("loginMessage");
 
 
-loginForm.addEventListener("submit", async (event) => {
+// ==========================================
+// CHECK LOGIN FORM
+// ==========================================
 
-    event.preventDefault();
+if (loginForm) {
 
+    loginForm.addEventListener("submit", async (event) => {
 
-    const email =
-        document.getElementById("loginEmail")
-        .value
-        .trim();
-
-    const password =
-        document.getElementById("loginPassword")
-        .value;
-
-
-    // ==========================================
-    // CHECK EMPTY FIELDS
-    // ==========================================
-
-    if (email === "" || password === "") {
-
-        loginMessage.style.color = "red";
-
-        loginMessage.textContent =
-            "Please enter email and password.";
-
-        return;
-    }
-
-
-    // ==========================================
-    // LOGIN MESSAGE
-    // ==========================================
-
-    loginMessage.style.color = "#2563eb";
-
-    loginMessage.textContent =
-        "Logging in...";
-
-
-    try {
-
-        // ==========================================
-        // FIREBASE LOGIN
-        // ==========================================
-
-        const userCredential =
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-
-        const user =
-            userCredential.user;
-
-
-        console.log(
-            "User logged in:",
-            user.uid
-        );
+        event.preventDefault();
 
 
         // ==========================================
-        // GET USER ROLE FROM FIRESTORE
+        // GET EMAIL & PASSWORD
         // ==========================================
 
-        const userDocRef =
-            doc(db, "users", user.uid);
+        const email =
+            document.getElementById("loginEmail")
+                .value
+                .trim();
 
-        const userDoc =
-            await getDoc(userDocRef);
+        const password =
+            document.getElementById("loginPassword")
+                .value;
 
 
         // ==========================================
-        // USER DOCUMENT NOT FOUND
+        // CHECK EMPTY FIELDS
         // ==========================================
 
-        if (!userDoc.exists()) {
+        if (email === "" || password === "") {
 
             loginMessage.style.color = "red";
 
             loginMessage.textContent =
-                "Account profile not found.";
+                "Please enter email and password.";
 
             return;
         }
 
 
         // ==========================================
-        // GET USER DATA
+        // LOGIN MESSAGE
         // ==========================================
 
-        const userData =
-            userDoc.data();
-
-        const role =
-            userData.role;
-
-
-        console.log(
-            "User role:",
-            role
-        );
-
-
-        // ==========================================
-        // LOGIN SUCCESS
-        // ==========================================
-
-        loginMessage.style.color = "green";
+        loginMessage.style.color = "#2563eb";
 
         loginMessage.textContent =
-            "Login successful!";
+            "Logging in...";
 
 
-        // ==========================================
-        // ROLE BASED REDIRECT
-        // ==========================================
+        try {
 
-        setTimeout(() => {
+            // ==========================================
+            // FIREBASE AUTHENTICATION
+            // ==========================================
 
-
-            // --------------------------------------
-            // FACULTY
-            // --------------------------------------
-
-            if (role === "faculty") {
-
-                window.location.href =
-                    "faculty.html";
-
-            }
+            const userCredential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
 
 
-            // --------------------------------------
-            // MENTOR / ADMIN
-            // --------------------------------------
-
-            else if (
-                role === "mentor" ||
-                role === "admin"
-            ) {
-
-                window.location.href =
-                    "admin.html";
-
-            }
+            const user =
+                userCredential.user;
 
 
-            // --------------------------------------
-            // STUDENT
-            // --------------------------------------
-
-            else if (role === "student") {
-
-                window.location.href =
-                    "dashboard.html";
-
-            }
+            console.log(
+                "User logged in:",
+                user.uid
+            );
 
 
-            // --------------------------------------
-            // UNKNOWN ROLE
-            // --------------------------------------
+            // ==========================================
+            // GET USER PROFILE FROM FIRESTORE
+            // ==========================================
 
-            else {
+            const userDocRef =
+                doc(db, "users", user.uid);
+
+            const userDoc =
+                await getDoc(userDocRef);
+
+
+            // ==========================================
+            // CHECK USER DOCUMENT
+            // ==========================================
+
+            if (!userDoc.exists()) {
 
                 loginMessage.style.color = "red";
 
                 loginMessage.textContent =
-                    "Your account role is not configured.";
+                    "Account profile not found. Please contact the administrator.";
+
+                return;
+            }
+
+
+            // ==========================================
+            // GET USER DATA
+            // ==========================================
+
+            const userData =
+                userDoc.data();
+
+            const role =
+                userData.role;
+
+            const status =
+                userData.status;
+
+
+            console.log(
+                "User role:",
+                role
+            );
+
+            console.log(
+                "User status:",
+                status
+            );
+
+
+            // ==========================================
+            // CHECK ACCOUNT STATUS
+            // ==========================================
+
+            if (
+                status &&
+                status !== "active"
+            ) {
+
+                loginMessage.style.color = "red";
+
+                loginMessage.textContent =
+                    "Your account is not active. Please contact the administrator.";
+
+                return;
+            }
+
+
+            // ==========================================
+            // LOGIN SUCCESS
+            // ==========================================
+
+            loginMessage.style.color = "green";
+
+            loginMessage.textContent =
+                "Login successful!";
+
+
+            // ==========================================
+            // ROLE-BASED REDIRECT
+            // ==========================================
+
+            setTimeout(() => {
+
+
+                // ======================================
+                // FACULTY
+                // ======================================
+
+                if (role === "faculty") {
+
+                    window.location.href =
+                        "faculty.html";
+
+                }
+
+
+                // ======================================
+                // MENTOR
+                // ======================================
+
+                else if (role === "mentor") {
+
+                    window.location.href =
+                        "admin.html";
+
+                }
+
+
+                // ======================================
+                // ADMIN
+                // ======================================
+
+                else if (role === "admin") {
+
+                    window.location.href =
+                        "admin.html";
+
+                }
+
+
+                // ======================================
+                // STUDENT
+                // ======================================
+
+                else if (role === "student") {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                }
+
+
+                // ======================================
+                // UNKNOWN ROLE
+                // ======================================
+
+                else {
+
+                    loginMessage.style.color = "red";
+
+                    loginMessage.textContent =
+                        "Your account role is not configured.";
+
+                    console.error(
+                        "Unknown role:",
+                        role
+                    );
+
+                }
+
+            }, 800);
+
+
+        } catch (error) {
+
+            // ==========================================
+            // FIREBASE LOGIN ERROR
+            // ==========================================
+
+            console.error(
+                "Firebase Login Error:",
+                error
+            );
+
+
+            loginMessage.style.color = "red";
+
+
+            // ==========================================
+            // INVALID LOGIN
+            // ==========================================
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                loginMessage.textContent =
+                    "Incorrect email or password.";
 
             }
 
-        }, 800);
+
+            // ==========================================
+            // INVALID EMAIL
+            // ==========================================
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                loginMessage.textContent =
+                    "Please enter a valid email address.";
+
+            }
 
 
-    } catch (error) {
+            // ==========================================
+            // TOO MANY REQUESTS
+            // ==========================================
 
-        console.error(
-            "Firebase Login Error:",
-            error
-        );
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                loginMessage.textContent =
+                    "Too many attempts. Please try again later.";
+
+            }
 
 
-        loginMessage.style.color = "red";
+            // ==========================================
+            // PERMISSION ERROR
+            // ==========================================
+
+            else if (
+                error.code ===
+                "permission-denied"
+            ) {
+
+                loginMessage.textContent =
+                    "Permission denied. Please contact the administrator.";
+
+            }
 
 
-        if (
-            error.code ===
-            "auth/invalid-credential"
-        ) {
+            // ==========================================
+            // OTHER ERROR
+            // ==========================================
 
-            loginMessage.textContent =
-                "Incorrect email or password.";
+            else {
+
+                loginMessage.textContent =
+                    "Login failed. Please try again.";
+
+            }
 
         }
 
-        else if (
-            error.code ===
-            "auth/invalid-email"
-        ) {
+    });
 
-            loginMessage.textContent =
-                "Please enter a valid email address.";
-
-        }
-
-        else if (
-            error.code ===
-            "auth/too-many-requests"
-        ) {
-
-            loginMessage.textContent =
-                "Too many attempts. Please try again later.";
-
-        }
-
-        else {
-
-            loginMessage.textContent =
-                "Login failed. Please try again.";
-
-        }
-
-    }
-
-});
+}
