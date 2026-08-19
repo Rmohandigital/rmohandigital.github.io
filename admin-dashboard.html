@@ -436,15 +436,14 @@
     } from
     "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-
-    import {
-        collection,
-        getDocs,
-        doc,
-        updateDoc
-    } from
-    "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
+import {
+    collection,
+    getDocs,
+    doc,
+    updateDoc,
+    getDoc
+} from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
     const studentsBody =
         document.getElementById("studentsBody");
@@ -476,21 +475,66 @@
        CHECK ADMIN LOGIN
     ========================================== */
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
 
-        if (!user) {
+    if (!user) {
 
-            window.location.href =
-                "admin.html";
+        window.location.href = "admin.html";
+
+        return;
+    }
+
+    try {
+
+        const userDoc = await getDoc(
+            doc(db, "users", user.uid)
+        );
+
+        if (!userDoc.exists()) {
+
+            alert("Your account does not have permission.");
+
+            await signOut(auth);
+
+            window.location.href = "admin.html";
 
             return;
-
         }
 
+        const userData = userDoc.data();
+
+        if (
+            userData.active !== true ||
+            (
+                userData.role !== "owner" &&
+                userData.role !== "mentor"
+            )
+        ) {
+
+            alert("You are not authorized to access the admin panel.");
+
+            await signOut(auth);
+
+            window.location.href = "admin.html";
+
+            return;
+        }
 
         loadStudents();
 
-    });
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Unable to verify your permissions.");
+
+        await signOut(auth);
+
+        window.location.href = "admin.html";
+
+    }
+
+});
 
 
     /* ==========================================
