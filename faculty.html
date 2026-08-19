@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Dashboard | R Mohan Digital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0b1020;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #111a33;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #26365f;
+        }
+
+        header h1 {
+            color: #00e5ff;
+        }
+
+        #logoutBtn {
+            background: #ff3b3b;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .welcome {
+            background: #111a33;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            color: #00e5ff;
+            margin-bottom: 10px;
+        }
+
+        .student-card {
+            background: #111a33;
+            border: 1px solid #26365f;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .student-card h3 {
+            color: #00e5ff;
+            margin-bottom: 10px;
+        }
+
+        .student-card p {
+            margin: 7px 0;
+        }
+
+        #studentsContainer {
+            display: grid;
+            gap: 15px;
+        }
+
+        .empty {
+            background: #111a33;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>R Mohan Digital</h1>
+    <button id="logoutBtn">Logout</button>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h2>Faculty Dashboard</h2>
+        <p id="facultyName">Loading faculty information...</p>
+        <p id="facultyEmail"></p>
+    </div>
+
+    <h2 style="margin-bottom: 15px;">My Students</h2>
+
+    <div id="studentsContainer">
+        <div class="empty">
+            Loading students...
+        </div>
+    </div>
+
+</div>
+
+<script type="module">
+
+    import { auth, db } from "./firebase.js";
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    import {
+        collection,
+        query,
+        where,
+        getDocs
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    const facultyName = document.getElementById("facultyName");
+    const facultyEmail = document.getElementById("facultyEmail");
+    const studentsContainer = document.getElementById("studentsContainer");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+
+    onAuthStateChanged(auth, async (user) => {
+
+        if (!user) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        facultyEmail.textContent = user.email;
+
+        try {
+
+            /*
+             * Find students assigned to this faculty UID.
+             *
+             * IMPORTANT:
+             * Your students collection will need a field:
+             *
+             * assignedFaculty
+             *
+             * containing the faculty UID.
+             */
+
+            const studentsQuery = query(
+                collection(db, "students"),
+                where("assignedFaculty", "==", user.uid)
+            );
+
+            const snapshot = await getDocs(studentsQuery);
+
+            studentsContainer.innerHTML = "";
+
+            if (snapshot.empty) {
+
+                studentsContainer.innerHTML = `
+                    <div class="empty">
+                        No students have been assigned to you yet.
+                    </div>
+                `;
+
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+
+                const student = doc.data();
+
+                const card = document.createElement("div");
+
+                card.className = "student-card";
+
+                card.innerHTML = `
+                    <h3>${student.name || "No Name"}</h3>
+
+                    <p>
+                        <strong>Email:</strong>
+                        ${student.email || "Not available"}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        ${student.phone || "Not available"}
+                    </p>
+
+                    <p>
+                        <strong>Course:</strong>
+                        ${student.course || "Not available"}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        ${student.status || "Not available"}
+                    </p>
+                `;
+
+                studentsContainer.appendChild(card);
+
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+            studentsContainer.innerHTML = `
+                <div class="empty">
+                    Unable to load students.
+                </div>
+            `;
+        }
+
+    });
+
+
+    logoutBtn.addEventListener("click", async () => {
+
+        await signOut(auth);
+
+        window.location.href = "login.html";
+
+    });
+
+</script>
+
+</body>
+</html>
