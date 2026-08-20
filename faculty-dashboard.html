@@ -1272,32 +1272,53 @@ data
    ROLE CHECK
 ========================== */
 
-if(
-data.role !== "faculty"
-){
+// ==========================================
+// FACULTY ROLE CHECK
+// Accepts Faculty / faculty
+// ==========================================
 
-alert(
-"This account is not a faculty account."
-);
+const facultyRole =
+    String(data.role || "")
+        .trim()
+        .toLowerCase();
 
-await signOut(auth);
+if (facultyRole !== "faculty") {
 
-window.location.href =
-"login.html";
+    alert(
+        "This account is not a faculty account."
+    );
 
-return;
+    await signOut(auth);
 
+    window.location.href =
+        "login.html";
+
+    return;
 }
-
 
 /* ==========================
    STATUS CHECK
 ========================== */
 
-if(
-data.status !== "Active"
-){
+const facultyStatus =
+    String(data.status || "")
+        .trim()
+        .toLowerCase();
 
+if (facultyStatus !== "active") {
+
+    alert(
+        "Your faculty account is not active yet."
+    );
+
+    await signOut(auth);
+
+    window.location.href =
+        "login.html";
+
+    return;
+}
+      
 alert(
 "Your faculty account is not active yet."
 );
