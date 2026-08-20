@@ -48,7 +48,7 @@ window.toggleLoginPassword = function () {
 
 
 // ==========================================
-// GET LOGIN FORM
+// LOGIN FORM
 // ==========================================
 
 const loginForm =
@@ -65,27 +65,29 @@ const loginMessage =
 async function findUserProfile(user) {
 
     // ======================================
-    // FIRST: CHECK NORMAL "users" COLLECTION
+    // CHECK "users" COLLECTION
     // ======================================
 
     try {
 
-        const normalQuery = query(
+        const usersQuery = query(
             collection(db, "users"),
             where("email", "==", user.email)
         );
 
-        const normalSnapshot =
-            await getDocs(normalQuery);
+        const usersSnapshot =
+            await getDocs(usersQuery);
 
-        if (!normalSnapshot.empty) {
+
+        if (!usersSnapshot.empty) {
 
             const profileDoc =
-                normalSnapshot.docs[0];
+                usersSnapshot.docs[0];
 
             return {
                 id: profileDoc.id,
-                data: profileDoc.data()
+                data: profileDoc.data(),
+                collection: "users"
             };
 
         }
@@ -93,7 +95,7 @@ async function findUserProfile(user) {
     } catch (error) {
 
         console.log(
-            "Normal users collection check:",
+            "Error checking users collection:",
             error
         );
 
@@ -101,7 +103,7 @@ async function findUserProfile(user) {
 
 
     // ======================================
-    // SECOND: CHECK YOUR FACULTY COLLECTIONS
+    // CHECK FACULTY COLLECTIONS
     // ======================================
 
     const facultyCollections = [
@@ -123,6 +125,7 @@ async function findUserProfile(user) {
                 where("email", "==", user.email)
             );
 
+
             const facultySnapshot =
                 await getDocs(facultyQuery);
 
@@ -143,7 +146,7 @@ async function findUserProfile(user) {
         } catch (error) {
 
             console.log(
-                "Checking " +
+                "Error checking " +
                 collectionName +
                 ":",
                 error
@@ -155,7 +158,7 @@ async function findUserProfile(user) {
 
 
     // ======================================
-    // USER NOT FOUND
+    // PROFILE NOT FOUND
     // ======================================
 
     return null;
@@ -231,7 +234,7 @@ if (loginForm) {
             try {
 
                 // ==================================
-                // FIREBASE AUTH LOGIN
+                // FIREBASE AUTHENTICATION
                 // ==================================
 
                 const userCredential =
@@ -247,19 +250,30 @@ if (loginForm) {
 
 
                 console.log(
-                    "User logged in:",
+                    "================================"
+                );
+
+                console.log(
+                    "USER LOGGED IN"
+                );
+
+                console.log(
+                    "UID:",
                     user.uid
                 );
 
+                console.log(
+                    "EMAIL:",
+                    user.email
+                );
 
                 console.log(
-                    "User email:",
-                    user.email
+                    "================================"
                 );
 
 
                 // ==================================
-                // FIND PROFILE
+                // FIND FIRESTORE PROFILE
                 // ==================================
 
                 const profile =
@@ -277,6 +291,11 @@ if (loginForm) {
 
                     loginMessage.textContent =
                         "Account profile not found. Please contact the administrator.";
+
+                    alert(
+                        "Firebase login succeeded, but no Firestore profile was found for:\n\n" +
+                        user.email
+                    );
 
                     return;
 
@@ -299,51 +318,74 @@ if (loginForm) {
                     userData.status;
 
 
+                // ==================================
+                // DEBUG INFORMATION
+                // ==================================
+
                 console.log(
-                    "User profile:",
+                    "PROFILE COLLECTION:",
+                    profile.collection
+                );
+
+                console.log(
+                    "PROFILE DOCUMENT ID:",
+                    profile.id
+                );
+
+                console.log(
+                    "PROFILE DATA:",
                     userData
                 );
 
-
                 console.log(
-                    "User role:",
+                    "ROLE:",
                     role
                 );
 
-
                 console.log(
-                    "User status:",
+                    "STATUS:",
                     status
                 );
 
 
-                console.log(
-                    "Profile collection:",
-                    profile.collection ||
-                    "users"
-                );
+                // ==================================
+                // IMPORTANT DEBUG POPUP
+                // ==================================
 
+                alert(
+                    "LOGIN PROFILE FOUND\n\n" +
 
-                console.log(
-                    "Profile document ID:",
+                    "Email: " +
+                    user.email +
+
+                    "\n\nRole: " +
+                    role +
+
+                    "\n\nStatus: " +
+                    status +
+
+                    "\n\nCollection: " +
+                    profile.collection +
+
+                    "\n\nDocument ID: " +
                     profile.id
                 );
 
 
                 // ==================================
-                // CHECK ACCOUNT STATUS
+                // CHECK STATUS
                 // ==================================
 
                 if (
                     status &&
-                    status !== "active"
+                    status.toLowerCase() !== "active"
                 ) {
 
                     loginMessage.style.color =
                         "red";
 
                     loginMessage.textContent =
-                        "Your account is not active. Please contact the administrator.";
+                        "Your account is not active.";
 
                     return;
 
@@ -368,33 +410,20 @@ if (loginForm) {
                 setTimeout(
                     () => {
 
-
                         // ==========================
                         // FACULTY
                         // ==========================
 
                         if (
-                            role ===
+                            role &&
+                            role.toLowerCase() ===
                             "faculty"
                         ) {
 
                             window.location.href =
                                 "faculty-dashboard.html";
 
-                        }
-
-
-                        // ==========================
-                        // MENTOR
-                        // ==========================
-
-                        else if (
-                            role ===
-                            "mentor"
-                        ) {
-
-                            window.location.href =
-                                "admin.html";
+                            return;
 
                         }
 
@@ -403,13 +432,34 @@ if (loginForm) {
                         // ADMIN
                         // ==========================
 
-                        else if (
-                            role ===
+                        if (
+                            role &&
+                            role.toLowerCase() ===
                             "admin"
                         ) {
 
                             window.location.href =
-                                "admin.html";
+                                "admin-dashboard.html";
+
+                            return;
+
+                        }
+
+
+                        // ==========================
+                        // MENTOR
+                        // ==========================
+
+                        if (
+                            role &&
+                            role.toLowerCase() ===
+                            "mentor"
+                        ) {
+
+                            window.location.href =
+                                "admin-dashboard.html";
+
+                            return;
 
                         }
 
@@ -418,13 +468,16 @@ if (loginForm) {
                         // STUDENT
                         // ==========================
 
-                        else if (
-                            role ===
+                        if (
+                            role &&
+                            role.toLowerCase() ===
                             "student"
                         ) {
 
                             window.location.href =
                                 "dashboard.html";
+
+                            return;
 
                         }
 
@@ -433,20 +486,11 @@ if (loginForm) {
                         // UNKNOWN ROLE
                         // ==========================
 
-                        else {
+                        loginMessage.style.color =
+                            "red";
 
-                            loginMessage.style.color =
-                                "red";
-
-                            loginMessage.textContent =
-                                "Your account role is not configured.";
-
-                            console.error(
-                                "Unknown role:",
-                                role
-                            );
-
-                        }
+                        loginMessage.textContent =
+                            "Your account role is not configured.";
 
                     },
                     800
@@ -456,7 +500,7 @@ if (loginForm) {
             } catch (error) {
 
                 // ==================================
-                // ERROR
+                // FIREBASE ERROR
                 // ==================================
 
                 console.error(
@@ -470,7 +514,7 @@ if (loginForm) {
 
 
                 // ==================================
-                // INVALID LOGIN
+                // INVALID CREDENTIAL
                 // ==================================
 
                 if (
@@ -509,7 +553,7 @@ if (loginForm) {
                 ) {
 
                     loginMessage.textContent =
-                        "Too many attempts. Please try again later.";
+                        "Too many login attempts. Please try again later.";
 
                 }
 
@@ -536,7 +580,8 @@ if (loginForm) {
                 else {
 
                     loginMessage.textContent =
-                        "Login failed. Please try again.";
+                        "Login failed: " +
+                        error.message;
 
                 }
 
