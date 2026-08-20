@@ -2,108 +2,337 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Student Login | R Mohan Digital</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css">
+    <title>Login | R Mohan Digital</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
 
     <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
-            font-family: Arial, sans-serif;
-
-            background: linear-gradient(135deg, #2563eb, #0f172a);
+        * {
+            box-sizing: border-box;
         }
 
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #0f172a
+                );
+        }
+
+
+        /* ==============================
+           LOGIN CONTAINER
+        ============================== */
+
         .login-container {
-            width: 420px;
-            max-width: 90%;
+
+            width: 450px;
+
+            max-width: 100%;
+
             background: white;
 
-            padding: 40px;
+            padding: 38px;
 
             border-radius: 20px;
 
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, 0.30);
 
             text-align: center;
         }
 
+
+        /* ==============================
+           LOGO
+        ============================== */
+
+        .logo-circle {
+
+            width: 65px;
+
+            height: 65px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #0f172a;
+
+            border: 3px solid #2563eb;
+
+            color: #00e5ff;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 0 20px
+                rgba(37, 99, 235, 0.35);
+        }
+
+
         .login-container h1 {
+
             color: #2563eb;
+
+            margin: 0 0 8px;
+
+            font-size: 27px;
+        }
+
+
+        .subtitle {
+
+            color: #666;
+
+            margin: 0 0 25px;
+
+            font-size: 14px;
+        }
+
+
+        /* ==============================
+           ROLE TITLE
+        ============================== */
+
+        .role-title {
+
+            text-align: left;
+
+            color: #333;
+
+            font-weight: 600;
+
+            font-size: 14px;
+
             margin-bottom: 10px;
         }
 
-        .login-container p.subtitle {
-            color: #666;
-            margin-bottom: 30px;
+
+        /* ==============================
+           ROLE SELECTION
+        ============================== */
+
+        .role-selection {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
         }
 
+
+        .role-btn {
+
+            min-height: 55px;
+
+            padding: 10px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            color: #334155;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.25s;
+        }
+
+
+        .role-btn:hover {
+
+            border-color: #2563eb;
+
+            color: #2563eb;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 5px 15px
+                rgba(37, 99, 235, 0.12);
+        }
+
+
+        .role-btn.selected {
+
+            border-color: #2563eb;
+
+            background:
+                rgba(
+                    37,
+                    99,
+                    235,
+                    0.10
+                );
+
+            color: #2563eb;
+
+            box-shadow:
+                0 0 15px
+                rgba(
+                    37,
+                    99,
+                    235,
+                    0.25
+                );
+        }
+
+
+        /* ==============================
+           FORM
+        ============================== */
+
         .login-form {
+
             text-align: left;
         }
 
+
         .login-form label {
+
             display: block;
+
             margin-bottom: 7px;
+
             color: #333;
+
             font-weight: 600;
+
+            font-size: 14px;
         }
 
+
         .login-form input {
+
             width: 100%;
+
             height: 46px;
 
-            padding: 12px 14px;
+            padding:
+                12px 14px;
 
-            border: 1px solid #ccc;
+            border:
+                1px solid #ccc;
+
             border-radius: 8px;
 
-            box-sizing: border-box;
-
             font-size: 15px;
+
             outline: none;
 
             margin-bottom: 18px;
+
+            transition: 0.2s;
         }
+
 
         .login-form input:focus {
-            border-color: #2563eb;
+
+            border-color:
+                #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    37,
+                    99,
+                    235,
+                    0.10
+                );
         }
 
-        /* Password */
+
+        /* ==============================
+           PASSWORD
+        ============================== */
 
         .password-wrapper {
+
             position: relative;
+
             width: 100%;
         }
 
+
         .password-wrapper input {
+
             padding-right: 50px;
         }
 
+
         .toggle-password {
+
             position: absolute;
 
             right: 8px;
+
             top: 50%;
 
-            transform: translateY(-50%);
+            transform:
+                translateY(-50%);
 
             width: 35px;
+
             height: 35px;
 
             padding: 0;
+
             margin: 0;
 
             border: none;
+
             background: transparent;
 
             cursor: pointer;
@@ -111,26 +340,39 @@
             font-size: 18px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
         }
 
+
         .toggle-password:hover {
+
             background: transparent;
         }
 
+
+        /* ==============================
+           LOGIN BUTTON
+        ============================== */
+
         .login-btn-main {
+
             width: 100%;
 
             padding: 14px;
 
             border: none;
+
             border-radius: 8px;
 
             background: #0f172a;
+
             color: white;
 
             font-size: 16px;
+
             font-weight: 600;
 
             cursor: pointer;
@@ -138,109 +380,344 @@
             transition: 0.3s;
         }
 
+
         .login-btn-main:hover {
+
             background: #2563eb;
+
+            box-shadow:
+                0 8px 20px
+                rgba(
+                    37,
+                    99,
+                    235,
+                    0.25
+                );
         }
+
+
+        /* ==============================
+           MESSAGE
+        ============================== */
 
         .message {
+
+            min-height: 20px;
+
             margin-top: 18px;
+
             font-size: 14px;
+
             font-weight: 600;
         }
+
+
+        /* ==============================
+           REGISTER
+        ============================== */
 
         .register-link {
+
             margin-top: 25px;
+
             color: #555;
+
+            font-size: 14px;
         }
 
+
         .register-link a {
+
             color: #2563eb;
+
             text-decoration: none;
+
             font-weight: 600;
         }
 
+
         .register-link a:hover {
-            text-decoration: underline;
+
+            text-decoration:
+                underline;
         }
 
+
+        /* ==============================
+           HOME
+        ============================== */
+
         .back-home {
+
             display: inline-block;
+
             margin-top: 15px;
 
             color: #2563eb;
+
             text-decoration: none;
 
             font-size: 14px;
         }
+
+
+        .back-home:hover {
+
+            text-decoration:
+                underline;
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 500px) {
+
+            .login-container {
+
+                padding: 28px 20px;
+
+                border-radius: 15px;
+            }
+
+
+            .login-container h1 {
+
+                font-size: 23px;
+            }
+
+
+            .role-btn {
+
+                font-size: 12px;
+
+                min-height: 50px;
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
+
     <div class="login-container">
 
-        <h1>Student Login</h1>
+
+        <!-- ==========================
+             LOGO
+        =========================== -->
+
+        <div class="logo-circle">
+            RM
+        </div>
+
+
+        <h1>
+            R Mohan Digital
+        </h1>
+
 
         <p class="subtitle">
-            Welcome back to R Mohan Digital
+            Select your account type to continue
         </p>
 
-        <form id="loginForm" class="login-form">
 
-            <label for="loginEmail">Email Address</label>
+        <!-- ==========================
+             ROLE SELECTION
+        =========================== -->
+
+        <div class="role-title">
+            Select Login Type
+        </div>
+
+
+        <div class="role-selection">
+
+
+            <!-- OWNER -->
+
+            <button
+                type="button"
+                class="role-btn"
+                data-role="owner">
+
+                👑 Owner
+
+            </button>
+
+
+            <!-- MENTOR -->
+
+            <button
+                type="button"
+                class="role-btn"
+                data-role="mentor">
+
+                🧑‍💼 Mentor
+
+            </button>
+
+
+            <!-- FACULTY -->
+
+            <button
+                type="button"
+                class="role-btn"
+                data-role="faculty">
+
+                👨‍🏫 Faculty
+
+            </button>
+
+
+            <!-- STUDENT -->
+
+            <button
+                type="button"
+                class="role-btn"
+                data-role="student">
+
+                🎓 Student
+
+            </button>
+
+
+        </div>
+
+
+        <!-- ==========================
+             LOGIN FORM
+        =========================== -->
+
+        <form
+            id="loginForm"
+            class="login-form">
+
+
+            <!-- EMAIL -->
+
+            <label
+                for="loginEmail">
+
+                Email Address
+
+            </label>
+
 
             <input
                 type="email"
                 id="loginEmail"
                 placeholder="Enter your email"
+                autocomplete="email"
                 required
             >
 
-            <label for="loginPassword">Password</label>
 
-            <div class="password-wrapper">
+            <!-- PASSWORD -->
+
+            <label
+                for="loginPassword">
+
+                Password
+
+            </label>
+
+
+            <div
+                class="password-wrapper">
+
 
                 <input
                     type="password"
                     id="loginPassword"
                     placeholder="Enter your password"
+                    autocomplete="current-password"
                     required
                 >
+
 
                 <button
                     type="button"
                     class="toggle-password"
-                    onclick="toggleLoginPassword()"
-                >
+                    onclick="toggleLoginPassword()">
+
                     👁
+
                 </button>
+
 
             </div>
 
+
+            <!-- LOGIN -->
+
             <button
                 type="submit"
-                class="login-btn-main"
-            >
+                class="login-btn-main">
+
                 Login
+
             </button>
+
 
         </form>
 
-        <div id="loginMessage" class="message"></div>
+
+        <!-- ==========================
+             MESSAGE
+        =========================== -->
+
+        <div
+            id="loginMessage"
+            class="message">
+        </div>
+
+
+        <!-- ==========================
+             REGISTER
+        =========================== -->
 
         <p class="register-link">
-            Don't have an account?
-            <a href="register.html">Register Now</a>
+
+            Don't have a student account?
+
+            <a href="register.html">
+                Register Now
+            </a>
+
         </p>
 
-        <a href="index.html" class="back-home">
+
+        <!-- ==========================
+             HOME
+        =========================== -->
+
+        <a
+            href="index.html"
+            class="back-home">
+
             ← Back to Home
+
         </a>
+
 
     </div>
 
-    <!-- Firebase -->
-    <script type="module" src="js/auth.js"></script>
+
+    <!-- ==========================
+         FIREBASE AUTH
+    =========================== -->
+
+    <script
+        type="module"
+        src="js/auth.js">
+    </script>
+
 
 </body>
 
