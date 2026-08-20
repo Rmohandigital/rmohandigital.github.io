@@ -1,7 +1,7 @@
 // ==========================================
 // R MOHAN DIGITAL
 // COMPLETE LOGIN & ROLE SYSTEM
-// Owner / Mentor / Faculty / Student
+// Owner + Mentor + Faculty + Student
 // ==========================================
 
 import { auth, db } from "../firebase.js";
@@ -67,17 +67,8 @@ if (loginForm) {
             event.preventDefault();
 
 
-            // ==================================
-            // GET EMAIL
-            // ==================================
-
             const emailInput =
                 document.getElementById("loginEmail");
-
-
-            // ==================================
-            // GET PASSWORD
-            // ==================================
 
             const passwordInput =
                 document.getElementById("loginPassword");
@@ -86,7 +77,7 @@ if (loginForm) {
             if (!emailInput || !passwordInput) {
 
                 console.error(
-                    "Login fields were not found."
+                    "Login input elements not found."
                 );
 
                 return;
@@ -95,7 +86,6 @@ if (loginForm) {
 
             const email =
                 emailInput.value.trim();
-
 
             const password =
                 passwordInput.value;
@@ -107,30 +97,27 @@ if (loginForm) {
 
             if (!email || !password) {
 
-                showMessage(
-                    "Please enter email and password.",
-                    "red"
-                );
+                loginMessage.style.color =
+                    "red";
+
+                loginMessage.textContent =
+                    "Please enter email and password.";
 
                 return;
             }
 
 
-            // ==================================
-            // LOGIN MESSAGE
-            // ==================================
+            loginMessage.style.color =
+                "#2563eb";
 
-            showMessage(
-                "Logging in...",
-                "#2563eb"
-            );
+            loginMessage.textContent =
+                "Logging in...";
 
 
             try {
 
-
                 // ==================================
-                // FIREBASE AUTH LOGIN
+                // FIREBASE AUTH
                 // ==================================
 
                 const result =
@@ -151,8 +138,14 @@ if (loginForm) {
                 );
 
 
+                console.log(
+                    "Firebase Email:",
+                    user.email
+                );
+
+
                 // ==================================
-                // GET FIRESTORE USER PROFILE
+                // GET FIRESTORE PROFILE
                 // ==================================
 
                 const userRef =
@@ -164,9 +157,7 @@ if (loginForm) {
 
 
                 const userSnapshot =
-                    await getDoc(
-                        userRef
-                    );
+                    await getDoc(userRef);
 
 
                 // ==================================
@@ -175,26 +166,16 @@ if (loginForm) {
 
                 if (!userSnapshot.exists()) {
 
-                    showMessage(
-                        "Your Firebase profile is not configured.",
-                        "red"
-                    );
+                    loginMessage.style.color =
+                        "red";
 
+                    loginMessage.textContent =
+                        "Your Firebase profile is not found.";
 
                     console.error(
                         "No users document found for UID:",
                         user.uid
                     );
-
-
-                    /*
-                        IMPORTANT:
-                        Sign out because the Firebase
-                        Auth account exists but the
-                        Firestore profile does not.
-                    */
-
-                    await auth.signOut();
 
                     return;
                 }
@@ -209,7 +190,7 @@ if (loginForm) {
 
 
                 console.log(
-                    "Firestore user data:",
+                    "Firebase User Profile:",
                     userData
                 );
 
@@ -219,17 +200,15 @@ if (loginForm) {
                 // ==================================
 
                 const rawRole =
-                    userData.role || "";
+                    userData.role;
 
-
-                // ==================================
-                // NORMALIZE ROLE
-                // ==================================
 
                 const role =
-                    String(rawRole)
-                        .trim()
-                        .toLowerCase();
+                    String(
+                        rawRole || ""
+                    )
+                    .trim()
+                    .toLowerCase();
 
 
                 // ==================================
@@ -237,79 +216,45 @@ if (loginForm) {
                 // ==================================
 
                 const rawStatus =
-                    userData.status || "";
+                    userData.status;
 
-
-                // ==================================
-                // NORMALIZE STATUS
-                // ==================================
 
                 const status =
-                    String(rawStatus)
-                        .trim()
-                        .toLowerCase();
+                    String(
+                        rawStatus || ""
+                    )
+                    .trim()
+                    .toLowerCase();
 
 
                 console.log(
-                    "Original role:",
-                    rawRole
-                );
-
-
-                console.log(
-                    "Normalized role:",
+                    "Role:",
                     role
                 );
 
 
                 console.log(
-                    "Original status:",
-                    rawStatus
-                );
-
-
-                console.log(
-                    "Normalized status:",
+                    "Status:",
                     status
                 );
 
 
                 // ==================================
-                // ROLE CHECK
+                // ROLE NOT FOUND
                 // ==================================
 
-                const validRoles = [
+                if (!role) {
 
-                    "owner",
+                    loginMessage.style.color =
+                        "red";
 
-                    "admin",
-
-                    "mentor",
-
-                    "faculty",
-
-                    "student"
-
-                ];
-
-
-                if (
-                    !validRoles.includes(role)
-                ) {
-
-                    showMessage(
-                        "Your account role is not configured.",
-                        "red"
-                    );
-
+                    loginMessage.textContent =
+                        "Your account role is not configured.";
 
                     console.error(
-                        "Invalid role:",
-                        rawRole
+                        "Role missing in Firestore:",
+                        userData
                     );
-
-
-                    await auth.signOut();
 
                     return;
                 }
@@ -317,79 +262,54 @@ if (loginForm) {
 
                 // ==================================
                 // STATUS CHECK
+                // Accepts:
+                // Active
+                // active
                 // ==================================
 
                 if (status !== "active") {
 
-                    // ==============================
-                    // PENDING
-                    // ==============================
+                    loginMessage.style.color =
+                        "red";
 
-                    if (
-                        status === "pending"
-                    ) {
+                    if (status === "pending") {
 
-                        showMessage(
-                            "Your account is still pending approval.",
-                            "red"
-                        );
+                        loginMessage.textContent =
+                            "Your account is still pending approval.";
 
                     }
 
+                    else if (status === "rejected") {
 
-                    // ==============================
-                    // REJECTED
-                    // ==============================
-
-                    else if (
-                        status === "rejected"
-                    ) {
-
-                        showMessage(
-                            "Your account has been rejected.",
-                            "red"
-                        );
+                        loginMessage.textContent =
+                            "Your account has been rejected.";
 
                     }
-
-
-                    // ==============================
-                    // OTHER STATUS
-                    // ==============================
 
                     else {
 
-                        showMessage(
-                            "Your account is not active.",
-                            "red"
-                        );
+                        loginMessage.textContent =
+                            "Your account is not active.";
 
                     }
-
-
-                    await auth.signOut();
 
                     return;
                 }
 
 
                 // ==================================
-                // LOGIN SUCCESS
+                // SUCCESS
                 // ==================================
 
-                showMessage(
-                    "Login successful!",
-                    "green"
-                );
+                loginMessage.style.color =
+                    "green";
 
-
-                console.log(
-                    "Login successful."
-                );
+                loginMessage.textContent =
+                    "Login successful!";
 
 
                 // ==================================
-                // REDIRECT
+                // ROLE REDIRECTION
                 // ==================================
 
                 setTimeout(
@@ -398,12 +318,18 @@ if (loginForm) {
 
                         // ==========================
                         // OWNER
+                        // role:
+                        // owner / Owner / admin
                         // ==========================
 
                         if (
                             role === "owner" ||
                             role === "admin"
                         ) {
+
+                            console.log(
+                                "Opening Owner Dashboard"
+                            );
 
                             window.location.href =
                                 "admin-dashboard.html";
@@ -420,6 +346,10 @@ if (loginForm) {
                             role === "mentor"
                         ) {
 
+                            console.log(
+                                "Opening Mentor Dashboard"
+                            );
+
                             window.location.href =
                                 "mentor-dashboard.html";
 
@@ -429,11 +359,22 @@ if (loginForm) {
 
                         // ==========================
                         // FACULTY
+                        //
+                        // Harsha
+                        // Jyoshna
+                        // Jaswanth
+                        //
+                        // ALL use the same
+                        // faculty-dashboard.html
                         // ==========================
 
                         if (
                             role === "faculty"
                         ) {
+
+                            console.log(
+                                "Opening Faculty Dashboard"
+                            );
 
                             window.location.href =
                                 "faculty-dashboard.html";
@@ -450,6 +391,10 @@ if (loginForm) {
                             role === "student"
                         ) {
 
+                            console.log(
+                                "Opening Student Dashboard"
+                            );
+
                             window.location.href =
                                 "dashboard.html";
 
@@ -458,29 +403,29 @@ if (loginForm) {
 
 
                         // ==========================
-                        // UNKNOWN
+                        // UNKNOWN ROLE
                         // ==========================
 
-                        showMessage(
-                            "Unable to determine dashboard.",
-                            "red"
+                        loginMessage.style.color =
+                            "red";
+
+                        loginMessage.textContent =
+                            "Your account role is not configured.";
+
+                        console.error(
+                            "Unknown role:",
+                            rawRole
                         );
 
 
                     },
-                    700
+                    500
                 );
 
 
             }
 
-
-            // ==================================
-            // FIREBASE LOGIN ERROR
-            // ==================================
-
             catch (error) {
-
 
                 console.error(
                     "Login error:",
@@ -488,126 +433,74 @@ if (loginForm) {
                 );
 
 
-                showMessage(
-                    getLoginErrorMessage(
-                        error
-                    ),
-                    "red"
-                );
+                loginMessage.style.color =
+                    "red";
+
+
+                // ==================================
+                // FIREBASE ERRORS
+                // ==================================
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    loginMessage.textContent =
+                        "Incorrect email or password.";
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
+
+                    loginMessage.textContent =
+                        "Please enter a valid email.";
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
+
+                    loginMessage.textContent =
+                        "No account found with this email.";
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/wrong-password"
+                ) {
+
+                    loginMessage.textContent =
+                        "Incorrect password.";
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/too-many-requests"
+                ) {
+
+                    loginMessage.textContent =
+                        "Too many attempts. Try again later.";
+
+                }
+
+                else {
+
+                    loginMessage.textContent =
+                        "Login failed. Please try again.";
+
+                }
 
             }
 
         }
-    );
-
-}
-
-
-// ==========================================
-// SHOW MESSAGE
-// ==========================================
-
-function showMessage(
-    message,
-    color
-) {
-
-    if (!loginMessage) {
-        return;
-    }
-
-
-    loginMessage.style.color =
-        color;
-
-
-    loginMessage.textContent =
-        message;
-
-}
-
-
-// ==========================================
-// FIREBASE ERROR MESSAGES
-// ==========================================
-
-function getLoginErrorMessage(
-    error
-) {
-
-
-    if (
-        error.code ===
-        "auth/invalid-credential"
-    ) {
-
-        return "Incorrect email or password.";
-
-    }
-
-
-    if (
-        error.code ===
-        "auth/invalid-email"
-    ) {
-
-        return "Please enter a valid email.";
-
-    }
-
-
-    if (
-        error.code ===
-        "auth/user-disabled"
-    ) {
-
-        return "This Firebase account has been disabled.";
-
-    }
-
-
-    if (
-        error.code ===
-        "auth/user-not-found"
-    ) {
-
-        return "Account not found.";
-
-    }
-
-
-    if (
-        error.code ===
-        "auth/wrong-password"
-    ) {
-
-        return "Incorrect password.";
-
-    }
-
-
-    if (
-        error.code ===
-        "auth/too-many-requests"
-    ) {
-
-        return "Too many login attempts. Please try again later.";
-
-    }
-
-
-    if (
-        error.code ===
-        "auth/network-request-failed"
-    ) {
-
-        return "Network error. Please check your internet connection.";
-
-    }
-
-
-    return (
-        "Login failed. Please try again."
     );
 
 }
