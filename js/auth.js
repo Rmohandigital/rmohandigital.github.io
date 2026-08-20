@@ -1,5 +1,6 @@
 // ==========================================
-// R MOHAN DIGITAL - LOGIN & ROLE SYSTEM
+// R MOHAN DIGITAL
+// LOGIN & ROLE SYSTEM
 // ==========================================
 
 import { auth, db } from "../firebase.js";
@@ -9,15 +10,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 import {
-    collection,
-    query,
-    where,
-    getDocs
+    doc,
+    getDoc
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
 // ==========================================
-// SHOW / HIDE PASSWORD
+// PASSWORD SHOW / HIDE
 // ==========================================
 
 window.toggleLoginPassword = function () {
@@ -58,141 +57,20 @@ const loginMessage =
     document.getElementById("loginMessage");
 
 
-// ==========================================
-// FIND USER PROFILE
-// ==========================================
-
-async function findUserProfile(user) {
-
-    // ======================================
-    // CHECK "users" COLLECTION
-    // ======================================
-
-    try {
-
-        const usersQuery = query(
-            collection(db, "users"),
-            where("email", "==", user.email)
-        );
-
-        const usersSnapshot =
-            await getDocs(usersQuery);
-
-
-        if (!usersSnapshot.empty) {
-
-            const profileDoc =
-                usersSnapshot.docs[0];
-
-            return {
-                id: profileDoc.id,
-                data: profileDoc.data(),
-                collection: "users"
-            };
-
-        }
-
-    } catch (error) {
-
-        console.log(
-            "Error checking users collection:",
-            error
-        );
-
-    }
-
-
-    // ======================================
-    // CHECK FACULTY COLLECTIONS
-    // ======================================
-
-    const facultyCollections = [
-        "users H",
-        "users j1",
-        "users j2"
-    ];
-
-
-    for (
-        const collectionName
-        of facultyCollections
-    ) {
-
-        try {
-
-            const facultyQuery = query(
-                collection(db, collectionName),
-                where("email", "==", user.email)
-            );
-
-
-            const facultySnapshot =
-                await getDocs(facultyQuery);
-
-
-            if (!facultySnapshot.empty) {
-
-                const facultyDoc =
-                    facultySnapshot.docs[0];
-
-                return {
-                    id: facultyDoc.id,
-                    data: facultyDoc.data(),
-                    collection: collectionName
-                };
-
-            }
-
-        } catch (error) {
-
-            console.log(
-                "Error checking " +
-                collectionName +
-                ":",
-                error
-            );
-
-        }
-
-    }
-
-
-    // ======================================
-    // PROFILE NOT FOUND
-    // ======================================
-
-    return null;
-
-}
-
-
-// ==========================================
-// LOGIN
-// ==========================================
-
 if (loginForm) {
 
     loginForm.addEventListener(
         "submit",
-        async (event) => {
+        async function (event) {
 
             event.preventDefault();
 
-
-            // ==================================
-            // GET EMAIL
-            // ==================================
 
             const email =
                 document
                     .getElementById("loginEmail")
                     .value
                     .trim();
-
-
-            // ==================================
-            // GET PASSWORD
-            // ==================================
 
             const password =
                 document
@@ -201,31 +79,21 @@ if (loginForm) {
 
 
             // ==================================
-            // CHECK EMPTY
+            // EMPTY CHECK
             // ==================================
 
-            if (
-                email === "" ||
-                password === ""
-            ) {
+            if (!email || !password) {
 
-                loginMessage.style.color =
-                    "red";
+                loginMessage.style.color = "red";
 
                 loginMessage.textContent =
                     "Please enter email and password.";
 
                 return;
-
             }
 
 
-            // ==================================
-            // LOGIN MESSAGE
-            // ==================================
-
-            loginMessage.style.color =
-                "#2563eb";
+            loginMessage.style.color = "#2563eb";
 
             loginMessage.textContent =
                 "Logging in...";
@@ -234,10 +102,10 @@ if (loginForm) {
             try {
 
                 // ==================================
-                // FIREBASE AUTHENTICATION
+                // FIREBASE AUTH LOGIN
                 // ==================================
 
-                const userCredential =
+                const result =
                     await signInWithEmailAndPassword(
                         auth,
                         email,
@@ -246,59 +114,48 @@ if (loginForm) {
 
 
                 const user =
-                    userCredential.user;
+                    result.user;
 
 
                 console.log(
-                    "================================"
-                );
-
-                console.log(
-                    "USER LOGGED IN"
-                );
-
-                console.log(
-                    "UID:",
+                    "Firebase UID:",
                     user.uid
                 );
 
-                console.log(
-                    "EMAIL:",
-                    user.email
-                );
-
-                console.log(
-                    "================================"
-                );
-
 
                 // ==================================
-                // FIND FIRESTORE PROFILE
+                // GET USER PROFILE
                 // ==================================
 
-                const profile =
-                    await findUserProfile(user);
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const userSnapshot =
+                    await getDoc(userRef);
 
 
                 // ==================================
                 // PROFILE NOT FOUND
                 // ==================================
 
-                if (!profile) {
+                if (!userSnapshot.exists()) {
 
-                    loginMessage.style.color =
-                        "red";
+                    loginMessage.style.color = "red";
 
                     loginMessage.textContent =
-                        "Account profile not found. Please contact the administrator.";
+                        "Your account profile is not configured yet.";
 
-                    alert(
-                        "Firebase login succeeded, but no Firestore profile was found for:\n\n" +
-                        user.email
+                    console.error(
+                        "No users document found for UID:",
+                        user.uid
                     );
 
                     return;
-
                 }
 
 
@@ -307,68 +164,19 @@ if (loginForm) {
                 // ==================================
 
                 const userData =
-                    profile.data;
+                    userSnapshot.data();
 
 
                 const role =
                     userData.role;
 
-
                 const status =
                     userData.status;
 
 
-                // ==================================
-                // DEBUG INFORMATION
-                // ==================================
-
                 console.log(
-                    "PROFILE COLLECTION:",
-                    profile.collection
-                );
-
-                console.log(
-                    "PROFILE DOCUMENT ID:",
-                    profile.id
-                );
-
-                console.log(
-                    "PROFILE DATA:",
+                    "User:",
                     userData
-                );
-
-                console.log(
-                    "ROLE:",
-                    role
-                );
-
-                console.log(
-                    "STATUS:",
-                    status
-                );
-
-
-                // ==================================
-                // IMPORTANT DEBUG POPUP
-                // ==================================
-
-                alert(
-                    "LOGIN PROFILE FOUND\n\n" +
-
-                    "Email: " +
-                    user.email +
-
-                    "\n\nRole: " +
-                    role +
-
-                    "\n\nStatus: " +
-                    status +
-
-                    "\n\nCollection: " +
-                    profile.collection +
-
-                    "\n\nDocument ID: " +
-                    profile.id
                 );
 
 
@@ -376,28 +184,22 @@ if (loginForm) {
                 // CHECK STATUS
                 // ==================================
 
-                if (
-                    status &&
-                    status.toLowerCase() !== "active"
-                ) {
+                if (status !== "active") {
 
-                    loginMessage.style.color =
-                        "red";
+                    loginMessage.style.color = "red";
 
                     loginMessage.textContent =
                         "Your account is not active.";
 
                     return;
-
                 }
 
 
                 // ==================================
-                // LOGIN SUCCESS
+                // SUCCESS
                 // ==================================
 
-                loginMessage.style.color =
-                    "green";
+                loginMessage.style.color = "green";
 
                 loginMessage.textContent =
                     "Login successful!";
@@ -407,104 +209,77 @@ if (loginForm) {
                 // ROLE REDIRECTION
                 // ==================================
 
-                setTimeout(
-                    () => {
-
-                        // ==========================
-                        // FACULTY
-                        // ==========================
-
-                        if (
-                            role &&
-                            role.toLowerCase() ===
-                            "faculty"
-                        ) {
-
-                            window.location.href =
-                                "faculty-dashboard.html";
-
-                            return;
-
-                        }
+                setTimeout(function () {
 
 
-                        // ==========================
-                        // ADMIN
-                        // ==========================
+                    // ==============================
+                    // FACULTY
+                    // ==============================
 
-                        if (
-                            role &&
-                            role.toLowerCase() ===
-                            "admin"
-                        ) {
+                    if (role === "faculty") {
 
-                            window.location.href =
-                                "admin-dashboard.html";
+                        window.location.href =
+                            "faculty-dashboard.html";
 
-                            return;
-
-                        }
+                        return;
+                    }
 
 
-                        // ==========================
-                        // MENTOR
-                        // ==========================
+                    // ==============================
+                    // ADMIN
+                    // ==============================
 
-                        if (
-                            role &&
-                            role.toLowerCase() ===
-                            "mentor"
-                        ) {
+                    if (role === "admin") {
 
-                            window.location.href =
-                                "admin-dashboard.html";
+                        window.location.href =
+                            "admin-dashboard.html";
 
-                            return;
-
-                        }
+                        return;
+                    }
 
 
-                        // ==========================
-                        // STUDENT
-                        // ==========================
+                    // ==============================
+                    // MENTOR
+                    // ==============================
 
-                        if (
-                            role &&
-                            role.toLowerCase() ===
-                            "student"
-                        ) {
+                    if (role === "mentor") {
 
-                            window.location.href =
-                                "dashboard.html";
+                        window.location.href =
+                            "admin-dashboard.html";
 
-                            return;
-
-                        }
+                        return;
+                    }
 
 
-                        // ==========================
-                        // UNKNOWN ROLE
-                        // ==========================
+                    // ==============================
+                    // STUDENT
+                    // ==============================
 
-                        loginMessage.style.color =
-                            "red";
+                    if (role === "student") {
 
-                        loginMessage.textContent =
-                            "Your account role is not configured.";
+                        window.location.href =
+                            "dashboard.html";
 
-                    },
-                    800
-                );
+                        return;
+                    }
+
+
+                    // ==============================
+                    // UNKNOWN ROLE
+                    // ==============================
+
+                    loginMessage.style.color = "red";
+
+                    loginMessage.textContent =
+                        "Your account role is not configured.";
+
+                }, 700);
 
 
             } catch (error) {
 
-                // ==================================
-                // FIREBASE ERROR
-                // ==================================
-
                 console.error(
-                    "Firebase Login Error:",
+                    "Login error:",
                     error
                 );
 
@@ -512,10 +287,6 @@ if (loginForm) {
                 loginMessage.style.color =
                     "red";
 
-
-                // ==================================
-                // INVALID CREDENTIAL
-                // ==================================
 
                 if (
                     error.code ===
@@ -527,25 +298,15 @@ if (loginForm) {
 
                 }
 
-
-                // ==================================
-                // INVALID EMAIL
-                // ==================================
-
                 else if (
                     error.code ===
                     "auth/invalid-email"
                 ) {
 
                     loginMessage.textContent =
-                        "Please enter a valid email address.";
+                        "Please enter a valid email.";
 
                 }
-
-
-                // ==================================
-                // TOO MANY REQUESTS
-                // ==================================
 
                 else if (
                     error.code ===
@@ -553,35 +314,14 @@ if (loginForm) {
                 ) {
 
                     loginMessage.textContent =
-                        "Too many login attempts. Please try again later.";
+                        "Too many attempts. Try again later.";
 
                 }
-
-
-                // ==================================
-                // PERMISSION DENIED
-                // ==================================
-
-                else if (
-                    error.code ===
-                    "permission-denied"
-                ) {
-
-                    loginMessage.textContent =
-                        "Permission denied. Please contact the administrator.";
-
-                }
-
-
-                // ==================================
-                // OTHER ERROR
-                // ==================================
 
                 else {
 
                     loginMessage.textContent =
-                        "Login failed: " +
-                        error.message;
+                        "Login failed. Please try again.";
 
                 }
 
