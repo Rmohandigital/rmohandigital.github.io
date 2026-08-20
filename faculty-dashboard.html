@@ -3,384 +3,735 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>Faculty Dashboard | R Mohan Digital</title>
+<title>Faculty Dashboard | R Mohan Digital</title>
 
+<style>
 
-    <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+body{
 
+    min-height:100vh;
 
-        body {
+    background:
+    radial-gradient(
+        circle at top left,
+        #102a43 0%,
+        #07111f 35%,
+        #020617 75%
+    );
 
-            min-height: 100vh;
+    color:white;
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #020617,
-                    #0f172a,
-                    #172554
-                );
 
-            color: white;
-        }
+/* ==============================
+   SIDEBAR
+============================== */
 
+.sidebar{
 
-        /* ======================================
-           HEADER
-        ====================================== */
+    position:fixed;
 
-        header {
+    left:0;
+    top:0;
 
-            min-height: 75px;
+    width:250px;
+    height:100vh;
 
-            padding: 15px 30px;
+    padding:25px 15px;
 
-            display: flex;
+    background:
+    rgba(3,12,24,.97);
 
-            justify-content: space-between;
+    border-right:
+    1px solid
+    rgba(0,229,255,.2);
 
-            align-items: center;
+    z-index:100;
 
-            background:
-                rgba(15, 23, 42, 0.95);
+    transition:.3s;
+}
 
-            border-bottom:
-                1px solid #1e40af;
+.logo{
 
-            box-shadow:
-                0 0 25px
-                rgba(37, 99, 235, 0.25);
-        }
+    text-align:center;
 
+    padding-bottom:25px;
 
-        header h1 {
+    border-bottom:
+    1px solid
+    rgba(148,163,184,.12);
+}
 
-            color: #38bdf8;
+.logo-circle{
 
-            font-size: 24px;
-        }
+    width:58px;
+    height:58px;
 
+    margin:auto;
 
-        #logoutBtn {
+    display:flex;
 
-            border: none;
+    align-items:center;
+    justify-content:center;
 
-            padding:
-                11px 20px;
+    border:2px solid #00e5ff;
 
-            border-radius: 9px;
+    border-radius:50%;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #dc2626,
-                    #ef4444
-                );
+    color:#00e5ff;
 
-            color: white;
+    font-size:22px;
+    font-weight:bold;
 
-            font-size: 14px;
+    box-shadow:
+    0 0 18px
+    rgba(0,229,255,.35);
+}
 
-            font-weight: bold;
+.logo h2{
 
-            cursor: pointer;
-        }
+    margin-top:12px;
 
+    font-size:18px;
 
-        #logoutBtn:hover {
+    text-shadow:
+    0 0 10px
+    rgba(0,229,255,.5);
+}
 
-            opacity: 0.85;
+.logo p{
 
-            transform:
-                translateY(-1px);
-        }
+    margin-top:5px;
 
+    font-size:10px;
 
-        /* ======================================
-           MAIN CONTAINER
-        ====================================== */
+    letter-spacing:2px;
 
-        .container {
+    color:#38bdf8;
+}
 
-            width: 100%;
 
-            max-width: 1200px;
+.menu{
 
-            margin: auto;
+    margin-top:25px;
+}
 
-            padding: 30px 20px;
-        }
+.menu button{
 
+    width:100%;
 
-        /* ======================================
-           WELCOME CARD
-        ====================================== */
+    padding:13px 15px;
 
-        .welcome {
+    margin-bottom:8px;
 
-            padding: 25px;
+    border:1px solid transparent;
 
-            margin-bottom: 25px;
+    border-radius:9px;
 
-            border-radius: 16px;
+    background:transparent;
 
-            background:
-                rgba(15, 23, 42, 0.95);
+    color:#94a3b8;
 
-            border:
-                1px solid #1e40af;
+    text-align:left;
 
-            box-shadow:
-                0 0 25px
-                rgba(37, 99, 235, 0.15);
-        }
+    cursor:pointer;
 
+    font-size:14px;
 
-        .welcome h2 {
+    transition:.25s;
+}
 
-            color: #38bdf8;
+.menu button:hover,
+.menu button.active{
 
-            margin-bottom: 12px;
+    color:#00e5ff;
 
-            font-size: 25px;
-        }
+    background:
+    rgba(0,229,255,.08);
 
+    border-color:
+    rgba(0,229,255,.25);
+}
 
-        .welcome p {
 
-            color: #cbd5e1;
+/* ==============================
+   MAIN
+============================== */
 
-            margin-top: 7px;
+.main{
 
-            word-break: break-word;
-        }
+    margin-left:250px;
 
+    min-height:100vh;
 
-        #facultyName {
+    padding:25px;
+}
 
-            font-size: 18px;
 
-            color: white;
-        }
+/* ==============================
+   TOP BAR
+============================== */
 
+.topbar{
 
-        /* ======================================
-           STUDENT SECTION
-        ====================================== */
+    display:flex;
 
-        .section-title {
+    justify-content:space-between;
 
-            color: #38bdf8;
+    align-items:center;
 
-            margin-bottom: 15px;
+    margin-bottom:25px;
 
-            font-size: 22px;
-        }
+    padding:18px 22px;
 
+    border-radius:15px;
 
-        #studentsContainer {
+    background:
+    rgba(7,17,31,.75);
 
-            display: grid;
+    border:
+    1px solid
+    rgba(0,229,255,.15);
 
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(280px, 1fr)
-                );
+    backdrop-filter:blur(12px);
+}
 
-            gap: 18px;
-        }
+.topbar h1{
 
+    font-size:22px;
+}
 
-        /* ======================================
-           STUDENT CARD
-        ====================================== */
+.topbar h1 span{
 
-        .student-card {
+    color:#00e5ff;
 
-            padding: 20px;
+    text-shadow:
+    0 0 10px
+    rgba(0,229,255,.5);
+}
 
-            border-radius: 15px;
+.profile-area{
 
-            background:
-                rgba(15, 23, 42, 0.95);
+    display:flex;
 
-            border:
-                1px solid #26365f;
+    align-items:center;
 
-            box-shadow:
-                0 0 18px
-                rgba(0, 0, 0, 0.25);
+    gap:15px;
+}
 
-            transition:
-                0.2s ease;
-        }
+.faculty-info{
 
+    text-align:right;
+}
 
-        .student-card:hover {
+#facultyName{
 
-            transform:
-                translateY(-3px);
+    display:block;
 
-            border-color:
-                #38bdf8;
+    font-size:14px;
 
-            box-shadow:
-                0 0 25px
-                rgba(56, 189, 248, 0.15);
-        }
+    font-weight:bold;
+}
 
+#facultyEmail{
 
-        .student-card h3 {
+    display:block;
 
-            color: #38bdf8;
+    margin-top:4px;
 
-            font-size: 20px;
+    font-size:11px;
 
-            margin-bottom: 15px;
-        }
+    color:#64748b;
+}
 
+.logout{
 
-        .student-card p {
+    padding:9px 15px;
 
-            color: #cbd5e1;
+    border:
+    1px solid #ef4444;
 
-            margin:
-                8px 0;
+    border-radius:8px;
 
-            line-height: 1.5;
+    background:
+    rgba(239,68,68,.08);
 
-            word-break: break-word;
-        }
+    color:#f87171;
 
+    cursor:pointer;
 
-        .student-card strong {
+    font-weight:bold;
 
-            color: white;
-        }
+    transition:.2s;
+}
 
+.logout:hover{
 
-        .status {
+    background:#ef4444;
 
-            display: inline-block;
+    color:white;
 
-            padding:
-                5px 10px;
+    box-shadow:
+    0 0 15px
+    rgba(239,68,68,.35);
+}
 
-            border-radius: 20px;
 
-            background: #14532d;
+/* ==============================
+   WELCOME
+============================== */
 
-            color: #86efac;
+.welcome{
 
-            font-size: 13px;
+    padding:25px;
 
-            font-weight: bold;
-        }
+    margin-bottom:25px;
 
+    border-radius:15px;
 
-        /* ======================================
-           EMPTY / LOADING CARD
-        ====================================== */
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,229,255,.08),
+        rgba(37,99,235,.05)
+    );
 
-        .empty {
+    border:
+    1px solid
+    rgba(0,229,255,.18);
+}
 
-            grid-column: 1 / -1;
+.welcome h2{
 
-            padding: 30px;
+    color:#00e5ff;
 
-            border-radius: 15px;
+    margin-bottom:8px;
+}
 
-            text-align: center;
+.welcome p{
 
-            background:
-                rgba(15, 23, 42, 0.95);
+    color:#94a3b8;
 
-            border:
-                1px solid #26365f;
+    font-size:14px;
+}
 
-            color: #94a3b8;
-        }
 
+/* ==============================
+   PROFILE CARD
+============================== */
 
-        .error {
+.profile-card{
 
-            color: #fca5a5;
-        }
+    display:grid;
 
+    grid-template-columns:
+    110px 1fr;
 
-        /* ======================================
-           MOBILE
-        ====================================== */
+    gap:25px;
 
-        @media (max-width: 600px) {
+    padding:25px;
 
-            header {
+    margin-bottom:20px;
 
-                padding:
-                    15px;
+    background:
+    rgba(7,17,31,.82);
 
-            }
+    border:
+    1px solid
+    rgba(0,229,255,.15);
 
+    border-radius:15px;
+}
 
-            header h1 {
+.avatar{
 
-                font-size: 19px;
+    width:100px;
+    height:100px;
 
-            }
+    border-radius:50%;
 
+    display:flex;
 
-            #logoutBtn {
+    align-items:center;
+    justify-content:center;
 
-                padding:
-                    9px 13px;
+    background:
+    rgba(0,229,255,.08);
 
-                font-size:
-                    13px;
+    border:
+    2px solid #00e5ff;
 
-            }
+    color:#00e5ff;
 
+    font-size:40px;
 
-            .container {
+    box-shadow:
+    0 0 20px
+    rgba(0,229,255,.15);
+}
 
-                padding:
-                    20px 15px;
+.profile-details h2{
 
-            }
+    margin-bottom:8px;
+}
 
+.profile-details p{
 
-            .welcome {
+    margin:6px 0;
 
-                padding:
-                    20px;
+    color:#94a3b8;
 
-            }
+    font-size:13px;
+}
 
+.profile-details span{
 
-            .welcome h2 {
+    color:#38bdf8;
+}
 
-                font-size:
-                    21px;
 
-            }
+/* ==============================
+   STATS
+============================== */
 
-        }
+.stats{
 
-    </style>
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+}
+
+.stat-card{
+
+    padding:22px;
+
+    border-radius:15px;
+
+    background:
+    rgba(7,17,31,.82);
+
+    border:
+    1px solid
+    rgba(0,229,255,.15);
+
+    transition:.25s;
+}
+
+.stat-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:
+    rgba(0,229,255,.45);
+}
+
+.stat-icon{
+
+    font-size:27px;
+
+    margin-bottom:12px;
+}
+
+.stat-card h3{
+
+    font-size:28px;
+
+    color:#00e5ff;
+
+    text-shadow:
+    0 0 10px
+    rgba(0,229,255,.4);
+}
+
+.stat-card p{
+
+    margin-top:5px;
+
+    color:#94a3b8;
+
+    font-size:13px;
+}
+
+
+/* ==============================
+   GRID
+============================== */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:20px;
+}
+
+.panel{
+
+    background:
+    rgba(7,17,31,.82);
+
+    border:
+    1px solid
+    rgba(0,229,255,.15);
+
+    border-radius:15px;
+
+    padding:22px;
+
+    margin-bottom:20px;
+}
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+}
+
+.panel-header h2{
+
+    font-size:17px;
+}
+
+.panel-header span{
+
+    color:#38bdf8;
+
+    font-size:11px;
+}
+
+
+/* ==============================
+   COURSE
+============================== */
+
+.course-card{
+
+    padding:15px;
+
+    margin-bottom:10px;
+
+    border-radius:10px;
+
+    background:
+    rgba(15,23,42,.7);
+
+    border:
+    1px solid
+    rgba(148,163,184,.08);
+}
+
+.course-card h3{
+
+    font-size:14px;
+
+    margin-bottom:7px;
+}
+
+.course-card p{
+
+    color:#64748b;
+
+    font-size:11px;
+}
+
+
+/* ==============================
+   NOTIFICATION
+============================== */
+
+.notification{
+
+    padding:14px;
+
+    margin-bottom:9px;
+
+    border-radius:9px;
+
+    background:
+    rgba(15,23,42,.7);
+
+    border-left:
+    3px solid #00e5ff;
+}
+
+.notification strong{
+
+    font-size:12px;
+}
+
+.notification p{
+
+    color:#64748b;
+
+    font-size:10px;
+
+    margin-top:5px;
+}
+
+
+/* ==============================
+   EMPTY
+============================== */
+
+.empty{
+
+    text-align:center;
+
+    padding:30px 10px;
+
+    color:#64748b;
+
+    font-size:13px;
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+.mobile-menu{
+
+    display:none;
+
+    position:fixed;
+
+    top:15px;
+    left:15px;
+
+    width:42px;
+    height:42px;
+
+    z-index:200;
+
+    border:
+    1px solid #00e5ff;
+
+    border-radius:8px;
+
+    background:#07111f;
+
+    color:#00e5ff;
+
+    cursor:pointer;
+
+    font-size:20px;
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media(max-width:1050px){
+
+    .stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+}
+
+@media(max-width:750px){
+
+    .sidebar{
+
+        transform:
+        translateX(-100%);
+    }
+
+    .sidebar.open{
+
+        transform:
+        translateX(0);
+    }
+
+    .mobile-menu{
+
+        display:block;
+    }
+
+    .main{
+
+        margin-left:0;
+
+        padding:15px;
+
+        padding-top:70px;
+    }
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+    }
+
+    .profile-area{
+
+        width:100%;
+
+        justify-content:
+        space-between;
+    }
+
+    .faculty-info{
+
+        text-align:left;
+    }
+
+    .profile-card{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
+    .avatar{
+
+        margin:auto;
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    .stats{
+
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
 
 </head>
 
@@ -388,702 +739,1144 @@
 <body>
 
 
-    <!-- ======================================
-         HEADER
-    ====================================== -->
+<!-- ==============================
+     MOBILE MENU
+============================== -->
 
-    <header>
+<button
+class="mobile-menu"
+id="mobileMenu">
 
-        <h1>
-            R Mohan Digital
-        </h1>
+☰
 
+</button>
 
-        <button id="logoutBtn">
-            Logout
-        </button>
 
-    </header>
+<!-- ==============================
+     SIDEBAR
+============================== -->
 
+<aside
+class="sidebar"
+id="sidebar">
 
 
-    <!-- ======================================
-         MAIN
-    ====================================== -->
+<div class="logo">
 
-    <main class="container">
+<div class="logo-circle">
+RM
+</div>
 
+<h2>R Mohan Digital</h2>
 
-        <!-- ==================================
-             FACULTY INFORMATION
-        ================================== -->
+<p>FACULTY CENTER</p>
 
-        <section class="welcome">
+</div>
 
-            <h2>
-                Faculty Dashboard
-            </h2>
 
+<div class="menu">
 
-            <p id="facultyName">
-                Loading faculty information...
-            </p>
+<button class="active">
+📊 &nbsp; Dashboard
+</button>
 
+<button
+onclick="scrollToSection('courses')">
+📚 &nbsp; My Courses
+</button>
 
-            <p id="facultyEmail"></p>
+<button
+onclick="scrollToSection('students')">
+🎓 &nbsp; My Students
+</button>
 
+<button
+onclick="comingSoon('Assignments')">
+📝 &nbsp; Assignments
+</button>
 
-            <p id="facultyRole"></p>
+<button
+onclick="scrollToSection('notifications')">
+🔔 &nbsp; Notifications
+</button>
 
-        </section>
+<button
+onclick="comingSoon('Profile Settings')">
+⚙️ &nbsp; Profile Settings
+</button>
 
+</div>
 
+</aside>
 
-        <!-- ==================================
-             STUDENTS
-        ================================== -->
 
-        <h2 class="section-title">
-            My Students
-        </h2>
+<!-- ==============================
+     MAIN
+============================== -->
 
+<main class="main">
 
-        <div id="studentsContainer">
 
-            <div class="empty">
-                Loading students...
-            </div>
+<!-- TOPBAR -->
 
-        </div>
+<div class="topbar">
 
+<div>
 
-    </main>
+<h1>
+Faculty <span>Dashboard</span>
+</h1>
 
+</div>
 
 
-    <!-- ======================================
-         FIREBASE SCRIPT
-    ====================================== -->
+<div class="profile-area">
 
-    <script type="module">
+<div class="faculty-info">
 
+<span id="facultyName">
+Loading...
+</span>
 
-        // =====================================
-        // FIREBASE
-        // =====================================
+<span id="facultyEmail">
+Loading...
+</span>
 
-        import {
-            auth,
-            db
-        } from "./firebase.js";
+</div>
 
 
-        import {
-            onAuthStateChanged,
-            signOut
-        } from
-        "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+<button
+class="logout"
+id="logoutBtn">
 
+Logout
 
-        import {
-            doc,
-            getDoc,
-            collection,
-            query,
-            where,
-            getDocs
-        } from
-        "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+</button>
 
+</div>
 
+</div>
 
-        // =====================================
-        // HTML ELEMENTS
-        // =====================================
 
-        const facultyName =
-            document.getElementById(
-                "facultyName"
-            );
+<!-- WELCOME -->
 
+<section class="welcome">
 
-        const facultyEmail =
-            document.getElementById(
-                "facultyEmail"
-            );
+<h2>
+Welcome, Faculty 👨‍🏫
+</h2>
 
+<p>
+Manage your courses, students,
+classes and academic activities
+from your R Mohan Digital faculty
+dashboard.
+</p>
 
-        const facultyRole =
-            document.getElementById(
-                "facultyRole"
-            );
+</section>
 
 
-        const studentsContainer =
-            document.getElementById(
-                "studentsContainer"
-            );
+<!-- PROFILE -->
 
+<section class="profile-card">
 
-        const logoutBtn =
-            document.getElementById(
-                "logoutBtn"
-            );
+<div class="avatar">
+👨‍🏫
+</div>
 
 
+<div class="profile-details">
 
-        // =====================================
-        // AUTHENTICATION CHECK
-        // =====================================
+<h2 id="profileName">
+Loading...
+</h2>
 
-        onAuthStateChanged(
-            auth,
-            async (user) => {
+<p>
+📧 Email:
+<span id="profileEmail">
+Loading...
+</span>
+</p>
 
+<p>
+📚 Course:
+<span id="profileCourse">
+Not assigned
+</span>
+</p>
 
-                console.log(
-                    "Faculty dashboard user:",
-                    user
-                );
+<p>
+🟢 Status:
+<span id="profileStatus">
+Active
+</span>
+</p>
 
+<p>
+👤 Role:
+<span>
+Faculty
+</span>
+</p>
 
-                // =================================
-                // NO LOGIN
-                // =================================
+</div>
 
-                if (!user) {
+</section>
 
-                    window.location.href =
-                        "login.html";
 
-                    return;
-                }
+<!-- STATS -->
 
+<section class="stats">
 
 
-                try {
+<div class="stat-card">
 
+<div class="stat-icon">
+📚
+</div>
 
-                    // ==============================
-                    // GET FACULTY PROFILE
-                    // ==============================
+<h3 id="courseCount">
+0
+</h3>
 
-                    const facultyRef =
-                        doc(
-                            db,
-                            "users",
-                            user.uid
-                        );
+<p>
+My Courses
+</p>
 
+</div>
 
-                    const facultySnapshot =
-                        await getDoc(
-                            facultyRef
-                        );
 
+<div class="stat-card">
 
+<div class="stat-icon">
+🎓
+</div>
 
-                    // ==============================
-                    // PROFILE NOT FOUND
-                    // ==============================
+<h3 id="studentCount">
+0
+</h3>
 
-                    if (
-                        !facultySnapshot.exists()
-                    ) {
+<p>
+My Students
+</p>
 
-                        console.error(
-                            "Faculty profile not found."
-                        );
+</div>
 
 
-                        studentsContainer.innerHTML = `
+<div class="stat-card">
 
-                            <div class="empty error">
+<div class="stat-icon">
+📝
+</div>
 
-                                Faculty profile not found.
+<h3>
+0
+</h3>
 
-                                <br><br>
+<p>
+Assignments
+</p>
 
-                                Firebase UID:
+</div>
 
-                                <br>
 
-                                <strong>
-                                    ${user.uid}
-                                </strong>
+<div class="stat-card">
 
-                                <br><br>
+<div class="stat-icon">
+🔔
+</div>
 
-                                Please create this user's
-                                profile inside the
-                                <strong>users</strong>
-                                collection.
+<h3 id="notificationCount">
+0
+</h3>
 
-                            </div>
+<p>
+Notifications
+</p>
 
-                        `;
+</div>
 
-                        facultyName.textContent =
-                            "Profile not configured";
 
-                        facultyEmail.textContent =
-                            user.email || "";
+</section>
 
-                        return;
-                    }
 
+<!-- TWO COLUMN -->
 
+<div class="grid">
 
-                    // ==============================
-                    // GET FACULTY DATA
-                    // ==============================
 
-                    const faculty =
-                        facultySnapshot.data();
+<!-- COURSES -->
 
+<section
+class="panel"
+id="courses">
 
+<div class="panel-header">
 
-                    console.log(
-                        "Faculty data:",
-                        faculty
-                    );
+<h2>
+📚 My Courses
+</h2>
 
+<span>
+Assigned
+</span>
 
+</div>
 
-                    // ==============================
-                    // CHECK ROLE
-                    // ==============================
 
-                    if (
-                        faculty.role !==
-                        "faculty"
-                    ) {
+<div id="courseList">
 
-                        studentsContainer.innerHTML = `
+<div class="empty">
 
-                            <div class="empty error">
+Loading courses...
 
-                                This account is not
-                                configured as a faculty account.
+</div>
 
-                                <br><br>
+</div>
 
-                                Current role:
+</section>
 
-                                <strong>
-                                    ${faculty.role || "Not set"}
-                                </strong>
 
-                            </div>
+<!-- NOTIFICATIONS -->
 
-                        `;
+<section
+class="panel"
+id="notifications">
 
-                        return;
-                    }
+<div class="panel-header">
 
+<h2>
+🔔 Notifications
+</h2>
 
+<span>
+Latest
+</span>
 
-                    // ==============================
-                    // DISPLAY FACULTY INFORMATION
-                    // ==============================
+</div>
 
-                    facultyName.textContent =
-                        "Welcome, " +
-                        (
-                            faculty.name ||
-                            "Faculty"
-                        );
 
+<div id="notificationList">
 
-                    facultyEmail.textContent =
-                        "Email: " +
-                        (
-                            faculty.email ||
-                            user.email ||
-                            "Not available"
-                        );
+<div class="notification">
 
+<strong>
+Welcome to R Mohan Digital
+</strong>
 
-                    facultyRole.textContent =
-                        "Role: Faculty";
+<p>
+Your faculty account has been
+approved successfully.
+</p>
 
+</div>
 
+</div>
 
-                    // ==============================
-                    // LOAD STUDENTS
-                    // ==============================
+</section>
 
-                    await loadStudents(
-                        user.uid
-                    );
 
+</div>
 
-                } catch (error) {
 
+<!-- STUDENTS -->
 
-                    console.error(
-                        "Faculty dashboard error:",
-                        error
-                    );
+<section
+class="panel"
+id="students">
 
+<div class="panel-header">
 
-                    studentsContainer.innerHTML = `
+<h2>
+🎓 My Students
+</h2>
 
-                        <div class="empty error">
+<span>
+Students assigned to you
+</span>
 
-                            Unable to load the
-                            faculty dashboard.
+</div>
 
-                            <br><br>
 
-                            ${error.message}
+<div id="studentList">
 
-                        </div>
+<div class="empty">
 
-                    `;
+No students assigned yet.
 
-                }
+</div>
 
-            }
-        );
+</div>
 
+</section>
 
 
-        // =====================================
-        // LOAD STUDENTS
-        // =====================================
+</main>
 
-        async function loadStudents(
-            facultyUID
-        ) {
 
+<!-- ==============================
+     FIREBASE
+============================== -->
 
-            console.log(
-                "Loading students for faculty:",
-                facultyUID
-            );
+<script type="module">
 
 
-            studentsContainer.innerHTML = `
+import {
+    auth,
+    db
+}
+from "./firebase.js";
 
-                <div class="empty">
 
-                    Loading your students...
+import {
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-                </div>
 
-            `;
+import {
+    doc,
+    getDoc,
+    collection,
+    getDocs,
+    query,
+    where
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
+/* ==============================
+   ELEMENTS
+============================== */
 
-            try {
+const facultyName =
+document.getElementById(
+    "facultyName"
+);
 
+const facultyEmail =
+document.getElementById(
+    "facultyEmail"
+);
 
-                // ==============================
-                // STUDENT QUERY
-                // ==============================
+const profileName =
+document.getElementById(
+    "profileName"
+);
 
-                const studentsQuery =
-                    query(
-                        collection(
-                            db,
-                            "students"
-                        ),
+const profileEmail =
+document.getElementById(
+    "profileEmail"
+);
 
-                        where(
-                            "assignedFaculty",
-                            "==",
-                            facultyUID
-                        )
-                    );
+const profileCourse =
+document.getElementById(
+    "profileCourse"
+);
 
+const profileStatus =
+document.getElementById(
+    "profileStatus"
+);
 
-                const snapshot =
-                    await getDocs(
-                        studentsQuery
-                    );
+const courseCount =
+document.getElementById(
+    "courseCount"
+);
 
+const studentCount =
+document.getElementById(
+    "studentCount"
+);
 
+const notificationCount =
+document.getElementById(
+    "notificationCount"
+);
 
-                console.log(
-                    "Students found:",
-                    snapshot.size
-                );
+const courseList =
+document.getElementById(
+    "courseList"
+);
 
+const studentList =
+document.getElementById(
+    "studentList"
+);
 
 
-                // ==============================
-                // NO STUDENTS
-                // ==============================
+/* ==============================
+   AUTH CHECK
+============================== */
 
-                if (
-                    snapshot.empty
-                ) {
+onAuthStateChanged(
+auth,
+async (user) => {
 
-                    studentsContainer.innerHTML = `
 
-                        <div class="empty">
+if(!user){
 
-                            <h3>
-                                No Students Assigned
-                            </h3>
+window.location.href =
+"login.html";
 
-                            <br>
+return;
 
-                            No students have been
-                            assigned to you yet.
+}
 
-                        </div>
 
-                    `;
+try{
 
-                    return;
-                }
 
+const userRef =
+doc(
+    db,
+    "users",
+    user.uid
+);
 
 
-                // ==============================
-                // CLEAR CONTAINER
-                // ==============================
+const snapshot =
+await getDoc(
+    userRef
+);
 
-                studentsContainer.innerHTML =
-                    "";
 
+if(!snapshot.exists()){
 
+alert(
+"Faculty profile was not found."
+);
 
-                // ==============================
-                // DISPLAY STUDENTS
-                // ==============================
+await signOut(auth);
 
-                snapshot.forEach(
-                    (studentDoc) => {
+window.location.href =
+"login.html";
 
+return;
 
-                        const student =
-                            studentDoc.data();
+}
 
 
+const data =
+snapshot.data();
 
-                        const card =
-                            document.createElement(
-                                "div"
-                            );
 
+console.log(
+"Faculty profile:",
+data
+);
 
-                        card.className =
-                            "student-card";
 
+/* ==========================
+   ROLE CHECK
+========================== */
 
+if(
+data.role !== "faculty"
+){
 
-                        // ==========================
-                        // CARD
-                        // ==========================
+alert(
+"This account is not a faculty account."
+);
 
-                        card.innerHTML = `
+await signOut(auth);
 
-                            <h3>
-                                ${escapeHTML(
-                                    student.name ||
-                                    "No Name"
-                                )}
-                            </h3>
+window.location.href =
+"login.html";
 
+return;
 
-                            <p>
+}
 
-                                <strong>
-                                    Email:
-                                </strong>
 
-                                ${escapeHTML(
-                                    student.email ||
-                                    "Not available"
-                                )}
+/* ==========================
+   STATUS CHECK
+========================== */
 
-                            </p>
+if(
+data.status !== "Active"
+){
 
+alert(
+"Your faculty account is not active yet."
+);
 
-                            <p>
+await signOut(auth);
 
-                                <strong>
-                                    Phone:
-                                </strong>
+window.location.href =
+"login.html";
 
-                                ${escapeHTML(
-                                    student.phone ||
-                                    "Not available"
-                                )}
+return;
 
-                            </p>
+}
 
 
-                            <p>
+/* ==========================
+   PROFILE
+========================== */
 
-                                <strong>
-                                    Course:
-                                </strong>
+const name =
+data.name ||
+"Faculty";
 
-                                ${escapeHTML(
-                                    student.course ||
-                                    "Not available"
-                                )}
 
-                            </p>
+const email =
+user.email ||
+data.email ||
+"";
 
 
-                            <p>
+const course =
+data.course ||
+"Not assigned";
 
-                                <strong>
-                                    Status:
-                                </strong>
 
-                                <span class="status">
+facultyName.textContent =
+name;
 
-                                    ${escapeHTML(
-                                        student.status ||
-                                        "Not available"
-                                    )}
 
-                                </span>
+facultyEmail.textContent =
+email;
 
-                            </p>
 
-                        `;
+profileName.textContent =
+name;
 
 
+profileEmail.textContent =
+email;
 
-                        studentsContainer.appendChild(
-                            card
-                        );
 
-                    }
-                );
+profileCourse.textContent =
+course;
 
 
-            } catch (error) {
+profileStatus.textContent =
+"Active";
 
 
-                console.error(
-                    "Student loading error:",
-                    error
-                );
+/* ==========================
+   LOAD DATA
+========================== */
 
+await loadCourses(
+user.uid,
+course
+);
 
-                studentsContainer.innerHTML = `
 
-                    <div class="empty error">
+await loadStudents(
+user.uid
+);
 
-                        <h3>
-                            Unable to load students
-                        </h3>
 
-                        <br>
+}
+catch(error){
 
-                        ${escapeHTML(
-                            error.message
-                        )}
+console.error(
+"Faculty dashboard error:",
+error
+);
 
-                        <br><br>
+alert(
+"Unable to load faculty dashboard."
+);
 
-                        Check your Firestore
-                        security rules.
+}
 
-                    </div>
+});
 
-                `;
 
-            }
+/* ==============================
+   LOAD COURSES
+============================== */
 
-        }
+async function loadCourses(
+uid,
+facultyCourse
+){
 
+try{
 
 
-        // =====================================
-        // SAFE HTML
-        // =====================================
+/*
+    If you already have a
+    "courses" collection,
+    this will read courses
+    assigned to this faculty.
+*/
 
-        function escapeHTML(
-            value
-        ) {
 
-            return String(value)
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
+const coursesRef =
+collection(
+    db,
+    "courses"
+);
 
-        }
 
+const snapshot =
+await getDocs(
+    coursesRef
+);
 
 
-        // =====================================
-        // LOGOUT
-        // =====================================
+const courses = [];
 
-        logoutBtn.addEventListener(
-            "click",
-            async () => {
 
+snapshot.forEach(
+documentSnapshot => {
 
-                try {
 
+const data =
+documentSnapshot.data();
 
-                    logoutBtn.disabled =
-                        true;
 
+/*
+    Supports either:
 
-                    logoutBtn.textContent =
-                        "Logging out...";
+    facultyId
 
+    OR
 
-                    await signOut(
-                        auth
-                    );
+    facultyUID
+*/
 
 
-                    window.location.href =
-                        "login.html";
+if(
+data.facultyId === uid ||
+data.facultyUID === uid
+){
 
+courses.push({
+id:
+documentSnapshot.id,
+...data
+});
 
-                } catch (error) {
+}
 
+});
 
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
 
+/*
+    If no course documents
+    exist yet, show the
+    faculty's registration
+    course as a temporary
+    display.
+*/
 
-                    logoutBtn.disabled =
-                        false;
 
+if(
+courses.length === 0 &&
+facultyCourse !== "Not assigned"
+){
 
-                    logoutBtn.textContent =
-                        "Logout";
+courseList.innerHTML = `
 
-                }
+<div class="course-card">
 
-            }
-        );
+<h3>
+${escapeHTML(
+facultyCourse
+)}
+</h3>
 
+<p>
+Your assigned course
+will appear here.
+</p>
 
-    </script>
+</div>
+
+`;
+
+courseCount.textContent =
+"1";
+
+return;
+
+}
+
+
+courseCount.textContent =
+courses.length;
+
+
+courseList.innerHTML =
+"";
+
+
+if(courses.length === 0){
+
+courseList.innerHTML = `
+
+<div class="empty">
+
+No courses assigned yet.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+courses.forEach(
+course => {
+
+
+const card =
+document.createElement(
+"div"
+);
+
+
+card.className =
+"course-card";
+
+
+card.innerHTML = `
+
+<h3>
+${escapeHTML(
+course.name ||
+course.title ||
+"Course"
+)}
+</h3>
+
+<p>
+${escapeHTML(
+course.description ||
+"Course assigned to you."
+)}
+</p>
+
+`;
+
+
+courseList.appendChild(
+card
+);
+
+});
+
+
+}
+catch(error){
+
+console.error(
+"Course error:",
+error
+);
+
+courseList.innerHTML = `
+
+<div class="empty">
+
+Unable to load courses.
+
+</div>
+
+`;
+
+}
+
+}
+
+
+/* ==============================
+   LOAD STUDENTS
+============================== */
+
+async function loadStudents(
+facultyUID
+){
+
+try{
+
+
+const studentsRef =
+collection(
+    db,
+    "users"
+);
+
+
+const q =
+query(
+    studentsRef,
+    where(
+        "role",
+        "==",
+        "student"
+    )
+);
+
+
+const snapshot =
+await getDocs(q);
+
+
+const students = [];
+
+
+snapshot.forEach(
+documentSnapshot => {
+
+
+const data =
+documentSnapshot.data();
+
+
+/*
+    Student can be assigned
+    using facultyId or
+    facultyUID.
+*/
+
+
+if(
+data.facultyId === facultyUID ||
+data.facultyUID === facultyUID
+){
+
+students.push({
+
+id:
+documentSnapshot.id,
+
+...data
+
+});
+
+}
+
+});
+
+
+studentCount.textContent =
+students.length;
+
+
+studentList.innerHTML =
+"";
+
+
+if(students.length === 0){
+
+studentList.innerHTML = `
+
+<div class="empty">
+
+No students assigned yet.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+students.forEach(
+student => {
+
+
+const item =
+document.createElement(
+"div"
+);
+
+
+item.className =
+"course-card";
+
+
+item.innerHTML = `
+
+<h3>
+🎓
+${escapeHTML(
+student.name ||
+"Student"
+)}
+</h3>
+
+<p>
+${escapeHTML(
+student.email ||
+"No email"
+)}
+</p>
+
+`;
+
+
+studentList.appendChild(
+item
+);
+
+});
+
+
+}
+catch(error){
+
+console.error(
+"Student error:",
+error
+);
+
+studentList.innerHTML = `
+
+<div class="empty">
+
+Unable to load students.
+
+</div>
+
+`;
+
+}
+
+}
+
+
+/* ==============================
+   LOGOUT
+============================== */
+
+document
+.getElementById("logoutBtn")
+.addEventListener(
+"click",
+async () => {
+
+
+try{
+
+await signOut(auth);
+
+window.location.href =
+"login.html";
+
+}
+catch(error){
+
+console.error(
+"Logout error:",
+error
+);
+
+}
+
+});
+
+
+/* ==============================
+   HTML SECURITY
+============================== */
+
+function escapeHTML(
+value
+){
+
+return String(value)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+}
+
+
+/* ==============================
+   SIDEBAR
+============================== */
+
+window.scrollToSection =
+function(id){
+
+const element =
+document.getElementById(
+id
+);
+
+if(element){
+
+element.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+};
+
+
+window.comingSoon =
+function(section){
+
+alert(
+section +
+" will be added next."
+);
+
+};
+
+
+/* ==============================
+   MOBILE MENU
+============================== */
+
+const mobileMenu =
+document.getElementById(
+"mobileMenu"
+);
+
+const sidebar =
+document.getElementById(
+"sidebar"
+);
+
+
+mobileMenu.addEventListener(
+"click",
+() => {
+
+sidebar.classList.toggle(
+"open"
+);
+
+});
+
+</script>
 
 
 </body>
