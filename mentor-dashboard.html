@@ -3,995 +3,890 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>Mentor Dashboard | R Mohan Digital</title>
+<title>Mentor Dashboard | R Mohan Digital</title>
 
-    <style>
+<style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-        body {
+body {
 
-            min-height: 100vh;
+    min-height: 100vh;
 
-            background:
-                radial-gradient(
-                    circle at top left,
-                    #102a43 0%,
-                    #07111f 35%,
-                    #020617 75%
-                );
+    background:
+        radial-gradient(
+            circle at top left,
+            #102a43 0%,
+            #07111f 35%,
+            #020617 75%
+        );
 
-            color: white;
-        }
+    color: white;
+}
 
 
-        /* =====================================
-           SIDEBAR
-        ===================================== */
+/* =========================================
+   SIDEBAR
+========================================= */
 
-        .sidebar {
+.sidebar {
 
-            position: fixed;
+    position: fixed;
 
-            left: 0;
-            top: 0;
+    left: 0;
+    top: 0;
 
-            width: 250px;
-            height: 100vh;
+    width: 250px;
+    height: 100vh;
 
-            padding: 25px 15px;
+    padding: 25px 15px;
 
-            background:
-                rgba(3, 12, 24, 0.97);
+    background: rgba(3,12,24,0.97);
 
-            border-right:
-                1px solid
-                rgba(0, 229, 255, 0.2);
+    border-right:
+        1px solid
+        rgba(0,229,255,0.2);
 
-            z-index: 100;
+    z-index: 100;
 
-            transition: 0.3s;
-        }
+    transition: 0.3s;
+}
 
 
-        .logo {
+.logo {
 
-            text-align: center;
+    text-align: center;
 
-            padding-bottom: 25px;
+    padding-bottom: 25px;
 
-            border-bottom:
-                1px solid
-                rgba(148, 163, 184, 0.12);
-        }
+    border-bottom:
+        1px solid
+        rgba(148,163,184,0.12);
+}
 
 
-        .logo-circle {
+.logo-circle {
 
-            width: 58px;
-            height: 58px;
+    width: 58px;
+    height: 58px;
 
-            margin: auto;
+    margin: auto;
 
-            display: flex;
+    display: flex;
 
-            align-items: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
 
-            border: 2px solid #00e5ff;
+    border: 2px solid #00e5ff;
 
-            border-radius: 50%;
+    border-radius: 50%;
 
-            color: #00e5ff;
+    color: #00e5ff;
 
-            font-size: 22px;
-            font-weight: bold;
+    font-size: 22px;
+    font-weight: bold;
 
-            box-shadow:
-                0 0 18px
-                rgba(0, 229, 255, 0.35);
-        }
+    box-shadow:
+        0 0 18px
+        rgba(0,229,255,0.35);
+}
 
 
-        .logo h2 {
+.logo h2 {
 
-            margin-top: 12px;
+    margin-top: 12px;
 
-            font-size: 18px;
+    font-size: 18px;
 
-            text-shadow:
-                0 0 10px
-                rgba(0, 229, 255, 0.5);
-        }
+}
 
 
-        .logo p {
+.logo p {
 
-            margin-top: 5px;
+    margin-top: 5px;
 
-            font-size: 10px;
+    font-size: 10px;
 
-            letter-spacing: 2px;
+    letter-spacing: 2px;
 
-            color: #38bdf8;
-        }
+    color: #38bdf8;
+}
 
 
-        .menu {
+/* =========================================
+   MENU
+========================================= */
 
-            margin-top: 25px;
-        }
+.menu {
 
+    margin-top: 25px;
+}
 
-        .menu button {
 
-            width: 100%;
+.menu button {
 
-            padding: 13px 15px;
+    width: 100%;
 
-            margin-bottom: 8px;
+    padding: 13px 15px;
 
-            border: 1px solid transparent;
+    margin-bottom: 8px;
 
-            border-radius: 9px;
+    border: 1px solid transparent;
 
-            background: transparent;
+    border-radius: 9px;
 
-            color: #94a3b8;
+    background: transparent;
 
-            text-align: left;
+    color: #94a3b8;
 
-            cursor: pointer;
+    text-align: left;
 
-            font-size: 14px;
+    cursor: pointer;
 
-            transition: 0.25s;
-        }
+    font-size: 14px;
 
+    transition: 0.25s;
+}
 
-        .menu button:hover,
-        .menu button.active {
 
-            color: #00e5ff;
+.menu button:hover,
+.menu button.active {
 
-            background:
-                rgba(0, 229, 255, 0.08);
+    color: #00e5ff;
 
-            border-color:
-                rgba(0, 229, 255, 0.25);
-        }
+    background:
+        rgba(0,229,255,0.08);
 
+    border-color:
+        rgba(0,229,255,0.25);
+}
 
-        /* =====================================
-           MAIN
-        ===================================== */
 
-        .main {
+/* =========================================
+   MAIN
+========================================= */
 
-            margin-left: 250px;
+.main {
 
-            min-height: 100vh;
+    margin-left: 250px;
 
-            padding: 25px;
-        }
+    min-height: 100vh;
 
+    padding: 25px;
+}
 
-        /* =====================================
-           TOPBAR
-        ===================================== */
 
-        .topbar {
+/* =========================================
+   TOPBAR
+========================================= */
 
-            display: flex;
+.topbar {
 
-            justify-content: space-between;
+    display: flex;
 
-            align-items: center;
+    justify-content: space-between;
 
-            margin-bottom: 25px;
+    align-items: center;
 
-            padding: 18px 22px;
+    margin-bottom: 25px;
 
-            border-radius: 15px;
+    padding: 18px 22px;
 
-            background:
-                rgba(7, 17, 31, 0.75);
+    border-radius: 15px;
 
-            border:
-                1px solid
-                rgba(0, 229, 255, 0.15);
+    background:
+        rgba(7,17,31,0.75);
 
-            backdrop-filter: blur(12px);
-        }
+    border:
+        1px solid
+        rgba(0,229,255,0.15);
 
+    backdrop-filter: blur(12px);
+}
 
-        .topbar h1 {
 
-            font-size: 22px;
-        }
+.topbar h1 {
 
+    font-size: 22px;
+}
 
-        .topbar h1 span {
 
-            color: #00e5ff;
+.topbar h1 span {
 
-            text-shadow:
-                0 0 10px
-                rgba(0, 229, 255, 0.5);
-        }
+    color: #00e5ff;
 
+    text-shadow:
+        0 0 10px
+        rgba(0,229,255,0.5);
+}
 
-        .profile-area {
 
-            display: flex;
+.profile-area {
 
-            align-items: center;
+    display: flex;
 
-            gap: 15px;
-        }
+    align-items: center;
 
+    gap: 15px;
+}
 
-        .mentor-info {
 
-            text-align: right;
-        }
+.mentor-info {
 
+    text-align: right;
+}
 
-        #mentorName {
 
-            display: block;
+#mentorName {
 
-            font-size: 14px;
+    display: block;
 
-            font-weight: bold;
-        }
+    font-size: 14px;
 
+    font-weight: bold;
+}
 
-        #mentorEmail {
 
-            display: block;
+#mentorEmail {
 
-            margin-top: 4px;
+    display: block;
 
-            font-size: 11px;
+    margin-top: 4px;
 
-            color: #64748b;
-        }
+    font-size: 11px;
 
+    color: #64748b;
+}
 
-        .logout {
 
-            padding: 9px 15px;
+.logout {
 
-            border:
-                1px solid #ef4444;
+    padding: 9px 15px;
 
-            border-radius: 8px;
+    border:
+        1px solid #ef4444;
 
-            background:
-                rgba(239, 68, 68, 0.08);
+    border-radius: 8px;
 
-            color: #f87171;
+    background:
+        rgba(239,68,68,0.08);
 
-            cursor: pointer;
+    color: #f87171;
 
-            font-weight: bold;
+    cursor: pointer;
 
-            transition: 0.2s;
-        }
+    font-weight: bold;
+}
 
 
-        .logout:hover {
+/* =========================================
+   WELCOME
+========================================= */
 
-            background: #ef4444;
+.welcome {
 
-            color: white;
+    padding: 25px;
 
-            box-shadow:
-                0 0 15px
-                rgba(239, 68, 68, 0.35);
-        }
+    margin-bottom: 25px;
 
+    border-radius: 15px;
 
-        /* =====================================
-           WELCOME
-        ===================================== */
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,229,255,0.08),
+            rgba(37,99,235,0.05)
+        );
 
-        .welcome {
+    border:
+        1px solid
+        rgba(0,229,255,0.18);
+}
 
-            padding: 25px;
 
-            margin-bottom: 25px;
+.welcome h2 {
 
-            border-radius: 15px;
+    color: #00e5ff;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(0, 229, 255, 0.08),
-                    rgba(37, 99, 235, 0.05)
-                );
+    margin-bottom: 8px;
+}
 
-            border:
-                1px solid
-                rgba(0, 229, 255, 0.18);
-        }
 
+.welcome p {
 
-        .welcome h2 {
+    color: #94a3b8;
 
-            color: #00e5ff;
+    font-size: 14px;
+}
 
-            margin-bottom: 8px;
-        }
 
+/* =========================================
+   STATS
+========================================= */
 
-        .welcome p {
+.stats {
 
-            color: #94a3b8;
+    display: grid;
 
-            font-size: 14px;
-        }
+    grid-template-columns:
+        repeat(4,1fr);
 
+    gap: 18px;
 
-        /* =====================================
-           STATISTICS
-        ===================================== */
+    margin-bottom: 25px;
+}
 
-        .stats {
 
-            display: grid;
+.stat-card {
 
-            grid-template-columns:
-                repeat(4, 1fr);
+    padding: 22px;
 
-            gap: 18px;
+    border-radius: 15px;
 
-            margin-bottom: 25px;
-        }
+    background:
+        rgba(7,17,31,0.82);
 
+    border:
+        1px solid
+        rgba(0,229,255,0.15);
+}
 
-        .stat-card {
 
-            padding: 22px;
+.stat-icon {
 
-            border-radius: 15px;
+    font-size: 27px;
 
-            background:
-                rgba(7, 17, 31, 0.82);
+    margin-bottom: 12px;
+}
 
-            border:
-                1px solid
-                rgba(0, 229, 255, 0.15);
 
-            transition: 0.25s;
-        }
+.stat-card h3 {
 
+    font-size: 28px;
 
-        .stat-card:hover {
+    color: #00e5ff;
+}
 
-            transform:
-                translateY(-3px);
 
-            border-color:
-                rgba(0, 229, 255, 0.45);
+.stat-card p {
 
-            box-shadow:
-                0 0 20px
-                rgba(0, 229, 255, 0.08);
-        }
+    margin-top: 5px;
 
+    color: #94a3b8;
 
-        .stat-icon {
+    font-size: 13px;
+}
 
-            font-size: 27px;
 
-            margin-bottom: 12px;
-        }
+/* =========================================
+   PANEL
+========================================= */
 
+.panel {
 
-        .stat-card h3 {
+    background:
+        rgba(7,17,31,0.82);
 
-            font-size: 28px;
+    border:
+        1px solid
+        rgba(0,229,255,0.15);
 
-            color: #00e5ff;
+    border-radius: 15px;
 
-            text-shadow:
-                0 0 10px
-                rgba(0, 229, 255, 0.4);
-        }
+    padding: 22px;
 
+    margin-bottom: 20px;
+}
 
-        .stat-card p {
 
-            margin-top: 5px;
+.panel-header {
 
-            color: #94a3b8;
+    display: flex;
 
-            font-size: 13px;
-        }
+    justify-content: space-between;
 
+    align-items: center;
 
-        /* =====================================
-           PANELS
-        ===================================== */
+    margin-bottom: 20px;
+}
 
-        .panel {
 
-            background:
-                rgba(7, 17, 31, 0.82);
+.panel-header h2 {
 
-            border:
-                1px solid
-                rgba(0, 229, 255, 0.15);
+    font-size: 18px;
+}
 
-            border-radius: 15px;
 
-            padding: 22px;
+.panel-header span {
 
-            margin-bottom: 20px;
-        }
+    color: #38bdf8;
 
+    font-size: 11px;
+}
 
-        .panel-header {
 
-            display: flex;
+/* =========================================
+   FACULTY CARD
+========================================= */
 
-            justify-content: space-between;
+.faculty-card {
 
-            align-items: center;
+    display: flex;
 
-            margin-bottom: 20px;
-        }
+    justify-content: space-between;
 
+    align-items: center;
 
-        .panel-header h2 {
+    gap: 20px;
 
-            font-size: 18px;
-        }
+    padding: 18px;
 
+    margin-bottom: 12px;
 
-        .panel-header span {
+    border-radius: 12px;
 
-            color: #38bdf8;
+    background:
+        rgba(15,23,42,0.75);
 
-            font-size: 11px;
-        }
+    border:
+        1px solid
+        rgba(148,163,184,0.10);
+}
 
 
-        /* =====================================
-           FACULTY CARD
-        ===================================== */
+.faculty-left {
 
-        .faculty-card {
+    display: flex;
 
-            display: flex;
+    align-items: center;
 
-            justify-content: space-between;
+    gap: 15px;
+}
 
-            align-items: center;
 
-            gap: 20px;
+.faculty-avatar {
 
-            padding: 18px;
+    width: 48px;
+    height: 48px;
 
-            margin-bottom: 12px;
+    border-radius: 50%;
 
-            border-radius: 12px;
+    display: flex;
 
-            background:
-                rgba(15, 23, 42, 0.75);
+    align-items: center;
+    justify-content: center;
 
-            border:
-                1px solid
-                rgba(148, 163, 184, 0.10);
+    background:
+        rgba(0,229,255,0.08);
 
-            transition: 0.25s;
-        }
+    border:
+        1px solid
+        rgba(0,229,255,0.3);
 
+    color: #00e5ff;
 
-        .faculty-card:hover {
+    font-size: 20px;
+}
 
-            border-color:
-                rgba(0, 229, 255, 0.3);
-        }
 
+.faculty-info h3 {
 
-        .faculty-left {
+    font-size: 14px;
 
-            display: flex;
+    margin-bottom: 5px;
+}
 
-            align-items: center;
 
-            gap: 15px;
+.faculty-info p {
 
-            min-width: 0;
-        }
+    color: #64748b;
 
+    font-size: 11px;
 
-        .faculty-avatar {
+    margin-bottom: 3px;
+}
 
-            width: 48px;
-            height: 48px;
 
-            flex-shrink: 0;
+.course {
 
-            border-radius: 50%;
+    color: #38bdf8 !important;
+}
 
-            display: flex;
 
-            align-items: center;
-            justify-content: center;
+/* =========================================
+   BADGES
+========================================= */
 
-            background:
-                rgba(0, 229, 255, 0.08);
+.pending-badge {
 
-            border:
-                1px solid
-                rgba(0, 229, 255, 0.3);
+    display: inline-block;
 
-            color: #00e5ff;
+    margin-top: 5px;
 
-            font-size: 20px;
-        }
+    padding: 4px 8px;
 
+    border-radius: 20px;
 
-        .faculty-info {
+    color: #facc15;
 
-            min-width: 0;
-        }
+    background:
+        rgba(250,204,21,0.08);
 
+    border:
+        1px solid
+        rgba(250,204,21,0.25);
 
-        .faculty-info h3 {
+    font-size: 9px;
+}
 
-            font-size: 14px;
 
-            margin-bottom: 5px;
-        }
+.active-badge {
 
+    padding: 5px 9px;
 
-        .faculty-info p {
+    border-radius: 15px;
 
-            color: #64748b;
+    color: #22c55e;
 
-            font-size: 11px;
+    background:
+        rgba(34,197,94,0.08);
 
-            margin-bottom: 3px;
+    border:
+        1px solid
+        rgba(34,197,94,0.25);
 
-            word-break: break-word;
-        }
+    font-size: 9px;
+}
 
 
-        .course {
+/* =========================================
+   ACTIONS
+========================================= */
 
-            color: #38bdf8 !important;
-        }
+.faculty-actions {
 
+    display: flex;
 
-        .pending-badge {
+    gap: 8px;
+}
 
-            display: inline-block;
 
-            margin-top: 5px;
+.accept-btn,
+.reject-btn {
 
-            padding: 4px 8px;
+    padding: 9px 13px;
 
-            border-radius: 20px;
+    border-radius: 8px;
 
-            color: #facc15;
+    cursor: pointer;
 
-            background:
-                rgba(250, 204, 21, 0.08);
+    font-size: 12px;
 
-            border:
-                1px solid
-                rgba(250, 204, 21, 0.25);
+    font-weight: bold;
+}
 
-            font-size: 9px;
-        }
 
+.accept-btn {
 
-        /* =====================================
-           ACTION BUTTONS
-        ===================================== */
+    border: 1px solid #22c55e;
 
-        .faculty-actions {
+    background:
+        rgba(34,197,94,0.08);
 
-            display: flex;
+    color: #22c55e;
+}
 
-            gap: 8px;
 
-            flex-shrink: 0;
-        }
+.reject-btn {
 
+    border: 1px solid #ef4444;
 
-        .accept-btn,
-        .reject-btn {
+    background:
+        rgba(239,68,68,0.08);
 
-            padding: 9px 13px;
+    color: #f87171;
+}
 
-            border-radius: 8px;
 
-            cursor: pointer;
+.accept-btn:hover {
 
-            font-size: 12px;
+    background: #22c55e;
 
-            font-weight: bold;
+    color: #02120a;
+}
 
-            transition: 0.2s;
-        }
 
+.reject-btn:hover {
 
-        .accept-btn {
+    background: #ef4444;
 
-            border:
-                1px solid #22c55e;
+    color: white;
+}
 
-            background:
-                rgba(34, 197, 94, 0.08);
 
-            color: #22c55e;
-        }
+button:disabled {
 
+    opacity: 0.5;
 
-        .accept-btn:hover {
+    cursor: not-allowed;
+}
 
-            background: #22c55e;
 
-            color: #02120a;
+/* =========================================
+   ACTIVE FACULTY
+========================================= */
 
-            box-shadow:
-                0 0 15px
-                rgba(34, 197, 94, 0.3);
-        }
+.active-card {
 
+    display: flex;
 
-        .reject-btn {
+    justify-content: space-between;
 
-            border:
-                1px solid #ef4444;
+    align-items: center;
 
-            background:
-                rgba(239, 68, 68, 0.08);
+    padding: 14px;
 
-            color: #f87171;
-        }
+    margin-bottom: 8px;
 
+    border-radius: 9px;
 
-        .reject-btn:hover {
+    background:
+        rgba(15,23,42,0.65);
 
-            background: #ef4444;
+    border:
+        1px solid
+        rgba(148,163,184,0.08);
+}
 
-            color: white;
 
-            box-shadow:
-                0 0 15px
-                rgba(239, 68, 68, 0.3);
-        }
+.active-card strong {
 
+    display: block;
 
-        .accept-btn:disabled,
-        .reject-btn:disabled {
+    font-size: 13px;
+}
 
-            opacity: 0.5;
 
-            cursor: not-allowed;
-        }
+.active-card small {
 
+    color: #64748b;
 
-        /* =====================================
-           ACTIVE FACULTY
-        ===================================== */
+    font-size: 10px;
+}
 
-        .active-card {
 
-            display: flex;
+/* =========================================
+   EMPTY
+========================================= */
 
-            justify-content: space-between;
+.empty {
 
-            align-items: center;
+    padding: 35px 10px;
 
-            padding: 14px;
+    text-align: center;
 
-            margin-bottom: 8px;
+    color: #64748b;
 
-            border-radius: 9px;
+    font-size: 13px;
+}
 
-            background:
-                rgba(15, 23, 42, 0.65);
 
-            border:
-                1px solid
-                rgba(148, 163, 184, 0.08);
-        }
+/* =========================================
+   TOAST
+========================================= */
 
+#toast {
 
-        .active-card strong {
+    position: fixed;
 
-            display: block;
+    right: 25px;
 
-            font-size: 13px;
-        }
+    bottom: 25px;
 
+    min-width: 250px;
 
-        .active-card small {
+    padding: 14px 18px;
 
-            color: #64748b;
+    border-radius: 10px;
 
-            font-size: 10px;
-        }
+    background: #07111f;
 
+    border: 1px solid #00e5ff;
 
-        .active-badge {
+    color: white;
 
-            padding: 5px 9px;
+    transform: translateY(100px);
 
-            border-radius: 15px;
+    opacity: 0;
 
-            color: #22c55e;
+    transition: 0.3s;
 
-            background:
-                rgba(34, 197, 94, 0.08);
+    z-index: 500;
+}
 
-            border:
-                1px solid
-                rgba(34, 197, 94, 0.25);
 
-            font-size: 9px;
-        }
+#toast.show {
 
+    transform: translateY(0);
 
-        /* =====================================
-           EMPTY
-        ===================================== */
+    opacity: 1;
+}
 
-        .empty {
 
-            padding: 35px 10px;
+#toast.success {
 
-            text-align: center;
+    border-color: #22c55e;
+}
 
-            color: #64748b;
 
-            font-size: 13px;
-        }
+#toast.error {
 
+    border-color: #ef4444;
+}
 
-        .empty-icon {
 
-            font-size: 35px;
+/* =========================================
+   MOBILE
+========================================= */
 
-            margin-bottom: 10px;
-        }
+.mobile-menu {
 
+    display: none;
 
-        /* =====================================
-           TOAST
-        ===================================== */
+    position: fixed;
 
-        #toast {
+    top: 15px;
 
-            position: fixed;
+    left: 15px;
 
-            right: 25px;
+    width: 42px;
 
-            bottom: 25px;
+    height: 42px;
 
-            min-width: 250px;
+    z-index: 200;
 
-            max-width: 90%;
+    border: 1px solid #00e5ff;
 
-            padding: 14px 18px;
+    border-radius: 8px;
 
-            border-radius: 10px;
+    background: #07111f;
 
-            background:
-                #07111f;
+    color: #00e5ff;
 
-            border:
-                1px solid #00e5ff;
+    cursor: pointer;
 
-            color: #e2e8f0;
+    font-size: 20px;
+}
 
-            box-shadow:
-                0 0 25px
-                rgba(0,229,255,0.18);
 
-            transform:
-                translateY(100px);
+@media(max-width:1050px) {
 
-            opacity: 0;
+    .stats {
 
-            pointer-events: none;
+        grid-template-columns:
+            repeat(2,1fr);
+    }
 
-            transition: 0.3s;
+}
 
-            z-index: 500;
-        }
 
+@media(max-width:750px) {
 
-        #toast.show {
+    .sidebar {
 
-            transform:
-                translateY(0);
+        transform:
+            translateX(-100%);
+    }
 
-            opacity: 1;
-        }
+    .sidebar.open {
 
+        transform:
+            translateX(0);
+    }
 
-        #toast.success {
+    .mobile-menu {
 
-            border-color:
-                #22c55e;
-        }
+        display: block;
+    }
 
+    .main {
 
-        #toast.error {
+        margin-left: 0;
 
-            border-color:
-                #ef4444;
-        }
+        padding: 15px;
 
+        padding-top: 70px;
+    }
 
-        /* =====================================
-           MOBILE MENU
-        ===================================== */
+    .topbar {
 
-        .mobile-menu {
+        flex-direction: column;
 
-            display: none;
+        align-items: flex-start;
 
-            position: fixed;
+        gap: 15px;
+    }
 
-            top: 15px;
-            left: 15px;
+    .profile-area {
 
-            width: 42px;
-            height: 42px;
+        width: 100%;
 
-            z-index: 200;
+        justify-content:
+            space-between;
+    }
 
-            border:
-                1px solid #00e5ff;
+    .mentor-info {
 
-            border-radius: 8px;
+        text-align: left;
+    }
 
-            background:
-                #07111f;
+    .faculty-card {
 
-            color:
-                #00e5ff;
+        flex-direction: column;
 
-            cursor: pointer;
+        align-items: flex-start;
+    }
 
-            font-size: 20px;
-        }
+    .faculty-actions {
 
+        width: 100%;
+    }
 
-        /* =====================================
-           RESPONSIVE
-        ===================================== */
+    .accept-btn,
+    .reject-btn {
 
-        @media (max-width: 1050px) {
+        flex: 1;
+    }
 
-            .stats {
+}
 
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-        }
 
+@media(max-width:500px) {
 
-        @media (max-width: 750px) {
+    .stats {
 
-            .sidebar {
+        grid-template-columns: 1fr;
+    }
 
-                transform:
-                    translateX(-100%);
-            }
+}
 
-
-            .sidebar.open {
-
-                transform:
-                    translateX(0);
-            }
-
-
-            .mobile-menu {
-
-                display: block;
-            }
-
-
-            .main {
-
-                margin-left: 0;
-
-                padding: 15px;
-
-                padding-top: 70px;
-            }
-
-
-            .topbar {
-
-                flex-direction: column;
-
-                align-items: flex-start;
-
-                gap: 15px;
-            }
-
-
-            .profile-area {
-
-                width: 100%;
-
-                justify-content:
-                    space-between;
-            }
-
-
-            .mentor-info {
-
-                text-align: left;
-            }
-
-
-            .faculty-card {
-
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-
-            .faculty-actions {
-
-                width: 100%;
-            }
-
-
-            .accept-btn,
-            .reject-btn {
-
-                flex: 1;
-            }
-        }
-
-
-        @media (max-width: 500px) {
-
-            .stats {
-
-                grid-template-columns:
-                    1fr;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
 
 <body>
 
-
-<!-- =====================================
-     MOBILE MENU
-===================================== -->
 
 <button
     class="mobile-menu"
@@ -1002,9 +897,9 @@
 </button>
 
 
-<!-- =====================================
+<!-- =========================================
      SIDEBAR
-===================================== -->
+========================================= -->
 
 <aside
     class="sidebar"
@@ -1016,13 +911,9 @@
             RM
         </div>
 
-        <h2>
-            R Mohan Digital
-        </h2>
+        <h2>R Mohan Digital</h2>
 
-        <p>
-            MENTOR CENTER
-        </p>
+        <p>MENTOR CENTER</p>
 
     </div>
 
@@ -1031,7 +922,10 @@
 
         <button
             class="active"
-            onclick="scrollToSection('dashboardTop')">
+            onclick="window.scrollTo({
+                top:0,
+                behavior:'smooth'
+            })">
 
             📊 &nbsp; Dashboard
 
@@ -1054,1535 +948,1184 @@
         </button>
 
 
-        <button
-            onclick="comingSoon('Faculty Management')">
-
-            📚 &nbsp; Faculty Management
-
-        </button>
-
-
-        <button
-            onclick="comingSoon('Announcements')">
-
-            📢 &nbsp; Announcements
-
-        </button>
-
-
-        <button
-            onclick="comingSoon('Notifications')">
-
-            🔔 &nbsp; Notifications
-
-        </button>
-
     </div>
 
 </aside>
 
 
-<!-- =====================================
+<!-- =========================================
      MAIN
-===================================== -->
+========================================= -->
 
-<main
-    class="main"
-    id="dashboardTop">
+<main class="main">
 
 
-    <!-- TOPBAR -->
+<div class="topbar">
 
-    <div class="topbar">
+    <div>
 
-        <div>
-
-            <h1>
-                Mentor
-                <span>Dashboard</span>
-            </h1>
-
-        </div>
-
-
-        <div class="profile-area">
-
-            <div class="mentor-info">
-
-                <span id="mentorName">
-                    Geethika
-                </span>
-
-                <span id="mentorEmail">
-                    Loading...
-                </span>
-
-            </div>
-
-
-            <button
-                class="logout"
-                id="logoutBtn">
-
-                Logout
-
-            </button>
-
-        </div>
+        <h1>
+            Mentor
+            <span>Dashboard</span>
+        </h1>
 
     </div>
 
 
-    <!-- WELCOME -->
+    <div class="profile-area">
 
-    <section class="welcome">
+        <div class="mentor-info">
+
+            <span id="mentorName">
+                Geethika
+            </span>
+
+            <span id="mentorEmail">
+                Loading...
+            </span>
+
+        </div>
+
+
+        <button
+            class="logout"
+            id="logoutBtn">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     WELCOME
+========================================= -->
+
+<section class="welcome">
+
+    <h2>
+        Welcome, Geethika 👩‍💼
+    </h2>
+
+    <p>
+        Review faculty applications and
+        approve eligible faculty members.
+    </p>
+
+</section>
+
+
+<!-- =========================================
+     STATISTICS
+========================================= -->
+
+<section class="stats">
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        👨‍🏫
+    </div>
+
+    <h3 id="totalFaculty">
+        0
+    </h3>
+
+    <p>
+        Total Faculty
+    </p>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        ⏳
+    </div>
+
+    <h3 id="pendingFacultyCount">
+        0
+    </h3>
+
+    <p>
+        Pending Requests
+    </p>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        ✅
+    </div>
+
+    <h3 id="activeFacultyCount">
+        0
+    </h3>
+
+    <p>
+        Active Faculty
+    </p>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        ❌
+    </div>
+
+    <h3 id="rejectedFacultyCount">
+        0
+    </h3>
+
+    <p>
+        Rejected Faculty
+    </p>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================
+     PENDING
+========================================= -->
+
+<section
+    class="panel"
+    id="pendingSection">
+
+    <div class="panel-header">
 
         <h2>
-            Welcome, <span id="welcomeName">
-                Geethika
-            </span> 👩‍💼
+            ⏳ Faculty Approval Requests
         </h2>
 
-        <p>
-            Review faculty applications,
-            approve eligible faculty members,
-            and manage your teaching team.
-        </p>
+        <span id="pendingLabel">
+            Loading...
+        </span>
 
-    </section>
+    </div>
 
 
-    <!-- =====================================
-         STATISTICS
-    ====================================== -->
+    <div id="pendingFaculty">
 
-    <section class="stats">
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                👨‍🏫
-            </div>
-
-            <h3 id="totalFaculty">
-                0
-            </h3>
-
-            <p>
-                Total Faculty
-            </p>
-
+        <div class="empty">
+            Loading faculty requests...
         </div>
 
+    </div>
 
-        <div class="stat-card">
+</section>
 
-            <div class="stat-icon">
-                ⏳
-            </div>
 
-            <h3 id="pendingFacultyCount">
-                0
-            </h3>
+<!-- =========================================
+     ACTIVE
+========================================= -->
 
-            <p>
-                Pending Requests
-            </p>
+<section
+    class="panel"
+    id="activeSection">
 
+    <div class="panel-header">
+
+        <h2>
+            ✅ Active Faculty
+        </h2>
+
+        <span id="activeLabel">
+            Loading...
+        </span>
+
+    </div>
+
+
+    <div id="activeFaculty">
+
+        <div class="empty">
+            Loading active faculty...
         </div>
 
+    </div>
 
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                ✅
-            </div>
-
-            <h3 id="activeFacultyCount">
-                0
-            </h3>
-
-            <p>
-                Active Faculty
-            </p>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                ❌
-            </div>
-
-            <h3 id="rejectedFacultyCount">
-                0
-            </h3>
-
-            <p>
-                Rejected Faculty
-            </p>
-
-        </div>
-
-
-    </section>
-
-
-    <!-- =====================================
-         PENDING FACULTY
-    ====================================== -->
-
-    <section
-        class="panel"
-        id="pendingSection">
-
-
-        <div class="panel-header">
-
-            <h2>
-                ⏳ Faculty Approval Requests
-            </h2>
-
-            <span id="pendingLabel">
-                Loading...
-            </span>
-
-        </div>
-
-
-        <div id="pendingFaculty">
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    ⏳
-                </div>
-
-                Loading faculty requests...
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-    <!-- =====================================
-         ACTIVE FACULTY
-    ====================================== -->
-
-    <section
-        class="panel"
-        id="activeSection">
-
-
-        <div class="panel-header">
-
-            <h2>
-                ✅ Active Faculty
-            </h2>
-
-            <span id="activeLabel">
-                Loading...
-            </span>
-
-        </div>
-
-
-        <div id="activeFaculty">
-
-            <div class="empty">
-
-                Loading active faculty...
-
-            </div>
-
-        </div>
-
-
-    </section>
+</section>
 
 
 </main>
 
 
-<!-- =====================================
-     TOAST
-===================================== -->
-
 <div id="toast"></div>
 
 
-<!-- =====================================
+<!-- =========================================
      FIREBASE
-===================================== -->
+========================================= -->
 
 <script type="module">
 
-
-    // =====================================
-    // FIREBASE IMPORTS
-    // =====================================
-
-    import {
-        auth,
-        db
-    } from "./firebase.js";
+import {
+    auth,
+    db
+} from "./firebase.js";
 
 
-    import {
-        onAuthStateChanged,
-        signOut
-    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 
-    import {
-        collection,
-        getDocs,
-        doc,
-        getDoc,
-        updateDoc,
-        serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+import {
+    collection,
+    getDocs,
+    doc,
+    getDoc,
+    updateDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-    // =====================================
-    // ELEMENTS
-    // =====================================
+/* =========================================
+   ELEMENTS
+========================================= */
 
-    const mentorName =
-        document.getElementById(
-            "mentorName"
-        );
+const mentorName =
+    document.getElementById("mentorName");
 
+const mentorEmail =
+    document.getElementById("mentorEmail");
 
-    const mentorEmail =
-        document.getElementById(
-            "mentorEmail"
-        );
+const totalFaculty =
+    document.getElementById("totalFaculty");
 
+const pendingFacultyCount =
+    document.getElementById("pendingFacultyCount");
 
-    const welcomeName =
-        document.getElementById(
-            "welcomeName"
-        );
+const activeFacultyCount =
+    document.getElementById("activeFacultyCount");
 
+const rejectedFacultyCount =
+    document.getElementById("rejectedFacultyCount");
 
-    const totalFaculty =
-        document.getElementById(
-            "totalFaculty"
-        );
+const pendingFaculty =
+    document.getElementById("pendingFaculty");
 
+const activeFaculty =
+    document.getElementById("activeFaculty");
 
-    const pendingFacultyCount =
-        document.getElementById(
-            "pendingFacultyCount"
-        );
+const pendingLabel =
+    document.getElementById("pendingLabel");
 
+const activeLabel =
+    document.getElementById("activeLabel");
 
-    const activeFacultyCount =
-        document.getElementById(
-            "activeFacultyCount"
-        );
+const logoutBtn =
+    document.getElementById("logoutBtn");
 
-
-    const rejectedFacultyCount =
-        document.getElementById(
-            "rejectedFacultyCount"
-        );
+const toast =
+    document.getElementById("toast");
 
 
-    const pendingFaculty =
-        document.getElementById(
-            "pendingFaculty"
-        );
+/* =========================================
+   AUTHENTICATION
+========================================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (!user) {
+
+            window.location.replace(
+                "admin.html"
+            );
+
+            return;
+        }
 
 
-    const activeFaculty =
-        document.getElementById(
-            "activeFaculty"
-        );
+        try {
 
-
-    const pendingLabel =
-        document.getElementById(
-            "pendingLabel"
-        );
-
-
-    const activeLabel =
-        document.getElementById(
-            "activeLabel"
-        );
-
-
-    const logoutBtn =
-        document.getElementById(
-            "logoutBtn"
-        );
-
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    // =====================================
-    // NORMALIZE VALUES
-    // =====================================
-
-    function normalize(value) {
-
-        return String(
-            value || ""
-        )
-        .trim()
-        .toLowerCase();
-
-    }
-
-
-    // =====================================
-    // AUTH CHECK
-    // =====================================
-
-    onAuthStateChanged(
-        auth,
-        async function(user) {
-
-
-            // =================================
-            // NOT LOGGED IN
-            // =================================
-
-            if (!user) {
-
-                window.location.href =
-                    "admin.html";
-
-                return;
-
-            }
-
-
-            try {
-
-
-                console.log(
-                    "Logged in UID:",
+            const userRef =
+                doc(
+                    db,
+                    "users",
                     user.uid
                 );
 
 
-                // =================================
-                // GET MENTOR PROFILE
-                // =================================
+            const snapshot =
+                await getDoc(userRef);
 
-                const userRef =
-                    doc(
-                        db,
-                        "users",
-                        user.uid
-                    );
 
-
-                const snapshot =
-                    await getDoc(
-                        userRef
-                    );
-
-
-                if (!snapshot.exists()) {
-
-                    console.error(
-                        "No users document found."
-                    );
-
-                    showToast(
-                        "Your profile was not found in Firebase.",
-                        "error"
-                    );
-
-                    await signOut(auth);
-
-                    setTimeout(
-                        function() {
-
-                            window.location.href =
-                                "admin.html";
-
-                        },
-                        1200
-                    );
-
-                    return;
-
-                }
-
-
-                const userData =
-                    snapshot.data();
-
-
-                console.log(
-                    "Logged-in profile:",
-                    userData
-                );
-
-
-                // =================================
-                // ROLE CHECK
-                // =================================
-
-                const role =
-                    normalize(
-                        userData.role
-                    );
-
-
-                console.log(
-                    "Normalized role:",
-                    role
-                );
-
-
-                if (
-                    role !== "mentor"
-                ) {
-
-                    console.error(
-                        "Expected mentor but received:",
-                        userData.role
-                    );
-
-
-                    showToast(
-                        "Access denied. Mentor account required.",
-                        "error"
-                    );
-
-
-                    await signOut(auth);
-
-
-                    setTimeout(
-                        function() {
-
-                            window.location.href =
-                                "admin.html";
-
-                        },
-                        1200
-                    );
-
-
-                    return;
-
-                }
-
-
-                // =================================
-                // STATUS CHECK
-                // =================================
-
-                const status =
-                    normalize(
-                        userData.status
-                    );
-
-
-                console.log(
-                    "Normalized status:",
-                    status
-                );
-
-
-                if (
-                    status !== "active"
-                ) {
-
-                    console.error(
-                        "Mentor status:",
-                        userData.status
-                    );
-
-
-                    showToast(
-                        "Your mentor account is not active.",
-                        "error"
-                    );
-
-
-                    await signOut(auth);
-
-
-                    setTimeout(
-                        function() {
-
-                            window.location.href =
-                                "admin.html";
-
-                        },
-                        1200
-                    );
-
-
-                    return;
-
-                }
-
-
-                // =================================
-                // MENTOR NAME
-                // =================================
-
-                const name =
-                    userData.name ||
-                    userData.fullName ||
-                    "Geethika";
-
-
-                mentorName.textContent =
-                    name;
-
-
-                welcomeName.textContent =
-                    name;
-
-
-                mentorEmail.textContent =
-                    userData.email ||
-                    user.email ||
-                    "";
-
-
-                // =================================
-                // LOAD FACULTY
-                // =================================
-
-                await loadFaculty();
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "Mentor authentication error:",
-                    error
-                );
-
+            if (!snapshot.exists()) {
 
                 showToast(
-                    "Unable to verify mentor account.",
+                    "Geethika profile not found in Firestore.",
                     "error"
                 );
 
+                await signOut(auth);
+
+                setTimeout(() => {
+
+                    window.location.replace(
+                        "admin.html"
+                    );
+
+                }, 1500);
+
+                return;
             }
 
-        }
-    );
+
+            const userData =
+                snapshot.data();
 
 
-    // =====================================
-    // LOAD FACULTY
-    // =====================================
-
-    async function loadFaculty() {
-
-
-        pendingFaculty.innerHTML = `
-
-            <div class="empty">
-
-                ⏳ Loading faculty...
-
-            </div>
-
-        `;
-
-
-        activeFaculty.innerHTML = `
-
-            <div class="empty">
-
-                ⏳ Loading faculty...
-
-            </div>
-
-        `;
-
-
-        try {
-
-
-            const usersRef =
-                collection(
-                    db,
-                    "users"
-                );
-
-
-            const snapshot =
-                await getDocs(
-                    usersRef
-                );
-
-
-            const faculty = [];
-
-
-            snapshot.forEach(
-                function(documentSnapshot) {
-
-
-                    const data =
-                        documentSnapshot.data();
-
-
-                    // =================================
-                    // CASE-INSENSITIVE FACULTY CHECK
-                    // =================================
-
-                    const role =
-                        normalize(
-                            data.role
-                        );
-
-
-                    if (
-                        role === "faculty"
-                    ) {
-
-                        faculty.push({
-
-                            id:
-                                documentSnapshot.id,
-
-                            ...data
-
-                        });
-
-                    }
-
-                }
+            console.log(
+                "Logged in user:",
+                user.uid,
+                userData
             );
 
 
-            // =====================================
-            // NORMALIZED STATUS FILTERING
-            // =====================================
+            /* =================================
+               ROLE CHECK
+            ================================= */
 
-            const pending =
-                faculty.filter(
-                    function(user) {
+            if (
+                userData.role !==
+                "mentor"
+            ) {
 
-                        return (
-                            normalize(
-                                user.status
-                            ) ===
-                            "pending"
-                        );
-
-                    }
+                showToast(
+                    "This account is not a mentor account.",
+                    "error"
                 );
 
+                await signOut(auth);
 
-            const active =
-                faculty.filter(
-                    function(user) {
+                setTimeout(() => {
 
-                        return (
-                            normalize(
-                                user.status
-                            ) ===
-                            "active"
-                        );
+                    window.location.replace(
+                        "admin.html"
+                    );
 
-                    }
+                }, 1500);
+
+                return;
+            }
+
+
+            /* =================================
+               STATUS CHECK
+
+               IMPORTANT:
+               Must be exactly "Active"
+            ================================= */
+
+            if (
+                userData.status !==
+                "Active"
+            ) {
+
+                showToast(
+                    "Mentor account is not Active.",
+                    "error"
                 );
 
+                await signOut(auth);
 
-            const rejected =
-                faculty.filter(
-                    function(user) {
+                setTimeout(() => {
 
-                        return (
-                            normalize(
-                                user.status
-                            ) ===
-                            "rejected"
-                        );
+                    window.location.replace(
+                        "admin.html"
+                    );
 
-                    }
-                );
+                }, 1500);
+
+                return;
+            }
 
 
-            // =====================================
-            // COUNTS
-            // =====================================
+            /* =================================
+               PROFILE
+            ================================= */
 
-            totalFaculty.textContent =
-                faculty.length;
-
-
-            pendingFacultyCount.textContent =
-                pending.length;
+            mentorName.textContent =
+                userData.name ||
+                "Geethika";
 
 
-            activeFacultyCount.textContent =
-                active.length;
+            mentorEmail.textContent =
+                user.email ||
+                userData.email ||
+                "";
 
 
-            rejectedFacultyCount.textContent =
-                rejected.length;
+            /* =================================
+               LOAD FACULTY
+            ================================= */
 
-
-            pendingLabel.textContent =
-                pending.length +
-                " request(s)";
-
-
-            activeLabel.textContent =
-                active.length +
-                " faculty";
-
-
-            // =====================================
-            // RENDER
-            // =====================================
-
-            renderPendingFaculty(
-                pending
-            );
-
-
-            renderActiveFaculty(
-                active
-            );
-
+            await loadFaculty();
 
         }
 
-
-        catch (error) {
+        catch(error) {
 
             console.error(
-                "Faculty loading error:",
+                "Mentor authentication error:",
                 error
             );
 
-
-            pendingFaculty.innerHTML = `
-
-                <div class="empty">
-
-                    ❌ Unable to load faculty.
-
-                </div>
-
-            `;
-
-
-            activeFaculty.innerHTML = `
-
-                <div class="empty">
-
-                    ❌ Unable to load faculty.
-
-                </div>
-
-            `;
+            showToast(
+                "Unable to verify mentor account.",
+                "error"
+            );
 
         }
 
     }
+);
 
 
-    // =====================================
-    // RENDER PENDING FACULTY
-    // =====================================
+/* =========================================
+   LOAD FACULTY
+========================================= */
 
-    function renderPendingFaculty(
-        faculty
-    ) {
+async function loadFaculty() {
 
+    pendingFaculty.innerHTML = `
+        <div class="empty">
+            ⏳ Loading faculty...
+        </div>
+    `;
 
-        pendingFaculty.innerHTML =
-            "";
 
+    activeFaculty.innerHTML = `
+        <div class="empty">
+            ⏳ Loading faculty...
+        </div>
+    `;
 
-        if (
-            faculty.length === 0
-        ) {
 
-            pendingFaculty.innerHTML = `
+    try {
 
-                <div class="empty">
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users"
+                )
+            );
 
-                    <div class="empty-icon">
-                        ✅
-                    </div>
 
-                    No pending faculty
-                    requests.
+        const faculty = [];
 
-                </div>
 
-            `;
+        snapshot.forEach(
+            item => {
 
-            return;
+                const data =
+                    item.data();
 
-        }
 
+                if (
+                    data.role ===
+                    "faculty"
+                ) {
 
-        faculty.forEach(
-            function(user) {
+                    faculty.push({
 
+                        id:
+                            item.id,
 
-                const card =
-                    document.createElement(
-                        "div"
-                    );
+                        ...data
 
+                    });
 
-                card.className =
-                    "faculty-card";
-
-
-                card.innerHTML = `
-
-                    <div class="faculty-left">
-
-                        <div class="faculty-avatar">
-
-                            👨‍🏫
-
-                        </div>
-
-
-                        <div class="faculty-info">
-
-                            <h3>
-
-                                ${escapeHTML(
-                                    user.name ||
-                                    "Unknown Faculty"
-                                )}
-
-                            </h3>
-
-
-                            <p>
-
-                                ${escapeHTML(
-                                    user.email ||
-                                    "No email"
-                                )}
-
-                            </p>
-
-
-                            <p class="course">
-
-                                Course:
-                                ${escapeHTML(
-                                    user.course ||
-                                    "Not assigned"
-                                )}
-
-                            </p>
-
-
-                            <span
-                                class="pending-badge">
-
-                                PENDING
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="faculty-actions">
-
-                        <button
-                            class="accept-btn">
-
-                            ✓ Accept
-
-                        </button>
-
-
-                        <button
-                            class="reject-btn">
-
-                            ✕ Reject
-
-                        </button>
-
-                    </div>
-
-                `;
-
-
-                // =================================
-                // ACCEPT BUTTON
-                // =================================
-
-                card.querySelector(
-                    ".accept-btn"
-                ).addEventListener(
-                    "click",
-                    function() {
-
-                        approveFaculty(
-                            user.id,
-                            card
-                        );
-
-                    }
-                );
-
-
-                // =================================
-                // REJECT BUTTON
-                // =================================
-
-                card.querySelector(
-                    ".reject-btn"
-                ).addEventListener(
-                    "click",
-                    function() {
-
-                        rejectFaculty(
-                            user.id,
-                            card
-                        );
-
-                    }
-                );
-
-
-                pendingFaculty.appendChild(
-                    card
-                );
+                }
 
             }
         );
 
+
+        const pending =
+            faculty.filter(
+                user =>
+                    user.status ===
+                    "Pending"
+            );
+
+
+        const active =
+            faculty.filter(
+                user =>
+                    user.status ===
+                    "Active"
+            );
+
+
+        const rejected =
+            faculty.filter(
+                user =>
+                    user.status ===
+                    "Rejected"
+            );
+
+
+        totalFaculty.textContent =
+            faculty.length;
+
+
+        pendingFacultyCount.textContent =
+            pending.length;
+
+
+        activeFacultyCount.textContent =
+            active.length;
+
+
+        rejectedFacultyCount.textContent =
+            rejected.length;
+
+
+        pendingLabel.textContent =
+            pending.length +
+            " request(s)";
+
+
+        activeLabel.textContent =
+            active.length +
+            " faculty";
+
+
+        renderPending(
+            pending
+        );
+
+
+        renderActive(
+            active
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Faculty loading error:",
+            error
+        );
+
+
+        pendingFaculty.innerHTML = `
+            <div class="empty">
+                ❌ Unable to load faculty.
+            </div>
+        `;
+
+        activeFaculty.innerHTML = `
+            <div class="empty">
+                ❌ Unable to load faculty.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================================
+   PENDING FACULTY
+========================================= */
+
+function renderPending(faculty) {
+
+    pendingFaculty.innerHTML = "";
+
+
+    if (
+        faculty.length === 0
+    ) {
+
+        pendingFaculty.innerHTML = `
+            <div class="empty">
+
+                <div style="font-size:35px">
+                    ✅
+                </div>
+
+                No pending faculty requests.
+
+            </div>
+        `;
+
+        return;
     }
 
 
-    // =====================================
-    // RENDER ACTIVE FACULTY
-    // =====================================
+    faculty.forEach(
+        user => {
 
-    function renderActiveFaculty(
-        faculty
-    ) {
-
-
-        activeFaculty.innerHTML =
-            "";
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-        if (
-            faculty.length === 0
-        ) {
-
-            activeFaculty.innerHTML = `
-
-                <div class="empty">
-
-                    No active faculty yet.
-
-                </div>
-
-            `;
-
-            return;
-
-        }
+            card.className =
+                "faculty-card";
 
 
-        faculty.forEach(
-            function(user) {
+            card.innerHTML = `
 
+                <div class="faculty-left">
 
-                const card =
-                    document.createElement(
-                        "div"
-                    );
+                    <div class="faculty-avatar">
+                        👨‍🏫
+                    </div>
 
+                    <div class="faculty-info">
 
-                card.className =
-                    "active-card";
-
-
-                card.innerHTML = `
-
-                    <div>
-
-                        <strong>
-
+                        <h3>
                             ${escapeHTML(
                                 user.name ||
                                 "Faculty"
                             )}
+                        </h3>
 
-                        </strong>
-
-
-                        <small>
-
+                        <p>
                             ${escapeHTML(
                                 user.email ||
                                 ""
                             )}
+                        </p>
 
-                        </small>
+                        <p class="course">
+
+                            Course:
+                            ${escapeHTML(
+                                user.course ||
+                                "Not assigned"
+                            )}
+
+                        </p>
+
+                        <span class="pending-badge">
+                            PENDING
+                        </span>
 
                     </div>
 
-
-                    <span
-                        class="active-badge">
-
-                        ACTIVE
-
-                    </span>
-
-                `;
+                </div>
 
 
-                activeFaculty.appendChild(
+                <div class="faculty-actions">
+
+                    <button
+                        class="accept-btn">
+
+                        ✓ Accept
+
+                    </button>
+
+                    <button
+                        class="reject-btn">
+
+                        ✕ Reject
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            card.querySelector(
+                ".accept-btn"
+            ).onclick =
+                () => approveFaculty(
+                    user.id,
                     card
                 );
 
-            }
-        );
 
-    }
-
-
-    // =====================================
-    // ACCEPT FACULTY
-    // =====================================
-
-    async function approveFaculty(
-        facultyId,
-        card
-    ) {
-
-
-        const confirmed =
-            confirm(
-                "Accept this faculty member?"
-            );
-
-
-        if (!confirmed) {
-
-            return;
-
-        }
-
-
-        const buttons =
-            card.querySelectorAll(
-                "button"
-            );
-
-
-        buttons.forEach(
-            function(button) {
-
-                button.disabled =
-                    true;
-
-            }
-        );
-
-
-        try {
-
-
-            const facultyRef =
-                doc(
-                    db,
-                    "users",
-                    facultyId
+            card.querySelector(
+                ".reject-btn"
+            ).onclick =
+                () => rejectFaculty(
+                    user.id,
+                    card
                 );
 
 
-            await updateDoc(
-                facultyRef,
-                {
-
-                    status:
-                        "Active",
-
-                    approvedBy:
-                        auth.currentUser.uid,
-
-                    approvedAt:
-                        serverTimestamp()
-
-                }
+            pendingFaculty.appendChild(
+                card
             );
-
-
-            showToast(
-                "Faculty accepted successfully!",
-                "success"
-            );
-
-
-            await loadFaculty();
-
-
-        }
-
-
-        catch (error) {
-
-            console.error(
-                "Accept faculty error:",
-                error
-            );
-
-
-            buttons.forEach(
-                function(button) {
-
-                    button.disabled =
-                        false;
-
-                }
-            );
-
-
-            showToast(
-                "Could not accept faculty. Check Firestore permissions.",
-                "error"
-            );
-
-        }
-
-    }
-
-
-    // =====================================
-    // REJECT FACULTY
-    // =====================================
-
-    async function rejectFaculty(
-        facultyId,
-        card
-    ) {
-
-
-        const confirmed =
-            confirm(
-                "Reject this faculty member?"
-            );
-
-
-        if (!confirmed) {
-
-            return;
-
-        }
-
-
-        const buttons =
-            card.querySelectorAll(
-                "button"
-            );
-
-
-        buttons.forEach(
-            function(button) {
-
-                button.disabled =
-                    true;
-
-            }
-        );
-
-
-        try {
-
-
-            const facultyRef =
-                doc(
-                    db,
-                    "users",
-                    facultyId
-                );
-
-
-            await updateDoc(
-                facultyRef,
-                {
-
-                    status:
-                        "Rejected",
-
-                    rejectedBy:
-                        auth.currentUser.uid,
-
-                    rejectedAt:
-                        serverTimestamp()
-
-                }
-            );
-
-
-            showToast(
-                "Faculty rejected.",
-                "success"
-            );
-
-
-            await loadFaculty();
-
-
-        }
-
-
-        catch (error) {
-
-            console.error(
-                "Reject faculty error:",
-                error
-            );
-
-
-            buttons.forEach(
-                function(button) {
-
-                    button.disabled =
-                        false;
-
-                }
-            );
-
-
-            showToast(
-                "Could not reject faculty. Check Firestore permissions.",
-                "error"
-            );
-
-        }
-
-    }
-
-
-    // =====================================
-    // LOGOUT
-    // =====================================
-
-    logoutBtn.addEventListener(
-        "click",
-        async function() {
-
-
-            try {
-
-                await signOut(auth);
-
-                window.location.href =
-                    "admin.html";
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "Logout error:",
-                    error
-                );
-
-            }
 
         }
     );
 
+}
 
-    // =====================================
-    // TOAST
-    // =====================================
 
-    function showToast(
-        message,
-        type = ""
+/* =========================================
+   ACTIVE FACULTY
+========================================= */
+
+function renderActive(faculty) {
+
+    activeFaculty.innerHTML = "";
+
+
+    if (
+        faculty.length === 0
     ) {
 
+        activeFaculty.innerHTML = `
+            <div class="empty">
+                No active faculty yet.
+            </div>
+        `;
 
-        toast.textContent =
-            message;
-
-
-        toast.className =
-            "";
-
-
-        toast.id =
-            "toast";
-
-
-        if (type) {
-
-            toast.classList.add(
-                type
-            );
-
-        }
-
-
-        setTimeout(
-            function() {
-
-                toast.classList.add(
-                    "show"
-                );
-
-            },
-            10
-        );
-
-
-        setTimeout(
-            function() {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            3500
-        );
-
+        return;
     }
 
 
-    // =====================================
-    // HTML SECURITY
-    // =====================================
+    faculty.forEach(
+        user => {
 
-    function escapeHTML(
-        value
-    ) {
-
-        return String(value)
-
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-
-            .replace(
-                /</g,
-                "&lt;"
-            )
-
-            .replace(
-                />/g,
-                "&gt;"
-            )
-
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-
-            .replace(
-                /'/g,
-                "&#039;"
-            );
-
-    }
-
-
-    // =====================================
-    // SIDEBAR
-    // =====================================
-
-    window.scrollToSection =
-        function(id) {
-
-
-            const element =
-                document.getElementById(
-                    id
+            const card =
+                document.createElement(
+                    "div"
                 );
 
 
-            if (element) {
-
-                element.scrollIntoView({
-
-                    behavior:
-                        "smooth"
-
-                });
-
-            }
-
-        };
+            card.className =
+                "active-card";
 
 
-    window.comingSoon =
-        function(section) {
+            card.innerHTML = `
+
+                <div>
+
+                    <strong>
+                        ${escapeHTML(
+                            user.name ||
+                            "Faculty"
+                        )}
+                    </strong>
+
+                    <small>
+                        ${escapeHTML(
+                            user.email ||
+                            ""
+                        )}
+                    </small>
+
+                </div>
+
+                <span class="active-badge">
+                    ACTIVE
+                </span>
+
+            `;
 
 
-            showToast(
-                section +
-                " will be added next.",
-                ""
-            );
-
-        };
-
-
-    // =====================================
-    // MOBILE MENU
-    // =====================================
-
-    const mobileMenu =
-        document.getElementById(
-            "mobileMenu"
-        );
-
-
-    const sidebar =
-        document.getElementById(
-            "sidebar"
-        );
-
-
-    mobileMenu.addEventListener(
-        "click",
-        function() {
-
-            sidebar.classList.toggle(
-                "open"
+            activeFaculty.appendChild(
+                card
             );
 
         }
     );
+
+}
+
+
+/* =========================================
+   APPROVE FACULTY
+========================================= */
+
+async function approveFaculty(
+    facultyId,
+    card
+) {
+
+    if (
+        !auth.currentUser
+    ) {
+
+        showToast(
+            "You are not logged in.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Accept this faculty member?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const buttons =
+        card.querySelectorAll(
+            "button"
+        );
+
+
+    buttons.forEach(
+        button => {
+            button.disabled = true;
+        }
+    );
+
+
+    try {
+
+        const facultyRef =
+            doc(
+                db,
+                "users",
+                facultyId
+            );
+
+
+        await updateDoc(
+            facultyRef,
+            {
+
+                status:
+                    "Active",
+
+                approvedBy:
+                    auth.currentUser.uid,
+
+                approvedByName:
+                    "Geethika",
+
+                approvedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        showToast(
+            "Faculty accepted successfully!",
+            "success"
+        );
+
+
+        await loadFaculty();
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Approve error:",
+            error
+        );
+
+
+        buttons.forEach(
+            button => {
+                button.disabled = false;
+            }
+        );
+
+
+        showToast(
+            "Approval failed. Check Firestore rules.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   REJECT FACULTY
+========================================= */
+
+async function rejectFaculty(
+    facultyId,
+    card
+) {
+
+    const confirmed =
+        confirm(
+            "Reject this faculty member?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const buttons =
+        card.querySelectorAll(
+            "button"
+        );
+
+
+    buttons.forEach(
+        button => {
+            button.disabled = true;
+        }
+    );
+
+
+    try {
+
+        const facultyRef =
+            doc(
+                db,
+                "users",
+                facultyId
+            );
+
+
+        await updateDoc(
+            facultyRef,
+            {
+
+                status:
+                    "Rejected",
+
+                rejectedBy:
+                    auth.currentUser.uid,
+
+                rejectedByName:
+                    "Geethika",
+
+                rejectedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        showToast(
+            "Faculty rejected.",
+            "success"
+        );
+
+
+        await loadFaculty();
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Reject error:",
+            error
+        );
+
+
+        buttons.forEach(
+            button => {
+                button.disabled = false;
+            }
+        );
+
+
+        showToast(
+            "Rejection failed. Check Firestore rules.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+logoutBtn.onclick =
+    async () => {
+
+        try {
+
+            await signOut(auth);
+
+            window.location.replace(
+                "admin.html"
+            );
+
+        }
+
+        catch(error) {
+
+            console.error(
+                error
+            );
+
+        }
+
+    };
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+function showToast(
+    message,
+    type = ""
+) {
+
+    toast.textContent =
+        message;
+
+
+    toast.className =
+        "";
+
+
+    toast.id =
+        "toast";
+
+
+    if(type) {
+
+        toast.classList.add(
+            type
+        );
+
+    }
+
+
+    setTimeout(() => {
+
+        toast.classList.add(
+            "show"
+        );
+
+    },10);
+
+
+    setTimeout(() => {
+
+        toast.classList.remove(
+            "show"
+        );
+
+    },3500);
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================
+   SCROLL
+========================================= */
+
+window.scrollToSection =
+    function(id) {
+
+        const element =
+            document.getElementById(
+                id
+            );
+
+
+        if(element) {
+
+            element.scrollIntoView({
+                behavior:"smooth"
+            });
+
+        }
+
+    };
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+const mobileMenu =
+    document.getElementById(
+        "mobileMenu"
+    );
+
+
+const sidebar =
+    document.getElementById(
+        "sidebar"
+    );
+
+
+mobileMenu.onclick =
+    () => {
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+    };
 
 </script>
-
 
 </body>
 
