@@ -2,12 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Login | R Mohan Digital</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | R Mohan Digital</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,46 +20,142 @@
         }
 
         body {
+
             min-height: 100vh;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             background:
-                linear-gradient(135deg, #020617, #0f172a, #1e3a8a);
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #0f172a,
+                    #1e3a8a
+                );
 
             color: white;
         }
 
+
         .admin-box {
+
             width: 420px;
+
             max-width: 90%;
 
             padding: 40px;
 
-            background: rgba(15, 23, 42, 0.96);
+            background:
+                rgba(15, 23, 42, 0.96);
 
             border-radius: 20px;
 
             border: 1px solid #2563eb;
 
             box-shadow:
-                0 0 40px rgba(37, 99, 235, 0.35);
+                0 0 40px
+                rgba(37, 99, 235, 0.35);
 
             text-align: center;
         }
 
+
         .admin-box h1 {
+
             color: #38bdf8;
+
             margin-bottom: 10px;
         }
 
+
         .subtitle {
+
             color: #94a3b8;
-            margin-bottom: 30px;
+
+            margin-bottom: 25px;
         }
 
+
+        /* ==============================
+           LOGIN TYPE BUTTONS
+        ============================== */
+
+        .login-types {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .type-btn {
+
+            padding: 12px 8px;
+
+            border-radius: 10px;
+
+            border: 1px solid #334155;
+
+            background: #020617;
+
+            color: #cbd5e1;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .type-btn:hover {
+
+            border-color: #38bdf8;
+
+            color: white;
+        }
+
+
+        .type-btn.active {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #06b6d4
+                );
+
+            color: white;
+
+            border-color: #38bdf8;
+
+            box-shadow:
+                0 0 15px
+                rgba(56, 189, 248, 0.25);
+        }
+
+
+        .login-title {
+
+            margin-bottom: 18px;
+
+            color: #38bdf8;
+
+            font-size: 18px;
+        }
+
+
         .admin-box input {
+
             width: 100%;
 
             padding: 14px;
@@ -73,11 +173,15 @@
             outline: none;
         }
 
+
         .admin-box input:focus {
+
             border-color: #38bdf8;
         }
 
-        .admin-box button {
+
+        .login-btn {
+
             width: 100%;
 
             padding: 14px;
@@ -86,11 +190,12 @@
 
             border-radius: 10px;
 
-            background: linear-gradient(
-                90deg,
-                #2563eb,
-                #06b6d4
-            );
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #06b6d4
+                );
 
             color: white;
 
@@ -101,92 +206,325 @@
             cursor: pointer;
         }
 
-        .admin-box button:hover {
+
+        .login-btn:hover {
+
             opacity: 0.9;
         }
 
+
         #adminMessage {
+
             margin-top: 18px;
+
             font-weight: bold;
+
+            min-height: 20px;
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="admin-box">
 
-        <h1>R Mohan Digital</h1>
+<div class="admin-box">
 
-        <p class="subtitle">
-            Admin Login
-        </p>
 
-        <form id="adminLoginForm">
+    <h1>R Mohan Digital</h1>
 
-            <input
-                type="email"
-                id="adminEmail"
-                placeholder="Admin Email"
-                required
-            >
 
-            <input
-                type="password"
-                id="adminPassword"
-                placeholder="Admin Password"
-                required
-            >
+    <p class="subtitle">
+        Select Login Type
+    </p>
 
-            <button type="submit">
-                Admin Login
-            </button>
 
-        </form>
+    <!-- ==============================
+         LOGIN TYPE
+    =============================== -->
 
-        <div id="adminMessage"></div>
+    <div class="login-types">
+
+        <button
+            type="button"
+            class="type-btn active"
+            data-role="faculty">
+
+            👨‍🏫 Faculty
+
+        </button>
+
+
+        <button
+            type="button"
+            class="type-btn"
+            data-role="mentor">
+
+            🎓 Mentor
+
+        </button>
+
+
+        <button
+            type="button"
+            class="type-btn"
+            data-role="admin">
+
+            👑 Owner
+
+        </button>
 
     </div>
 
 
-    <script type="module">
+    <div
+        class="login-title"
+        id="loginTitle">
 
-        import { auth } from "./firebase.js";
+        Faculty Login
 
-        import {
-            signInWithEmailAndPassword
-        } from
-        "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
-
-        const form =
-            document.getElementById("adminLoginForm");
-
-        const message =
-            document.getElementById("adminMessage");
+    </div>
 
 
-        form.addEventListener("submit", async (event) => {
+    <!-- ==============================
+         LOGIN FORM
+    =============================== -->
 
-            event.preventDefault();
+    <form id="adminLoginForm">
 
 
-            const email =
-                document.getElementById("adminEmail")
+        <input
+            type="email"
+            id="adminEmail"
+            placeholder="Email"
+            required
+        >
+
+
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Password"
+            required
+        >
+
+
+        <button
+            type="submit"
+            class="login-btn"
+            id="loginButton">
+
+            Faculty Login
+
+        </button>
+
+
+    </form>
+
+
+    <div id="adminMessage"></div>
+
+
+</div>
+
+
+
+<script type="module">
+
+
+// ==========================================
+// FIREBASE
+// ==========================================
+
+import {
+    auth,
+    db
+} from "./firebase.js";
+
+
+import {
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+
+// ==========================================
+// ELEMENTS
+// ==========================================
+
+const form =
+    document.getElementById(
+        "adminLoginForm"
+    );
+
+
+const message =
+    document.getElementById(
+        "adminMessage"
+    );
+
+
+const loginTitle =
+    document.getElementById(
+        "loginTitle"
+    );
+
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+const typeButtons =
+    document.querySelectorAll(
+        ".type-btn"
+    );
+
+
+// Current selected role
+
+let selectedRole = "faculty";
+
+
+// ==========================================
+// CHANGE LOGIN TYPE
+// ==========================================
+
+typeButtons.forEach(button => {
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+
+            // Remove active
+
+            typeButtons.forEach(btn => {
+
+                btn.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            // Add active
+
+            button.classList.add(
+                "active"
+            );
+
+
+            // Get role
+
+            selectedRole =
+                button.dataset.role;
+
+
+            // Change title
+
+            if (selectedRole === "faculty") {
+
+                loginTitle.textContent =
+                    "Faculty Login";
+
+                loginButton.textContent =
+                    "Faculty Login";
+
+            }
+
+
+            else if (
+                selectedRole === "mentor"
+            ) {
+
+                loginTitle.textContent =
+                    "Mentor Login";
+
+                loginButton.textContent =
+                    "Mentor Login";
+
+            }
+
+
+            else if (
+                selectedRole === "admin"
+            ) {
+
+                loginTitle.textContent =
+                    "Owner Login";
+
+                loginButton.textContent =
+                    "Owner Login";
+
+            }
+
+
+            message.textContent = "";
+
+        }
+
+    );
+
+});
+
+
+
+// ==========================================
+// LOGIN
+// ==========================================
+
+form.addEventListener(
+    "submit",
+    async (event) => {
+
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById(
+                    "adminEmail"
+                )
                 .value
                 .trim();
 
-            const password =
-                document.getElementById("adminPassword")
+
+        const password =
+            document
+                .getElementById(
+                    "adminPassword"
+                )
                 .value;
 
 
-            message.style.color = "#38bdf8";
-            message.textContent = "Checking...";
+        message.style.color =
+            "#38bdf8";
 
 
-            try {
+        message.textContent =
+            "Checking account...";
 
+
+        try {
+
+
+            // ==================================
+            // FIREBASE AUTH
+            // ==================================
+
+            const result =
                 await signInWithEmailAndPassword(
                     auth,
                     email,
@@ -194,34 +532,291 @@
                 );
 
 
-                message.style.color = "#4ade80";
+            const user =
+                result.user;
+
+
+            // ==================================
+            // GET FIRESTORE PROFILE
+            // ==================================
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const snapshot =
+                await getDoc(userRef);
+
+
+            if (!snapshot.exists()) {
+
+
+                message.style.color =
+                    "#f87171";
+
 
                 message.textContent =
-                    "Admin login successful!";
+                    "Account profile not found.";
 
 
-                setTimeout(() => {
+                await auth.signOut();
+
+
+                return;
+
+            }
+
+
+            const userData =
+                snapshot.data();
+
+
+            const actualRole =
+                userData.role;
+
+
+            const status =
+                userData.status;
+
+
+            console.log(
+                "Selected role:",
+                selectedRole
+            );
+
+
+            console.log(
+                "Firebase role:",
+                actualRole
+            );
+
+
+            console.log(
+                "Account status:",
+                status
+            );
+
+
+
+            // ==================================
+            // CHECK ROLE
+            // ==================================
+
+            if (
+                actualRole !==
+                selectedRole
+            ) {
+
+
+                message.style.color =
+                    "#f87171";
+
+
+                message.textContent =
+                    "This account does not have permission for this login.";
+
+
+                await auth.signOut();
+
+
+                return;
+
+            }
+
+
+
+            // ==================================
+            // CHECK STATUS
+            // ==================================
+
+            if (
+                status !==
+                "Active"
+            ) {
+
+
+                message.style.color =
+                    "#f87171";
+
+
+                if (
+                    actualRole ===
+                    "faculty" &&
+                    status ===
+                    "Pending"
+                ) {
+
+                    message.textContent =
+                        "Your faculty account is waiting for mentor approval.";
+
+                }
+
+
+                else if (
+                    actualRole ===
+                    "faculty" &&
+                    status ===
+                    "Rejected"
+                ) {
+
+                    message.textContent =
+                        "Your faculty application has been rejected.";
+
+                }
+
+
+                else {
+
+                    message.textContent =
+                        "Your account is not active.";
+
+                }
+
+
+                await auth.signOut();
+
+
+                return;
+
+            }
+
+
+
+            // ==================================
+            // SUCCESS
+            // ==================================
+
+            message.style.color =
+                "#4ade80";
+
+
+            message.textContent =
+                "Login successful!";
+
+
+            // ==================================
+            // REDIRECTION
+            // ==================================
+
+            setTimeout(() => {
+
+
+                // FACULTY
+
+                if (
+                    actualRole ===
+                    "faculty"
+                ) {
+
+                    window.location.href =
+                        "faculty-dashboard.html";
+
+                    return;
+
+                }
+
+
+                // MENTOR
+
+                if (
+                    actualRole ===
+                    "mentor"
+                ) {
+
+                    window.location.href =
+                        "mentor-dashboard.html";
+
+                    return;
+
+                }
+
+
+                // OWNER
+
+                if (
+                    actualRole ===
+                    "admin"
+                ) {
 
                     window.location.href =
                         "admin-dashboard.html";
 
-                }, 700);
+                    return;
+
+                }
 
 
-            } catch (error) {
+            }, 700);
 
-                console.error(error);
 
-                message.style.color = "#f87171";
+        }
+
+
+        catch (error) {
+
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+
+            message.style.color =
+                "#f87171";
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
 
                 message.textContent =
-                    "Invalid admin email or password.";
+                    "Incorrect email or password.";
 
             }
 
-        });
 
-    </script>
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                message.textContent =
+                    "Please enter a valid email.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                message.textContent =
+                    "Too many login attempts. Try again later.";
+
+            }
+
+
+            else {
+
+                message.textContent =
+                    "Login failed. Please try again.";
+
+            }
+
+        }
+
+    }
+
+);
+
+</script>
+
 
 </body>
 
