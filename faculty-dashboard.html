@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Dashboard | R Mohan Digital</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            background: #f1f5f9;
+
+            color: #0f172a;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* ================================
+           HEADER
+        ================================= */
+
+        header {
+
+            background: #020617;
+
+            color: white;
+
+            padding: 18px 25px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.15);
+
+        }
+
+
+        header h1 {
+
+            color: #38bdf8;
+
+            font-size: 22px;
+
+        }
+
+
+        #logoutBtn {
+
+            background: #ef4444;
+
+            color: white;
+
+            border: none;
+
+            padding: 11px 20px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        #logoutBtn:hover {
+
+            background: #dc2626;
+
+        }
+
+
+        /* ================================
+           MAIN CONTAINER
+        ================================= */
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin: 30px auto;
+
+        }
+
+
+        /* ================================
+           WELCOME
+        ================================= */
+
+        .welcome {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
+            border-left: 5px solid #2563eb;
+
+        }
+
+
+        .welcome h2 {
+
+            color: #2563eb;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .welcome p {
+
+            margin-top: 6px;
+
+            color: #475569;
+
+        }
+
+
+        /* ================================
+           STAT CARDS
+        ================================= */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
+            border-left: 5px solid #2563eb;
+
+        }
+
+
+        .stat-card h3 {
+
+            color: #64748b;
+
+            font-size: 15px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .stat-card .number {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #0f172a;
+
+        }
+
+
+        /* ================================
+           STUDENTS SECTION
+        ================================= */
+
+        .students-section {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
+        }
+
+
+        .students-section h2 {
+
+            margin-bottom: 20px;
+
+            color: #0f172a;
+
+        }
+
+
+        #studentsContainer {
+
+            display: grid;
+
+            gap: 18px;
+
+        }
+
+
+        /* ================================
+           STUDENT CARD
+        ================================= */
+
+        .student-card {
+
+            border: 1px solid #e2e8f0;
+
+            border-left: 5px solid #2563eb;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            background: #f8fafc;
+
+        }
+
+
+        .student-card h3 {
+
+            color: #2563eb;
+
+            margin-bottom: 12px;
+
+            font-size: 20px;
+
+        }
+
+
+        .student-card p {
+
+            margin: 8px 0;
+
+            color: #334155;
+
+        }
+
+
+        .student-card strong {
+
+            color: #0f172a;
+
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .status-approved {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+
+        .status-pending {
+
+            background: #fef3c7;
+
+            color: #92400e;
+
+        }
+
+
+        .status-rejected {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+        }
+
+
+        /* ================================
+           EMPTY
+        ================================= */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 35px;
+
+            color: #64748b;
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* ================================
+           LOADING
+        ================================= */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #2563eb;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ================================
+           ERROR
+        ================================= */
+
+        .error {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 700px) {
+
+            header {
+
+                padding: 15px;
+
+            }
+
+
+            header h1 {
+
+                font-size: 17px;
+
+            }
+
+
+            #logoutBtn {
+
+                padding: 9px 14px;
+
+            }
+
+
+            .container {
+
+                width: 94%;
+
+                margin: 20px auto;
+
+            }
+
+
+            .stats {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .welcome {
+
+                padding: 20px;
+
+            }
+
+
+            .students-section {
+
+                padding: 18px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header>
+
+    <h1>
+        R Mohan Digital - Faculty
+    </h1>
+
+
+    <button id="logoutBtn">
+        Logout
+    </button>
+
+</header>
+
+
+
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<div class="container">
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <h2>
+            Faculty Dashboard
+        </h2>
+
+
+        <p id="facultyName">
+            Loading faculty information...
+        </p>
+
+
+        <p id="facultyEmail">
+        </p>
+
+    </div>
+
+
+
+    <!-- STATISTICS -->
+
+    <div class="stats">
+
+
+        <div class="stat-card">
+
+            <h3>
+                My Students
+            </h3>
+
+            <div
+                class="number"
+                id="totalStudents">
+                0
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <h3>
+                Approved
+            </h3>
+
+            <div
+                class="number"
+                id="approvedStudents">
+                0
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <h3>
+                Pending
+            </h3>
+
+            <div
+                class="number"
+                id="pendingStudents">
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- STUDENTS -->
+
+    <div class="students-section">
+
+        <h2>
+            My Students
+        </h2>
+
+
+        <div id="studentsContainer">
+
+            <div class="loading">
+                Loading students...
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================
+     FIREBASE
+===================================== -->
+
+<script type="module">
+
+
+    /* =====================================
+       IMPORT FIREBASE
+    ===================================== */
+
+    import {
+        auth,
+        db
+    } from "./firebase.js";
+
+
+    import {
+        onAuthStateChanged,
+        signOut
+    }
+    from
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+    import {
+        collection,
+        query,
+        where,
+        getDocs
+    }
+    from
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+
+    /* =====================================
+       ELEMENTS
+    ===================================== */
+
+    const facultyName =
+        document.getElementById(
+            "facultyName"
+        );
+
+
+    const facultyEmail =
+        document.getElementById(
+            "facultyEmail"
+        );
+
+
+    const studentsContainer =
+        document.getElementById(
+            "studentsContainer"
+        );
+
+
+    const totalStudents =
+        document.getElementById(
+            "totalStudents"
+        );
+
+
+    const approvedStudents =
+        document.getElementById(
+            "approvedStudents"
+        );
+
+
+    const pendingStudents =
+        document.getElementById(
+            "pendingStudents"
+        );
+
+
+    const logoutBtn =
+        document.getElementById(
+            "logoutBtn"
+        );
+
+
+
+    /* =====================================
+       FIND FACULTY
+    ===================================== */
+
+    async function findFaculty(user) {
+
+
+        /*
+         * We search the "users" collection
+         * using the logged-in email.
+         *
+         * Your Firestore structure:
+         *
+         * users
+         * users H
+         * users j1
+         * users j2
+         *
+         */
+
+
+        const facultyQuery = query(
+
+            collection(
+                db,
+                "users"
+            ),
+
+            where(
+                "email",
+                "==",
+                user.email
+            ),
+
+            where(
+                "role",
+                "==",
+                "faculty"
+            )
+
+        );
+
+
+        const snapshot =
+            await getDocs(
+                facultyQuery
+            );
+
+
+        if (snapshot.empty) {
+
+            return null;
+
+        }
+
+
+        const facultyDoc =
+            snapshot.docs[0];
+
+
+        return {
+
+            id:
+                facultyDoc.id,
+
+            data:
+                facultyDoc.data()
+
+        };
+
+    }
+
+
+
+    /* =====================================
+       LOAD STUDENTS
+    ===================================== */
+
+    async function loadStudents(
+        facultyId
+    ) {
+
+
+        try {
+
+
+            /*
+             * IMPORTANT
+             *
+             * Admin assigns:
+             *
+             * assignedFaculty = H
+             *
+             * OR
+             *
+             * assignedFaculty = j1
+             *
+             * OR
+             *
+             * assignedFaculty = j2
+             *
+             *
+             * Therefore we use the
+             * Firestore faculty document ID.
+             */
+
+
+            const studentsQuery =
+                query(
+
+                    collection(
+                        db,
+                        "students"
+                    ),
+
+                    where(
+                        "assignedFaculty",
+                        "==",
+                        facultyId
+                    )
+
+                );
+
+
+            const snapshot =
+                await getDocs(
+                    studentsQuery
+                );
+
+
+            studentsContainer.innerHTML =
+                "";
+
+
+            let total = 0;
+
+            let approved = 0;
+
+            let pending = 0;
+
+
+
+            /* =================================
+               NO STUDENTS
+            ================================= */
+
+            if (snapshot.empty) {
+
+                studentsContainer.innerHTML = `
+
+                    <div class="empty">
+
+                        <h3>
+                            No Students Assigned
+                        </h3>
+
+                        <p style="margin-top:10px;">
+
+                            You don't have any students
+                            assigned to you yet.
+
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                totalStudents.textContent =
+                    "0";
+
+                approvedStudents.textContent =
+                    "0";
+
+                pendingStudents.textContent =
+                    "0";
+
+                return;
+
+            }
+
+
+
+            /* =================================
+               DISPLAY STUDENTS
+            ================================= */
+
+            snapshot.forEach(
+                (studentDoc) => {
+
+
+                    const student =
+                        studentDoc.data();
+
+
+                    total++;
+
+
+                    if (
+                        student.status ===
+                        "approved"
+                    ) {
+
+                        approved++;
+
+                    }
+
+
+                    if (
+                        student.status ===
+                        "pending"
+                    ) {
+
+                        pending++;
+
+                    }
+
+
+
+                    /* =========================
+                       STATUS
+                    ========================= */
+
+                    let statusClass =
+                        "status-pending";
+
+
+                    if (
+                        student.status ===
+                        "approved"
+                    ) {
+
+                        statusClass =
+                            "status-approved";
+
+                    }
+
+
+                    else if (
+                        student.status ===
+                        "rejected"
+                    ) {
+
+                        statusClass =
+                            "status-rejected";
+
+                    }
+
+
+
+                    /* =========================
+                       CARD
+                    ========================= */
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "student-card";
+
+
+                    card.innerHTML = `
+
+                        <h3>
+                            ${
+                                student.name ||
+                                "No Name"
+                            }
+                        </h3>
+
+
+                        <p>
+
+                            <strong>
+                                Email:
+                            </strong>
+
+                            ${
+                                student.email ||
+                                "Not available"
+                            }
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>
+                                Phone:
+                            </strong>
+
+                            ${
+                                student.phone ||
+                                "Not available"
+                            }
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>
+                                Course:
+                            </strong>
+
+                            ${
+                                student.course ||
+                                "Not available"
+                            }
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>
+                                Status:
+                            </strong>
+
+                            <span
+                                class="status
+                                ${statusClass}"
+                            >
+
+                                ${
+                                    student.status ||
+                                    "Unknown"
+                                }
+
+                            </span>
+
+                        </p>
+
+                    `;
+
+
+                    studentsContainer.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+
+
+            /* =================================
+               UPDATE COUNTERS
+            ================================= */
+
+            totalStudents.textContent =
+                total;
+
+
+            approvedStudents.textContent =
+                approved;
+
+
+            pendingStudents.textContent =
+                pending;
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(
+                "Student loading error:",
+                error
+            );
+
+
+            studentsContainer.innerHTML = `
+
+                <div class="error">
+
+                    Unable to load students.
+
+                    <br><br>
+
+                    Please check your
+                    Firebase permissions.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+
+    /* =====================================
+       AUTHENTICATION
+    ===================================== */
+
+    onAuthStateChanged(
+        auth,
+        async (user) => {
+
+
+            if (!user) {
+
+
+                /*
+                 * Not logged in
+                 */
+
+                window.location.href =
+                    "login.html";
+
+
+                return;
+
+            }
+
+
+
+            try {
+
+
+                /* =========================
+                   SHOW EMAIL
+                ========================= */
+
+                facultyEmail.textContent =
+                    "Email: " +
+                    user.email;
+
+
+
+                /* =========================
+                   FIND FACULTY
+                ========================= */
+
+                const faculty =
+                    await findFaculty(
+                        user
+                    );
+
+
+
+                /* =========================
+                   FACULTY NOT FOUND
+                ========================= */
+
+                if (!faculty) {
+
+
+                    alert(
+                        "Your account is not registered as teaching faculty."
+                    );
+
+
+                    await signOut(auth);
+
+
+                    window.location.href =
+                        "login.html";
+
+
+                    return;
+
+                }
+
+
+
+                /* =========================
+                   CHECK ACTIVE
+                ========================= */
+
+                if (
+                    faculty.data.status !==
+                    "active"
+                ) {
+
+
+                    alert(
+                        "Your faculty account is not active."
+                    );
+
+
+                    await signOut(auth);
+
+
+                    window.location.href =
+                        "login.html";
+
+
+                    return;
+
+                }
+
+
+
+                /* =========================
+                   SHOW NAME
+                ========================= */
+
+                facultyName.textContent =
+                    "Welcome, " +
+                    (
+                        faculty.data.name ||
+                        "Faculty"
+                    );
+
+
+
+                console.log(
+                    "Faculty document ID:",
+                    faculty.id
+                );
+
+
+                console.log(
+                    "Faculty information:",
+                    faculty.data
+                );
+
+
+
+                /* =========================
+                   LOAD STUDENTS
+                ========================= */
+
+                await loadStudents(
+                    faculty.id
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Faculty authentication error:",
+                    error
+                );
+
+
+                facultyName.textContent =
+                    "Unable to verify faculty account.";
+
+
+                studentsContainer.innerHTML = `
+
+                    <div class="error">
+
+                        Unable to verify your
+                        faculty account.
+
+                        <br><br>
+
+                        Please try again.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================
+       LOGOUT
+    ===================================== */
+
+    logoutBtn.addEventListener(
+        "click",
+        async () => {
+
+
+            try {
+
+
+                await signOut(
+                    auth
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
