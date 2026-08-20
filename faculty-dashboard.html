@@ -3,735 +3,352 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard | R Mohan Digital</title>
+
+    <style>
 
-<title>Faculty Dashboard | R Mohan Digital</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-<style>
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #0f172a,
+                    #172554
+                );
+            color: white;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-}
+        /* ==============================
+           HEADER
+        ============================== */
 
-body{
+        .header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
 
-    min-height:100vh;
+            background:
+                rgba(15, 23, 42, 0.95);
 
-    background:
-    radial-gradient(
-        circle at top left,
-        #102a43 0%,
-        #07111f 35%,
-        #020617 75%
-    );
+            border-bottom:
+                1px solid rgba(0, 229, 255, 0.25);
 
-    color:white;
-}
+            box-shadow:
+                0 0 20px
+                rgba(0, 229, 255, 0.08);
+        }
 
+        .logo {
+            color: #00e5ff;
+            font-size: 21px;
+            font-weight: bold;
+        }
 
-/* ==============================
-   SIDEBAR
-============================== */
+        .logout-btn {
+            padding: 10px 18px;
 
-.sidebar{
+            border: 1px solid #ef4444;
 
-    position:fixed;
+            border-radius: 8px;
 
-    left:0;
-    top:0;
+            background:
+                rgba(239, 68, 68, 0.08);
 
-    width:250px;
-    height:100vh;
+            color: #ff6b6b;
 
-    padding:25px 15px;
+            cursor: pointer;
 
-    background:
-    rgba(3,12,24,.97);
+            font-weight: bold;
 
-    border-right:
-    1px solid
-    rgba(0,229,255,.2);
+            transition: 0.3s;
+        }
 
-    z-index:100;
+        .logout-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
 
-    transition:.3s;
-}
+        /* ==============================
+           MAIN
+        ============================== */
 
-.logo{
+        .main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 35px 20px;
+        }
 
-    text-align:center;
+        .welcome {
+            margin-bottom: 30px;
+        }
 
-    padding-bottom:25px;
+        .welcome h1 {
+            color: #00e5ff;
+            margin-bottom: 8px;
+        }
 
-    border-bottom:
-    1px solid
-    rgba(148,163,184,.12);
-}
+        .welcome p {
+            color: #cbd5e1;
+        }
 
-.logo-circle{
+        /* ==============================
+           PROFILE CARD
+        ============================== */
 
-    width:58px;
-    height:58px;
+        .profile-card {
+            background:
+                rgba(15, 23, 42, 0.9);
 
-    margin:auto;
+            border:
+                1px solid
+                rgba(0, 229, 255, 0.25);
 
-    display:flex;
+            border-radius: 16px;
 
-    align-items:center;
-    justify-content:center;
+            padding: 25px;
 
-    border:2px solid #00e5ff;
+            margin-bottom: 25px;
 
-    border-radius:50%;
+            box-shadow:
+                0 0 25px
+                rgba(0, 229, 255, 0.08);
+        }
 
-    color:#00e5ff;
+        .profile-card h2 {
+            color: #00e5ff;
+            margin-bottom: 20px;
+        }
 
-    font-size:22px;
-    font-weight:bold;
+        .profile-grid {
+            display: grid;
 
-    box-shadow:
-    0 0 18px
-    rgba(0,229,255,.35);
-}
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(220px, 1fr)
+                );
 
-.logo h2{
+            gap: 15px;
+        }
 
-    margin-top:12px;
+        .profile-item {
+            padding: 15px;
 
-    font-size:18px;
+            background:
+                rgba(255, 255, 255, 0.04);
 
-    text-shadow:
-    0 0 10px
-    rgba(0,229,255,.5);
-}
+            border-radius: 10px;
 
-.logo p{
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+        }
 
-    margin-top:5px;
+        .profile-item span {
+            display: block;
 
-    font-size:10px;
+            color: #94a3b8;
 
-    letter-spacing:2px;
+            font-size: 12px;
 
-    color:#38bdf8;
-}
+            margin-bottom: 6px;
+        }
 
+        .profile-item strong {
+            color: white;
+            word-break: break-word;
+        }
 
-.menu{
+        /* ==============================
+           STATUS
+        ============================== */
 
-    margin-top:25px;
-}
+        .active {
+            color: #22c55e !important;
+        }
 
-.menu button{
+        /* ==============================
+           DASHBOARD CARDS
+        ============================== */
 
-    width:100%;
+        .dashboard-grid {
+            display: grid;
 
-    padding:13px 15px;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(220px, 1fr)
+                );
 
-    margin-bottom:8px;
+            gap: 20px;
+        }
 
-    border:1px solid transparent;
+        .dashboard-card {
+            padding: 25px;
 
-    border-radius:9px;
+            background:
+                rgba(15, 23, 42, 0.9);
 
-    background:transparent;
+            border:
+                1px solid
+                rgba(0, 229, 255, 0.18);
 
-    color:#94a3b8;
+            border-radius: 16px;
 
-    text-align:left;
+            transition: 0.3s;
+        }
 
-    cursor:pointer;
+        .dashboard-card:hover {
+            transform:
+                translateY(-5px);
 
-    font-size:14px;
+            border-color:
+                #00e5ff;
 
-    transition:.25s;
-}
+            box-shadow:
+                0 0 25px
+                rgba(0, 229, 255, 0.15);
+        }
 
-.menu button:hover,
-.menu button.active{
+        .dashboard-card .icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
 
-    color:#00e5ff;
+        .dashboard-card h3 {
+            color: #00e5ff;
+            margin-bottom: 8px;
+        }
 
-    background:
-    rgba(0,229,255,.08);
+        .dashboard-card p {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.5;
+        }
 
-    border-color:
-    rgba(0,229,255,.25);
-}
+        .coming-soon {
+            margin-top: 12px;
 
+            display: inline-block;
 
-/* ==============================
-   MAIN
-============================== */
+            padding: 5px 10px;
 
-.main{
+            border-radius: 20px;
 
-    margin-left:250px;
+            background:
+                rgba(37, 99, 235, 0.12);
 
-    min-height:100vh;
+            color: #60a5fa;
 
-    padding:25px;
-}
+            font-size: 11px;
+        }
 
+        /* ==============================
+           LOADING
+        ============================== */
 
-/* ==============================
-   TOP BAR
-============================== */
+        #loading {
+            position: fixed;
 
-.topbar{
+            inset: 0;
 
-    display:flex;
+            display: flex;
 
-    justify-content:space-between;
+            align-items: center;
 
-    align-items:center;
+            justify-content: center;
 
-    margin-bottom:25px;
+            background: #020617;
 
-    padding:18px 22px;
+            z-index: 9999;
+        }
 
-    border-radius:15px;
+        .loader-box {
+            text-align: center;
+        }
 
-    background:
-    rgba(7,17,31,.75);
+        .loader-box h2 {
+            color: #00e5ff;
+            margin-bottom: 10px;
+        }
 
-    border:
-    1px solid
-    rgba(0,229,255,.15);
+        .loader-box p {
+            color: #94a3b8;
+        }
 
-    backdrop-filter:blur(12px);
-}
+        /* ==============================
+           ERROR
+        ============================== */
 
-.topbar h1{
+        #errorBox {
+            display: none;
 
-    font-size:22px;
-}
+            max-width: 600px;
 
-.topbar h1 span{
+            margin: 100px auto;
 
-    color:#00e5ff;
+            padding: 30px;
 
-    text-shadow:
-    0 0 10px
-    rgba(0,229,255,.5);
-}
+            text-align: center;
 
-.profile-area{
+            background:
+                rgba(127, 29, 29, 0.25);
 
-    display:flex;
+            border:
+                1px solid #ef4444;
 
-    align-items:center;
+            border-radius: 15px;
+        }
 
-    gap:15px;
-}
+        #errorBox h2 {
+            color: #f87171;
+            margin-bottom: 10px;
+        }
 
-.faculty-info{
+        #errorBox p {
+            color: #cbd5e1;
+        }
 
-    text-align:right;
-}
+        /* ==============================
+           MOBILE
+        ============================== */
 
-#facultyName{
+        @media (max-width: 600px) {
 
-    display:block;
+            .header {
+                padding: 0 15px;
+            }
 
-    font-size:14px;
+            .logo {
+                font-size: 17px;
+            }
 
-    font-weight:bold;
-}
+            .main {
+                padding: 25px 15px;
+            }
 
-#facultyEmail{
+            .welcome h1 {
+                font-size: 24px;
+            }
 
-    display:block;
+        }
 
-    margin-top:4px;
-
-    font-size:11px;
-
-    color:#64748b;
-}
-
-.logout{
-
-    padding:9px 15px;
-
-    border:
-    1px solid #ef4444;
-
-    border-radius:8px;
-
-    background:
-    rgba(239,68,68,.08);
-
-    color:#f87171;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-.logout:hover{
-
-    background:#ef4444;
-
-    color:white;
-
-    box-shadow:
-    0 0 15px
-    rgba(239,68,68,.35);
-}
-
-
-/* ==============================
-   WELCOME
-============================== */
-
-.welcome{
-
-    padding:25px;
-
-    margin-bottom:25px;
-
-    border-radius:15px;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(0,229,255,.08),
-        rgba(37,99,235,.05)
-    );
-
-    border:
-    1px solid
-    rgba(0,229,255,.18);
-}
-
-.welcome h2{
-
-    color:#00e5ff;
-
-    margin-bottom:8px;
-}
-
-.welcome p{
-
-    color:#94a3b8;
-
-    font-size:14px;
-}
-
-
-/* ==============================
-   PROFILE CARD
-============================== */
-
-.profile-card{
-
-    display:grid;
-
-    grid-template-columns:
-    110px 1fr;
-
-    gap:25px;
-
-    padding:25px;
-
-    margin-bottom:20px;
-
-    background:
-    rgba(7,17,31,.82);
-
-    border:
-    1px solid
-    rgba(0,229,255,.15);
-
-    border-radius:15px;
-}
-
-.avatar{
-
-    width:100px;
-    height:100px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    background:
-    rgba(0,229,255,.08);
-
-    border:
-    2px solid #00e5ff;
-
-    color:#00e5ff;
-
-    font-size:40px;
-
-    box-shadow:
-    0 0 20px
-    rgba(0,229,255,.15);
-}
-
-.profile-details h2{
-
-    margin-bottom:8px;
-}
-
-.profile-details p{
-
-    margin:6px 0;
-
-    color:#94a3b8;
-
-    font-size:13px;
-}
-
-.profile-details span{
-
-    color:#38bdf8;
-}
-
-
-/* ==============================
-   STATS
-============================== */
-
-.stats{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:18px;
-
-    margin-bottom:25px;
-}
-
-.stat-card{
-
-    padding:22px;
-
-    border-radius:15px;
-
-    background:
-    rgba(7,17,31,.82);
-
-    border:
-    1px solid
-    rgba(0,229,255,.15);
-
-    transition:.25s;
-}
-
-.stat-card:hover{
-
-    transform:translateY(-3px);
-
-    border-color:
-    rgba(0,229,255,.45);
-}
-
-.stat-icon{
-
-    font-size:27px;
-
-    margin-bottom:12px;
-}
-
-.stat-card h3{
-
-    font-size:28px;
-
-    color:#00e5ff;
-
-    text-shadow:
-    0 0 10px
-    rgba(0,229,255,.4);
-}
-
-.stat-card p{
-
-    margin-top:5px;
-
-    color:#94a3b8;
-
-    font-size:13px;
-}
-
-
-/* ==============================
-   GRID
-============================== */
-
-.grid{
-
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:20px;
-}
-
-.panel{
-
-    background:
-    rgba(7,17,31,.82);
-
-    border:
-    1px solid
-    rgba(0,229,255,.15);
-
-    border-radius:15px;
-
-    padding:22px;
-
-    margin-bottom:20px;
-}
-
-.panel-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:18px;
-}
-
-.panel-header h2{
-
-    font-size:17px;
-}
-
-.panel-header span{
-
-    color:#38bdf8;
-
-    font-size:11px;
-}
-
-
-/* ==============================
-   COURSE
-============================== */
-
-.course-card{
-
-    padding:15px;
-
-    margin-bottom:10px;
-
-    border-radius:10px;
-
-    background:
-    rgba(15,23,42,.7);
-
-    border:
-    1px solid
-    rgba(148,163,184,.08);
-}
-
-.course-card h3{
-
-    font-size:14px;
-
-    margin-bottom:7px;
-}
-
-.course-card p{
-
-    color:#64748b;
-
-    font-size:11px;
-}
-
-
-/* ==============================
-   NOTIFICATION
-============================== */
-
-.notification{
-
-    padding:14px;
-
-    margin-bottom:9px;
-
-    border-radius:9px;
-
-    background:
-    rgba(15,23,42,.7);
-
-    border-left:
-    3px solid #00e5ff;
-}
-
-.notification strong{
-
-    font-size:12px;
-}
-
-.notification p{
-
-    color:#64748b;
-
-    font-size:10px;
-
-    margin-top:5px;
-}
-
-
-/* ==============================
-   EMPTY
-============================== */
-
-.empty{
-
-    text-align:center;
-
-    padding:30px 10px;
-
-    color:#64748b;
-
-    font-size:13px;
-}
-
-
-/* ==============================
-   MOBILE
-============================== */
-
-.mobile-menu{
-
-    display:none;
-
-    position:fixed;
-
-    top:15px;
-    left:15px;
-
-    width:42px;
-    height:42px;
-
-    z-index:200;
-
-    border:
-    1px solid #00e5ff;
-
-    border-radius:8px;
-
-    background:#07111f;
-
-    color:#00e5ff;
-
-    cursor:pointer;
-
-    font-size:20px;
-}
-
-
-/* ==============================
-   RESPONSIVE
-============================== */
-
-@media(max-width:1050px){
-
-    .stats{
-
-        grid-template-columns:
-        repeat(2,1fr);
-    }
-}
-
-@media(max-width:750px){
-
-    .sidebar{
-
-        transform:
-        translateX(-100%);
-    }
-
-    .sidebar.open{
-
-        transform:
-        translateX(0);
-    }
-
-    .mobile-menu{
-
-        display:block;
-    }
-
-    .main{
-
-        margin-left:0;
-
-        padding:15px;
-
-        padding-top:70px;
-    }
-
-    .topbar{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:15px;
-    }
-
-    .profile-area{
-
-        width:100%;
-
-        justify-content:
-        space-between;
-    }
-
-    .faculty-info{
-
-        text-align:left;
-    }
-
-    .profile-card{
-
-        grid-template-columns:1fr;
-
-        text-align:center;
-    }
-
-    .avatar{
-
-        margin:auto;
-    }
-
-    .grid{
-
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:500px){
-
-    .stats{
-
-        grid-template-columns:1fr;
-    }
-}
-
-</style>
+    </style>
 
 </head>
 
@@ -739,1165 +356,654 @@ body{
 <body>
 
 
-<!-- ==============================
-     MOBILE MENU
-============================== -->
+    <!-- ==============================
+         LOADING
+    ============================== -->
 
-<button
-class="mobile-menu"
-id="mobileMenu">
+    <div id="loading">
 
-☰
+        <div class="loader-box">
 
-</button>
+            <h2>
+                R Mohan Digital
+            </h2>
 
+            <p>
+                Loading faculty dashboard...
+            </p>
 
-<!-- ==============================
-     SIDEBAR
-============================== -->
+        </div>
 
-<aside
-class="sidebar"
-id="sidebar">
+    </div>
 
 
-<div class="logo">
+    <!-- ==============================
+         HEADER
+    ============================== -->
 
-<div class="logo-circle">
-RM
-</div>
+    <header class="header">
 
-<h2>R Mohan Digital</h2>
+        <div class="logo">
+            R MOHAN DIGITAL
+        </div>
 
-<p>FACULTY CENTER</p>
+        <button
+            id="logoutBtn"
+            class="logout-btn">
 
-</div>
+            Logout
 
+        </button>
 
-<div class="menu">
+    </header>
 
-<button class="active">
-📊 &nbsp; Dashboard
-</button>
 
-<button
-onclick="scrollToSection('courses')">
-📚 &nbsp; My Courses
-</button>
+    <!-- ==============================
+         ERROR BOX
+    ============================== -->
 
-<button
-onclick="scrollToSection('students')">
-🎓 &nbsp; My Students
-</button>
+    <div id="errorBox">
 
-<button
-onclick="comingSoon('Assignments')">
-📝 &nbsp; Assignments
-</button>
+        <h2>
+            Access Denied
+        </h2>
 
-<button
-onclick="scrollToSection('notifications')">
-🔔 &nbsp; Notifications
-</button>
+        <p id="errorMessage">
+            You don't have permission
+            to access this dashboard.
+        </p>
 
-<button
-onclick="comingSoon('Profile Settings')">
-⚙️ &nbsp; Profile Settings
-</button>
+    </div>
 
-</div>
 
-</aside>
+    <!-- ==============================
+         MAIN DASHBOARD
+    ============================== -->
 
+    <main
+        id="dashboard"
+        class="main"
+        style="display:none;">
 
-<!-- ==============================
-     MAIN
-============================== -->
 
-<main class="main">
+        <!-- WELCOME -->
 
+        <section class="welcome">
 
-<!-- TOPBAR -->
+            <h1>
+                Welcome, <span id="facultyName">
+                    Faculty
+                </span>
+            </h1>
 
-<div class="topbar">
+            <p>
+                Faculty Dashboard -
+                R Mohan Digital
+            </p>
 
-<div>
+        </section>
 
-<h1>
-Faculty <span>Dashboard</span>
-</h1>
 
-</div>
+        <!-- ==========================
+             PROFILE
+        =========================== -->
 
+        <section class="profile-card">
 
-<div class="profile-area">
+            <h2>
+                👨‍🏫 Faculty Profile
+            </h2>
 
-<div class="faculty-info">
 
-<span id="facultyName">
-Loading...
-</span>
+            <div class="profile-grid">
 
-<span id="facultyEmail">
-Loading...
-</span>
 
-</div>
+                <div class="profile-item">
 
+                    <span>
+                        Name
+                    </span>
 
-<button
-class="logout"
-id="logoutBtn">
+                    <strong id="profileName">
+                        Loading...
+                    </strong>
 
-Logout
+                </div>
 
-</button>
 
-</div>
+                <div class="profile-item">
 
-</div>
+                    <span>
+                        Email
+                    </span>
 
+                    <strong id="profileEmail">
+                        Loading...
+                    </strong>
 
-<!-- WELCOME -->
+                </div>
 
-<section class="welcome">
 
-<h2>
-Welcome, Faculty 👨‍🏫
-</h2>
+                <div class="profile-item">
 
-<p>
-Manage your courses, students,
-classes and academic activities
-from your R Mohan Digital faculty
-dashboard.
-</p>
+                    <span>
+                        Role
+                    </span>
 
-</section>
+                    <strong id="profileRole">
+                        Loading...
+                    </strong>
 
+                </div>
 
-<!-- PROFILE -->
 
-<section class="profile-card">
+                <div class="profile-item">
 
-<div class="avatar">
-👨‍🏫
-</div>
+                    <span>
+                        Account Status
+                    </span>
 
+                    <strong
+                        id="profileStatus"
+                        class="active">
 
-<div class="profile-details">
+                        Loading...
 
-<h2 id="profileName">
-Loading...
-</h2>
+                    </strong>
 
-<p>
-📧 Email:
-<span id="profileEmail">
-Loading...
-</span>
-</p>
+                </div>
 
-<p>
-📚 Course:
-<span id="profileCourse">
-Not assigned
-</span>
-</p>
 
-<p>
-🟢 Status:
-<span id="profileStatus">
-Active
-</span>
-</p>
+            </div>
 
-<p>
-👤 Role:
-<span>
-Faculty
-</span>
-</p>
+        </section>
 
-</div>
 
-</section>
+        <!-- ==========================
+             DASHBOARD FEATURES
+        =========================== -->
 
+        <section class="dashboard-grid">
 
-<!-- STATS -->
 
-<section class="stats">
+            <!-- COURSES -->
 
+            <div class="dashboard-card">
 
-<div class="stat-card">
+                <div class="icon">
+                    📚
+                </div>
 
-<div class="stat-icon">
-📚
-</div>
+                <h3>
+                    My Courses
+                </h3>
 
-<h3 id="courseCount">
-0
-</h3>
+                <p>
+                    Manage your assigned
+                    programming and
+                    learning courses.
+                </p>
 
-<p>
-My Courses
-</p>
+                <span class="coming-soon">
+                    Coming Soon
+                </span>
 
-</div>
+            </div>
 
 
-<div class="stat-card">
+            <!-- STUDENTS -->
 
-<div class="stat-icon">
-🎓
-</div>
+            <div class="dashboard-card">
 
-<h3 id="studentCount">
-0
-</h3>
+                <div class="icon">
+                    🎓
+                </div>
 
-<p>
-My Students
-</p>
+                <h3>
+                    My Students
+                </h3>
 
-</div>
+                <p>
+                    View and manage students
+                    assigned to you.
+                </p>
 
+                <span class="coming-soon">
+                    Coming Soon
+                </span>
 
-<div class="stat-card">
+            </div>
 
-<div class="stat-icon">
-📝
-</div>
 
-<h3>
-0
-</h3>
+            <!-- ASSIGNMENTS -->
 
-<p>
-Assignments
-</p>
+            <div class="dashboard-card">
 
-</div>
+                <div class="icon">
+                    📝
+                </div>
 
+                <h3>
+                    Assignments
+                </h3>
 
-<div class="stat-card">
+                <p>
+                    Create and manage
+                    student assignments.
+                </p>
 
-<div class="stat-icon">
-🔔
-</div>
+                <span class="coming-soon">
+                    Coming Soon
+                </span>
 
-<h3 id="notificationCount">
-0
-</h3>
+            </div>
 
-<p>
-Notifications
-</p>
 
-</div>
+            <!-- ATTENDANCE -->
 
+            <div class="dashboard-card">
 
-</section>
+                <div class="icon">
+                    📅
+                </div>
 
+                <h3>
+                    Attendance
+                </h3>
 
-<!-- TWO COLUMN -->
+                <p>
+                    Manage student attendance
+                    and learning progress.
+                </p>
 
-<div class="grid">
+                <span class="coming-soon">
+                    Coming Soon
+                </span>
 
+            </div>
 
-<!-- COURSES -->
 
-<section
-class="panel"
-id="courses">
+            <!-- MATERIALS -->
 
-<div class="panel-header">
+            <div class="dashboard-card">
 
-<h2>
-📚 My Courses
-</h2>
+                <div class="icon">
+                    📂
+                </div>
 
-<span>
-Assigned
-</span>
+                <h3>
+                    Study Materials
+                </h3>
 
-</div>
+                <p>
+                    Upload and manage
+                    course study materials.
+                </p>
 
+                <span class="coming-soon">
+                    Coming Soon
+                </span>
 
-<div id="courseList">
+            </div>
 
-<div class="empty">
 
-Loading courses...
+            <!-- PROFILE -->
 
-</div>
+            <div class="dashboard-card">
 
-</div>
+                <div class="icon">
+                    👤
+                </div>
 
-</section>
+                <h3>
+                    My Profile
+                </h3>
 
+                <p>
+                    View your faculty
+                    account information.
+                </p>
 
-<!-- NOTIFICATIONS -->
+                <span class="coming-soon">
+                    Coming Soon
+                </span>
 
-<section
-class="panel"
-id="notifications">
+            </div>
 
-<div class="panel-header">
 
-<h2>
-🔔 Notifications
-</h2>
+        </section>
 
-<span>
-Latest
-</span>
 
-</div>
+    </main>
 
 
-<div id="notificationList">
+    <!-- ==============================
+         FIREBASE
+    ============================== -->
 
-<div class="notification">
+    <script type="module">
 
-<strong>
-Welcome to R Mohan Digital
-</strong>
+        import {
+            auth,
+            db
+        } from "./firebase.js";
 
-<p>
-Your faculty account has been
-approved successfully.
-</p>
 
-</div>
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-</div>
 
-</section>
+        import {
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-</div>
+        // ==========================================
+        // ELEMENTS
+        // ==========================================
 
+        const loading =
+            document.getElementById(
+                "loading"
+            );
 
-<!-- STUDENTS -->
+        const dashboard =
+            document.getElementById(
+                "dashboard"
+            );
 
-<section
-class="panel"
-id="students">
+        const errorBox =
+            document.getElementById(
+                "errorBox"
+            );
 
-<div class="panel-header">
+        const errorMessage =
+            document.getElementById(
+                "errorMessage"
+            );
 
-<h2>
-🎓 My Students
-</h2>
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
 
-<span>
-Students assigned to you
-</span>
 
-</div>
+        // ==========================================
+        // LOGOUT
+        // ==========================================
 
+        logoutBtn.addEventListener(
+            "click",
+            async function () {
 
-<div id="studentList">
+                try {
 
-<div class="empty">
+                    await signOut(auth);
 
-No students assigned yet.
+                    window.location.href =
+                        "login.html";
 
-</div>
+                }
 
-</div>
+                catch (error) {
 
-</section>
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
 
+                }
 
-</main>
+            }
+        );
 
 
-<!-- ==============================
-     FIREBASE
-============================== -->
+        // ==========================================
+        // AUTH STATE
+        // ==========================================
 
-<script type="module">
+        onAuthStateChanged(
+            auth,
+            async function (user) {
 
 
-import {
-    auth,
-    db
-}
-from "./firebase.js";
+                // ==================================
+                // NOT LOGGED IN
+                // ==================================
 
+                if (!user) {
 
-import {
-    onAuthStateChanged,
-    signOut
-}
-from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+                    window.location.href =
+                        "login.html";
 
+                    return;
 
-import {
-    doc,
-    getDoc,
-    collection,
-    getDocs,
-    query,
-    where
-}
-from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+                }
 
 
-/* ==============================
-   ELEMENTS
-============================== */
+                try {
 
-const facultyName =
-document.getElementById(
-    "facultyName"
-);
+                    console.log(
+                        "Logged in UID:",
+                        user.uid
+                    );
 
-const facultyEmail =
-document.getElementById(
-    "facultyEmail"
-);
 
-const profileName =
-document.getElementById(
-    "profileName"
-);
+                    // ==================================
+                    // GET PROFILE
+                    // ==================================
 
-const profileEmail =
-document.getElementById(
-    "profileEmail"
-);
+                    const userRef =
+                        doc(
+                            db,
+                            "users",
+                            user.uid
+                        );
 
-const profileCourse =
-document.getElementById(
-    "profileCourse"
-);
 
-const profileStatus =
-document.getElementById(
-    "profileStatus"
-);
+                    const snapshot =
+                        await getDoc(
+                            userRef
+                        );
 
-const courseCount =
-document.getElementById(
-    "courseCount"
-);
 
-const studentCount =
-document.getElementById(
-    "studentCount"
-);
+                    // ==================================
+                    // PROFILE NOT FOUND
+                    // ==================================
 
-const notificationCount =
-document.getElementById(
-    "notificationCount"
-);
+                    if (!snapshot.exists()) {
 
-const courseList =
-document.getElementById(
-    "courseList"
-);
+                        loading.style.display =
+                            "none";
 
-const studentList =
-document.getElementById(
-    "studentList"
-);
+                        errorBox.style.display =
+                            "block";
 
+                        errorMessage.textContent =
+                            "Your Firebase profile was not found.";
 
-/* ==============================
-   AUTH CHECK
-============================== */
+                        return;
 
-onAuthStateChanged(
-auth,
-async (user) => {
+                    }
 
 
-if(!user){
+                    // ==================================
+                    // USER DATA
+                    // ==================================
 
-window.location.href =
-"login.html";
+                    const data =
+                        snapshot.data();
 
-return;
 
-}
+                    console.log(
+                        "Faculty profile:",
+                        data
+                    );
 
 
-try{
+                    // ==================================
+                    // ROLE CHECK
+                    // Faculty / faculty
+                    // ==================================
 
+                    const facultyRole =
+                        String(
+                            data.role || ""
+                        )
+                        .trim()
+                        .toLowerCase();
 
-const userRef =
-doc(
-    db,
-    "users",
-    user.uid
-);
 
+                    if (
+                        facultyRole !==
+                        "faculty"
+                    ) {
 
-const snapshot =
-await getDoc(
-    userRef
-);
+                        loading.style.display =
+                            "none";
 
+                        errorBox.style.display =
+                            "block";
 
-if(!snapshot.exists()){
+                        errorMessage.textContent =
+                            "This account is not a Faculty account.";
 
-alert(
-"Faculty profile was not found."
-);
+                        console.error(
+                            "Wrong role:",
+                            data.role
+                        );
 
-await signOut(auth);
+                        return;
 
-window.location.href =
-"login.html";
+                    }
 
-return;
 
-}
+                    // ==================================
+                    // STATUS CHECK
+                    // Active / active
+                    // ==================================
 
+                    const facultyStatus =
+                        String(
+                            data.status || ""
+                        )
+                        .trim()
+                        .toLowerCase();
 
-const data =
-snapshot.data();
 
+                    if (
+                        facultyStatus !==
+                        "active"
+                    ) {
 
-console.log(
-"Faculty profile:",
-data
-);
+                        loading.style.display =
+                            "none";
 
+                        errorBox.style.display =
+                            "block";
 
-/* ==========================
-   ROLE CHECK
-========================== */
+                        errorMessage.textContent =
+                            "Your Faculty account is not active.";
 
-// ==========================================
-// FACULTY ROLE CHECK
-// Accepts Faculty / faculty
-// ==========================================
+                        console.error(
+                            "Faculty status:",
+                            data.status
+                        );
 
-const facultyRole =
-    String(data.role || "")
-        .trim()
-        .toLowerCase();
+                        return;
 
-if (facultyRole !== "faculty") {
+                    }
 
-    alert(
-        "This account is not a faculty account."
-    );
 
-    await signOut(auth);
+                    // ==================================
+                    // PROFILE DATA
+                    // ==================================
 
-    window.location.href =
-        "login.html";
+                    const name =
+                        data.name ||
+                        data.fullName ||
+                        "Faculty";
 
-    return;
-}
 
-/* ==========================
-   STATUS CHECK
-========================== */
+                    const email =
+                        data.email ||
+                        user.email ||
+                        "Not available";
 
-const facultyStatus =
-    String(data.status || "")
-        .trim()
-        .toLowerCase();
 
-if (facultyStatus !== "active") {
+                    // ==================================
+                    // DISPLAY PROFILE
+                    // ==================================
 
-    alert(
-        "Your faculty account is not active yet."
-    );
+                    document.getElementById(
+                        "facultyName"
+                    ).textContent =
+                        name;
 
-    await signOut(auth);
 
-    window.location.href =
-        "login.html";
+                    document.getElementById(
+                        "profileName"
+                    ).textContent =
+                        name;
 
-    return;
-}
-      
-alert(
-"Your faculty account is not active yet."
-);
 
-await signOut(auth);
+                    document.getElementById(
+                        "profileEmail"
+                    ).textContent =
+                        email;
 
-window.location.href =
-"login.html";
 
-return;
+                    document.getElementById(
+                        "profileRole"
+                    ).textContent =
+                        data.role;
 
-}
 
+                    document.getElementById(
+                        "profileStatus"
+                    ).textContent =
+                        data.status;
 
-/* ==========================
-   PROFILE
-========================== */
 
-const name =
-data.name ||
-"Faculty";
+                    // ==================================
+                    // SHOW DASHBOARD
+                    // ==================================
 
+                    loading.style.display =
+                        "none";
 
-const email =
-user.email ||
-data.email ||
-"";
+                    dashboard.style.display =
+                        "block";
 
 
-const course =
-data.course ||
-"Not assigned";
+                }
 
+                catch (error) {
 
-facultyName.textContent =
-name;
+                    console.error(
+                        "Faculty dashboard error:",
+                        error
+                    );
 
 
-facultyEmail.textContent =
-email;
+                    loading.style.display =
+                        "none";
 
+                    errorBox.style.display =
+                        "block";
 
-profileName.textContent =
-name;
+                    errorMessage.textContent =
+                        "Unable to load your Faculty profile.";
 
+                }
 
-profileEmail.textContent =
-email;
+            }
+        );
 
-
-profileCourse.textContent =
-course;
-
-
-profileStatus.textContent =
-"Active";
-
-
-/* ==========================
-   LOAD DATA
-========================== */
-
-await loadCourses(
-user.uid,
-course
-);
-
-
-await loadStudents(
-user.uid
-);
-
-
-}
-catch(error){
-
-console.error(
-"Faculty dashboard error:",
-error
-);
-
-alert(
-"Unable to load faculty dashboard."
-);
-
-}
-
-});
-
-
-/* ==============================
-   LOAD COURSES
-============================== */
-
-async function loadCourses(
-uid,
-facultyCourse
-){
-
-try{
-
-
-/*
-    If you already have a
-    "courses" collection,
-    this will read courses
-    assigned to this faculty.
-*/
-
-
-const coursesRef =
-collection(
-    db,
-    "courses"
-);
-
-
-const snapshot =
-await getDocs(
-    coursesRef
-);
-
-
-const courses = [];
-
-
-snapshot.forEach(
-documentSnapshot => {
-
-
-const data =
-documentSnapshot.data();
-
-
-/*
-    Supports either:
-
-    facultyId
-
-    OR
-
-    facultyUID
-*/
-
-
-if(
-data.facultyId === uid ||
-data.facultyUID === uid
-){
-
-courses.push({
-id:
-documentSnapshot.id,
-...data
-});
-
-}
-
-});
-
-
-/*
-    If no course documents
-    exist yet, show the
-    faculty's registration
-    course as a temporary
-    display.
-*/
-
-
-if(
-courses.length === 0 &&
-facultyCourse !== "Not assigned"
-){
-
-courseList.innerHTML = `
-
-<div class="course-card">
-
-<h3>
-${escapeHTML(
-facultyCourse
-)}
-</h3>
-
-<p>
-Your assigned course
-will appear here.
-</p>
-
-</div>
-
-`;
-
-courseCount.textContent =
-"1";
-
-return;
-
-}
-
-
-courseCount.textContent =
-courses.length;
-
-
-courseList.innerHTML =
-"";
-
-
-if(courses.length === 0){
-
-courseList.innerHTML = `
-
-<div class="empty">
-
-No courses assigned yet.
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-courses.forEach(
-course => {
-
-
-const card =
-document.createElement(
-"div"
-);
-
-
-card.className =
-"course-card";
-
-
-card.innerHTML = `
-
-<h3>
-${escapeHTML(
-course.name ||
-course.title ||
-"Course"
-)}
-</h3>
-
-<p>
-${escapeHTML(
-course.description ||
-"Course assigned to you."
-)}
-</p>
-
-`;
-
-
-courseList.appendChild(
-card
-);
-
-});
-
-
-}
-catch(error){
-
-console.error(
-"Course error:",
-error
-);
-
-courseList.innerHTML = `
-
-<div class="empty">
-
-Unable to load courses.
-
-</div>
-
-`;
-
-}
-
-}
-
-
-/* ==============================
-   LOAD STUDENTS
-============================== */
-
-async function loadStudents(
-facultyUID
-){
-
-try{
-
-
-const studentsRef =
-collection(
-    db,
-    "users"
-);
-
-
-const q =
-query(
-    studentsRef,
-    where(
-        "role",
-        "==",
-        "student"
-    )
-);
-
-
-const snapshot =
-await getDocs(q);
-
-
-const students = [];
-
-
-snapshot.forEach(
-documentSnapshot => {
-
-
-const data =
-documentSnapshot.data();
-
-
-/*
-    Student can be assigned
-    using facultyId or
-    facultyUID.
-*/
-
-
-if(
-data.facultyId === facultyUID ||
-data.facultyUID === facultyUID
-){
-
-students.push({
-
-id:
-documentSnapshot.id,
-
-...data
-
-});
-
-}
-
-});
-
-
-studentCount.textContent =
-students.length;
-
-
-studentList.innerHTML =
-"";
-
-
-if(students.length === 0){
-
-studentList.innerHTML = `
-
-<div class="empty">
-
-No students assigned yet.
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-students.forEach(
-student => {
-
-
-const item =
-document.createElement(
-"div"
-);
-
-
-item.className =
-"course-card";
-
-
-item.innerHTML = `
-
-<h3>
-🎓
-${escapeHTML(
-student.name ||
-"Student"
-)}
-</h3>
-
-<p>
-${escapeHTML(
-student.email ||
-"No email"
-)}
-</p>
-
-`;
-
-
-studentList.appendChild(
-item
-);
-
-});
-
-
-}
-catch(error){
-
-console.error(
-"Student error:",
-error
-);
-
-studentList.innerHTML = `
-
-<div class="empty">
-
-Unable to load students.
-
-</div>
-
-`;
-
-}
-
-}
-
-
-/* ==============================
-   LOGOUT
-============================== */
-
-document
-.getElementById("logoutBtn")
-.addEventListener(
-"click",
-async () => {
-
-
-try{
-
-await signOut(auth);
-
-window.location.href =
-"login.html";
-
-}
-catch(error){
-
-console.error(
-"Logout error:",
-error
-);
-
-}
-
-});
-
-
-/* ==============================
-   HTML SECURITY
-============================== */
-
-function escapeHTML(
-value
-){
-
-return String(value)
-
-.replace(
-/&/g,
-"&amp;"
-)
-
-.replace(
-/</g,
-"&lt;"
-)
-
-.replace(
-/>/g,
-"&gt;"
-)
-
-.replace(
-/"/g,
-"&quot;"
-)
-
-.replace(
-/'/g,
-"&#039;"
-);
-
-}
-
-
-/* ==============================
-   SIDEBAR
-============================== */
-
-window.scrollToSection =
-function(id){
-
-const element =
-document.getElementById(
-id
-);
-
-if(element){
-
-element.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-};
-
-
-window.comingSoon =
-function(section){
-
-alert(
-section +
-" will be added next."
-);
-
-};
-
-
-/* ==============================
-   MOBILE MENU
-============================== */
-
-const mobileMenu =
-document.getElementById(
-"mobileMenu"
-);
-
-const sidebar =
-document.getElementById(
-"sidebar"
-);
-
-
-mobileMenu.addEventListener(
-"click",
-() => {
-
-sidebar.classList.toggle(
-"open"
-);
-
-});
-
-</script>
+    </script>
 
 
 </body>
