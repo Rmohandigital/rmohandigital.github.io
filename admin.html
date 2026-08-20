@@ -35,10 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* ======================================
-           BACKGROUND GLOW
-        ====================================== */
-
         body::before {
             content: "";
             position: fixed;
@@ -75,11 +71,6 @@
             pointer-events: none;
         }
 
-
-        /* ======================================
-           LOGIN CARD
-        ====================================== */
-
         .login-card {
 
             width: 92%;
@@ -102,11 +93,6 @@
             position: relative;
             z-index: 2;
         }
-
-
-        /* ======================================
-           BRAND
-        ====================================== */
 
         .brand {
             text-align: center;
@@ -161,11 +147,6 @@
 
         }
 
-
-        /* ======================================
-           ROLE BUTTONS
-        ====================================== */
-
         .role-title {
 
             text-align: center;
@@ -182,9 +163,9 @@
 
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
 
-            gap: 9px;
+            gap: 7px;
 
             margin-bottom: 25px;
 
@@ -192,7 +173,7 @@
 
         .role-btn {
 
-            padding: 12px 5px;
+            padding: 12px 4px;
 
             border-radius: 10px;
 
@@ -206,7 +187,7 @@
 
             transition: 0.25s;
 
-            font-size: 12px;
+            font-size: 11px;
 
         }
 
@@ -235,11 +216,6 @@
                 0 0 15px rgba(0, 229, 255, 0.25);
 
         }
-
-
-        /* ======================================
-           FORM
-        ====================================== */
 
         .input-group {
 
@@ -287,319 +263,4 @@
 
         }
 
-        .input-box input:focus {
-
-            border-color: #00e5ff;
-
-            box-shadow:
-                0 0 12px rgba(0, 229, 255, 0.18);
-
-        }
-
-        .input-box input::placeholder {
-
-            color: #64748b;
-
-        }
-
-
-        /* ======================================
-           PASSWORD BUTTON
-        ====================================== */
-
-        .toggle-password {
-
-            position: absolute;
-
-            right: 10px;
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            background: transparent;
-
-            border: none;
-
-            color: #38bdf8;
-
-            cursor: pointer;
-
-            font-size: 18px;
-
-        }
-
-
-        /* ======================================
-           LOGIN BUTTON
-        ====================================== */
-
-        .login-btn {
-
-            width: 100%;
-
-            padding: 14px;
-
-            margin-top: 5px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #0284c7,
-                    #00e5ff
-                );
-
-            color: #001018;
-
-            font-size: 15px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 0 20px rgba(0, 229, 255, 0.22);
-
-            transition: 0.25s;
-
-        }
-
-        .login-btn:hover {
-
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 0 30px rgba(0, 229, 255, 0.40);
-
-        }
-
-        .login-btn:disabled {
-
-            opacity: 0.6;
-
-            cursor: not-allowed;
-
-        }
-
-
-        /* ======================================
-           MESSAGE
-        ====================================== */
-
-        #loginMessage {
-
-            min-height: 22px;
-
-            text-align: center;
-
-            margin-top: 15px;
-
-            font-size: 13px;
-
-        }
-
-
-        /* ======================================
-           FOOTER
-        ====================================== */
-
-        .footer {
-
-            text-align: center;
-
-            margin-top: 25px;
-
-            color: #475569;
-
-            font-size: 11px;
-
-        }
-
-
-        /* ======================================
-           MOBILE
-        ====================================== */
-
-        @media (max-width: 400px) {
-
-            .login-card {
-
-                padding: 28px 20px;
-
-            }
-
-            .role-buttons {
-
-                gap: 6px;
-
-            }
-
-            .role-btn {
-
-                font-size: 11px;
-
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-<div class="login-card">
-
-
-    <!-- BRAND -->
-
-    <div class="brand">
-
-        <div class="brand-icon">
-            RM
-        </div>
-
-        <h1>R Mohan Digital</h1>
-
-        <span>CONTROL CENTER</span>
-
-    </div>
-
-
-    <!-- ROLE -->
-
-    <div class="role-title">
-        Select your access
-    </div>
-
-
-    <div class="role-buttons">
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="mentor">
-
-            👨‍🏫<br>
-            Mentor
-
-        </button>
-
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="admin">
-
-            👑<br>
-            Owner
-
-        </button>
-
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="editor">
-
-            ✏️<br>
-            Editor
-
-        </button>
-
-    </div>
-
-
-    <!-- LOGIN FORM -->
-
-    <form id="loginForm">
-
-
-        <div class="input-group">
-
-            <label for="loginEmail">
-                Email Address
-            </label>
-
-            <div class="input-box">
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="Enter your email"
-                    autocomplete="email"
-                    required>
-
-            </div>
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="loginPassword">
-                Password
-            </label>
-
-            <div class="input-box">
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Enter your password"
-                    autocomplete="current-password"
-                    required>
-
-                <button
-                    type="button"
-                    class="toggle-password"
-                    onclick="toggleLoginPassword()">
-
-                    👁
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="login-btn"
-            id="loginButton">
-
-            Login
-
-        </button>
-
-
-        <div id="loginMessage"></div>
-
-
-    </form>
-
-
-    <div class="footer">
-
-        © 2026 R Mohan Digital
-
-    </div>
-
-
-</div>
-
-
-<script type="module"
-        src="js/auth.js">
-</script>
-
-
-</body>
-
-</html>
+        .input-box
