@@ -181,15 +181,51 @@ if (loginForm) {
 
 
                 // ==================================
-                // CHECK STATUS
+                // CHECK ACCOUNT STATUS
                 // ==================================
 
-                if (status !== "active") {
+                // Only Active accounts can login
+
+                if (status !== "Active") {
 
                     loginMessage.style.color = "red";
 
-                    loginMessage.textContent =
-                        "Your account is not active.";
+
+                    // Faculty waiting for mentor
+
+                    if (
+                        role === "faculty" &&
+                        status === "Pending"
+                    ) {
+
+                        loginMessage.textContent =
+                            "Your faculty account is waiting for mentor approval.";
+
+                    }
+
+
+                    // Faculty rejected
+
+                    else if (
+                        role === "faculty" &&
+                        status === "Rejected"
+                    ) {
+
+                        loginMessage.textContent =
+                            "Your faculty application has been rejected.";
+
+                    }
+
+
+                    // Other inactive accounts
+
+                    else {
+
+                        loginMessage.textContent =
+                            "Your account is not active.";
+
+                    }
+
 
                     return;
                 }
@@ -245,7 +281,7 @@ if (loginForm) {
                     if (role === "mentor") {
 
                         window.location.href =
-                            "admin-dashboard.html";
+                            "mentor-dashboard.html";
 
                         return;
                     }
