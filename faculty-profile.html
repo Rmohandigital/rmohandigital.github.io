@@ -4,25 +4,21 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Faculty Profile | R Mohan Digital</title>
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-body {
-
-    min-height: 100vh;
-
+body{
+    min-height:100vh;
     background:
         radial-gradient(
             circle at top left,
@@ -30,359 +26,308 @@ body {
             #07111f 40%,
             #020617 80%
         );
-
-    color: white;
-
-    padding: 30px;
+    color:white;
+    padding:30px;
 }
 
+/* TOP */
 
-/* ===============================
-   CONTAINER
-================================ */
+.topbar{
+    max-width:1100px;
+    margin:0 auto 25px auto;
 
-.container {
+    padding:18px 22px;
 
-    max-width: 900px;
+    border-radius:15px;
 
-    margin: auto;
-}
-
-
-/* ===============================
-   TOPBAR
-================================ */
-
-.topbar {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 18px 22px;
-
-    margin-bottom: 25px;
-
-    border-radius: 15px;
-
-    background:
-        rgba(7,17,31,0.85);
+    background:rgba(7,17,31,.85);
 
     border:
         1px solid
-        rgba(0,229,255,0.2);
+        rgba(0,229,255,.2);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
 }
 
-
-.logo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
+.topbar h1{
+    font-size:22px;
 }
 
-
-.logo-circle {
-
-    width: 45px;
-    height: 45px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    border: 2px solid #00e5ff;
-
-    color: #00e5ff;
-
-    font-weight: bold;
-
-    box-shadow:
-        0 0 15px
-        rgba(0,229,255,0.35);
+.topbar h1 span{
+    color:#00e5ff;
 }
 
-
-.logo-text h2 {
-
-    font-size: 17px;
-}
-
-
-.logo-text p {
-
-    color: #38bdf8;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    margin-top: 3px;
-}
-
-
-/* ===============================
-   BACK BUTTON
-================================ */
-
-.back-btn {
-
-    padding: 9px 15px;
-
-    border:
-        1px solid #00e5ff;
-
-    border-radius: 8px;
-
-    background:
-        rgba(0,229,255,0.08);
-
-    color: #00e5ff;
-
-    cursor: pointer;
-
-    font-weight: bold;
-}
-
-
-.back-btn:hover {
-
-    background: #00e5ff;
-
-    color: #020617;
-}
-
-
-/* ===============================
-   PROFILE
-================================ */
-
-.profile-card {
-
-    background:
-        rgba(7,17,31,0.88);
+.back-btn{
+    padding:10px 15px;
 
     border:
         1px solid
-        rgba(0,229,255,0.2);
+        #00e5ff;
 
-    border-radius: 18px;
-
-    padding: 35px;
-
-    box-shadow:
-        0 0 35px
-        rgba(0,229,255,0.08);
-}
-
-
-/* ===============================
-   PROFILE HEADER
-================================ */
-
-.profile-header {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 25px;
-
-    padding-bottom: 30px;
-
-    border-bottom:
-        1px solid
-        rgba(148,163,184,0.12);
-}
-
-
-.avatar {
-
-    width: 90px;
-    height: 90px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
+    border-radius:8px;
 
     background:
-        rgba(0,229,255,0.08);
+        rgba(0,229,255,.08);
+
+    color:#00e5ff;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.back-btn:hover{
+    background:#00e5ff;
+    color:#020617;
+}
+
+/* PROFILE */
+
+.profile-container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.profile-header{
+    padding:30px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,229,255,.10),
+            rgba(37,99,235,.05)
+        );
 
     border:
-        2px solid #00e5ff;
+        1px solid
+        rgba(0,229,255,.2);
 
-    font-size: 38px;
+    margin-bottom:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:38px;
+
+    background:
+        rgba(0,229,255,.08);
+
+    border:
+        2px solid
+        #00e5ff;
 
     box-shadow:
         0 0 25px
-        rgba(0,229,255,0.2);
+        rgba(0,229,255,.2);
 }
 
-
-.profile-title h1 {
-
-    font-size: 27px;
-
-    color: #00e5ff;
-
-    margin-bottom: 7px;
+.profile-header h2{
+    color:#00e5ff;
+    font-size:28px;
+    margin-bottom:8px;
 }
 
-
-.profile-title p {
-
-    color: #64748b;
-
-    font-size: 13px;
+.profile-header p{
+    color:#94a3b8;
+    font-size:14px;
 }
 
+/* GRID */
 
-/* ===============================
-   STATUS
-================================ */
-
-.status {
-
-    display: inline-block;
-
-    margin-top: 12px;
-
-    padding: 6px 12px;
-
-    border-radius: 20px;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    color: #22c55e;
-
-    background:
-        rgba(34,197,94,0.08);
-
-    border:
-        1px solid
-        rgba(34,197,94,0.3);
-}
-
-
-/* ===============================
-   DETAILS
-================================ */
-
-.details {
-
-    display: grid;
+.profile-grid{
+    display:grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2,1fr);
 
-    gap: 18px;
-
-    margin-top: 30px;
+    gap:20px;
 }
 
+.card{
+    padding:25px;
 
-.detail {
-
-    padding: 20px;
-
-    border-radius: 12px;
+    border-radius:15px;
 
     background:
-        rgba(15,23,42,0.75);
+        rgba(7,17,31,.85);
 
     border:
         1px solid
-        rgba(148,163,184,0.1);
+        rgba(0,229,255,.15);
 }
 
+.card h3{
+    color:#00e5ff;
 
-.detail label {
+    margin-bottom:20px;
 
-    display: block;
-
-    color: #64748b;
-
-    font-size: 11px;
-
-    margin-bottom: 8px;
+    font-size:17px;
 }
 
-
-.detail strong {
-
-    color: #e2e8f0;
-
-    font-size: 14px;
-
-    word-break: break-word;
+.info{
+    margin-bottom:17px;
 }
 
+.info label{
+    display:block;
 
-/* ===============================
-   LOADING
-================================ */
+    color:#64748b;
 
-.loading {
+    font-size:11px;
 
-    text-align: center;
+    text-transform:uppercase;
 
-    padding: 80px 20px;
-
-    color: #38bdf8;
+    margin-bottom:5px;
 }
 
+.info strong{
+    color:#e2e8f0;
 
-/* ===============================
-   ERROR
-================================ */
+    font-size:14px;
 
-.error {
-
-    text-align: center;
-
-    padding: 50px;
-
-    color: #f87171;
+    word-break:break-word;
 }
 
+/* STATUS */
 
-/* ===============================
-   RESPONSIVE
-================================ */
+.status{
+    display:inline-block;
 
-@media(max-width:650px) {
+    padding:7px 13px;
 
-    body {
-        padding: 15px;
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+.status.active{
+    color:#22c55e;
+
+    background:
+        rgba(34,197,94,.08);
+
+    border:
+        1px solid
+        rgba(34,197,94,.3);
+}
+
+.status.pending{
+    color:#facc15;
+
+    background:
+        rgba(250,204,21,.08);
+
+    border:
+        1px solid
+        rgba(250,204,21,.3);
+}
+
+.status.rejected{
+    color:#f87171;
+
+    background:
+        rgba(239,68,68,.08);
+
+    border:
+        1px solid
+        rgba(239,68,68,.3);
+}
+
+/* LOADING */
+
+#loading{
+    max-width:600px;
+
+    margin:100px auto;
+
+    text-align:center;
+
+    color:#00e5ff;
+
+    font-size:18px;
+}
+
+/* ERROR */
+
+#errorBox{
+    display:none;
+
+    max-width:600px;
+
+    margin:100px auto;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    background:
+        rgba(239,68,68,.08);
+
+    border:
+        1px solid
+        rgba(239,68,68,.3);
+}
+
+#errorBox h2{
+    color:#f87171;
+
+    margin-bottom:12px;
+}
+
+#errorBox p{
+    color:#94a3b8;
+
+    margin-bottom:20px;
+}
+
+@media(max-width:700px){
+
+    body{
+        padding:15px;
     }
 
-    .profile-card {
-        padding: 22px;
+    .topbar{
+        flex-direction:column;
+
+        gap:15px;
+
+        align-items:flex-start;
     }
 
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
+    .profile-header{
+        flex-direction:column;
+
+        text-align:center;
     }
 
-    .details {
-        grid-template-columns: 1fr;
-    }
-
-    .topbar {
-        gap: 15px;
+    .profile-grid{
+        grid-template-columns:1fr;
     }
 
 }
@@ -391,77 +336,302 @@ body {
 
 </head>
 
-
 <body>
 
 
-<div class="container">
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+    <h1>
+        Faculty <span>Profile</span>
+    </h1>
+
+    <button
+        class="back-btn"
+        onclick="goBack()">
+
+        ← Back to Mentor
+
+    </button>
+
+</div>
 
 
-    <!-- TOPBAR -->
+<!-- LOADING -->
 
-    <div class="topbar">
+<div id="loading">
 
-        <div class="logo">
+    ⏳ Loading faculty profile...
 
-            <div class="logo-circle">
-                RM
+</div>
+
+
+<!-- ERROR -->
+
+<div id="errorBox">
+
+    <h2>
+        Faculty Profile Not Found
+    </h2>
+
+    <p id="errorMessage">
+        Unable to load this faculty profile.
+    </p>
+
+    <button
+        class="back-btn"
+        onclick="goBack()">
+
+        ← Back to Mentor Dashboard
+
+    </button>
+
+</div>
+
+
+<!-- PROFILE -->
+
+<div
+    class="profile-container"
+    id="profileContainer"
+    style="display:none;">
+
+
+    <!-- HEADER -->
+
+    <div class="profile-header">
+
+        <div class="avatar">
+            👨‍🏫
+        </div>
+
+        <div>
+
+            <h2 id="facultyName">
+                Faculty
+            </h2>
+
+            <p id="facultyEmail">
+                Loading...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="profile-grid">
+
+
+        <!-- PERSONAL -->
+
+        <div class="card">
+
+            <h3>
+                👤 Personal Information
+            </h3>
+
+
+            <div class="info">
+
+                <label>
+                    Full Name
+                </label>
+
+                <strong id="name">
+                    -
+                </strong>
+
             </div>
 
-            <div class="logo-text">
 
-                <h2>
-                    R Mohan Digital
-                </h2>
+            <div class="info">
 
-                <p>
-                    FACULTY PROFILE
-                </p>
+                <label>
+                    Email
+                </label>
+
+                <strong id="email">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <label>
+                    Phone
+                </label>
+
+                <strong id="phone">
+                    -
+                </strong>
 
             </div>
 
         </div>
 
 
-        <button
-            class="back-btn"
-            onclick="goBack()">
+        <!-- FACULTY -->
 
-            ← Back
+        <div class="card">
 
-        </button>
-
-    </div>
+            <h3>
+                👨‍🏫 Faculty Information
+            </h3>
 
 
-    <!-- PROFILE -->
+            <div class="info">
 
-    <div
-        class="profile-card"
-        id="profileCard">
+                <label>
+                    Course
+                </label>
 
-        <div class="loading">
+                <strong id="course">
+                    -
+                </strong>
 
-            Loading faculty profile...
+            </div>
+
+
+            <div class="info">
+
+                <label>
+                    Role
+                </label>
+
+                <strong id="role">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <label>
+                    Account Status
+                </label>
+
+                <span
+                    id="status"
+                    class="status">
+
+                    -
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACCOUNT -->
+
+        <div class="card">
+
+            <h3>
+                🔐 Account Information
+            </h3>
+
+
+            <div class="info">
+
+                <label>
+                    Firebase User ID
+                </label>
+
+                <strong id="uid">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <label>
+                    Approved By
+                </label>
+
+                <strong id="approvedBy">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <label>
+                    Account Created
+                </label>
+
+                <strong id="createdAt">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- MANAGEMENT -->
+
+        <div class="card">
+
+            <h3>
+                📚 Faculty Management
+            </h3>
+
+
+            <div class="info">
+
+                <label>
+                    Faculty ID
+                </label>
+
+                <strong id="facultyId">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info">
+
+                <label>
+                    Department / Course
+                </label>
+
+                <strong id="department">
+                    -
+                </strong>
+
+            </div>
 
         </div>
 
     </div>
-
 
 </div>
 
 
 <script type="module">
 
-
-// ==========================================
-// FIREBASE
-// ==========================================
-
 import {
+    auth,
     db
 } from "./firebase.js";
+
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 
 import {
@@ -470,376 +640,389 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-// ==========================================
-// GET UID FROM URL
-// ==========================================
+/* ELEMENTS */
 
-const params =
+const loading =
+    document.getElementById(
+        "loading"
+    );
+
+const errorBox =
+    document.getElementById(
+        "errorBox"
+    );
+
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
+
+const profileContainer =
+    document.getElementById(
+        "profileContainer"
+    );
+
+
+/*
+==================================================
+GET FACULTY ID FROM URL
+==================================================
+
+Example URL:
+
+faculty-profile.html?id=abc123
+
+We get:
+
+abc123
+*/
+
+const urlParams =
     new URLSearchParams(
         window.location.search
     );
 
 
-const uid =
-    params.get("uid");
+const facultyId =
+    urlParams.get("id");
 
 
-const profileCard =
-    document.getElementById(
-        "profileCard"
+console.log(
+    "Faculty ID from URL:",
+    facultyId
+);
+
+
+/* BACK */
+
+window.goBack =
+    function(){
+
+        window.location.href =
+            "mentor-dashboard.html";
+
+    };
+
+
+/* NO ID */
+
+if(!facultyId){
+
+    showError(
+        "No faculty ID was provided in the URL."
     );
 
-
-// ==========================================
-// CHECK UID
-// ==========================================
-
-if (!uid) {
-
-    profileCard.innerHTML = `
-
-        <div class="error">
-
-            ❌ Faculty profile ID not found.
-
-        </div>
-
-    `;
-
-} else {
-
-    loadFacultyProfile();
-
 }
 
 
-// ==========================================
-// LOAD PROFILE
-// ==========================================
+/* AUTH */
 
-async function loadFacultyProfile() {
+onAuthStateChanged(
+    auth,
+    async (user) => {
 
-    try {
+        if(!user){
 
-        const facultyRef =
-            doc(
-                db,
-                "users",
-                uid
+            showError(
+                "You are not logged in."
             );
-
-
-        const snapshot =
-            await getDoc(
-                facultyRef
-            );
-
-
-        if (!snapshot.exists()) {
-
-            profileCard.innerHTML = `
-
-                <div class="error">
-
-                    ❌ Faculty profile not found.
-
-                </div>
-
-            `;
 
             return;
-
         }
 
 
-        const data =
-            snapshot.data();
-
-
-        // ==================================
-        // SECURITY
-        // ==================================
-
-        if (
-            data.role !== "faculty" &&
-            data.role !== "Faculty"
-        ) {
-
-            profileCard.innerHTML = `
-
-                <div class="error">
-
-                    ❌ This account is not a faculty account.
-
-                </div>
-
-            `;
+        if(!facultyId){
 
             return;
-
         }
 
 
-        const name =
-            data.name ||
-            "Faculty";
+        try{
 
+            /*
+            IMPORTANT:
 
-        const email =
-            data.email ||
-            "Not available";
+            We are directly reading:
 
+            users/{facultyId}
 
-        const course =
-            data.course ||
-            "Not assigned";
+            */
 
-
-        const status =
-            data.status ||
-            "Unknown";
-
-
-        const phone =
-            data.phone ||
-            "Not available";
-
-
-        const joined =
-            data.createdAt
-                ? formatDate(data.createdAt)
-                : "Not available";
-
-
-        // ==================================
-        // DISPLAY
-        // ==================================
-
-        profileCard.innerHTML = `
-
-            <div class="profile-header">
-
-                <div class="avatar">
-
-                    👨‍🏫
-
-                </div>
-
-
-                <div class="profile-title">
-
-                    <h1>
-                        ${escapeHTML(name)}
-                    </h1>
-
-                    <p>
-                        R Mohan Digital Teaching Faculty
-                    </p>
-
-                    <span class="status">
-
-                        ${escapeHTML(
-                            String(status).toUpperCase()
-                        )}
-
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="details">
-
-
-                <div class="detail">
-
-                    <label>
-                        FULL NAME
-                    </label>
-
-                    <strong>
-                        ${escapeHTML(name)}
-                    </strong>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <label>
-                        EMAIL ADDRESS
-                    </label>
-
-                    <strong>
-                        ${escapeHTML(email)}
-                    </strong>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <label>
-                        PHONE
-                    </label>
-
-                    <strong>
-                        ${escapeHTML(phone)}
-                    </strong>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <label>
-                        COURSE
-                    </label>
-
-                    <strong>
-                        ${escapeHTML(course)}
-                    </strong>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <label>
-                        ACCOUNT STATUS
-                    </label>
-
-                    <strong>
-                        ${escapeHTML(status)}
-                    </strong>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <label>
-                        JOINED
-                    </label>
-
-                    <strong>
-                        ${escapeHTML(joined)}
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-        `;
-
-    }
-
-    catch(error) {
-
-        console.error(
-            "Faculty profile error:",
-            error
-        );
-
-
-        profileCard.innerHTML = `
-
-            <div class="error">
-
-                ❌ Unable to load faculty profile.
-
-                <br><br>
-
-                ${escapeHTML(
-                    error.message
-                )}
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-// ==========================================
-// DATE
-// ==========================================
-
-function formatDate(timestamp) {
-
-    try {
-
-        if (
-            timestamp &&
-            typeof timestamp.toDate ===
-            "function"
-        ) {
-
-            return timestamp
-                .toDate()
-                .toLocaleDateString(
-                    "en-IN",
-                    {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric"
-                    }
+            const facultyRef =
+                doc(
+                    db,
+                    "users",
+                    facultyId
                 );
 
+
+            const snapshot =
+                await getDoc(
+                    facultyRef
+                );
+
+
+            console.log(
+                "Faculty document exists:",
+                snapshot.exists()
+            );
+
+
+            console.log(
+                "Faculty document:",
+                snapshot.data()
+            );
+
+
+            if(!snapshot.exists()){
+
+                showError(
+                    "No users document exists for this Firebase ID: " +
+                    facultyId
+                );
+
+                return;
+            }
+
+
+            const data =
+                snapshot.data();
+
+
+            /*
+            Make sure this is actually
+            a faculty account.
+            */
+
+            if(
+                data.role !== "faculty" &&
+                data.role !== "Faculty"
+            ){
+
+                showError(
+                    "This Firebase account is not a faculty account."
+                );
+
+                return;
+            }
+
+
+            /* SHOW PROFILE */
+
+            document.getElementById(
+                "facultyName"
+            ).textContent =
+                data.name ||
+                "Faculty";
+
+
+            document.getElementById(
+                "facultyEmail"
+            ).textContent =
+                data.email ||
+                user.email ||
+                "";
+
+
+            document.getElementById(
+                "name"
+            ).textContent =
+                data.name ||
+                "Not provided";
+
+
+            document.getElementById(
+                "email"
+            ).textContent =
+                data.email ||
+                user.email ||
+                "Not provided";
+
+
+            document.getElementById(
+                "phone"
+            ).textContent =
+                data.phone ||
+                "Not provided";
+
+
+            document.getElementById(
+                "course"
+            ).textContent =
+                data.course ||
+                "Not assigned";
+
+
+            document.getElementById(
+                "department"
+            ).textContent =
+                data.course ||
+                "Not assigned";
+
+
+            document.getElementById(
+                "role"
+            ).textContent =
+                data.role ||
+                "faculty";
+
+
+            document.getElementById(
+                "uid"
+            ).textContent =
+                facultyId;
+
+
+            document.getElementById(
+                "facultyId"
+            ).textContent =
+                facultyId;
+
+
+            document.getElementById(
+                "approvedBy"
+            ).textContent =
+                data.approvedBy ||
+                "Not available";
+
+
+            /* STATUS */
+
+            const statusElement =
+                document.getElementById(
+                    "status"
+                );
+
+
+            const status =
+                data.status ||
+                "Unknown";
+
+
+            statusElement.textContent =
+                status.toUpperCase();
+
+
+            statusElement.className =
+                "status";
+
+
+            if(
+                status.toLowerCase()
+                === "active"
+            ){
+
+                statusElement.classList.add(
+                    "active"
+                );
+
+            }
+
+            else if(
+                status.toLowerCase()
+                === "pending"
+            ){
+
+                statusElement.classList.add(
+                    "pending"
+                );
+
+            }
+
+            else if(
+                status.toLowerCase()
+                === "rejected"
+            ){
+
+                statusElement.classList.add(
+                    "rejected"
+                );
+
+            }
+
+
+            /* CREATED DATE */
+
+            if(
+                data.createdAt &&
+                data.createdAt.toDate
+            ){
+
+                document.getElementById(
+                    "createdAt"
+                ).textContent =
+                    data.createdAt
+                        .toDate()
+                        .toLocaleString();
+
+            }
+
+            else{
+
+                document.getElementById(
+                    "createdAt"
+                ).textContent =
+                    "Not available";
+
+            }
+
+
+            /* SHOW */
+
+            loading.style.display =
+                "none";
+
+
+            profileContainer.style.display =
+                "block";
+
+
         }
 
-        return "Not available";
+        catch(error){
+
+            console.error(
+                "Faculty profile error:",
+                error
+            );
+
+
+            showError(
+                "Firebase error: " +
+                error.message
+            );
+
+        }
 
     }
-
-    catch {
-
-        return "Not available";
-
-    }
-
-}
+);
 
 
-// ==========================================
-// SECURITY
-// ==========================================
+/* ERROR FUNCTION */
 
-function escapeHTML(value) {
+function showError(
+    message
+){
 
-    return String(value)
+    loading.style.display =
+        "none";
 
-        .replace(/&/g, "&amp;")
+    profileContainer.style.display =
+        "none";
 
-        .replace(/</g, "&lt;")
+    errorBox.style.display =
+        "block";
 
-        .replace(/>/g, "&gt;")
+    errorMessage.textContent =
+        message;
 
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
+    console.error(
+        message
+    );
 
 }
-
-
-// ==========================================
-// BACK
-// ==========================================
-
-window.goBack = function() {
-
-    window.location.href =
-        "mentor-dashboard.html";
-
-};
-
 
 </script>
-
 
 </body>
 
