@@ -8,112 +8,169 @@
     <title>Student Dashboard | R Mohan Digital</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
         }
 
         body {
-            background: #22c55e;
-            color: #0f172a;
+            background: #f4f7fb;
+            color: #172033;
             min-height: 100vh;
         }
 
-        /* ==============================
+        /* =====================================
            HEADER
-        ============================== */
+        ===================================== */
 
         .dashboard-header {
-            background: #000000;
-            color: #2563eb;
-            padding: 25px 8%;
+            background: #ffffff;
+            height: 76px;
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #1e3a8a;
+            border-bottom: 1px solid #e5eaf2;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .dashboard-header h2 {
-            font-size: 25px;
-            color: #2563eb;
-        }
-
-        .dashboard-header small {
-            display: block;
-            color: #60a5fa;
-            margin-top: 5px;
-        }
-
-        .logout-btn {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 11px 22px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        .logout-btn:hover {
-            background: #1e3a8a;
-            transform: scale(1.05);
-        }
-
-        /* ==============================
-           MAIN
-        ============================== */
-
-        .dashboard-container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* ==============================
-           MESSAGE
-        ============================== */
-
-        .message {
-            display: none;
-            background: #000000;
-            color: #2563eb;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            text-align: center;
-            border: 2px solid #1e3a8a;
-        }
-
-        /* ==============================
-           PROFILE CARD
-        ============================== */
-
-        .profile-card {
-            background: #000000;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+        .brand {
             display: flex;
             align-items: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            border: 2px solid #1e3a8a;
+            gap: 14px;
         }
 
-        .profile-photo {
-            width: 120px;
-            height: 120px;
-            min-width: 120px;
-            border-radius: 50%;
-            background: #020617;
-            border: 5px solid #2563eb;
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 50px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .brand-text h2 {
+            color: #172033;
+            font-size: 19px;
+        }
+
+        .brand-text small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .logout-btn {
+            border: 1px solid #dbe3ef;
+            background: white;
+            color: #334155;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .logout-btn:hover {
+            background: #fee2e2;
+            color: #dc2626;
+            border-color: #fecaca;
+        }
+
+
+        /* =====================================
+           MAIN
+        ===================================== */
+
+        .dashboard-container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 35px 25px 60px;
+        }
+
+
+        /* =====================================
+           MESSAGE
+        ===================================== */
+
+        .message {
+            display: none;
+            background: #fff7ed;
+            color: #c2410c;
+            padding: 15px 18px;
+            border: 1px solid #fed7aa;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================
+           WELCOME BANNER
+        ===================================== */
+
+        .welcome-banner {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, .15);
+        }
+
+        .welcome-banner h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-banner p {
+            color: #dbeafe;
+            font-size: 14px;
+        }
+
+        .welcome-icon {
+            font-size: 65px;
+            opacity: .9;
+        }
+
+
+        /* =====================================
+           PROFILE
+        ===================================== */
+
+        .profile-card {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 18px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+        }
+
+        .profile-photo {
+            width: 90px;
+            height: 90px;
+            min-width: 90px;
+            border-radius: 50%;
+            background: #eff6ff;
+            border: 4px solid #dbeafe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 38px;
             overflow: hidden;
         }
 
@@ -128,241 +185,411 @@
         }
 
         .profile-info h1 {
-            color: #2563eb;
-            margin-bottom: 8px;
-            font-size: 30px;
+            font-size: 25px;
+            color: #172033;
+            margin-bottom: 5px;
         }
 
         .profile-info p {
-            color: #93c5fd;
-            margin: 7px 0;
+            color: #64748b;
+            margin: 5px 0;
+            font-size: 14px;
         }
 
         .course {
-            color: #1d4ed8 !important;
-            font-weight: bold;
-            font-size: 18px;
+            color: #2563eb !important;
+            font-weight: 700;
         }
 
         .status-badge {
             display: inline-block;
             margin-top: 8px;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
-            background: #172554;
-            color: #60a5fa;
-            font-size: 13px;
-            font-weight: bold;
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 12px;
+            font-weight: 700;
         }
 
-        /* ==============================
+
+        /* =====================================
            PROFILE COMPLETION
-        ============================== */
+        ===================================== */
 
         .completion-card {
-            background: #000000;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-            margin-bottom: 30px;
-            border: 2px solid #1e3a8a;
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
         }
 
         .completion-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
         }
 
         .completion-header h2 {
-            color: #2563eb;
+            font-size: 18px;
+            color: #172033;
         }
 
         .percentage {
-            color: #1d4ed8;
-            font-size: 25px;
-            font-weight: bold;
+            color: #2563eb;
+            font-weight: 800;
+            font-size: 20px;
         }
 
         .progress-bar {
             width: 100%;
-            height: 18px;
-            background: #172554;
+            height: 10px;
+            background: #e8eef7;
             border-radius: 20px;
             overflow: hidden;
         }
 
         .progress {
-            width: 40%;
+            width: 0%;
             height: 100%;
             background: #2563eb;
             border-radius: 20px;
-            transition: .5s;
+            transition: .6s;
         }
 
         .complete-btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: #2563eb;
-            color: white;
+            margin-top: 18px;
+            padding: 10px 18px;
+            background: #eff6ff;
+            color: #2563eb;
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: .3s;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
         }
 
         .complete-btn:hover {
-            background: #1e3a8a;
-            transform: translateY(-2px);
+            background: #dbeafe;
         }
 
-        /* ==============================
-           DASHBOARD GRID
-        ============================== */
+
+        /* =====================================
+           STATISTICS
+        ===================================== */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #eff6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+        }
+
+        .stat-card h3 {
+            font-size: 22px;
+            color: #172033;
+        }
+
+        .stat-card p {
+            color: #718096;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+
+        /* =====================================
+           FEATURE GRID
+        ===================================== */
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 20px;
+            color: #172033;
+        }
 
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
         }
 
         .dashboard-card {
-            background: #000000;
-            padding: 25px;
-            border-radius: 18px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .35);
-            transition: .3s;
-            border: 2px solid #1e3a8a;
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 16px;
+            padding: 23px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+            transition: .25s;
             cursor: pointer;
         }
 
         .dashboard-card:hover {
-            transform: translateY(-5px);
-            border-color: #2563eb;
+            transform: translateY(-4px);
+            border-color: #bfdbfe;
+            box-shadow: 0 12px 25px rgba(37, 99, 235, .08);
         }
 
         .dashboard-card .icon {
-            font-size: 35px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #eff6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 23px;
             margin-bottom: 15px;
         }
 
         .dashboard-card h3 {
-            color: #2563eb;
-            margin-bottom: 8px;
+            color: #172033;
+            font-size: 17px;
+            margin-bottom: 7px;
         }
 
         .dashboard-card p {
-            color: #93c5fd;
+            color: #718096;
+            font-size: 13px;
             line-height: 1.5;
         }
 
-        /* ==============================
-           FACULTY CARD
-        ============================== */
 
-        .faculty-card {
-            background: #000000;
-            margin-top: 30px;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-            border: 2px solid #1e3a8a;
+        /* =====================================
+           DATA PANEL
+        ===================================== */
+
+        .data-panel {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 25px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
         }
 
-        .faculty-card h2 {
-            color: #2563eb;
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
 
-        .faculty-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        .panel-header h2 {
+            font-size: 19px;
+            color: #172033;
         }
 
-        .faculty-item {
-            background: #020617;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #172554;
-        }
-
-        .faculty-item strong {
-            display: block;
-            color: #1d4ed8;
-            margin-bottom: 6px;
-        }
-
-        .faculty-item span {
-            color: #93c5fd;
-        }
-
-        /* ==============================
-           PROFILE DETAILS
-        ============================== */
-
-        .details-card {
-            background: #000000;
-            margin-top: 30px;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-            border: 2px solid #1e3a8a;
-        }
-
-        .details-card h2 {
-            margin-bottom: 25px;
+        .panel-count {
+            background: #eff6ff;
             color: #2563eb;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
         }
 
-        .details-grid {
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .data-list {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 12px;
         }
 
-        .detail {
-            padding: 15px;
-            background: #020617;
-            border-radius: 10px;
-            border: 1px solid #172554;
+        .data-item {
+            background: #f8fafc;
+            border: 1px solid #e8edf5;
+            padding: 16px;
+            border-radius: 12px;
         }
 
-        .detail strong {
-            display: block;
-            color: #1d4ed8;
+        .data-item h3 {
+            color: #172033;
+            font-size: 15px;
             margin-bottom: 5px;
         }
 
+        .data-item p {
+            color: #64748b;
+            font-size: 13px;
+            margin: 3px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 9px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 7px;
+        }
+
+
+        /* =====================================
+           FACULTY
+        ===================================== */
+
+        .faculty-card,
+        .details-card {
+            background: white;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #e5eaf2;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+        }
+
+        .faculty-card h2,
+        .details-card h2 {
+            color: #172033;
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .faculty-info,
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .faculty-item,
+        .detail {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 11px;
+            border: 1px solid #e8edf5;
+        }
+
+        .faculty-item strong,
+        .detail strong {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .faculty-item span,
         .detail span {
-            color: #93c5fd;
+            color: #172033;
+            font-size: 14px;
+            font-weight: 600;
         }
 
-        /* ==============================
-           LOADING
-        ============================== */
 
-        .loading {
+        /* =====================================
+           TABLE
+        ===================================== */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            background: #f8fafc;
+            color: #64748b;
+            padding: 12px;
+            font-size: 12px;
+        }
+
+        td {
+            padding: 13px 12px;
+            border-bottom: 1px solid #edf1f6;
+            font-size: 13px;
+            color: #334155;
+        }
+
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
             text-align: center;
-            padding: 30px;
-            color: #2563eb;
-            font-weight: bold;
+            padding: 25px;
+            color: #94a3b8;
+            font-size: 12px;
         }
 
-        /* ==============================
+
+        /* =====================================
            MOBILE
-        ============================== */
+        ===================================== */
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
 
-            .dashboard-header {
-                padding: 20px;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .dashboard-header h2 {
-                font-size: 20px;
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .dashboard-header {
+                padding: 0 18px;
+            }
+
+            .brand-text h2 {
+                font-size: 16px;
+            }
+
+            .dashboard-container {
+                padding: 20px 15px 40px;
+            }
+
+            .welcome-banner {
+                padding: 23px;
+            }
+
+            .welcome-banner h1 {
+                font-size: 22px;
+            }
+
+            .welcome-icon {
+                display: none;
             }
 
             .profile-card {
@@ -370,71 +597,108 @@
                 text-align: center;
             }
 
-            .profile-info h1 {
-                font-size: 25px;
-            }
-
-            .faculty-info {
-                grid-template-columns: 1fr;
-            }
-
+            .stats-grid,
+            .dashboard-grid,
+            .faculty-info,
             .details-grid {
                 grid-template-columns: 1fr;
             }
 
-            .dashboard-container {
-                margin-top: 25px;
-            }
-
-            .completion-header {
-                gap: 10px;
-            }
-
-            .completion-header h2 {
-                font-size: 19px;
+            .logout-btn {
+                padding: 8px 12px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ==============================
+
+    <!-- =====================================
          HEADER
-    ============================== -->
+    ====================================== -->
 
     <header class="dashboard-header">
 
-        <div>
-            <h2>R Mohan Digital</h2>
-            <small>Student Dashboard</small>
+        <div class="brand">
+
+            <div class="brand-logo">
+                RM
+            </div>
+
+            <div class="brand-text">
+                <h2>R Mohan Digital</h2>
+                <small>Student Portal</small>
+            </div>
+
         </div>
 
-        <button class="logout-btn" id="logoutBtn">
+        <button
+            class="logout-btn"
+            id="logoutBtn">
+
             Logout
+
         </button>
 
     </header>
 
 
-    <!-- ==============================
+    <!-- =====================================
          MAIN
-    ============================== -->
+    ====================================== -->
 
     <main class="dashboard-container">
 
-        <div class="message" id="message"></div>
+
+        <div
+            class="message"
+            id="message">
+        </div>
 
 
-        <!-- ==============================
+        <!-- =====================================
+             WELCOME
+        ====================================== -->
+
+        <section class="welcome-banner">
+
+            <div>
+
+                <h1>
+                    Welcome back, <span id="welcomeName">Student</span> 👋
+                </h1>
+
+                <p>
+                    Manage your learning, courses, progress and academic information.
+                </p>
+
+            </div>
+
+            <div class="welcome-icon">
+                🎓
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
              PROFILE
-        ============================== -->
+        ====================================== -->
 
         <section class="profile-card">
 
-            <div class="profile-photo" id="profilePhoto">
+            <div
+                class="profile-photo"
+                id="profilePhoto">
+
                 👤
+
             </div>
+
 
             <div class="profile-info">
 
@@ -446,16 +710,24 @@
                     Loading...
                 </p>
 
-                <p class="course" id="studentCourse">
+                <p
+                    class="course"
+                    id="studentCourse">
+
                     Course: Loading...
+
                 </p>
 
                 <p id="studentPhone">
                     Phone: Loading...
                 </p>
 
-                <span class="status-badge" id="studentStatus">
-                    Checking status...
+                <span
+                    class="status-badge"
+                    id="studentStatus">
+
+                    Checking...
+
                 </span>
 
             </div>
@@ -463,9 +735,103 @@
         </section>
 
 
-        <!-- ==============================
+        <!-- =====================================
+             STATISTICS
+        ====================================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <h3 id="courseCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Courses
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <h3 id="attendancePercentage">
+                        --%
+                    </h3>
+
+                    <p>
+                        Attendance
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <h3 id="marksCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Mark Records
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔔
+                </div>
+
+                <div>
+
+                    <h3 id="notificationCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Notifications
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================
              PROFILE COMPLETION
-        ============================== -->
+        ====================================== -->
 
         <section class="completion-card">
 
@@ -478,37 +844,51 @@
                 <span
                     class="percentage"
                     id="profilePercentage">
-                    40%
+
+                    0%
+
                 </span>
 
             </div>
+
 
             <div class="progress-bar">
 
                 <div
                     class="progress"
                     id="profileProgress">
+
                 </div>
 
             </div>
 
+
             <a
                 href="#profileDetails"
                 class="complete-btn">
+
                 Complete Your Profile
+
             </a>
 
         </section>
 
 
-        <!-- ==============================
-             DASHBOARD FEATURES
-        ============================== -->
+        <!-- =====================================
+             FEATURES
+        ====================================== -->
+
+        <h2 class="section-title">
+            Student Services
+        </h2>
+
 
         <section class="dashboard-grid">
 
 
-            <div class="dashboard-card">
+            <div
+                class="dashboard-card"
+                id="courseCard">
 
                 <div class="icon">
                     📚
@@ -519,16 +899,18 @@
                 </h3>
 
                 <p id="courseInfo">
-                    View your enrolled course and learning materials.
+                    View your enrolled courses and learning information.
                 </p>
 
             </div>
 
 
-            <div class="dashboard-card">
+            <div
+                class="dashboard-card"
+                id="progressCard">
 
                 <div class="icon">
-                    📊
+                    📈
                 </div>
 
                 <h3>
@@ -536,13 +918,15 @@
                 </h3>
 
                 <p>
-                    Track your course progress and completed lessons.
+                    Track your attendance, marks and academic progress.
                 </p>
 
             </div>
 
 
-            <div class="dashboard-card">
+            <div
+                class="dashboard-card"
+                id="achievementCard">
 
                 <div class="icon">
                     🏆
@@ -553,13 +937,15 @@
                 </h3>
 
                 <p>
-                    View your achievements and milestones.
+                    View your achievements and academic milestones.
                 </p>
 
             </div>
 
 
-            <div class="dashboard-card">
+            <div
+                class="dashboard-card"
+                id="certificateCard">
 
                 <div class="icon">
                     📜
@@ -576,7 +962,9 @@
             </div>
 
 
-            <div class="dashboard-card">
+            <div
+                class="dashboard-card"
+                id="paymentCard">
 
                 <div class="icon">
                     💳
@@ -587,13 +975,15 @@
                 </h3>
 
                 <p>
-                    View your registration and payment status.
+                    View your registration and payment information.
                 </p>
 
             </div>
 
 
-            <div class="dashboard-card">
+            <div
+                class="dashboard-card"
+                id="notificationCard">
 
                 <div class="icon">
                     🔔
@@ -604,17 +994,164 @@
                 </h3>
 
                 <p>
-                    Important announcements and updates.
+                    View important announcements and updates.
                 </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================
+             COURSES
+        ====================================== -->
+
+        <section
+            class="data-panel"
+            id="coursesPanel">
+
+            <div class="panel-header">
+
+                <h2>
+                    📚 My Courses
+                </h2>
+
+                <span
+                    class="panel-count"
+                    id="coursePanelCount">
+
+                    0 Courses
+
+                </span>
+
+            </div>
+
+
+            <div
+                class="data-list"
+                id="coursesList">
+
+                <div class="empty-state">
+                    Loading courses...
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- ==============================
-             ASSIGNED FACULTY
-        ============================== -->
+        <!-- =====================================
+             ATTENDANCE
+        ====================================== -->
+
+        <section class="data-panel">
+
+            <div class="panel-header">
+
+                <h2>
+                    📊 Attendance
+                </h2>
+
+                <span
+                    class="panel-count"
+                    id="attendancePanelPercentage">
+
+                    --%
+
+                </span>
+
+            </div>
+
+
+            <div
+                class="data-list"
+                id="attendanceList">
+
+                <div class="empty-state">
+                    Loading attendance...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             MARKS
+        ====================================== -->
+
+        <section class="data-panel">
+
+            <div class="panel-header">
+
+                <h2>
+                    📝 Marks
+                </h2>
+
+                <span
+                    class="panel-count"
+                    id="marksPanelCount">
+
+                    0 Records
+
+                </span>
+
+            </div>
+
+
+            <div
+                class="table-wrapper"
+                id="marksTable">
+
+                <div class="empty-state">
+                    Loading marks...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             NOTIFICATIONS
+        ====================================== -->
+
+        <section class="data-panel">
+
+            <div class="panel-header">
+
+                <h2>
+                    🔔 Notifications
+                </h2>
+
+                <span
+                    class="panel-count"
+                    id="notificationPanelCount">
+
+                    0
+
+                </span>
+
+            </div>
+
+
+            <div
+                class="data-list"
+                id="notificationsList">
+
+                <div class="empty-state">
+                    Loading notifications...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             FACULTY
+        ====================================== -->
 
         <section class="faculty-card">
 
@@ -622,7 +1159,9 @@
                 👨‍🏫 My Faculty
             </h2>
 
+
             <div class="faculty-info">
+
 
                 <div class="faculty-item">
 
@@ -675,22 +1214,24 @@
 
                 </div>
 
+
             </div>
 
         </section>
 
 
-        <!-- ==============================
+        <!-- =====================================
              PROFILE DETAILS
-        ============================== -->
+        ====================================== -->
 
         <section
             class="details-card"
             id="profileDetails">
 
             <h2>
-                My Profile
+                👤 My Profile
             </h2>
+
 
             <div class="details-grid">
 
@@ -793,7 +1334,7 @@
                     </strong>
 
                     <span id="detailBiography">
-                        Complete your profile to add biography.
+                        Not added
                     </span>
 
                 </div>
@@ -811,6 +1352,7 @@
 
                 </div>
 
+
             </div>
 
         </section>
@@ -819,9 +1361,14 @@
     </main>
 
 
-    <!-- ==============================
-         FIREBASE BACKEND
-    ============================== -->
+    <footer>
+        © 2026 R Mohan Digital · Student Portal
+    </footer>
+
+
+    <!-- =====================================
+         FIREBASE
+    ====================================== -->
 
     <script type="module">
 
@@ -830,20 +1377,33 @@
             db
         } from "./firebase.js";
 
+
         import {
             onAuthStateChanged,
             signOut
         } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
+
         import {
             doc,
-            getDoc
+            getDoc,
+            collection,
+            query,
+            where,
+            getDocs
         } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-        /* ==============================
+        /* =====================================
            ELEMENTS
-        ============================== */
+        ===================================== */
+
+        const message =
+            document.getElementById("message");
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
 
         const studentName =
             document.getElementById("studentName");
@@ -862,6 +1422,18 @@
 
         const profilePhoto =
             document.getElementById("profilePhoto");
+
+
+        const welcomeName =
+            document.getElementById("welcomeName");
+
+
+        const profilePercentage =
+            document.getElementById("profilePercentage");
+
+        const profileProgress =
+            document.getElementById("profileProgress");
+
 
         const detailName =
             document.getElementById("detailName");
@@ -890,6 +1462,7 @@
         const detailDob =
             document.getElementById("detailDob");
 
+
         const facultyName =
             document.getElementById("facultyName");
 
@@ -902,43 +1475,76 @@
         const facultyCourse =
             document.getElementById("facultyCourse");
 
+
         const courseInfo =
             document.getElementById("courseInfo");
 
-        const profilePercentage =
-            document.getElementById("profilePercentage");
 
-        const profileProgress =
-            document.getElementById("profileProgress");
+        const coursesList =
+            document.getElementById("coursesList");
 
-        const message =
-            document.getElementById("message");
+        const attendanceList =
+            document.getElementById("attendanceList");
 
-        const logoutBtn =
-            document.getElementById("logoutBtn");
+        const marksTable =
+            document.getElementById("marksTable");
+
+        const notificationsList =
+            document.getElementById("notificationsList");
 
 
-        /* ==============================
-           SHOW MESSAGE
-        ============================== */
+        const courseCount =
+            document.getElementById("courseCount");
+
+        const attendancePercentage =
+            document.getElementById("attendancePercentage");
+
+        const marksCount =
+            document.getElementById("marksCount");
+
+        const notificationCount =
+            document.getElementById("notificationCount");
+
+
+        const coursePanelCount =
+            document.getElementById("coursePanelCount");
+
+        const attendancePanelPercentage =
+            document.getElementById("attendancePanelPercentage");
+
+        const marksPanelCount =
+            document.getElementById("marksPanelCount");
+
+        const notificationPanelCount =
+            document.getElementById("notificationPanelCount");
+
+
+        let currentStudent = null;
+
+
+        /* =====================================
+           MESSAGE
+        ===================================== */
 
         function showMessage(text) {
 
             message.textContent = text;
 
             message.style.display = "block";
+
         }
 
 
-        /* ==============================
+        /* =====================================
            ESCAPE HTML
-        ============================== */
+        ===================================== */
 
         function escapeHTML(value) {
 
-            if (value === null ||
-                value === undefined) {
-
+            if (
+                value === null ||
+                value === undefined
+            ) {
                 return "";
             }
 
@@ -948,25 +1554,30 @@
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;")
                 .replace(/'/g, "&#039;");
+
         }
 
 
-        /* ==============================
+        /* =====================================
            PROFILE COMPLETION
-        ============================== */
+        ===================================== */
 
         function calculateProfileCompletion(data) {
 
             const fields = [
+
                 data.name,
                 data.email,
                 data.phone,
                 data.course,
                 data.biography,
                 data.dob
+
             ];
 
+
             let completed = 0;
+
 
             fields.forEach(field => {
 
@@ -975,27 +1586,33 @@
                     field !== null &&
                     String(field).trim() !== ""
                 ) {
+
                     completed++;
+
                 }
 
             });
+
 
             const percentage =
                 Math.round(
                     (completed / fields.length) * 100
                 );
 
+
             profilePercentage.textContent =
                 percentage + "%";
 
+
             profileProgress.style.width =
                 percentage + "%";
+
         }
 
 
-        /* ==============================
+        /* =====================================
            LOAD FACULTY
-        ============================== */
+        ===================================== */
 
         async function loadFaculty(facultyId) {
 
@@ -1014,6 +1631,7 @@
                     "Not available";
 
                 return;
+
             }
 
 
@@ -1025,6 +1643,7 @@
                         "users",
                         facultyId
                     );
+
 
                 const facultySnap =
                     await getDoc(facultyRef);
@@ -1045,6 +1664,7 @@
                         "Not available";
 
                     return;
+
                 }
 
 
@@ -1069,12 +1689,12 @@
             catch (error) {
 
                 console.error(
-                    "Faculty loading error:",
+                    "Faculty error:",
                     error
                 );
 
                 facultyName.textContent =
-                    "Unable to load faculty";
+                    "Unable to load";
 
                 facultyEmail.textContent =
                     "Unable to load";
@@ -1084,13 +1704,544 @@
 
                 facultyCourse.textContent =
                     "Unable to load";
+
             }
+
         }
 
 
-        /* ==============================
+        /* =====================================
+           LOAD COURSES
+        ===================================== */
+
+        async function loadCourses(uid) {
+
+            coursesList.innerHTML =
+                `<div class="empty-state">Loading courses...</div>`;
+
+
+            try {
+
+                const q =
+                    query(
+                        collection(db, "courses"),
+                        where(
+                            "studentId",
+                            "==",
+                            uid
+                        )
+                    );
+
+
+                const snapshot =
+                    await getDocs(q);
+
+
+                courseCount.textContent =
+                    snapshot.size;
+
+                coursePanelCount.textContent =
+                    snapshot.size + " Courses";
+
+
+                if (snapshot.empty) {
+
+                    coursesList.innerHTML =
+                        `<div class="empty-state">
+                            No courses have been assigned to your account yet.
+                         </div>`;
+
+                    return;
+
+                }
+
+
+                coursesList.innerHTML = "";
+
+
+                snapshot.forEach(courseDoc => {
+
+                    const data =
+                        courseDoc.data();
+
+
+                    const courseName =
+                        data.name ||
+                        data.courseName ||
+                        data.title ||
+                        "Unnamed Course";
+
+
+                    const faculty =
+                        data.facultyName ||
+                        data.faculty ||
+                        "Faculty not specified";
+
+
+                    const status =
+                        data.status ||
+                        "Active";
+
+
+                    coursesList.innerHTML += `
+
+                        <div class="data-item">
+
+                            <h3>
+                                ${escapeHTML(courseName)}
+                            </h3>
+
+                            <p>
+                                Faculty:
+                                ${escapeHTML(faculty)}
+                            </p>
+
+                            <span class="badge">
+                                ${escapeHTML(status)}
+                            </span>
+
+                        </div>
+
+                    `;
+
+                });
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Courses error:",
+                    error
+                );
+
+                coursesList.innerHTML =
+                    `<div class="empty-state">
+                        Unable to load courses.
+                     </div>`;
+
+            }
+
+        }
+
+
+        /* =====================================
+           LOAD ATTENDANCE
+        ===================================== */
+
+        async function loadAttendance(uid) {
+
+            attendanceList.innerHTML =
+                `<div class="empty-state">Loading attendance...</div>`;
+
+
+            try {
+
+                const q =
+                    query(
+                        collection(db, "attendance"),
+                        where(
+                            "studentId",
+                            "==",
+                            uid
+                        )
+                    );
+
+
+                const snapshot =
+                    await getDocs(q);
+
+
+                if (snapshot.empty) {
+
+                    attendancePercentage.textContent =
+                        "--%";
+
+                    attendancePanelPercentage.textContent =
+                        "--%";
+
+
+                    attendanceList.innerHTML =
+                        `<div class="empty-state">
+                            No attendance records found.
+                         </div>`;
+
+                    return;
+
+                }
+
+
+                let present = 0;
+                let total = 0;
+
+
+                snapshot.forEach(docSnap => {
+
+                    const data =
+                        docSnap.data();
+
+
+                    const status =
+                        String(
+                            data.status || ""
+                        ).toLowerCase();
+
+
+                    total++;
+
+
+                    if (
+                        status === "present" ||
+                        status === "p" ||
+                        data.present === true
+                    ) {
+
+                        present++;
+
+                    }
+
+                });
+
+
+                const percentage =
+                    total > 0
+                        ? Math.round(
+                            (present / total) * 100
+                        )
+                        : 0;
+
+
+                attendancePercentage.textContent =
+                    percentage + "%";
+
+
+                attendancePanelPercentage.textContent =
+                    percentage + "%";
+
+
+                attendanceList.innerHTML = `
+
+                    <div class="data-item">
+
+                        <h3>
+                            Overall Attendance
+                        </h3>
+
+                        <p>
+                            Present: ${present}
+                        </p>
+
+                        <p>
+                            Total Classes: ${total}
+                        </p>
+
+                        <span class="badge">
+                            ${percentage}% Attendance
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Attendance error:",
+                    error
+                );
+
+                attendanceList.innerHTML =
+                    `<div class="empty-state">
+                        Unable to load attendance.
+                     </div>`;
+
+            }
+
+        }
+
+
+        /* =====================================
+           LOAD MARKS
+        ===================================== */
+
+        async function loadMarks(uid) {
+
+            marksTable.innerHTML =
+                `<div class="empty-state">Loading marks...</div>`;
+
+
+            try {
+
+                const q =
+                    query(
+                        collection(db, "marks"),
+                        where(
+                            "studentId",
+                            "==",
+                            uid
+                        )
+                    );
+
+
+                const snapshot =
+                    await getDocs(q);
+
+
+                marksCount.textContent =
+                    snapshot.size;
+
+                marksPanelCount.textContent =
+                    snapshot.size + " Records";
+
+
+                if (snapshot.empty) {
+
+                    marksTable.innerHTML =
+                        `<div class="empty-state">
+                            No marks records found.
+                         </div>`;
+
+                    return;
+
+                }
+
+
+                let html = `
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Subject
+                                </th>
+
+                                <th>
+                                    Marks
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                                <th>
+                                    Percentage
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                `;
+
+
+                snapshot.forEach(docSnap => {
+
+                    const data =
+                        docSnap.data();
+
+
+                    const subject =
+                        data.subject ||
+                        data.subjectName ||
+                        data.course ||
+                        "Subject";
+
+
+                    const marks =
+                        Number(
+                            data.marks ??
+                            data.mark ??
+                            0
+                        );
+
+
+                    const total =
+                        Number(
+                            data.total ??
+                            data.maxMarks ??
+                            100
+                        );
+
+
+                    const percentage =
+                        total > 0
+                            ? Math.round(
+                                (marks / total) * 100
+                            )
+                            : 0;
+
+
+                    html += `
+
+                        <tr>
+
+                            <td>
+                                ${escapeHTML(subject)}
+                            </td>
+
+                            <td>
+                                ${marks}
+                            </td>
+
+                            <td>
+                                ${total}
+                            </td>
+
+                            <td>
+                                ${percentage}%
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                });
+
+
+                html += `
+
+                        </tbody>
+
+                    </table>
+
+                `;
+
+
+                marksTable.innerHTML =
+                    html;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Marks error:",
+                    error
+                );
+
+                marksTable.innerHTML =
+                    `<div class="empty-state">
+                        Unable to load marks.
+                     </div>`;
+
+            }
+
+        }
+
+
+        /* =====================================
+           LOAD NOTIFICATIONS
+        ===================================== */
+
+        async function loadNotifications(uid) {
+
+            notificationsList.innerHTML =
+                `<div class="empty-state">Loading notifications...</div>`;
+
+
+            try {
+
+                const q =
+                    query(
+                        collection(db, "notifications"),
+                        where(
+                            "userId",
+                            "==",
+                            uid
+                        )
+                    );
+
+
+                const snapshot =
+                    await getDocs(q);
+
+
+                notificationCount.textContent =
+                    snapshot.size;
+
+                notificationPanelCount.textContent =
+                    snapshot.size;
+
+
+                if (snapshot.empty) {
+
+                    notificationsList.innerHTML =
+                        `<div class="empty-state">
+                            No notifications available.
+                         </div>`;
+
+                    return;
+
+                }
+
+
+                notificationsList.innerHTML = "";
+
+
+                snapshot.forEach(docSnap => {
+
+                    const data =
+                        docSnap.data();
+
+
+                    const title =
+                        data.title ||
+                        "Notification";
+
+
+                    const text =
+                        data.message ||
+                        data.description ||
+                        "No message";
+
+
+                    notificationsList.innerHTML += `
+
+                        <div class="data-item">
+
+                            <h3>
+                                🔔 ${escapeHTML(title)}
+                            </h3>
+
+                            <p>
+                                ${escapeHTML(text)}
+                            </p>
+
+                        </div>
+
+                    `;
+
+                });
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Notification error:",
+                    error
+                );
+
+                notificationsList.innerHTML =
+                    `<div class="empty-state">
+                        Unable to load notifications.
+                     </div>`;
+
+            }
+
+        }
+
+
+        /* =====================================
            LOAD STUDENT
-        ============================== */
+        ===================================== */
 
         async function loadStudent(user) {
 
@@ -1103,6 +2254,7 @@
                         user.uid
                     );
 
+
                 const userSnap =
                     await getDoc(userRef);
 
@@ -1114,6 +2266,7 @@
                     );
 
                     return;
+
                 }
 
 
@@ -1121,9 +2274,7 @@
                     userSnap.data();
 
 
-                /* ==========================
-                   ROLE CHECK
-                ========================== */
+                /* ROLE */
 
                 const role =
                     String(
@@ -1138,12 +2289,11 @@
                     );
 
                     return;
+
                 }
 
 
-                /* ==========================
-                   STATUS CHECK
-                ========================== */
+                /* STATUS */
 
                 const status =
                     String(
@@ -1158,47 +2308,55 @@
                     );
 
                     return;
+
                 }
 
 
-                /* ==========================
-                   PROFILE DATA
-                ========================== */
+                currentStudent = data;
+
 
                 const name =
-                    data.name || "Student";
+                    data.name ||
+                    "Student";
+
 
                 const email =
                     data.email ||
                     user.email ||
                     "Not available";
 
+
                 const phone =
                     data.phone ||
                     "Not added";
+
 
                 const course =
                     data.course ||
                     "Not selected";
 
+
                 const biography =
                     data.biography ||
-                    "Complete your profile to add biography.";
+                    "Not added";
+
 
                 const dob =
                     data.dob ||
                     "Not added";
+
 
                 const facultyId =
                     data.facultyId ||
                     "";
 
 
-                /* ==========================
-                   TOP PROFILE
-                ========================== */
+                /* PROFILE */
 
                 studentName.textContent =
+                    name;
+
+                welcomeName.textContent =
                     name;
 
                 studentEmail.textContent =
@@ -1214,9 +2372,7 @@
                     "ACTIVE";
 
 
-                /* ==========================
-                   PROFILE DETAILS
-                ========================== */
+                /* DETAILS */
 
                 detailName.textContent =
                     name;
@@ -1237,7 +2393,8 @@
                     data.status || "Active";
 
                 detailFacultyId.textContent =
-                    facultyId || "Not assigned";
+                    facultyId ||
+                    "Not assigned";
 
                 detailBiography.textContent =
                     biography;
@@ -1246,9 +2403,7 @@
                     dob;
 
 
-                /* ==========================
-                   COURSE
-                ========================== */
+                /* COURSE TEXT */
 
                 courseInfo.textContent =
                     course === "Not selected"
@@ -1257,36 +2412,49 @@
                           course + ".";
 
 
-                /* ==========================
-                   PROFILE PHOTO
-                ========================== */
+                /* PHOTO */
 
                 if (data.photoURL) {
 
-                    profilePhoto.innerHTML =
-                        `<img src="${escapeHTML(
-                            data.photoURL
-                        )}" alt="Student Photo">`;
+                    profilePhoto.innerHTML = `
+
+                        <img
+                            src="${escapeHTML(data.photoURL)}"
+                            alt="Student Photo"
+                        >
+
+                    `;
 
                 }
 
 
-                /* ==========================
-                   COMPLETION
-                ========================== */
+                /* COMPLETION */
 
                 calculateProfileCompletion(
                     data
                 );
 
 
-                /* ==========================
-                   FACULTY
-                ========================== */
+                /* FACULTY */
 
                 await loadFaculty(
                     facultyId
                 );
+
+
+                /* DATA */
+
+                await Promise.all([
+
+                    loadCourses(user.uid),
+
+                    loadAttendance(user.uid),
+
+                    loadMarks(user.uid),
+
+                    loadNotifications(user.uid)
+
+                ]);
 
             }
 
@@ -1298,19 +2466,115 @@
                 );
 
                 showMessage(
-                    "Unable to load your profile. Please check Firebase."
+                    "Unable to load your dashboard. Please check Firebase."
                 );
+
             }
+
         }
 
 
-        /* ==============================
-           AUTH STATE
-        ============================== */
+        /* =====================================
+           CARD SCROLL
+        ===================================== */
+
+        document
+            .getElementById("courseCard")
+            .addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .getElementById("coursesPanel")
+                        .scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                }
+            );
+
+
+        document
+            .getElementById("progressCard")
+            .addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelector(".data-panel:nth-of-type(2)")
+                        ?.scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                }
+            );
+
+
+        document
+            .getElementById("notificationCard")
+            .addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .getElementById("notificationsList")
+                        .scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                }
+            );
+
+
+        document
+            .getElementById("achievementCard")
+            .addEventListener(
+                "click",
+                () => {
+
+                    alert(
+                        "Achievements section will be connected in the next step."
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById("certificateCard")
+            .addEventListener(
+                "click",
+                () => {
+
+                    alert(
+                        "Certificates section will be connected in the next step."
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById("paymentCard")
+            .addEventListener(
+                "click",
+                () => {
+
+                    alert(
+                        "Payment section will be connected in the next step."
+                    );
+
+                }
+            );
+
+
+        /* =====================================
+           AUTH
+        ===================================== */
 
         onAuthStateChanged(
             auth,
-            async (user) => {
+            async user => {
 
                 if (!user) {
 
@@ -1318,17 +2582,21 @@
                         "login.html";
 
                     return;
+
                 }
 
 
-                await loadStudent(user);
+                await loadStudent(
+                    user
+                );
+
             }
         );
 
 
-        /* ==============================
+        /* =====================================
            LOGOUT
-        ============================== */
+        ===================================== */
 
         logoutBtn.addEventListener(
             "click",
@@ -1336,7 +2604,10 @@
 
                 try {
 
-                    await signOut(auth);
+                    await signOut(
+                        auth
+                    );
+
 
                     window.location.href =
                         "login.html";
@@ -1353,7 +2624,9 @@
                     alert(
                         "Unable to logout. Please try again."
                     );
+
                 }
+
             }
         );
 
