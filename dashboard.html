@@ -113,7 +113,7 @@
 
 
         /* =====================================
-           WELCOME BANNER
+           WELCOME
         ===================================== */
 
         .welcome-banner {
@@ -214,70 +214,6 @@
 
 
         /* =====================================
-           PROFILE COMPLETION
-        ===================================== */
-
-        .completion-card {
-            background: white;
-            border: 1px solid #e5eaf2;
-            border-radius: 18px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
-        }
-
-        .completion-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
-        }
-
-        .completion-header h2 {
-            font-size: 18px;
-            color: #172033;
-        }
-
-        .percentage {
-            color: #2563eb;
-            font-weight: 800;
-            font-size: 20px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e8eef7;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .progress {
-            width: 0%;
-            height: 100%;
-            background: #2563eb;
-            border-radius: 20px;
-            transition: .6s;
-        }
-
-        .complete-btn {
-            display: inline-block;
-            margin-top: 18px;
-            padding: 10px 18px;
-            background: #eff6ff;
-            color: #2563eb;
-            text-decoration: none;
-            border-radius: 9px;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .complete-btn:hover {
-            background: #dbeafe;
-        }
-
-
-        /* =====================================
            STATISTICS
         ===================================== */
 
@@ -323,14 +259,77 @@
 
 
         /* =====================================
-           FEATURE GRID
+           PROFILE COMPLETION
+        ===================================== */
+
+        .completion-card {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+        }
+
+        .completion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .completion-header h2 {
+            font-size: 18px;
+        }
+
+        .percentage {
+            color: #2563eb;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e8eef7;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: #2563eb;
+            border-radius: 20px;
+            transition: .6s;
+        }
+
+        .complete-btn {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 18px;
+            background: #eff6ff;
+            color: #2563eb;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================
+           SECTION TITLE
         ===================================== */
 
         .section-title {
             margin: 30px 0 15px;
             font-size: 20px;
-            color: #172033;
         }
+
+
+        /* =====================================
+           DASHBOARD GRID
+        ===================================== */
 
         .dashboard-grid {
             display: grid;
@@ -367,7 +366,6 @@
         }
 
         .dashboard-card h3 {
-            color: #172033;
             font-size: 17px;
             margin-bottom: 7px;
         }
@@ -401,7 +399,6 @@
 
         .panel-header h2 {
             font-size: 19px;
-            color: #172033;
         }
 
         .panel-count {
@@ -434,15 +431,14 @@
         }
 
         .data-item h3 {
-            color: #172033;
             font-size: 15px;
-            margin-bottom: 5px;
+            margin-bottom: 7px;
         }
 
         .data-item p {
             color: #64748b;
             font-size: 13px;
-            margin: 3px 0;
+            margin: 4px 0;
         }
 
         .badge {
@@ -454,6 +450,154 @@
             font-size: 11px;
             font-weight: 700;
             margin-top: 7px;
+        }
+
+
+        /* =====================================
+           ATTENDANCE SUMMARY
+        ===================================== */
+
+        .attendance-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .attendance-box {
+            background: #f8fafc;
+            border: 1px solid #e8edf5;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .attendance-box strong {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .attendance-box span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .subject-attendance {
+            display: grid;
+            gap: 12px;
+        }
+
+        .subject-row {
+            background: #f8fafc;
+            border: 1px solid #e8edf5;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .subject-row-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 9px;
+        }
+
+        .subject-row-top strong {
+            font-size: 14px;
+        }
+
+        .subject-percent {
+            color: #2563eb;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .mini-progress {
+            width: 100%;
+            height: 8px;
+            background: #e5eaf2;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .mini-progress div {
+            height: 100%;
+            background: #2563eb;
+            border-radius: 20px;
+        }
+
+        .subject-meta {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 7px;
+        }
+
+
+        /* =====================================
+           MARKS
+        ===================================== */
+
+        .marks-summary {
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .marks-summary strong {
+            font-size: 25px;
+            color: #2563eb;
+        }
+
+        .marks-summary span {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th {
+            text-align: left;
+            background: #f8fafc;
+            color: #64748b;
+            padding: 13px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 13px;
+            border-bottom: 1px solid #edf1f6;
+            font-size: 13px;
+            color: #334155;
+        }
+
+        .mark-good {
+            color: #15803d;
+            font-weight: 800;
+        }
+
+        .mark-average {
+            color: #ca8a04;
+            font-weight: 800;
+        }
+
+        .mark-low {
+            color: #dc2626;
+            font-weight: 800;
         }
 
 
@@ -473,7 +617,6 @@
 
         .faculty-card h2,
         .details-card h2 {
-            color: #172033;
             font-size: 19px;
             margin-bottom: 20px;
         }
@@ -506,35 +649,7 @@
             color: #172033;
             font-size: 14px;
             font-weight: 600;
-        }
-
-
-        /* =====================================
-           TABLE
-        ===================================== */
-
-        .table-wrapper {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            text-align: left;
-            background: #f8fafc;
-            color: #64748b;
-            padding: 12px;
-            font-size: 12px;
-        }
-
-        td {
-            padding: 13px 12px;
-            border-bottom: 1px solid #edf1f6;
-            font-size: 13px;
-            color: #334155;
+            word-break: break-word;
         }
 
 
@@ -563,6 +678,7 @@
             .dashboard-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
         }
 
 
@@ -600,13 +716,21 @@
             .stats-grid,
             .dashboard-grid,
             .faculty-info,
-            .details-grid {
+            .details-grid,
+            .attendance-summary {
                 grid-template-columns: 1fr;
             }
 
             .logout-btn {
                 padding: 8px 12px;
             }
+
+            .marks-summary {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
         }
 
     </style>
@@ -630,11 +754,19 @@
             </div>
 
             <div class="brand-text">
-                <h2>R Mohan Digital</h2>
-                <small>Student Portal</small>
+
+                <h2>
+                    R Mohan Digital
+                </h2>
+
+                <small>
+                    Student Portal
+                </small>
+
             </div>
 
         </div>
+
 
         <button
             class="logout-btn"
@@ -669,14 +801,19 @@
             <div>
 
                 <h1>
-                    Welcome back, <span id="welcomeName">Student</span> 👋
+                    Welcome back,
+                    <span id="welcomeName">
+                        Student
+                    </span>
+                    👋
                 </h1>
 
                 <p>
-                    Manage your learning, courses, progress and academic information.
+                    Manage your learning, courses, attendance, marks and academic information.
                 </p>
 
             </div>
+
 
             <div class="welcome-icon">
                 🎓
@@ -792,12 +929,12 @@
 
                 <div>
 
-                    <h3 id="marksCount">
-                        0
+                    <h3 id="marksAverage">
+                        --%
                     </h3>
 
                     <p>
-                        Mark Records
+                        Marks Average
                     </p>
 
                 </div>
@@ -857,7 +994,6 @@
                 <div
                     class="progress"
                     id="profileProgress">
-
                 </div>
 
             </div>
@@ -867,7 +1003,7 @@
                 href="#profileDetails"
                 class="complete-btn">
 
-                Complete Your Profile
+                View Your Profile
 
             </a>
 
@@ -875,7 +1011,7 @@
 
 
         <!-- =====================================
-             FEATURES
+             SERVICES
         ====================================== -->
 
         <h2 class="section-title">
@@ -895,10 +1031,10 @@
                 </div>
 
                 <h3>
-                    My Course
+                    My Courses
                 </h3>
 
-                <p id="courseInfo">
+                <p>
                     View your enrolled courses and learning information.
                 </p>
 
@@ -910,15 +1046,15 @@
                 id="progressCard">
 
                 <div class="icon">
-                    📈
+                    📊
                 </div>
 
                 <h3>
-                    Learning Progress
+                    Attendance & Marks
                 </h3>
 
                 <p>
-                    Track your attendance, marks and academic progress.
+                    Check your attendance, subject-wise performance and examination marks.
                 </p>
 
             </div>
@@ -994,7 +1130,7 @@
                 </h3>
 
                 <p>
-                    View important announcements and updates.
+                    View important notifications and updates.
                 </p>
 
             </div>
@@ -1045,7 +1181,9 @@
              ATTENDANCE
         ====================================== -->
 
-        <section class="data-panel">
+        <section
+            class="data-panel"
+            id="attendancePanel">
 
             <div class="panel-header">
 
@@ -1065,7 +1203,57 @@
 
 
             <div
-                class="data-list"
+                class="attendance-summary"
+                id="attendanceSummary">
+
+                <div class="attendance-box">
+
+                    <strong id="presentCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Present
+                    </span>
+
+                </div>
+
+
+                <div class="attendance-box">
+
+                    <strong id="absentCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Absent
+                    </span>
+
+                </div>
+
+
+                <div class="attendance-box">
+
+                    <strong id="totalClasses">
+                        0
+                    </strong>
+
+                    <span>
+                        Total Classes
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <h3 style="margin-bottom:15px;">
+                Subject-wise Attendance
+            </h3>
+
+
+            <div
+                class="subject-attendance"
                 id="attendanceList">
 
                 <div class="empty-state">
@@ -1081,7 +1269,9 @@
              MARKS
         ====================================== -->
 
-        <section class="data-panel">
+        <section
+            class="data-panel"
+            id="marksPanel">
 
             <div class="panel-header">
 
@@ -1096,6 +1286,20 @@
                     0 Records
 
                 </span>
+
+            </div>
+
+
+            <div
+                class="marks-summary">
+
+                <span>
+                    Overall Marks Average
+                </span>
+
+                <strong id="marksAveragePanel">
+                    --%
+                </strong>
 
             </div>
 
@@ -1117,7 +1321,9 @@
              NOTIFICATIONS
         ====================================== -->
 
-        <section class="data-panel">
+        <section
+            class="data-panel"
+            id="notificationsPanel">
 
             <div class="panel-header">
 
@@ -1404,7 +1610,6 @@
         const logoutBtn =
             document.getElementById("logoutBtn");
 
-
         const studentName =
             document.getElementById("studentName");
 
@@ -1423,17 +1628,14 @@
         const profilePhoto =
             document.getElementById("profilePhoto");
 
-
         const welcomeName =
             document.getElementById("welcomeName");
-
 
         const profilePercentage =
             document.getElementById("profilePercentage");
 
         const profileProgress =
             document.getElementById("profileProgress");
-
 
         const detailName =
             document.getElementById("detailName");
@@ -1462,7 +1664,6 @@
         const detailDob =
             document.getElementById("detailDob");
 
-
         const facultyName =
             document.getElementById("facultyName");
 
@@ -1474,11 +1675,6 @@
 
         const facultyCourse =
             document.getElementById("facultyCourse");
-
-
-        const courseInfo =
-            document.getElementById("courseInfo");
-
 
         const coursesList =
             document.getElementById("coursesList");
@@ -1492,19 +1688,17 @@
         const notificationsList =
             document.getElementById("notificationsList");
 
-
         const courseCount =
             document.getElementById("courseCount");
 
         const attendancePercentage =
             document.getElementById("attendancePercentage");
 
-        const marksCount =
-            document.getElementById("marksCount");
+        const marksAverage =
+            document.getElementById("marksAverage");
 
         const notificationCount =
             document.getElementById("notificationCount");
-
 
         const coursePanelCount =
             document.getElementById("coursePanelCount");
@@ -1517,6 +1711,18 @@
 
         const notificationPanelCount =
             document.getElementById("notificationPanelCount");
+
+        const presentCount =
+            document.getElementById("presentCount");
+
+        const absentCount =
+            document.getElementById("absentCount");
+
+        const totalClasses =
+            document.getElementById("totalClasses");
+
+        const marksAveragePanel =
+            document.getElementById("marksAveragePanel");
 
 
         let currentStudent = null;
@@ -1559,6 +1765,46 @@
 
 
         /* =====================================
+           DATE FORMAT
+        ===================================== */
+
+        function formatDate(value) {
+
+            if (!value) {
+                return "Date not available";
+            }
+
+            try {
+
+                if (
+                    typeof value.toDate === "function"
+                ) {
+
+                    return value
+                        .toDate()
+                        .toLocaleDateString(
+                            "en-IN"
+                        );
+
+                }
+
+                return new Date(value)
+                    .toLocaleDateString(
+                        "en-IN"
+                    );
+
+            }
+
+            catch (error) {
+
+                return String(value);
+
+            }
+
+        }
+
+
+        /* =====================================
            PROFILE COMPLETION
         ===================================== */
 
@@ -1575,9 +1821,7 @@
 
             ];
 
-
             let completed = 0;
-
 
             fields.forEach(field => {
 
@@ -1602,7 +1846,6 @@
 
             profilePercentage.textContent =
                 percentage + "%";
-
 
             profileProgress.style.width =
                 percentage + "%";
@@ -1717,14 +1960,19 @@
         async function loadCourses(uid) {
 
             coursesList.innerHTML =
-                `<div class="empty-state">Loading courses...</div>`;
+                `<div class="empty-state">
+                    Loading courses...
+                 </div>`;
 
 
             try {
 
                 const q =
                     query(
-                        collection(db, "courses"),
+                        collection(
+                            db,
+                            "courses"
+                        ),
                         where(
                             "studentId",
                             "==",
@@ -1788,7 +2036,7 @@
                         <div class="data-item">
 
                             <h3>
-                                ${escapeHTML(courseName)}
+                                📚 ${escapeHTML(courseName)}
                             </h3>
 
                             <p>
@@ -1832,14 +2080,19 @@
         async function loadAttendance(uid) {
 
             attendanceList.innerHTML =
-                `<div class="empty-state">Loading attendance...</div>`;
+                `<div class="empty-state">
+                    Loading attendance...
+                 </div>`;
 
 
             try {
 
                 const q =
                     query(
-                        collection(db, "attendance"),
+                        collection(
+                            db,
+                            "attendance"
+                        ),
                         where(
                             "studentId",
                             "==",
@@ -1860,6 +2113,15 @@
                     attendancePanelPercentage.textContent =
                         "--%";
 
+                    presentCount.textContent =
+                        "0";
+
+                    absentCount.textContent =
+                        "0";
+
+                    totalClasses.textContent =
+                        "0";
+
 
                     attendanceList.innerHTML =
                         `<div class="empty-state">
@@ -1872,7 +2134,13 @@
 
 
                 let present = 0;
+
+                let absent = 0;
+
                 let total = 0;
+
+
+                const subjects = {};
 
 
                 snapshot.forEach(docSnap => {
@@ -1884,19 +2152,69 @@
                     const status =
                         String(
                             data.status || ""
-                        ).toLowerCase();
+                        ).toLowerCase().trim();
+
+
+                    const subject =
+                        data.subject ||
+                        data.subjectName ||
+                        data.course ||
+                        "Unknown Subject";
 
 
                     total++;
 
 
+                    let isPresent = false;
+
+
                     if (
                         status === "present" ||
                         status === "p" ||
+                        status === "yes" ||
                         data.present === true
                     ) {
 
+                        isPresent = true;
+
                         present++;
+
+                    }
+
+                    else {
+
+                        absent++;
+
+                    }
+
+
+                    if (!subjects[subject]) {
+
+                        subjects[subject] = {
+
+                            present: 0,
+
+                            absent: 0,
+
+                            total: 0
+
+                        };
+
+                    }
+
+
+                    subjects[subject].total++;
+
+
+                    if (isPresent) {
+
+                        subjects[subject].present++;
+
+                    }
+
+                    else {
+
+                        subjects[subject].absent++;
 
                     }
 
@@ -1919,29 +2237,87 @@
                     percentage + "%";
 
 
-                attendanceList.innerHTML = `
+                presentCount.textContent =
+                    present;
 
-                    <div class="data-item">
 
-                        <h3>
-                            Overall Attendance
-                        </h3>
+                absentCount.textContent =
+                    absent;
 
-                        <p>
-                            Present: ${present}
-                        </p>
 
-                        <p>
-                            Total Classes: ${total}
-                        </p>
+                totalClasses.textContent =
+                    total;
 
-                        <span class="badge">
-                            ${percentage}% Attendance
-                        </span>
 
-                    </div>
+                attendanceList.innerHTML = "";
 
-                `;
+
+                Object.keys(subjects)
+                    .sort()
+                    .forEach(subject => {
+
+                        const item =
+                            subjects[subject];
+
+
+                        const subjectPercentage =
+                            item.total > 0
+                                ? Math.round(
+                                    (item.present /
+                                        item.total) *
+                                    100
+                                )
+                                : 0;
+
+
+                        attendanceList.innerHTML += `
+
+                            <div class="subject-row">
+
+                                <div class="subject-row-top">
+
+                                    <strong>
+                                        ${escapeHTML(subject)}
+                                    </strong>
+
+                                    <span class="subject-percent">
+                                        ${subjectPercentage}%
+                                    </span>
+
+                                </div>
+
+
+                                <div class="mini-progress">
+
+                                    <div
+                                        style="width:${subjectPercentage}%">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="subject-meta">
+
+                                    Present:
+                                    ${item.present}
+
+                                    &nbsp; • &nbsp;
+
+                                    Absent:
+                                    ${item.absent}
+
+                                    &nbsp; • &nbsp;
+
+                                    Total:
+                                    ${item.total}
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    });
 
             }
 
@@ -1951,6 +2327,12 @@
                     "Attendance error:",
                     error
                 );
+
+                attendancePercentage.textContent =
+                    "--%";
+
+                attendancePanelPercentage.textContent =
+                    "--%";
 
                 attendanceList.innerHTML =
                     `<div class="empty-state">
@@ -1963,20 +2345,48 @@
 
 
         /* =====================================
+           GET MARK CLASS
+        ===================================== */
+
+        function getMarkClass(percent) {
+
+            if (percent >= 75) {
+
+                return "mark-good";
+
+            }
+
+            if (percent >= 50) {
+
+                return "mark-average";
+
+            }
+
+            return "mark-low";
+
+        }
+
+
+        /* =====================================
            LOAD MARKS
         ===================================== */
 
         async function loadMarks(uid) {
 
             marksTable.innerHTML =
-                `<div class="empty-state">Loading marks...</div>`;
+                `<div class="empty-state">
+                    Loading marks...
+                 </div>`;
 
 
             try {
 
                 const q =
                     query(
-                        collection(db, "marks"),
+                        collection(
+                            db,
+                            "marks"
+                        ),
                         where(
                             "studentId",
                             "==",
@@ -1992,11 +2402,20 @@
                 marksCount.textContent =
                     snapshot.size;
 
+
                 marksPanelCount.textContent =
-                    snapshot.size + " Records";
+                    snapshot.size +
+                    " Records";
 
 
                 if (snapshot.empty) {
+
+                    marksAverage.textContent =
+                        "--%";
+
+                    marksAveragePanel.textContent =
+                        "--%";
+
 
                     marksTable.innerHTML =
                         `<div class="empty-state">
@@ -2006,6 +2425,11 @@
                     return;
 
                 }
+
+
+                let totalPercentage = 0;
+
+                let validRecords = 0;
 
 
                 let html = `
@@ -2021,15 +2445,23 @@
                                 </th>
 
                                 <th>
+                                    Exam
+                                </th>
+
+                                <th>
                                     Marks
                                 </th>
 
                                 <th>
-                                    Total
+                                    Maximum
                                 </th>
 
                                 <th>
                                     Percentage
+                                </th>
+
+                                <th>
+                                    Date
                                 </th>
 
                             </tr>
@@ -2054,28 +2486,62 @@
                         "Subject";
 
 
+                    const exam =
+                        data.exam ||
+                        data.examName ||
+                        data.test ||
+                        "Exam";
+
+
                     const marks =
                         Number(
                             data.marks ??
                             data.mark ??
+                            data.score ??
                             0
                         );
 
 
-                    const total =
+                    const maxMarks =
                         Number(
-                            data.total ??
                             data.maxMarks ??
+                            data.total ??
+                            data.maximumMarks ??
                             100
                         );
 
 
-                    const percentage =
-                        total > 0
-                            ? Math.round(
-                                (marks / total) * 100
-                            )
-                            : 0;
+                    let percentage = 0;
+
+
+                    if (maxMarks > 0) {
+
+                        percentage =
+                            Math.round(
+                                (marks / maxMarks) *
+                                100
+                            );
+
+
+                        totalPercentage +=
+                            percentage;
+
+                        validRecords++;
+
+                    }
+
+
+                    const markClass =
+                        getMarkClass(
+                            percentage
+                        );
+
+
+                    const date =
+                        formatDate(
+                            data.date ||
+                            data.createdAt
+                        );
 
 
                     html += `
@@ -2087,15 +2553,23 @@
                             </td>
 
                             <td>
+                                ${escapeHTML(exam)}
+                            </td>
+
+                            <td>
                                 ${marks}
                             </td>
 
                             <td>
-                                ${total}
+                                ${maxMarks}
+                            </td>
+
+                            <td class="${markClass}">
+                                ${percentage}%
                             </td>
 
                             <td>
-                                ${percentage}%
+                                ${escapeHTML(date)}
                             </td>
 
                         </tr>
@@ -2117,6 +2591,23 @@
                 marksTable.innerHTML =
                     html;
 
+
+                const average =
+                    validRecords > 0
+                        ? Math.round(
+                            totalPercentage /
+                            validRecords
+                        )
+                        : 0;
+
+
+                marksAverage.textContent =
+                    average + "%";
+
+
+                marksAveragePanel.textContent =
+                    average + "%";
+
             }
 
             catch (error) {
@@ -2125,6 +2616,12 @@
                     "Marks error:",
                     error
                 );
+
+                marksAverage.textContent =
+                    "--%";
+
+                marksAveragePanel.textContent =
+                    "--%";
 
                 marksTable.innerHTML =
                     `<div class="empty-state">
@@ -2143,14 +2640,19 @@
         async function loadNotifications(uid) {
 
             notificationsList.innerHTML =
-                `<div class="empty-state">Loading notifications...</div>`;
+                `<div class="empty-state">
+                    Loading notifications...
+                 </div>`;
 
 
             try {
 
                 const q =
                     query(
-                        collection(db, "notifications"),
+                        collection(
+                            db,
+                            "notifications"
+                        ),
                         where(
                             "userId",
                             "==",
@@ -2165,6 +2667,7 @@
 
                 notificationCount.textContent =
                     snapshot.size;
+
 
                 notificationPanelCount.textContent =
                     snapshot.size;
@@ -2202,6 +2705,12 @@
                         "No message";
 
 
+                    const date =
+                        formatDate(
+                            data.createdAt
+                        );
+
+
                     notificationsList.innerHTML += `
 
                         <div class="data-item">
@@ -2213,6 +2722,10 @@
                             <p>
                                 ${escapeHTML(text)}
                             </p>
+
+                            <span class="badge">
+                                ${escapeHTML(date)}
+                            </span>
 
                         </div>
 
@@ -2363,10 +2876,12 @@
                     email;
 
                 studentCourse.textContent =
-                    "Course: " + course;
+                    "Course: " +
+                    course;
 
                 studentPhone.textContent =
-                    "Phone: " + phone;
+                    "Phone: " +
+                    phone;
 
                 studentStatus.textContent =
                     "ACTIVE";
@@ -2390,7 +2905,8 @@
                     "Student";
 
                 detailStatus.textContent =
-                    data.status || "Active";
+                    data.status ||
+                    "Active";
 
                 detailFacultyId.textContent =
                     facultyId ||
@@ -2403,13 +2919,11 @@
                     dob;
 
 
-                /* COURSE TEXT */
+                /* COURSE */
 
-                courseInfo.textContent =
-                    course === "Not selected"
-                        ? "No course has been selected yet."
-                        : "You are enrolled in " +
-                          course + ".";
+                calculateProfileCompletion(
+                    data
+                );
 
 
                 /* PHOTO */
@@ -2428,13 +2942,6 @@
                 }
 
 
-                /* COMPLETION */
-
-                calculateProfileCompletion(
-                    data
-                );
-
-
                 /* FACULTY */
 
                 await loadFaculty(
@@ -2442,7 +2949,7 @@
                 );
 
 
-                /* DATA */
+                /* LOAD DATA */
 
                 await Promise.all([
 
@@ -2475,7 +2982,30 @@
 
 
         /* =====================================
-           CARD SCROLL
+           SCROLL HELPER
+        ===================================== */
+
+        function scrollToSection(id) {
+
+            const element =
+                document.getElementById(id);
+
+
+            if (!element) {
+                return;
+            }
+
+
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+
+        /* =====================================
+           CARD EVENTS
         ===================================== */
 
         document
@@ -2484,11 +3014,9 @@
                 "click",
                 () => {
 
-                    document
-                        .getElementById("coursesPanel")
-                        .scrollIntoView({
-                            behavior: "smooth"
-                        });
+                    scrollToSection(
+                        "coursesPanel"
+                    );
 
                 }
             );
@@ -2500,11 +3028,9 @@
                 "click",
                 () => {
 
-                    document
-                        .querySelector(".data-panel:nth-of-type(2)")
-                        ?.scrollIntoView({
-                            behavior: "smooth"
-                        });
+                    scrollToSection(
+                        "attendancePanel"
+                    );
 
                 }
             );
@@ -2516,11 +3042,9 @@
                 "click",
                 () => {
 
-                    document
-                        .getElementById("notificationsList")
-                        .scrollIntoView({
-                            behavior: "smooth"
-                        });
+                    scrollToSection(
+                        "notificationsPanel"
+                    );
 
                 }
             );
@@ -2533,7 +3057,7 @@
                 () => {
 
                     alert(
-                        "Achievements section will be connected in the next step."
+                        "Achievements will be connected in the next step."
                     );
 
                 }
@@ -2547,7 +3071,7 @@
                 () => {
 
                     alert(
-                        "Certificates section will be connected in the next step."
+                        "Certificates will be connected in the next step."
                     );
 
                 }
@@ -2561,7 +3085,7 @@
                 () => {
 
                     alert(
-                        "Payment section will be connected in the next step."
+                        "Payment information will be connected in the next step."
                     );
 
                 }
