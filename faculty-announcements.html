@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Announcements | R Mohan Digital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #020617;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #07111f;
+            border-bottom: 1px solid #0e7490;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            color: #00e5ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .brand span {
+            display: block;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+        }
+
+        .back-btn {
+            background: #0f172a;
+            color: #00e5ff;
+            border: 1px solid #0891b2;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        .logout-btn {
+            background: #dc2626;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .title {
+            margin-bottom: 25px;
+        }
+
+        .title h1 {
+            color: #00e5ff;
+            font-size: 30px;
+        }
+
+        .title p {
+            color: #94a3b8;
+            margin-top: 7px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .card {
+            background: #07111f;
+            border: 1px solid #164e63;
+            border-radius: 15px;
+            padding: 22px;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+        }
+
+        .card h2 {
+            color: #00e5ff;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            color: #cbd5e1;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            background: #020617;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px;
+            outline: none;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color: #00e5ff;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: #00e5ff;
+            color: #020617;
+            font-weight: bold;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cancel-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 11px;
+            background: #1e293b;
+            color: #cbd5e1;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .message {
+            display: none;
+            margin-bottom: 20px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #082f49;
+            color: #bae6fd;
+            border: 1px solid #0369a1;
+        }
+
+        .announcement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .announcement {
+            background: #020617;
+            border: 1px solid #164e63;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .announcement h3 {
+            color: #f8fafc;
+            margin-bottom: 7px;
+        }
+
+        .subject {
+            display: inline-block;
+            background: #083344;
+            color: #67e8f9;
+            border: 1px solid #155e75;
+            padding: 4px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .date {
+            color: #64748b;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .description {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-top: 15px;
+            white-space: pre-wrap;
+        }
+
+        .announcement-footer {
+            border-top: 1px solid #1e293b;
+            margin-top: 15px;
+            padding-top: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .target {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .edit-btn {
+            background: #0369a1;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .delete-btn {
+            background: #991b1b;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px 20px;
+            color: #64748b;
+            border: 1px dashed #164e63;
+            border-radius: 12px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 850px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            .brand {
+                font-size: 17px;
+            }
+
+            .back-btn,
+            .logout-btn {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .announcement-header {
+                flex-direction: column;
+            }
+
+            .announcement-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+        R MOHAN DIGITAL
+        <span>FACULTY CENTER</span>
+    </div>
+
+    <div class="actions">
+        <button class="back-btn" id="backBtn">
+            ← Dashboard
+        </button>
+
+        <button class="logout-btn" id="logoutBtn">
+            Logout
+        </button>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="title">
+        <h1>📢 Announcements</h1>
+        <p>Create announcements for your assigned students.</p>
+    </div>
+
+
+    <div id="message" class="message"></div>
+
+
+    <div class="layout">
+
+        <!-- FORM -->
+
+        <section class="card">
+
+            <h2 id="formTitle">
+                Create Announcement
+            </h2>
+
+            <form id="announcementForm">
+
+                <div class="field">
+
+                    <label for="title">
+                        Announcement Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Enter announcement title"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="subject">
+                        Subject
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        placeholder="Example: Data Structures"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Write your announcement..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="targetRole">
+                        Target
+                    </label>
+
+                    <select id="targetRole">
+
+                        <option value="student">
+                            All My Students
+                        </option>
+
+                        <option value="all">
+                            All Students
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="course">
+                        Course
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course"
+                        placeholder="Example: CSE"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                    id="submitBtn"
+                >
+                    Publish Announcement
+                </button>
+
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelBtn"
+                >
+                    Cancel Edit
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- LIST -->
+
+        <section class="card">
+
+            <h2>
+                My Announcements
+            </h2>
+
+            <div
+                id="announcementList"
+                class="announcement-list"
+            >
+
+                <div class="loading">
+                    Loading announcements...
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script type="module">
+
+    import { auth, db } from "./firebase.js";
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+    import {
+        collection,
+        getDocs,
+        query,
+        where,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        doc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+    const form =
+        document.getElementById("announcementForm");
+
+    const titleInput =
+        document.getElementById("title");
+
+    const subjectInput =
+        document.getElementById("subject");
+
+    const descriptionInput =
+        document.getElementById("description");
+
+    const targetRoleInput =
+        document.getElementById("targetRole");
+
+    const courseInput =
+        document.getElementById("course");
+
+    const submitBtn =
+        document.getElementById("submitBtn");
+
+    const cancelBtn =
+        document.getElementById("cancelBtn");
+
+    const formTitle =
+        document.getElementById("formTitle");
+
+    const announcementList =
+        document.getElementById("announcementList");
+
+    const message =
+        document.getElementById("message");
+
+
+    let currentFaculty = null;
+
+    let editingId = null;
+
+
+    /* =========================
+       HELPERS
+    ========================= */
+
+    function escapeHTML(value) {
+
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    function showMessage(text) {
+
+        message.textContent = text;
+        message.style.display = "block";
+
+    }
+
+
+    function hideMessage() {
+
+        message.style.display = "none";
+
+    }
+
+
+    function formatDate(value) {
+
+        if (!value) {
+            return "Date not available";
+        }
+
+        try {
+
+            let date;
+
+            if (value?.toDate) {
+                date = value.toDate();
+            }
+            else if (typeof value === "string") {
+                date = new Date(value);
+            }
+            else if (typeof value === "number") {
+                date = new Date(value);
+            }
+
+            if (!date || isNaN(date.getTime())) {
+                return "Date not available";
+            }
+
+            return date.toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+
+        } catch (error) {
+
+            return "Date not available";
+        }
+    }
+
+
+    function timestampValue(value) {
+
+        if (!value) {
+            return 0;
+        }
+
+        try {
+
+            if (value?.toDate) {
+                return value.toDate().getTime();
+            }
+
+            if (typeof value === "string") {
+                const date = new Date(value);
+
+                return isNaN(date.getTime())
+                    ? 0
+                    : date.getTime();
+            }
+
+            if (typeof value === "number") {
+                return value;
+            }
+
+        } catch (error) {}
+
+        return 0;
+    }
+
+
+    /* =========================
+       AUTH
+    ========================= */
+
+    onAuthStateChanged(auth, async (user) => {
+
+        if (!user) {
+
+            window.location.href = "login.html";
+            return;
+        }
+
+        try {
+
+            await loadFaculty(user.uid);
+
+            await loadAnnouncements();
+
+        } catch (error) {
+
+            console.error(error);
+
+            announcementList.innerHTML = "";
+
+            showMessage(
+                error.message ||
+                "Unable to load faculty data."
+            );
+
+        }
+
+    });
+
+
+    /* =========================
+       FACULTY PROFILE
+    ========================= */
+
+    async function loadFaculty(uid) {
+
+        const facultyRef =
+            doc(db, "users", uid);
+
+        const snapshot =
+            await getDocs(
+                query(
+                    collection(db, "users"),
+                    where("__name__", "==", uid)
+                )
+            );
+
+        if (snapshot.empty) {
+
+            throw new Error(
+                "Faculty profile not found."
+            );
+        }
+
+        const data =
+            snapshot.docs[0].data();
+
+        const role =
+            String(data.role || "").toLowerCase();
+
+        const status =
+            String(data.status || "").toLowerCase();
+
+
+        if (role !== "faculty") {
+
+            throw new Error(
+                "This page is available only for faculty accounts."
+            );
+        }
+
+
+        if (status !== "active") {
+
+            throw new Error(
+                "Your faculty account is not active."
+            );
+        }
+
+
+        currentFaculty = {
+            uid: uid,
+            ...data
+        };
+
+    }
+
+
+    /* =========================
+       LOAD ANNOUNCEMENTS
+    ========================= */
+
+    async function loadAnnouncements() {
+
+        announcementList.innerHTML = `
+            <div class="loading">
+                Loading announcements...
+            </div>
+        `;
+
+
+        const q = query(
+            collection(db, "announcements"),
+            where(
+                "createdBy",
+                "==",
+                currentFaculty.uid
+            )
+        );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        const announcements = [];
+
+
+        snapshot.forEach(docSnap => {
+
+            announcements.push({
+                id: docSnap.id,
+                ...docSnap.data()
+            });
+
+        });
+
+
+        announcements.sort((a, b) => {
+
+            return (
+                timestampValue(b.createdAt) -
+                timestampValue(a.createdAt)
+            );
+
+        });
+
+
+        renderAnnouncements(announcements);
+
+    }
+
+
+    /* =========================
+       RENDER
+    ========================= */
+
+    function renderAnnouncements(items) {
+
+        announcementList.innerHTML = "";
+
+
+        if (items.length === 0) {
+
+            announcementList.innerHTML = `
+                <div class="empty">
+
+                    <div style="font-size:45px;">
+                        📭
+                    </div>
+
+                    <h3 style="margin-top:12px;color:#cbd5e1;">
+                        No announcements yet
+                    </h3>
+
+                    <p style="margin-top:8px;">
+                        Create your first announcement using the form.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        items.forEach(item => {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "announcement";
+
+
+            const title =
+                item.title ||
+                "Untitled Announcement";
+
+
+            const subject =
+                item.subject ||
+                "General";
+
+
+            const description =
+                item.description ||
+                item.message ||
+                "";
+
+
+            const target =
+                item.targetRole === "all"
+                    ? "All Students"
+                    : "My Students";
+
+
+            card.innerHTML = `
+
+                <div class="announcement-header">
+
+                    <div>
+
+                        <h3>
+                            ${escapeHTML(title)}
+                        </h3>
+
+                        <span class="subject">
+                            ${escapeHTML(subject)}
+                        </span>
+
+                    </div>
+
+                    <div class="date">
+                        ${escapeHTML(
+                            formatDate(item.createdAt)
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="description">
+                    ${escapeHTML(description)}
+                </div>
+
+
+                <div class="announcement-footer">
+
+                    <div class="target">
+                        🎯 ${escapeHTML(target)}
+                        ${
+                            item.course
+                                ? " • " +
+                                  escapeHTML(item.course)
+                                : ""
+                        }
+                    </div>
+
+
+                    <div class="buttons">
+
+                        <button
+                            class="edit-btn"
+                            data-id="${item.id}"
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            data-id="${item.id}"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+
+            const editButton =
+                card.querySelector(".edit-btn");
+
+            const deleteButton =
+                card.querySelector(".delete-btn");
+
+
+            editButton.addEventListener(
+                "click",
+                () => editAnnouncement(item)
+            );
+
+
+            deleteButton.addEventListener(
+                "click",
+                () => deleteAnnouncement(item.id)
+            );
+
+
+            announcementList.appendChild(card);
+
+        });
+
+    }
+
+
+    /* =========================
+       CREATE / UPDATE
+    ========================= */
+
+    form.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        hideMessage();
+
+
+        const title =
+            titleInput.value.trim();
+
+        const subject =
+            subjectInput.value.trim();
+
+        const description =
+            descriptionInput.value.trim();
+
+        const targetRole =
+            targetRoleInput.value;
+
+        const course =
+            courseInput.value.trim();
+
+
+        if (!title || !subject || !description) {
+
+            showMessage(
+                "Please fill all required fields."
+            );
+
+            return;
+        }
+
+
+        submitBtn.disabled = true;
+
+        submitBtn.textContent =
+            editingId
+                ? "Updating..."
+                : "Publishing...";
+
+
+        try {
+
+            const data = {
+
+                title,
+                subject,
+                description,
+                targetRole,
+                course,
+
+                facultyName:
+                    currentFaculty.name || "Faculty",
+
+                createdBy:
+                    currentFaculty.uid,
+
+                createdByName:
+                    currentFaculty.name || "Faculty",
+
+                createdByRole:
+                    "faculty"
+
+            };
+
+
+            if (editingId) {
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "announcements",
+                        editingId
+                    ),
+                    {
+                        ...data,
+                        updatedAt:
+                            serverTimestamp()
+                    }
+                );
+
+                showMessage(
+                    "Announcement updated successfully."
+                );
+
+            } else {
+
+                await addDoc(
+                    collection(db, "announcements"),
+                    {
+                        ...data,
+                        createdAt:
+                            serverTimestamp(),
+                        updatedAt:
+                            serverTimestamp()
+                    }
+                );
+
+                showMessage(
+                    "Announcement published successfully."
+                );
+
+            }
+
+
+            resetForm();
+
+            await loadAnnouncements();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Unable to save announcement: " +
+                error.message
+            );
+
+        } finally {
+
+            submitBtn.disabled = false;
+
+            submitBtn.textContent =
+                editingId
+                    ? "Update Announcement"
+                    : "Publish Announcement";
+        }
+
+    });
+
+
+    /* =========================
+       EDIT
+    ========================= */
+
+    function editAnnouncement(item) {
+
+        editingId = item.id;
+
+
+        titleInput.value =
+            item.title || "";
+
+        subjectInput.value =
+            item.subject || "";
+
+        descriptionInput.value =
+            item.description ||
+            item.message ||
+            "";
+
+        targetRoleInput.value =
+            item.targetRole || "student";
+
+        courseInput.value =
+            item.course || "";
+
+
+        formTitle.textContent =
+            "Edit Announcement";
+
+
+        submitBtn.textContent =
+            "Update Announcement";
+
+
+        cancelBtn.style.display =
+            "block";
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* =========================
+       DELETE
+    ========================= */
+
+    async function deleteAnnouncement(id) {
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to delete this announcement?"
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        try {
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "announcements",
+                    id
+                )
+            );
+
+
+            showMessage(
+                "Announcement deleted successfully."
+            );
+
+
+            await loadAnnouncements();
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Unable to delete announcement: " +
+                error.message
+            );
+
+        }
+
+    }
+
+
+    /* =========================
+       RESET
+    ========================= */
+
+    function resetForm() {
+
+        editingId = null;
+
+        form.reset();
+
+        formTitle.textContent =
+            "Create Announcement";
+
+        submitBtn.textContent =
+            "Publish Announcement";
+
+        cancelBtn.style.display =
+            "none";
+
+    }
+
+
+    cancelBtn.addEventListener(
+        "click",
+        resetForm
+    );
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    document
+        .getElementById("backBtn")
+        .addEventListener("click", () => {
+
+            window.location.href =
+                "faculty-dashboard.html";
+
+        });
+
+
+    document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async () => {
+
+            try {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "login.html";
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to logout."
+                );
+            }
+
+        });
+
+</script>
+
+</body>
+</html>
