@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile | R Mohan Digital</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #102a43 0%,
+                    #07111f 35%,
+                    #020617 75%
+                );
+
+            color: white;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 22px;
+            margin-bottom: 22px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(7, 17, 31, 0.85);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.18);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .topbar h1 {
+            font-size: 21px;
+        }
+
+        .topbar h1 span {
+            color: #00e5ff;
+        }
+
+        .back-btn {
+            padding: 9px 15px;
+
+            border: 1px solid #00e5ff;
+            border-radius: 8px;
+
+            background:
+                rgba(0, 229, 255, 0.08);
+
+            color: #00e5ff;
+
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #00e5ff;
+            color: #020617;
+        }
+
+        .profile-card {
+            padding: 28px;
+            margin-bottom: 22px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(7, 17, 31, 0.85);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.18);
+
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .avatar {
+            width: 95px;
+            height: 95px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(0, 229, 255, 0.08);
+
+            border: 2px solid #00e5ff;
+
+            color: #00e5ff;
+
+            font-size: 38px;
+
+            box-shadow:
+                0 0 22px rgba(0, 229, 255, 0.22);
+        }
+
+        .profile-info h2 {
+            color: #00e5ff;
+            margin-bottom: 9px;
+        }
+
+        .profile-info p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin: 5px 0;
+        }
+
+        .status {
+            display: inline-block;
+
+            margin-top: 8px;
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            color: #22c55e;
+
+            background:
+                rgba(34, 197, 94, 0.08);
+
+            border:
+                1px solid rgba(34, 197, 94, 0.3);
+
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .panel {
+            padding: 22px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(7, 17, 31, 0.82);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.15);
+        }
+
+        .panel h2 {
+            font-size: 17px;
+            margin-bottom: 18px;
+            color: #00e5ff;
+        }
+
+        .detail {
+            padding: 12px;
+
+            margin-bottom: 10px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(15, 23, 42, 0.75);
+
+            border:
+                1px solid rgba(148, 163, 184, 0.08);
+        }
+
+        .detail label {
+            display: block;
+
+            color: #64748b;
+
+            font-size: 10px;
+
+            margin-bottom: 5px;
+        }
+
+        .detail span {
+            color: #e2e8f0;
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+        .message {
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #94a3b8;
+
+            font-size: 14px;
+        }
+
+        .error {
+            color: #f87171;
+        }
+
+        .loading {
+            color: #38bdf8;
+        }
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <h1>
+            Student
+            <span>Profile</span>
+        </h1>
+
+        <button
+            class="back-btn"
+            id="backBtn">
+
+            ← Back to Students
+
+        </button>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div id="pageContent">
+
+        <div class="message loading">
+
+            Loading student profile...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    auth,
+    db
+} from "./firebase.js";
+
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+    doc,
+    getDoc,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+// ======================================================
+// ELEMENTS
+// ======================================================
+
+const pageContent =
+    document.getElementById("pageContent");
+
+const backBtn =
+    document.getElementById("backBtn");
+
+
+// ======================================================
+// GET STUDENT ID FROM URL
+// ======================================================
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const studentId =
+    urlParams.get("id");
+
+
+// ======================================================
+// BACK BUTTON
+// ======================================================
+
+backBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "faculty-dashboard.html#studentsSection";
+
+    }
+);
+
+
+// ======================================================
+// AUTHENTICATION
+// ======================================================
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        if (!studentId) {
+
+            showError(
+                "Student ID is missing."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            // ==========================================
+            // GET FACULTY PROFILE
+            // ==========================================
+
+            const facultyRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+            const facultySnapshot =
+                await getDoc(
+                    facultyRef
+                );
+
+
+            if (!facultySnapshot.exists()) {
+
+                showError(
+                    "Faculty profile not found."
+                );
+
+                return;
+
+            }
+
+
+            const facultyData =
+                facultySnapshot.data();
+
+
+            const role =
+                String(
+                    facultyData.role || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const status =
+                String(
+                    facultyData.status || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (
+                role !== "faculty" ||
+                status !== "active"
+            ) {
+
+                showError(
+                    "You are not authorized to view student profiles."
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // GET STUDENT
+            // ==========================================
+
+            const studentRef =
+                doc(
+                    db,
+                    "users",
+                    studentId
+                );
+
+
+            const studentSnapshot =
+                await getDoc(
+                    studentRef
+                );
+
+
+            if (!studentSnapshot.exists()) {
+
+                showError(
+                    "Student profile not found."
+                );
+
+                return;
+
+            }
+
+
+            const student =
+                studentSnapshot.data();
+
+
+            // ==========================================
+            // VERIFY STUDENT
+            // ==========================================
+
+            const studentRole =
+                String(
+                    student.role || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (
+                studentRole !== "student"
+            ) {
+
+                showError(
+                    "This account is not a student."
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // VERIFY FACULTY ASSIGNMENT
+            // ==========================================
+
+            if (
+                student.facultyId !==
+                user.uid
+            ) {
+
+                showError(
+                    "This student is not assigned to you."
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // LOAD PROFILE
+            // ==========================================
+
+            await loadStudentProfile(
+                student
+            );
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Student profile error:",
+                error
+            );
+
+            showError(
+                "Unable to load student profile."
+            );
+
+        }
+
+    }
+);
+
+
+// ======================================================
+// LOAD STUDENT PROFILE
+// ======================================================
+
+async function loadStudentProfile(
+    student
+) {
+
+    const name =
+        student.name ||
+        student.displayName ||
+        "Student";
+
+
+    const email =
+        student.email ||
+        "Not available";
+
+
+    const phone =
+        student.phone ||
+        student.mobile ||
+        "Not available";
+
+
+    const course =
+        student.course ||
+        student.courseName ||
+        "Not assigned";
+
+
+    const status =
+        student.status ||
+        "Active";
+
+
+    const gender =
+        student.gender ||
+        "Not provided";
+
+
+    const dob =
+        student.dob ||
+        student.dateOfBirth ||
+        "Not provided";
+
+
+    const biography =
+        student.biography ||
+        student.bio ||
+        "No biography available.";
+
+
+    const photo =
+        student.photoURL ||
+        student.photo ||
+        "";
+
+
+    const avatarContent =
+        photo
+        ? `<img
+                src="${escapeHTML(photo)}"
+                style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                    border-radius:50%;
+                "
+           >`
+        : "🎓";
+
+
+    pageContent.innerHTML = `
+
+        <div class="profile-card">
+
+            <div class="avatar">
+
+                ${avatarContent}
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <h2>
+                    ${escapeHTML(name)}
+                </h2>
+
+
+                <p>
+                    📧
+                    ${escapeHTML(email)}
+                </p>
+
+
+                <p>
+                    📚
+                    ${escapeHTML(course)}
+                </p>
+
+
+                <span class="status">
+
+                    ✓
+                    ${escapeHTML(
+                        String(status).toUpperCase()
+                    )}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="panel">
+
+                <h2>
+                    👤 Personal Information
+                </h2>
+
+
+                <div class="detail">
+
+                    <label>
+                        FULL NAME
+                    </label>
+
+                    <span>
+                        ${escapeHTML(name)}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        EMAIL
+                    </label>
+
+                    <span>
+                        ${escapeHTML(email)}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        PHONE
+                    </label>
+
+                    <span>
+                        ${escapeHTML(phone)}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        GENDER
+                    </label>
+
+                    <span>
+                        ${escapeHTML(gender)}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        DATE OF BIRTH
+                    </label>
+
+                    <span>
+                        ${escapeHTML(dob)}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>
+                    🎓 Academic Information
+                </h2>
+
+
+                <div class="detail">
+
+                    <label>
+                        COURSE
+                    </label>
+
+                    <span>
+                        ${escapeHTML(course)}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        ROLE
+                    </label>
+
+                    <span>
+                        ${escapeHTML(
+                            student.role || "Student"
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        STATUS
+                    </label>
+
+                    <span>
+                        ${escapeHTML(status)}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        FACULTY ID
+                    </label>
+
+                    <span>
+                        ${escapeHTML(
+                            student.facultyId ||
+                            "Not assigned"
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        STUDENT UID
+                    </label>
+
+                    <span>
+                        ${escapeHTML(
+                            studentId
+                        )}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>
+                    📝 About Student
+                </h2>
+
+
+                <div class="detail">
+
+                    <label>
+                        BIOGRAPHY
+                    </label>
+
+                    <span>
+                        ${escapeHTML(
+                            biography
+                        )}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>
+                    📊 Academic Records
+                </h2>
+
+
+                <div class="detail">
+
+                    <label>
+                        ATTENDANCE
+                    </label>
+
+                    <span id="attendanceInfo">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        MARKS
+                    </label>
+
+                    <span id="marksInfo">
+                        Loading...
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    // Load academic records
+
+    await loadAcademicRecords();
+
+}
+
+
+// ======================================================
+// LOAD ATTENDANCE + MARKS
+// ======================================================
+
+async function loadAcademicRecords() {
+
+    const attendanceInfo =
+        document.getElementById(
+            "attendanceInfo"
+        );
+
+    const marksInfo =
+        document.getElementById(
+            "marksInfo"
+        );
+
+
+    try {
+
+        const attendanceQuery =
+            query(
+                collection(
+                    db,
+                    "attendance"
+                ),
+
+                where(
+                    "studentId",
+                    "==",
+                    studentId
+                )
+            );
+
+
+        const attendanceSnapshot =
+            await getDocs(
+                attendanceQuery
+            );
+
+
+        let present = 0;
+        let absent = 0;
+
+
+        attendanceSnapshot.forEach(
+            record => {
+
+                const data =
+                    record.data();
+
+
+                const value =
+                    String(
+                        data.status ||
+                        ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                if (
+                    value === "present" ||
+                    value === "p"
+                ) {
+
+                    present++;
+
+                }
+
+                else if (
+                    value === "absent" ||
+                    value === "a"
+                ) {
+
+                    absent++;
+
+                }
+
+            }
+        );
+
+
+        const total =
+            present + absent;
+
+
+        const percentage =
+            total > 0
+            ? Math.round(
+                (present / total) * 100
+              )
+            : 0;
+
+
+        attendanceInfo.textContent =
+            `${percentage}% — ${present} present / ${absent} absent`;
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Attendance error:",
+            error
+        );
+
+
+        attendanceInfo.textContent =
+            "Unable to load attendance";
+
+    }
+
+
+    try {
+
+        const marksQuery =
+            query(
+                collection(
+                    db,
+                    "marks"
+                ),
+
+                where(
+                    "studentId",
+                    "==",
+                    studentId
+                )
+            );
+
+
+        const marksSnapshot =
+            await getDocs(
+                marksQuery
+            );
+
+
+        let totalMarks = 0;
+        let count = 0;
+
+
+        marksSnapshot.forEach(
+            record => {
+
+                const data =
+                    record.data();
+
+
+                const marks =
+                    Number(
+                        data.marks ??
+                        data.mark ??
+                        data.score ??
+                        0
+                    );
+
+
+                if (
+                    !Number.isNaN(marks)
+                ) {
+
+                    totalMarks += marks;
+                    count++;
+
+                }
+
+            }
+        );
+
+
+        const average =
+            count > 0
+            ? (
+                totalMarks / count
+              ).toFixed(2)
+            : "0";
+
+
+        marksInfo.textContent =
+            `${count} record(s) — Average: ${average}`;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Marks error:",
+            error
+        );
+
+
+        marksInfo.textContent =
+            "Unable to load marks";
+
+    }
+
+}
+
+
+// ======================================================
+// ERROR
+// ======================================================
+
+function showError(
+    message
+) {
+
+    pageContent.innerHTML = `
+
+        <div class="message error">
+
+            ❌
+
+            <br><br>
+
+            ${escapeHTML(message)}
+
+            <br><br>
+
+            <button
+                class="back-btn"
+                onclick="
+                    window.location.href =
+                    'faculty-dashboard.html#studentsSection'
+                ">
+
+                ← Back to Faculty Dashboard
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+// ======================================================
+// HTML SECURITY
+// ======================================================
+
+function escapeHTML(
+    value
+) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+</body>
+
+</html>
