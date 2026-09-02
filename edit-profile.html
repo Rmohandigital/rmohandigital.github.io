@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile | R Mohan Digital</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #ffffff;
+            padding: 16px 6%;
+            border-bottom: 1px solid #dbeafe;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .brand h2 {
+            color: #1d4ed8;
+            font-size: 19px;
+        }
+
+        .brand p {
+            color: #64748b;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .back-btn {
+            border: none;
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 10px 16px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .back-btn:hover {
+            background: #dbeafe;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: min(850px, 92%);
+            margin: 35px auto;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .page-title p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+            display: none;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+            border: 1px solid #dbeafe;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+            margin-bottom: 22px;
+        }
+
+        .card-title {
+            font-size: 19px;
+            color: #1d4ed8;
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           PROFILE PHOTO
+        ========================= */
+
+        .photo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #dbeafe;
+            border: 3px solid #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-size: 38px;
+            flex-shrink: 0;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-info h3 {
+            color: #0f172a;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .photo-info p {
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #334155;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            padding: 12px 13px;
+            background: #f8fafc;
+            color: #0f172a;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #2563eb;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:disabled,
+        select:disabled {
+            background: #e2e8f0;
+            color: #64748b;
+            cursor: not-allowed;
+        }
+
+        .readonly-note {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .save-btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 13px 23px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .save-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .save-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .cancel-btn {
+            border: 1px solid #cbd5e1;
+            background: white;
+            color: #334155;
+            padding: 13px 23px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .cancel-btn:hover {
+            background: #f8fafc;
+        }
+
+
+        /* =========================
+           ACCOUNT INFORMATION
+        ========================= */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .info-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 14px;
+            border-radius: 10px;
+        }
+
+        .info-item span {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .info-item strong {
+            color: #0f172a;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 650px) {
+
+            header {
+                padding: 13px 4%;
+            }
+
+            .brand h2 {
+                font-size: 15px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .form-grid,
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .photo-section {
+                align-items: flex-start;
+            }
+
+            .page-title h1 {
+                font-size: 23px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            RM
+        </div>
+
+        <div>
+
+            <h2>
+                R Mohan Digital
+            </h2>
+
+            <p>
+                Student Portal
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="back-btn"
+        id="backBtn">
+
+        ← Dashboard
+
+    </button>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <div class="page-title">
+
+        <h1>
+            Edit Profile
+        </h1>
+
+        <p>
+            Update your personal information and profile details.
+        </p>
+
+    </div>
+
+
+
+    <div
+        class="message"
+        id="message">
+    </div>
+
+
+
+    <!-- =========================
+         PROFILE CARD
+    ========================= -->
+
+    <section class="card">
+
+        <h2 class="card-title">
+            Profile Information
+        </h2>
+
+
+        <div class="photo-section">
+
+            <div
+                class="avatar"
+                id="avatar">
+
+                👤
+
+            </div>
+
+
+            <div class="photo-info">
+
+                <h3>
+                    Profile Photo
+                </h3>
+
+                <p>
+                    Enter an image URL below if you want to use a profile photo.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <form id="profileForm">
+
+
+            <div class="form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        disabled>
+
+                    <span class="readonly-note">
+                        Email is managed by Firebase Authentication.
+                    </span>
+
+                </div>
+
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter phone number">
+
+                </div>
+
+
+
+                <!-- DOB -->
+
+                <div class="form-group">
+
+                    <label for="dob">
+                        Date of Birth
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dob">
+
+                </div>
+
+
+
+                <!-- COURSE -->
+
+                <div class="form-group">
+
+                    <label for="course">
+                        Course
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course"
+                        placeholder="Example: B.Tech CSE">
+
+                </div>
+
+
+
+                <!-- PHOTO URL -->
+
+                <div class="form-group">
+
+                    <label for="photoURL">
+                        Profile Photo URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="photoURL"
+                        placeholder="https://example.com/photo.jpg">
+
+                </div>
+
+
+
+                <!-- BIOGRAPHY -->
+
+                <div class="form-group full">
+
+                    <label for="biography">
+                        Biography
+                    </label>
+
+                    <textarea
+                        id="biography"
+                        placeholder="Write something about yourself..."></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                    id="saveBtn">
+
+                    💾 Save Changes
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelBtn">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+
+    <!-- =========================
+         ACCOUNT INFORMATION
+    ========================= -->
+
+    <section class="card">
+
+        <h2 class="card-title">
+            Account Information
+        </h2>
+
+
+        <div class="info-grid">
+
+
+            <div class="info-item">
+
+                <span>
+                    Account Role
+                </span>
+
+                <strong id="role">
+                    Student
+                </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span>
+                    Account Status
+                </span>
+
+                <strong id="status">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span>
+                    Assigned Faculty
+                </span>
+
+                <strong id="faculty">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span>
+                    User ID
+                </span>
+
+                <strong id="uid">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<script type="module">
+
+
+    /* =====================================
+       FIREBASE
+    ===================================== */
+
+    import {
+        auth,
+        db
+    } from "./firebase.js";
+
+
+    import {
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+    import {
+        doc,
+        getDoc,
+        updateDoc
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+
+    /* =====================================
+       ELEMENTS
+    ===================================== */
+
+    const profileForm =
+        document.getElementById(
+            "profileForm"
+        );
+
+
+    const nameInput =
+        document.getElementById(
+            "name"
+        );
+
+
+    const emailInput =
+        document.getElementById(
+            "email"
+        );
+
+
+    const phoneInput =
+        document.getElementById(
+            "phone"
+        );
+
+
+    const dobInput =
+        document.getElementById(
+            "dob"
+        );
+
+
+    const courseInput =
+        document.getElementById(
+            "course"
+        );
+
+
+    const photoURLInput =
+        document.getElementById(
+            "photoURL"
+        );
+
+
+    const biographyInput =
+        document.getElementById(
+            "biography"
+        );
+
+
+    const avatar =
+        document.getElementById(
+            "avatar"
+        );
+
+
+    const saveBtn =
+        document.getElementById(
+            "saveBtn"
+        );
+
+
+    const cancelBtn =
+        document.getElementById(
+            "cancelBtn"
+        );
+
+
+    const backBtn =
+        document.getElementById(
+            "backBtn"
+        );
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    const roleText =
+        document.getElementById(
+            "role"
+        );
+
+
+    const statusText =
+        document.getElementById(
+            "status"
+        );
+
+
+    const facultyText =
+        document.getElementById(
+            "faculty"
+        );
+
+
+    const uidText =
+        document.getElementById(
+            "uid"
+        );
+
+
+
+    /* =====================================
+       SHOW MESSAGE
+    ===================================== */
+
+    function showMessage(
+        text,
+        type
+    ) {
+
+        message.textContent =
+            text;
+
+        message.className =
+            "message " +
+            type;
+
+    }
+
+
+
+    /* =====================================
+       ESCAPE HTML
+    ===================================== */
+
+    function escapeHTML(value) {
+
+        if (
+            value === null ||
+            value === undefined
+        ) {
+
+            return "";
+
+        }
+
+
+        return String(value)
+
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+
+            .replace(
+                /</g,
+                "&lt;"
+            )
+
+            .replace(
+                />/g,
+                "&gt;"
+            )
+
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+
+    /* =====================================
+       LOAD PROFILE
+    ===================================== */
+
+    async function loadProfile(user) {
+
+        try {
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const userSnap =
+                await getDoc(
+                    userRef
+                );
+
+
+            if (!userSnap.exists()) {
+
+                showMessage(
+                    "Your student profile was not found.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const data =
+                userSnap.data();
+
+
+            const role =
+                String(
+                    data.role || ""
+                ).toLowerCase();
+
+
+            if (role !== "student") {
+
+                showMessage(
+                    "This page is only available for student accounts.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               FORM DATA
+            ========================= */
+
+            nameInput.value =
+                data.name || "";
+
+
+            emailInput.value =
+                data.email ||
+                user.email ||
+                "";
+
+
+            phoneInput.value =
+                data.phone || "";
+
+
+            dobInput.value =
+                data.dob || "";
+
+
+            courseInput.value =
+                data.course || "";
+
+
+            photoURLInput.value =
+                data.photoURL || "";
+
+
+            biographyInput.value =
+                data.biography || "";
+
+
+
+            /* =========================
+               ACCOUNT DATA
+            ========================= */
+
+            roleText.textContent =
+                data.role ||
+                "Student";
+
+
+            statusText.textContent =
+                data.status ||
+                "Unknown";
+
+
+            uidText.textContent =
+                user.uid;
+
+
+
+            /* =========================
+               FACULTY
+            ========================= */
+
+            if (data.facultyId) {
+
+                try {
+
+                    const facultyRef =
+                        doc(
+                            db,
+                            "users",
+                            data.facultyId
+                        );
+
+
+                    const facultySnap =
+                        await getDoc(
+                            facultyRef
+                        );
+
+
+                    if (
+                        facultySnap.exists()
+                    ) {
+
+                        const facultyData =
+                            facultySnap.data();
+
+
+                        facultyText.textContent =
+                            facultyData.name ||
+                            facultyData.email ||
+                            "Assigned Faculty";
+
+                    }
+
+                    else {
+
+                        facultyText.textContent =
+                            "Faculty not found";
+
+                    }
+
+                }
+
+                catch (facultyError) {
+
+                    console.error(
+                        "Faculty error:",
+                        facultyError
+                    );
+
+                    facultyText.textContent =
+                        "Unable to load";
+
+                }
+
+            }
+
+            else {
+
+                facultyText.textContent =
+                    "Not assigned";
+
+            }
+
+
+
+            /* =========================
+               PHOTO
+            ========================= */
+
+            updateAvatar(
+                data.photoURL
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Profile load error:",
+                error
+            );
+
+            showMessage(
+                "Unable to load your profile.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================
+       UPDATE AVATAR
+    ===================================== */
+
+    function updateAvatar(url) {
+
+        if (!url) {
+
+            avatar.innerHTML =
+                "👤";
+
+            return;
+
+        }
+
+
+        avatar.innerHTML = `
+
+            <img
+                src="${escapeHTML(url)}"
+                alt="Profile Photo"
+                onerror="this.parentElement.innerHTML='👤';">
+
+        `;
+
+    }
+
+
+
+    /* =====================================
+       PHOTO PREVIEW
+    ===================================== */
+
+    photoURLInput.addEventListener(
+        "input",
+        () => {
+
+            updateAvatar(
+                photoURLInput.value.trim()
+            );
+
+        }
+    );
+
+
+
+    /* =====================================
+       SAVE PROFILE
+    ===================================== */
+
+    profileForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            const user =
+                auth.currentUser;
+
+
+            if (!user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            const name =
+                nameInput.value.trim();
+
+
+            const phone =
+                phoneInput.value.trim();
+
+
+            const dob =
+                dobInput.value;
+
+
+            const course =
+                courseInput.value.trim();
+
+
+            const photoURL =
+                photoURLInput.value.trim();
+
+
+            const biography =
+                biographyInput.value.trim();
+
+
+            if (!name) {
+
+                showMessage(
+                    "Please enter your full name.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            saveBtn.disabled =
+                true;
+
+
+            saveBtn.textContent =
+                "Saving...";
+
+
+            try {
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                /*
+                    IMPORTANT:
+
+                    We update ONLY fields
+                    students are allowed
+                    to edit.
+
+                    We do NOT modify:
+
+                    role
+                    status
+                    facultyId
+                    approvedBy
+                    approvedAt
+                */
+
+                await updateDoc(
+                    userRef,
+                    {
+
+                        name:
+                            name,
+
+                        phone:
+                            phone,
+
+                        dob:
+                            dob,
+
+                        course:
+                            course,
+
+                        photoURL:
+                            photoURL,
+
+                        biography:
+                            biography
+
+                    }
+                );
+
+
+                updateAvatar(
+                    photoURL
+                );
+
+
+                showMessage(
+                    "Profile updated successfully!",
+                    "success"
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "dashboard.html";
+
+                    },
+                    1200
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Profile update error:",
+                    error
+                );
+
+
+                showMessage(
+                    "Unable to update profile. Please check your Firestore rules.",
+                    "error"
+                );
+
+            }
+
+            finally {
+
+                saveBtn.disabled =
+                    false;
+
+                saveBtn.textContent =
+                    "💾 Save Changes";
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================
+       CANCEL
+    ===================================== */
+
+    cancelBtn.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+    );
+
+
+
+    /* =====================================
+       BACK BUTTON
+    ===================================== */
+
+    backBtn.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+    );
+
+
+
+    /* =====================================
+       AUTH
+    ===================================== */
+
+    onAuthStateChanged(
+        auth,
+        async user => {
+
+            if (!user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            await loadProfile(
+                user
+            );
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
