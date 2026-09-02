@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,62 +7,45 @@
     <title>Announcements | R Mohan Digital</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            background: #f4f7fb;
-            color: #172033;
+            background: #f0f9ff;
+            color: #0f172a;
             min-height: 100vh;
         }
 
         /* HEADER */
-
-        .dashboard-header {
+        header {
             background: #ffffff;
-            min-height: 76px;
-            padding: 0 5%;
+            border-bottom: 1px solid #bae6fd;
+            padding: 18px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e5eaf2;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #0284c7;
         }
 
-        .brand-logo {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: #2563eb;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            font-weight: 800;
-        }
-
-        .brand-text h2 {
-            color: #172033;
-            font-size: 19px;
-        }
-
-        .brand-text small {
-            color: #718096;
+        .brand span {
+            display: block;
             font-size: 12px;
+            color: #64748b;
+            margin-top: 3px;
+            letter-spacing: 1px;
         }
 
         .header-actions {
@@ -71,203 +53,119 @@
             gap: 10px;
         }
 
+        button {
+            border: none;
+            cursor: pointer;
+        }
+
         .back-btn,
         .logout-btn {
-            border: 1px solid #dbe3ef;
-            background: white;
-            color: #334155;
             padding: 10px 16px;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: .25s;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .back-btn {
+            background: #e0f2fe;
+            color: #0369a1;
         }
 
         .back-btn:hover {
-            background: #eff6ff;
-            color: #2563eb;
-            border-color: #bfdbfe;
+            background: #bae6fd;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
         }
 
         .logout-btn:hover {
-            background: #fee2e2;
-            color: #dc2626;
-            border-color: #fecaca;
+            background: #dc2626;
         }
 
         /* MAIN */
-
         .container {
+            width: 92%;
             max-width: 1200px;
-            margin: auto;
-            padding: 35px 25px 60px;
+            margin: 30px auto;
         }
 
-        /* MESSAGE */
-
-        .message {
-            display: none;
-            background: #fff7ed;
-            color: #c2410c;
-            border: 1px solid #fed7aa;
-            padding: 15px 18px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-
-        /* PAGE HEADER */
-
-        .page-header {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            border-radius: 20px;
-            padding: 30px;
+        .page-title {
             margin-bottom: 25px;
-            box-shadow: 0 12px 30px rgba(37, 99, 235, .15);
         }
 
-        .page-header h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
+        .page-title h1 {
+            font-size: 30px;
+            color: #0f172a;
         }
 
-        .page-header p {
-            color: #dbeafe;
-            font-size: 14px;
-            line-height: 1.6;
+        .page-title p {
+            margin-top: 7px;
+            color: #64748b;
         }
 
-        .student-info {
-            margin-top: 18px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .student-badge {
-            background: rgba(255,255,255,.14);
-            border: 1px solid rgba(255,255,255,.25);
-            padding: 7px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-
-        /* STATISTICS */
-
-        .stats-grid {
+        /* STATS */
+        .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 25px;
+            gap: 18px;
+            margin-bottom: 28px;
         }
 
         .stat-card {
-            background: white;
-            border: 1px solid #e5eaf2;
-            border-radius: 16px;
+            background: #ffffff;
+            border: 1px solid #bae6fd;
+            border-radius: 14px;
             padding: 20px;
-            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
 
-        .stat-icon {
-            width: 44px;
-            height: 44px;
-            background: #eff6ff;
-            border-radius: 11px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 21px;
-            margin-bottom: 12px;
+        .stat-card .icon {
+            font-size: 25px;
+            margin-bottom: 10px;
         }
 
-        .stat-card h3 {
-            font-size: 24px;
-            color: #172033;
+        .stat-card h2 {
+            color: #0284c7;
+            font-size: 28px;
         }
 
         .stat-card p {
-            color: #718096;
-            font-size: 12px;
-            margin-top: 4px;
+            color: #64748b;
+            margin-top: 5px;
         }
 
-        /* FILTER */
-
-        .filter-card {
-            background: white;
-            border: 1px solid #e5eaf2;
-            border-radius: 16px;
+        /* MESSAGE */
+        .message {
+            display: none;
+            background: #ffffff;
+            border: 1px solid #bae6fd;
+            border-radius: 12px;
             padding: 18px;
             margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
-        }
-
-        .search-box {
-            width: 100%;
-            border: 1px solid #dbe3ef;
-            background: #f8fafc;
-            padding: 12px 14px;
-            border-radius: 10px;
-            outline: none;
-            font-size: 14px;
-            color: #172033;
-        }
-
-        .search-box:focus {
-            border-color: #2563eb;
-            background: white;
+            color: #334155;
         }
 
         /* ANNOUNCEMENTS */
-
-        .announcements-section {
-            background: white;
-            border: 1px solid #e5eaf2;
-            border-radius: 18px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
-        }
-
-        .section-header {
+        #announcementsList {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            flex-direction: column;
+            gap: 18px;
         }
 
-        .section-header h2 {
-            font-size: 20px;
-        }
-
-        .count-badge {
-            background: #eff6ff;
-            color: #2563eb;
-            padding: 6px 11px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .announcements-list {
-            display: grid;
-            gap: 16px;
-        }
-
-        .announcement-card {
-            background: #f8fafc;
-            border: 1px solid #e5eaf2;
+        .announcement {
+            background: #ffffff;
+            border: 1px solid #bae6fd;
             border-radius: 15px;
-            padding: 20px;
-            transition: .25s;
+            padding: 22px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+            transition: 0.2s;
         }
 
-        .announcement-card:hover {
+        .announcement:hover {
             transform: translateY(-2px);
-            background: white;
-            border-color: #bfdbfe;
-            box-shadow: 0 8px 22px rgba(37, 99, 235, .07);
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.10);
         }
 
         .announcement-top {
@@ -275,104 +173,102 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 15px;
-            margin-bottom: 12px;
         }
 
         .announcement-title {
-            font-size: 17px;
-            margin-bottom: 6px;
+            font-size: 21px;
+            font-weight: bold;
+            color: #0f172a;
         }
 
-        .announcement-message {
+        .announcement-date {
             color: #64748b;
-            font-size: 14px;
-            line-height: 1.7;
-            white-space: pre-wrap;
-            word-break: break-word;
-            margin: 12px 0;
-        }
-
-        .target-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background: #dbeafe;
-            color: #1d4ed8;
-            font-size: 11px;
-            font-weight: 800;
+            font-size: 13px;
             white-space: nowrap;
         }
 
-        .announcement-meta {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+        .announcement-subject {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .announcement-description {
             margin-top: 15px;
+            color: #475569;
+            line-height: 1.7;
+            white-space: pre-wrap;
         }
 
-        .meta-item {
-            background: white;
-            border: 1px solid #e8edf5;
-            border-radius: 10px;
-            padding: 12px;
+        .announcement-footer {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .meta-item strong {
-            display: block;
-            color: #64748b;
-            font-size: 11px;
-            margin-bottom: 5px;
+        .faculty {
+            color: #475569;
+            font-size: 14px;
         }
 
-        .meta-item span {
-            color: #172033;
-            font-size: 13px;
-            font-weight: 600;
-            word-break: break-word;
+        .target {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 6px 10px;
+            border-radius: 7px;
+            font-size: 12px;
         }
 
         /* EMPTY */
-
-        .empty-state {
+        .empty {
+            background: #ffffff;
+            border: 1px dashed #7dd3fc;
+            border-radius: 15px;
+            padding: 50px 20px;
             text-align: center;
-            padding: 45px 20px;
-            color: #94a3b8;
-            background: #f8fafc;
-            border-radius: 13px;
-            border: 1px dashed #dbe3ef;
         }
 
         .empty-icon {
-            font-size: 45px;
-            margin-bottom: 10px;
+            font-size: 50px;
+            margin-bottom: 15px;
         }
 
-        .empty-state h3 {
+        .empty h3 {
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .empty p {
             color: #64748b;
-            margin-bottom: 6px;
-            font-size: 17px;
-        }
-
-        .empty-state p {
-            font-size: 13px;
         }
 
         /* LOADING */
-
         .loading {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 35px;
             text-align: center;
-            padding: 40px;
             color: #64748b;
         }
 
         .spinner {
-            width: 34px;
-            height: 34px;
-            border: 3px solid #dbeafe;
-            border-top-color: #2563eb;
+            width: 35px;
+            height: 35px;
+            border: 4px solid #e0f2fe;
+            border-top: 4px solid #0284c7;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 12px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 15px;
         }
 
         @keyframes spin {
@@ -381,1295 +277,712 @@
             }
         }
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #94a3b8;
-            font-size: 12px;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 900px) {
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-        }
-
-        @media (max-width: 650px) {
-
-            .dashboard-header {
-                padding: 12px 18px;
-            }
-
-            .brand-text h2 {
-                font-size: 16px;
-            }
-
-            .brand-text small {
-                font-size: 10px;
-            }
-
-            .brand-logo {
-                width: 40px;
-                height: 40px;
-            }
-
-            .back-btn {
-                display: none;
-            }
-
-            .logout-btn {
-                padding: 8px 12px;
-            }
-
-            .container {
-                padding: 20px 15px 40px;
-            }
-
-            .page-header {
-                padding: 23px;
-            }
-
-            .page-header h1 {
-                font-size: 23px;
-            }
-
-            .stats-grid {
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+            .stats {
                 grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            .brand {
+                font-size: 18px;
+            }
+
+            .header-actions {
+                gap: 5px;
+            }
+
+            .back-btn,
+            .logout-btn {
+                padding: 8px 10px;
+                font-size: 12px;
             }
 
             .announcement-top {
                 flex-direction: column;
             }
 
-            .announcement-meta {
-                grid-template-columns: 1fr;
+            .announcement-date {
+                white-space: normal;
             }
-
-            .announcements-section {
-                padding: 18px;
-            }
-
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+<header>
 
-    <!-- HEADER -->
+    <div class="brand">
+        R MOHAN DIGITAL
+        <span>STUDENT PORTAL</span>
+    </div>
 
-    <header class="dashboard-header">
+    <div class="header-actions">
+        <button class="back-btn" id="backBtn">
+            ← Dashboard
+        </button>
 
-        <div class="brand">
+        <button class="logout-btn" id="logoutBtn">
+            Logout
+        </button>
+    </div>
 
-            <div class="brand-logo">
-                RM
-            </div>
+</header>
 
-            <div class="brand-text">
 
-                <h2>
-                    R Mohan Digital
-                </h2>
+<main class="container">
 
-                <small>
-                    Student Portal
-                </small>
+    <div class="page-title">
+        <h1>📢 Announcements</h1>
+        <p>Stay updated with the latest announcements from R Mohan Digital.</p>
+    </div>
 
-            </div>
 
+    <div class="stats">
+
+        <div class="stat-card">
+            <div class="icon">📢</div>
+            <h2 id="totalAnnouncements">0</h2>
+            <p>Total Announcements</p>
         </div>
 
-
-        <div class="header-actions">
-
-            <button
-                class="back-btn"
-                id="backBtn">
-
-                ← Dashboard
-
-            </button>
-
-
-            <button
-                class="logout-btn"
-                id="logoutBtn">
-
-                Logout
-
-            </button>
-
+        <div class="stat-card">
+            <div class="icon">🆕</div>
+            <h2 id="recentAnnouncements">0</h2>
+            <p>Recent Announcements</p>
         </div>
 
-    </header>
-
-
-    <!-- MAIN -->
-
-    <main class="container">
-
-
-        <div
-            class="message"
-            id="message">
+        <div class="stat-card">
+            <div class="icon">👨‍🏫</div>
+            <h2 id="facultyAnnouncements">0</h2>
+            <p>Faculty Announcements</p>
         </div>
 
+    </div>
 
-        <!-- PAGE HEADER -->
 
-        <section class="page-header">
+    <div id="message" class="message"></div>
 
-            <h1>
-                📢 Announcements
-            </h1>
 
-            <p>
-                Stay updated with important academic announcements,
-                notices and information from R Mohan Digital.
-            </p>
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        Loading announcements...
+    </div>
 
 
-            <div class="student-info">
+    <div id="announcementsList"></div>
 
-                <span class="student-badge">
-                    👤 <span id="studentName">Loading...</span>
-                </span>
+</main>
 
 
-                <span class="student-badge">
-                    📚 <span id="studentCourse">Loading...</span>
-                </span>
+<script type="module">
 
-            </div>
+    import { auth, db } from "./firebase.js";
 
-        </section>
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
+    import {
+        collection,
+        getDocs,
+        query,
+        where
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-        <!-- STATISTICS -->
 
-        <section class="stats-grid">
+    const loading = document.getElementById("loading");
+    const announcementsList =
+        document.getElementById("announcementsList");
 
+    const message =
+        document.getElementById("message");
 
-            <div class="stat-card">
+    const totalAnnouncements =
+        document.getElementById("totalAnnouncements");
 
-                <div class="stat-icon">
-                    📢
-                </div>
+    const recentAnnouncements =
+        document.getElementById("recentAnnouncements");
 
-                <h3 id="totalAnnouncements">
-                    0
-                </h3>
+    const facultyAnnouncements =
+        document.getElementById("facultyAnnouncements");
 
-                <p>
-                    Total Announcements
-                </p>
 
-            </div>
+    let currentStudent = null;
 
 
-            <div class="stat-card">
+    /* =========================
+       HELPERS
+    ========================= */
 
-                <div class="stat-icon">
-                    🌐
-                </div>
+    function escapeHTML(value) {
 
-                <h3 id="generalAnnouncements">
-                    0
-                </h3>
-
-                <p>
-                    General Announcements
-                </p>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    👤
-                </div>
-
-                <h3 id="personalAnnouncements">
-                    0
-                </h3>
-
-                <p>
-                    Personal Announcements
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- SEARCH -->
-
-        <section class="filter-card">
-
-            <input
-                type="search"
-                id="searchInput"
-                class="search-box"
-                placeholder="🔎 Search announcements...">
-
-        </section>
-
-
-        <!-- ANNOUNCEMENTS -->
-
-        <section class="announcements-section">
-
-
-            <div class="section-header">
-
-                <h2>
-                    📢 Latest Announcements
-                </h2>
-
-
-                <span
-                    class="count-badge"
-                    id="announcementCount">
-
-                    0 Announcements
-
-                </span>
-
-            </div>
-
-
-            <div
-                class="announcements-list"
-                id="announcementsList">
-
-                <div class="loading">
-
-                    <div class="spinner"></div>
-
-                    Loading announcements...
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <footer>
-        © 2026 R Mohan Digital · Student Portal
-    </footer>
-
-
-    <!-- FIREBASE -->
-
-    <script type="module">
-
-        import {
-            auth,
-            db
-        } from "./firebase.js";
-
-
-        import {
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
-
-        import {
-            doc,
-            getDoc,
-            collection,
-            query,
-            where,
-            getDocs
-        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
-
-        /* =====================================
-           ELEMENTS
-        ===================================== */
-
-        const message =
-            document.getElementById("message");
-
-        const studentName =
-            document.getElementById("studentName");
-
-        const studentCourse =
-            document.getElementById("studentCourse");
-
-        const announcementsList =
-            document.getElementById("announcementsList");
-
-        const announcementCount =
-            document.getElementById("announcementCount");
-
-        const totalAnnouncements =
-            document.getElementById("totalAnnouncements");
-
-        const generalAnnouncements =
-            document.getElementById("generalAnnouncements");
-
-        const personalAnnouncements =
-            document.getElementById("personalAnnouncements");
-
-        const searchInput =
-            document.getElementById("searchInput");
-
-        const backBtn =
-            document.getElementById("backBtn");
-
-        const logoutBtn =
-            document.getElementById("logoutBtn");
-
-
-        let allAnnouncements = [];
-
-
-        /* =====================================
-           MESSAGE
-        ===================================== */
-
-        function showMessage(text) {
-
-            message.textContent = text;
-
-            message.style.display = "block";
-
+        if (value === null || value === undefined) {
+            return "";
         }
 
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
-        /* =====================================
-           ESCAPE HTML
-        ===================================== */
 
-        function escapeHTML(value) {
+    function showMessage(text) {
 
-            if (
-                value === null ||
-                value === undefined
-            ) {
-                return "";
+        message.textContent = text;
+        message.style.display = "block";
+    }
+
+
+    function hideMessage() {
+
+        message.style.display = "none";
+    }
+
+
+    function formatDate(value) {
+
+        if (!value) {
+            return "Date not available";
+        }
+
+        try {
+
+            let date;
+
+            if (value?.toDate) {
+                date = value.toDate();
+            }
+            else if (typeof value === "string") {
+                date = new Date(value);
+            }
+            else if (value instanceof Date) {
+                date = value;
+            }
+            else if (typeof value === "number") {
+                date = new Date(value);
             }
 
-            return String(value)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-
-        }
-
-
-        /* =====================================
-           DATE
-        ===================================== */
-
-        function formatDate(value) {
-
-            if (!value) {
+            if (!date || isNaN(date.getTime())) {
                 return "Date not available";
             }
 
-            try {
+            return date.toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
 
-                if (
-                    typeof value.toDate === "function"
-                ) {
+        } catch (error) {
 
-                    return value
-                        .toDate()
-                        .toLocaleDateString(
-                            "en-IN",
-                            {
-                                day: "2-digit",
-                                month: "short",
-                                year: "numeric"
-                            }
-                        );
-
-                }
+            return "Date not available";
+        }
+    }
 
 
-                const date =
-                    new Date(value);
+    function getAnnouncementDate(item) {
 
+        const value =
+            item.createdAt ||
+            item.date ||
+            item.publishedAt;
 
-                if (
-                    isNaN(date.getTime())
-                ) {
+        if (!value) {
+            return 0;
+        }
 
-                    return String(value);
+        try {
 
-                }
-
-
-                return date.toLocaleDateString(
-                    "en-IN",
-                    {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric"
-                    }
-                );
-
+            if (value?.toDate) {
+                return value.toDate().getTime();
             }
 
-            catch (error) {
-
-                return String(value);
-
+            if (typeof value === "string") {
+                const date = new Date(value);
+                return isNaN(date.getTime())
+                    ? 0
+                    : date.getTime();
             }
 
+            if (typeof value === "number") {
+                return value;
+            }
+
+        } catch (error) {}
+
+        return 0;
+    }
+
+
+    function getTargetText(item) {
+
+        if (item.targetRole) {
+
+            return String(item.targetRole);
+        }
+
+        if (item.targetUserId === currentStudent.uid) {
+
+            return "You";
+        }
+
+        if (item.course) {
+
+            return item.course;
+        }
+
+        return "All Students";
+    }
+
+
+    /* =========================
+       AUTH
+    ========================= */
+
+    onAuthStateChanged(auth, async (user) => {
+
+        if (!user) {
+
+            window.location.href = "login.html";
+            return;
+        }
+
+        try {
+
+            currentStudent = user;
+
+            await loadStudentProfile(user.uid);
+
+            await loadAnnouncements();
+
+        } catch (error) {
+
+            console.error(error);
+
+            loading.style.display = "none";
+
+            showMessage(
+                "Unable to load announcements. Please check your Firebase configuration and Firestore rules."
+            );
+        }
+
+    });
+
+
+    /* =========================
+       STUDENT PROFILE
+    ========================= */
+
+    async function loadStudentProfile(uid) {
+
+        const {
+            doc,
+            getDoc
+        } = await import(
+            "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js"
+        );
+
+        const userRef = doc(db, "users", uid);
+
+        const snapshot = await getDoc(userRef);
+
+        if (!snapshot.exists()) {
+
+            await signOut(auth);
+
+            window.location.href = "login.html";
+            return;
+        }
+
+        const data = snapshot.data();
+
+        const role =
+            String(data.role || "").toLowerCase();
+
+        const status =
+            String(data.status || "").toLowerCase();
+
+
+        if (role !== "student") {
+
+            showMessage(
+                "This page is available only for student accounts."
+            );
+
+            throw new Error("Not a student");
         }
 
 
-        /* =====================================
-           LOAD STUDENT
-        ===================================== */
+        if (status && status !== "active") {
 
-        async function loadStudent(user) {
+            showMessage(
+                "Your account is not active."
+            );
 
-            try {
+            throw new Error("Student account inactive");
+        }
 
-                const studentRef =
-                    doc(
-                        db,
-                        "users",
-                        user.uid
-                    );
+        currentStudent.profile = data;
+    }
 
 
-                const studentSnap =
-                    await getDoc(studentRef);
+    /* =========================
+       LOAD ANNOUNCEMENTS
+    ========================= */
+
+    async function loadAnnouncements() {
+
+        loading.style.display = "block";
+        announcementsList.innerHTML = "";
+
+        hideMessage();
 
 
-                if (!studentSnap.exists()) {
+        /*
+         * We intentionally do not use orderBy().
+         * This avoids Firestore index problems.
+         */
 
-                    showMessage(
-                        "Student profile not found in Firestore."
-                    );
+        const q = query(
+            collection(db, "announcements")
+        );
 
-                    return false;
-
-                }
+        const snapshot = await getDocs(q);
 
 
-                const data =
-                    studentSnap.data();
+        const announcements = [];
 
+
+        snapshot.forEach((docSnap) => {
+
+            const data = docSnap.data();
+
+            const targetUserId =
+                data.targetUserId || "";
+
+            const targetRole =
+                String(data.targetRole || "").toLowerCase();
+
+            const targetCourse =
+                String(data.course || "").toLowerCase();
+
+            const studentRole =
+                String(
+                    currentStudent.profile?.role || "student"
+                ).toLowerCase();
+
+            const studentCourse =
+                String(
+                    currentStudent.profile?.course || ""
+                ).toLowerCase();
+
+
+            /*
+             * Determine whether this announcement
+             * belongs to the current student.
+             */
+
+            let visible = false;
+
+
+            // Announcement for everyone
+            if (
+                !data.targetUserId &&
+                !data.targetRole &&
+                !data.course
+            ) {
+                visible = true;
+            }
+
+
+            // Directly targeted to this student
+            if (
+                targetUserId &&
+                targetUserId === currentStudent.uid
+            ) {
+                visible = true;
+            }
+
+
+            // Targeted to students
+            if (
+                targetRole === "student"
+            ) {
+                visible = true;
+            }
+
+
+            // Targeted to this student's course
+            if (
+                targetCourse &&
+                studentCourse &&
+                targetCourse === studentCourse
+            ) {
+                visible = true;
+            }
+
+
+            // "all" / "everyone"
+            if (
+                targetRole === "all" ||
+                targetRole === "everyone" ||
+                targetRole === "all students"
+            ) {
+                visible = true;
+            }
+
+
+            if (visible) {
+
+                announcements.push({
+                    id: docSnap.id,
+                    ...data
+                });
+            }
+
+        });
+
+
+        /* SORT NEWEST FIRST */
+
+        announcements.sort((a, b) => {
+
+            return (
+                getAnnouncementDate(b) -
+                getAnnouncementDate(a)
+            );
+        });
+
+
+        loading.style.display = "none";
+
+
+        /* STATS */
+
+        totalAnnouncements.textContent =
+            announcements.length;
+
+
+        const now = Date.now();
+
+        const sevenDays =
+            7 * 24 * 60 * 60 * 1000;
+
+
+        const recentCount =
+            announcements.filter(item => {
+
+                const date =
+                    getAnnouncementDate(item);
+
+                return (
+                    date > 0 &&
+                    now - date <= sevenDays &&
+                    now - date >= 0
+                );
+
+            }).length;
+
+
+        recentAnnouncements.textContent =
+            recentCount;
+
+
+        const facultyCount =
+            announcements.filter(item => {
 
                 const role =
                     String(
-                        data.role || ""
-                    )
-                    .toLowerCase()
-                    .trim();
+                        item.createdByRole ||
+                        item.authorRole ||
+                        ""
+                    ).toLowerCase();
 
+                return role === "faculty";
 
-                if (role !== "student") {
+            }).length;
 
-                    showMessage(
-                        "This account is not registered as a student."
-                    );
 
-                    return false;
+        facultyAnnouncements.textContent =
+            facultyCount;
 
-                }
 
+        /* EMPTY */
 
-                const status =
-                    String(
-                        data.status || ""
-                    )
-                    .toLowerCase()
-                    .trim();
-
-
-                if (status !== "active") {
-
-                    showMessage(
-                        "Your student account is not active."
-                    );
-
-                    return false;
-
-                }
-
-
-                studentName.textContent =
-                    data.name ||
-                    "Student";
-
-
-                studentCourse.textContent =
-                    data.course ||
-                    "Course not selected";
-
-
-                return true;
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Student error:",
-                    error
-                );
-
-                showMessage(
-                    "Unable to load student profile."
-                );
-
-                return false;
-
-            }
-
-        }
-
-
-        /* =====================================
-           LOAD GENERAL ANNOUNCEMENTS
-        ===================================== */
-
-        async function loadGeneralAnnouncements() {
-
-            const results = [];
-
-
-            try {
-
-                const q =
-                    query(
-                        collection(
-                            db,
-                            "announcements"
-                        ),
-                        where(
-                            "targetRole",
-                            "in",
-                            [
-                                "student",
-                                "all"
-                            ]
-                        )
-                    );
-
-
-                const snapshot =
-                    await getDocs(q);
-
-
-                snapshot.forEach(
-                    docSnap => {
-
-                        results.push({
-
-                            id: docSnap.id,
-
-                            ...docSnap.data()
-
-                        });
-
-                    }
-                );
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "General announcements error:",
-                    error
-                );
-
-            }
-
-
-            return results;
-
-        }
-
-
-        /* =====================================
-           LOAD PERSONAL ANNOUNCEMENTS
-        ===================================== */
-
-        async function loadPersonalAnnouncements(uid) {
-
-            const results = [];
-
-
-            try {
-
-                const q =
-                    query(
-                        collection(
-                            db,
-                            "announcements"
-                        ),
-                        where(
-                            "targetUserId",
-                            "==",
-                            uid
-                        )
-                    );
-
-
-                const snapshot =
-                    await getDocs(q);
-
-
-                snapshot.forEach(
-                    docSnap => {
-
-                        results.push({
-
-                            id: docSnap.id,
-
-                            ...docSnap.data()
-
-                        });
-
-                    }
-                );
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Personal announcements error:",
-                    error
-                );
-
-            }
-
-
-            return results;
-
-        }
-
-
-        /* =====================================
-           LOAD ANNOUNCEMENTS
-        ===================================== */
-
-        async function loadAnnouncements(uid) {
+        if (announcements.length === 0) {
 
             announcementsList.innerHTML = `
+                <div class="empty">
 
-                <div class="loading">
+                    <div class="empty-icon">📭</div>
 
-                    <div class="spinner"></div>
+                    <h3>No Announcements</h3>
 
-                    Loading announcements...
+                    <p>
+                        There are no announcements available for you right now.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        /* DISPLAY */
+
+        announcements.forEach(item => {
+
+            renderAnnouncement(item);
+
+        });
+
+    }
+
+
+    /* =========================
+       RENDER ANNOUNCEMENT
+    ========================= */
+
+    function renderAnnouncement(item) {
+
+        const title =
+            item.title ||
+            item.heading ||
+            "Announcement";
+
+
+        const subject =
+            item.subject ||
+            item.category ||
+            "General";
+
+
+        const description =
+            item.description ||
+            item.message ||
+            item.content ||
+            "No description provided.";
+
+
+        const facultyName =
+            item.facultyName ||
+            item.createdByName ||
+            item.authorName ||
+            item.faculty ||
+            "R Mohan Digital";
+
+
+        const date =
+            formatDate(
+                item.createdAt ||
+                item.date ||
+                item.publishedAt
+            );
+
+
+        const target =
+            getTargetText(item);
+
+
+        const card =
+            document.createElement("div");
+
+        card.className = "announcement";
+
+
+        card.innerHTML = `
+
+            <div class="announcement-top">
+
+                <div>
+
+                    <div class="announcement-title">
+                        ${escapeHTML(title)}
+                    </div>
+
+                    <div class="announcement-subject">
+                        ${escapeHTML(subject)}
+                    </div>
 
                 </div>
 
-            `;
+                <div class="announcement-date">
+                    📅 ${escapeHTML(date)}
+                </div>
+
+            </div>
 
 
-            try {
-
-                const [
-                    general,
-                    personal
-                ] = await Promise.all([
-
-                    loadGeneralAnnouncements(),
-
-                    loadPersonalAnnouncements(uid)
-
-                ]);
+            <div class="announcement-description">
+                ${escapeHTML(description)}
+            </div>
 
 
-                /*
-                 * Combine both results.
-                 *
-                 * Map prevents duplicate documents
-                 * when a personal announcement is also
-                 * included in another query.
-                 */
+            <div class="announcement-footer">
 
-                const announcementMap =
-                    new Map();
+                <div class="faculty">
+                    👨‍🏫
+                    ${escapeHTML(facultyName)}
+                </div>
 
+                <div class="target">
+                    🎯 ${escapeHTML(target)}
+                </div>
 
-                general.forEach(
-                    item => {
-
-                        announcementMap.set(
-                            item.id,
-                            item
-                        );
-
-                    }
-                );
+            </div>
+        `;
 
 
-                personal.forEach(
-                    item => {
-
-                        announcementMap.set(
-                            item.id,
-                            item
-                        );
-
-                    }
-                );
+        announcementsList.appendChild(card);
+    }
 
 
-                allAnnouncements =
-                    Array.from(
-                        announcementMap.values()
-                    );
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    document
+        .getElementById("backBtn")
+        .addEventListener("click", () => {
+
+            window.location.href =
+                "dashboard.html";
+
+        });
 
 
-                /*
-                 * Sort newest first.
-                 */
-
-                allAnnouncements.sort(
-                    (a, b) => {
-
-                        const dateA =
-                            getTime(
-                                a.createdAt
-                            );
-
-                        const dateB =
-                            getTime(
-                                b.createdAt
-                            );
-
-
-                        return dateB - dateA;
-
-                    }
-                );
-
-
-                updateStatistics();
-
-
-                renderAnnouncements(
-                    allAnnouncements
-                );
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Announcements error:",
-                    error
-                );
-
-
-                announcementsList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            ⚠️
-                        </div>
-
-                        <h3>
-                            Unable to load announcements
-                        </h3>
-
-                        <p>
-                            Please check Firebase configuration
-                            and Firestore permissions.
-                        </p>
-
-                    </div>
-
-                `;
-
-            }
-
-        }
-
-
-        /* =====================================
-           GET TIME
-        ===================================== */
-
-        function getTime(value) {
-
-            if (!value) {
-                return 0;
-            }
-
+    document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async () => {
 
             try {
 
-                if (
-                    typeof value.toDate === "function"
-                ) {
-
-                    return value
-                        .toDate()
-                        .getTime();
-
-                }
-
-
-                const date =
-                    new Date(value);
-
-
-                return isNaN(
-                    date.getTime()
-                )
-                    ? 0
-                    : date.getTime();
-
-            }
-
-            catch (error) {
-
-                return 0;
-
-            }
-
-        }
-
-
-        /* =====================================
-           STATISTICS
-        ===================================== */
-
-        function updateStatistics() {
-
-            let general = 0;
-
-            let personal = 0;
-
-
-            allAnnouncements.forEach(
-                announcement => {
-
-                    const targetRole =
-                        String(
-                            announcement.targetRole ||
-                            ""
-                        )
-                        .toLowerCase()
-                        .trim();
-
-
-                    const targetUserId =
-                        announcement.targetUserId;
-
-
-                    if (
-                        targetUserId
-                    ) {
-
-                        personal++;
-
-                    }
-
-                    else {
-
-                        general++;
-
-                    }
-
-                }
-            );
-
-
-            totalAnnouncements.textContent =
-                allAnnouncements.length;
-
-
-            generalAnnouncements.textContent =
-                general;
-
-
-            personalAnnouncements.textContent =
-                personal;
-
-
-            announcementCount.textContent =
-                allAnnouncements.length +
-                (
-                    allAnnouncements.length === 1
-                        ? " Announcement"
-                        : " Announcements"
-                );
-
-        }
-
-
-        /* =====================================
-           RENDER
-        ===================================== */
-
-        function renderAnnouncements(
-            announcements
-        ) {
-
-            if (!announcements.length) {
-
-                announcementsList.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            📢
-                        </div>
-
-                        <h3>
-                            No announcements
-                        </h3>
-
-                        <p>
-                            There are no announcements available
-                            for your account right now.
-                        </p>
-
-                    </div>
-
-                `;
-
-                announcementCount.textContent =
-                    "0 Announcements";
-
-                return;
-
-            }
-
-
-            announcementsList.innerHTML = "";
-
-
-            announcements.forEach(
-                announcement => {
-
-                    const title =
-                        announcement.title ||
-                        announcement.name ||
-                        "Announcement";
-
-
-                    const announcementMessage =
-                        announcement.message ||
-                        announcement.description ||
-                        announcement.content ||
-                        "No message provided.";
-
-
-                    const targetRole =
-                        String(
-                            announcement.targetRole ||
-                            ""
-                        )
-                        .toLowerCase()
-                        .trim();
-
-
-                    const isPersonal =
-                        Boolean(
-                            announcement.targetUserId
-                        );
-
-
-                    let targetText =
-                        "GENERAL";
-
-
-                    if (isPersonal) {
-
-                        targetText =
-                            "PERSONAL";
-
-                    }
-
-                    else if (
-                        targetRole === "student"
-                    ) {
-
-                        targetText =
-                            "STUDENTS";
-
-                    }
-
-                    else if (
-                        targetRole === "all"
-                    ) {
-
-                        targetText =
-                            "EVERYONE";
-
-                    }
-
-
-                    const createdBy =
-                        announcement.createdByName ||
-                        announcement.author ||
-                        announcement.createdBy ||
-                        "R Mohan Digital";
-
-
-                    const date =
-                        formatDate(
-                            announcement.createdAt
-                        );
-
-
-                    const card =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    card.className =
-                        "announcement-card";
-
-
-                    card.innerHTML = `
-
-                        <div class="announcement-top">
-
-                            <div>
-
-                                <h3 class="announcement-title">
-                                    📢 ${escapeHTML(title)}
-                                </h3>
-
-                            </div>
-
-                            <span class="target-badge">
-                                ${escapeHTML(targetText)}
-                            </span>
-
-                        </div>
-
-
-                        <div class="announcement-message">
-
-                            ${escapeHTML(
-                                announcementMessage
-                            )}
-
-                        </div>
-
-
-                        <div class="announcement-meta">
-
-
-                            <div class="meta-item">
-
-                                <strong>
-                                    👤 Posted By
-                                </strong>
-
-                                <span>
-                                    ${escapeHTML(createdBy)}
-                                </span>
-
-                            </div>
-
-
-                            <div class="meta-item">
-
-                                <strong>
-                                    📅 Date
-                                </strong>
-
-                                <span>
-                                    ${escapeHTML(date)}
-                                </span>
-
-                            </div>
-
-
-                        </div>
-
-                    `;
-
-
-                    announcementsList.appendChild(
-                        card
-                    );
-
-                }
-            );
-
-
-            announcementCount.textContent =
-                announcements.length +
-                (
-                    announcements.length === 1
-                        ? " Announcement"
-                        : " Announcements"
-                );
-
-        }
-
-
-        /* =====================================
-           SEARCH
-        ===================================== */
-
-        searchInput.addEventListener(
-            "input",
-            () => {
-
-                const search =
-                    searchInput.value
-                        .toLowerCase()
-                        .trim();
-
-
-                const filtered =
-                    allAnnouncements.filter(
-                        announcement => {
-
-                            const title =
-                                String(
-                                    announcement.title ||
-                                    ""
-                                )
-                                .toLowerCase();
-
-
-                            const text =
-                                String(
-                                    announcement.message ||
-                                    announcement.description ||
-                                    announcement.content ||
-                                    ""
-                                )
-                                .toLowerCase();
-
-
-                            return (
-                                title.includes(search) ||
-                                text.includes(search)
-                            );
-
-                        }
-                    );
-
-
-                renderAnnouncements(
-                    filtered
-                );
-
-            }
-        );
-
-
-        /* =====================================
-           BACK
-        ===================================== */
-
-        backBtn.addEventListener(
-            "click",
-            () => {
+                await signOut(auth);
 
                 window.location.href =
-                    "dashboard.html";
+                    "login.html";
 
-            }
-        );
+            } catch (error) {
 
+                console.error(error);
 
-        /* =====================================
-           LOGOUT
-        ===================================== */
-
-        logoutBtn.addEventListener(
-            "click",
-            async () => {
-
-                try {
-
-                    await signOut(
-                        auth
-                    );
-
-
-                    window.location.href =
-                        "login.html";
-
-                }
-
-                catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
-
-                    alert(
-                        "Unable to logout. Please try again."
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* =====================================
-           AUTH
-        ===================================== */
-
-        onAuthStateChanged(
-            auth,
-            async user => {
-
-                if (!user) {
-
-                    window.location.href =
-                        "login.html";
-
-                    return;
-
-                }
-
-
-                const validStudent =
-                    await loadStudent(
-                        user
-                    );
-
-
-                if (!validStudent) {
-                    return;
-                }
-
-
-                await loadAnnouncements(
-                    user.uid
+                alert(
+                    "Unable to logout. Please try again."
                 );
-
             }
-        );
 
-    </script>
+        });
+
+</script>
 
 </body>
-
 </html>
