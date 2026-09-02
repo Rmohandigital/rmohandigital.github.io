@@ -763,3 +763,41 @@ footer p{
     align-items: center !important;
     justify-content: center !important;
 }
+
+
+/* ================================
+   TEAM LOGIN BUTTON
+================================ */
+
+.team-login-section {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.team-login-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: linear-gradient(135deg, #00e5ff, #2563eb);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 229, 255, 0.7);
+    box-shadow:
+        0 0 10px rgba(0, 229, 255, 0.4),
+        0 0 25px rgba(37, 99, 235, 0.25);
+    transition: all 0.3s ease;
+}
+
+.team-login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 15px rgba(0, 229, 255, 0.7),
+        0 0 35px rgba(37, 99, 235, 0.5);
+}
+
+.team-login-btn:active {
+    transform: scale(0.97);
+}
