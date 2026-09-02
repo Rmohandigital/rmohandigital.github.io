@@ -1,0 +1,7267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Academic | R Mohan Digital</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #102a43 0%,
+                    #07111f 35%,
+                    #020617 75%
+                );
+
+            color: white;
+
+            padding: 25px;
+
+        }
+
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+        }
+
+
+        /* ==========================================
+           TOPBAR
+        ========================================== */
+
+        .topbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 22px;
+
+            margin-bottom: 22px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(7, 17, 31, 0.88);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.18);
+
+            backdrop-filter: blur(12px);
+
+        }
+
+
+        .topbar h1 {
+
+            font-size: 21px;
+
+        }
+
+
+        .topbar h1 span {
+
+            color: #00e5ff;
+
+            text-shadow:
+                0 0 10px rgba(0, 229, 255, 0.4);
+
+        }
+
+
+        .back-btn {
+
+            padding: 9px 15px;
+
+            border:
+                1px solid #00e5ff;
+
+            border-radius: 8px;
+
+            background:
+                rgba(0, 229, 255, 0.08);
+
+            color: #00e5ff;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+
+        }
+
+
+        .back-btn:hover {
+
+            background: #00e5ff;
+
+            color: #020617;
+
+            box-shadow:
+                0 0 15px rgba(0, 229, 255, 0.3);
+
+        }
+
+
+        /* ==========================================
+           STUDENT HEADER
+        ========================================== */
+
+        .student-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 22px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(7, 17, 31, 0.86);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.18);
+
+        }
+
+
+        .student-avatar {
+
+            width: 80px;
+
+            height: 80px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(0, 229, 255, 0.08);
+
+            border:
+                2px solid #00e5ff;
+
+            color: #00e5ff;
+
+            font-size: 32px;
+
+            box-shadow:
+                0 0 20px rgba(0, 229, 255, 0.2);
+
+            overflow: hidden;
+
+        }
+
+
+        .student-avatar img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .student-header h2 {
+
+            color: #00e5ff;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .student-header p {
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            margin: 4px 0;
+
+        }
+
+
+        .student-status {
+
+            display: inline-block;
+
+            margin-top: 7px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            color: #22c55e;
+
+            background:
+                rgba(34, 197, 94, 0.08);
+
+            border:
+                1px solid rgba(34, 197, 94, 0.3);
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ==========================================
+           SUMMARY
+        ========================================== */
+
+        .summary-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .summary-card {
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(7, 17, 31, 0.84);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.15);
+
+        }
+
+
+        .summary-icon {
+
+            font-size: 25px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .summary-card h3 {
+
+            color: #00e5ff;
+
+            font-size: 25px;
+
+        }
+
+
+        .summary-card p {
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            margin-top: 5px;
+
+        }
+
+
+        /* ==========================================
+           GRID
+        ========================================== */
+
+        .management-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        /* ==========================================
+           PANEL
+        ========================================== */
+
+        .panel {
+
+            padding: 22px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(7, 17, 31, 0.84);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.15);
+
+        }
+
+
+        .panel.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .panel-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .panel-header h2 {
+
+            font-size: 17px;
+
+            color: #00e5ff;
+
+        }
+
+
+        .panel-header span {
+
+            color: #64748b;
+
+            font-size: 10px;
+
+        }
+
+
+        /* ==========================================
+           FORM
+        ========================================== */
+
+        .form-group {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border:
+                1px solid rgba(148, 163, 184, 0.18);
+
+            border-radius: 8px;
+
+            background:
+                rgba(15, 23, 42, 0.85);
+
+            color: white;
+
+            outline: none;
+
+            font-size: 13px;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #00e5ff;
+
+            box-shadow:
+                0 0 10px rgba(0, 229, 255, 0.1);
+
+        }
+
+
+        .form-group select option {
+
+            background: #07111f;
+
+            color: white;
+
+        }
+
+
+        .save-btn {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid #00e5ff;
+
+            border-radius: 8px;
+
+            background:
+                rgba(0, 229, 255, 0.1);
+
+            color: #00e5ff;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+
+        }
+
+
+        .save-btn:hover {
+
+            background: #00e5ff;
+
+            color: #020617;
+
+            box-shadow:
+                0 0 15px rgba(0, 229, 255, 0.3);
+
+        }
+
+
+        .save-btn:disabled {
+
+            opacity: 0.5;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* ==========================================
+           RECORDS
+        ========================================== */
+
+        .record {
+
+            padding: 15px;
+
+            margin-bottom: 10px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(15, 23, 42, 0.72);
+
+            border:
+                1px solid rgba(148, 163, 184, 0.08);
+
+        }
+
+
+        .record-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+        }
+
+
+        .record-title {
+
+            color: #e2e8f0;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .record-subtitle {
+
+            color: #64748b;
+
+            font-size: 10px;
+
+            margin-top: 5px;
+
+        }
+
+
+        .record-actions {
+
+            display: flex;
+
+            gap: 7px;
+
+        }
+
+
+        .edit-btn,
+        .delete-btn {
+
+            padding: 6px 9px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        .edit-btn {
+
+            border:
+                1px solid #38bdf8;
+
+            background:
+                rgba(56, 189, 248, 0.08);
+
+            color: #38bdf8;
+
+        }
+
+
+        .delete-btn {
+
+            border:
+                1px solid #ef4444;
+
+            background:
+                rgba(239, 68, 68, 0.08);
+
+            color: #f87171;
+
+        }
+
+
+        .edit-btn:hover {
+
+            background: #38bdf8;
+
+            color: #020617;
+
+        }
+
+
+        .delete-btn:hover {
+
+            background: #ef4444;
+
+            color: white;
+
+        }
+
+
+        /* ==========================================
+           ATTENDANCE BADGES
+        ========================================== */
+
+        .present {
+
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 15px;
+
+            color: #22c55e;
+
+            background:
+                rgba(34, 197, 94, 0.08);
+
+            border:
+                1px solid rgba(34, 197, 94, 0.25);
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        .absent {
+
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 15px;
+
+            color: #f87171;
+
+            background:
+                rgba(239, 68, 68, 0.08);
+
+            border:
+                1px solid rgba(239, 68, 68, 0.25);
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ==========================================
+           MARKS
+        ========================================== */
+
+        .marks-value {
+
+            color: #00e5ff;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+        }
+
+
+        .marks-percent {
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+            margin-left: 7px;
+
+        }
+
+
+        /* ==========================================
+           EMPTY
+        ========================================== */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 30px 10px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+        }
+
+
+        .empty-icon {
+
+            font-size: 32px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        /* ==========================================
+           TOAST
+        ========================================== */
+
+        #toast {
+
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            min-width: 260px;
+
+            max-width: 90%;
+
+            padding: 14px 18px;
+
+            border-radius: 10px;
+
+            background: #07111f;
+
+            border:
+                1px solid #00e5ff;
+
+            color: #e2e8f0;
+
+            box-shadow:
+                0 0 25px rgba(0,229,255,0.18);
+
+            transform:
+                translateY(100px);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: 0.3s;
+
+            z-index: 500;
+
+        }
+
+
+        #toast.show {
+
+            transform:
+                translateY(0);
+
+            opacity: 1;
+
+        }
+
+
+        #toast.error {
+
+            border-color: #ef4444;
+
+        }
+
+
+        #toast.success {
+
+            border-color: #22c55e;
+
+        }
+
+
+        /* ==========================================
+           LOADING
+        ========================================== */
+
+        .loading-page {
+
+            min-height: 70vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: #38bdf8;
+
+            font-size: 14px;
+
+        }
+
+
+        .error-page {
+
+            min-height: 70vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: #f87171;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 850px) {
+
+            .summary-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .management-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 15px;
+
+            }
+
+
+            .topbar {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+
+            }
+
+
+            .student-header {
+
+                flex-direction: column;
+
+                text-align: center;
+
+            }
+
+
+            .summary-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .record-top {
+
+                flex-direction: column;
+
+            }
+
+
+            .record-actions {
+
+                width: 100%;
+
+            }
+
+
+            .edit-btn,
+            .delete-btn {
+
+                flex: 1;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ==========================================
+         TOPBAR
+    ========================================== -->
+
+    <div class="topbar">
+
+        <h1>
+
+            Student
+            <span>Academic Management</span>
+
+        </h1>
+
+
+        <button
+            class="back-btn"
+            id="backBtn">
+
+            ← Back to Profile
+
+        </button>
+
+    </div>
+
+
+    <!-- ==========================================
+         PAGE CONTENT
+    ========================================== -->
+
+    <div id="pageContent">
+
+        <div class="loading-page">
+
+            Loading student...
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- ==========================================
+     TOAST
+========================================== -->
+
+<div id="toast"></div>
+
+
+<script type="module">
+
+
+import {
+    auth,
+    db
+} from "./firebase.js";
+
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+    doc,
+    getDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+// ======================================================
+// ELEMENTS
+// ======================================================
+
+const pageContent =
+    document.getElementById(
+        "pageContent"
+    );
+
+
+const backBtn =
+    document.getElementById(
+        "backBtn"
+    );
+
+
+const toast =
+    document.getElementById(
+        "toast"
+    );
+
+
+// ======================================================
+// URL STUDENT ID
+// ======================================================
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const studentId =
+    urlParams.get("id");
+
+
+// ======================================================
+// CURRENT USER
+// ======================================================
+
+let currentFaculty = null;
+
+let studentData = null;
+
+let attendanceRecords = [];
+
+let marksRecords = [];
+
+
+// ======================================================
+// BACK BUTTON
+// ======================================================
+
+backBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            `student-profile.html?id=${encodeURIComponent(studentId)}`;
+
+    }
+);
+
+
+// ======================================================
+// AUTH
+// ======================================================
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        if (!studentId) {
+
+            showError(
+                "Student ID is missing."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            // ==========================================
+            // FACULTY PROFILE
+            // ==========================================
+
+            const facultyRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const facultySnapshot =
+                await getDoc(
+                    facultyRef
+                );
+
+
+            if (!facultySnapshot.exists()) {
+
+                showError(
+                    "Faculty profile not found."
+                );
+
+                return;
+
+            }
+
+
+            const faculty =
+                facultySnapshot.data();
+
+
+            const role =
+                String(
+                    faculty.role || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const status =
+                String(
+                    faculty.status || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (
+                role !== "faculty" ||
+                status !== "active"
+            ) {
+
+                showError(
+                    "You are not authorized to manage academic records."
+                );
+
+                return;
+
+            }
+
+
+            currentFaculty = {
+
+                uid:
+                    user.uid,
+
+                ...faculty
+
+            };
+
+
+            // ==========================================
+            // STUDENT
+            // ==========================================
+
+            const studentRef =
+                doc(
+                    db,
+                    "users",
+                    studentId
+                );
+
+
+            const studentSnapshot =
+                await getDoc(
+                    studentRef
+                );
+
+
+            if (!studentSnapshot.exists()) {
+
+                showError(
+                    "Student profile not found."
+                );
+
+                return;
+
+            }
+
+
+            studentData =
+                studentSnapshot.data();
+
+
+            const studentRole =
+                String(
+                    studentData.role || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (
+                studentRole !== "student"
+            ) {
+
+                showError(
+                    "This account is not a student."
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // FACULTY ASSIGNMENT CHECK
+            // ==========================================
+
+            if (
+                studentData.facultyId !==
+                currentFaculty.uid
+            ) {
+
+                showError(
+                    "This student is not assigned to you."
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // RENDER PAGE
+            // ==========================================
+
+            renderPage();
+
+
+            // ==========================================
+            // LOAD RECORDS
+            // ==========================================
+
+            await Promise.all([
+
+                loadAttendance(),
+
+                loadMarks()
+
+            ]);
+
+
+            renderAttendance();
+
+            renderMarks();
+
+            updateSummary();
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Academic page error:",
+                error
+            );
+
+
+            showError(
+                "Unable to load academic management."
+            );
+
+        }
+
+    }
+);
+
+
+// ======================================================
+// RENDER PAGE
+// ======================================================
+
+function renderPage() {
+
+    const name =
+        studentData.name ||
+        studentData.displayName ||
+        "Student";
+
+
+    const email =
+        studentData.email ||
+        "No email";
+
+
+    const course =
+        studentData.course ||
+        studentData.courseName ||
+        "Not assigned";
+
+
+    const status =
+        studentData.status ||
+        "Active";
+
+
+    const photo =
+        studentData.photoURL ||
+        studentData.photo ||
+        "";
+
+
+    const avatar =
+        photo
+
+        ? `
+            <img
+                src="${escapeHTML(photo)}"
+                alt="Student"
+            >
+          `
+
+        : "🎓";
+
+
+    pageContent.innerHTML = `
+
+        <!-- STUDENT HEADER -->
+
+        <div class="student-header">
+
+            <div class="student-avatar">
+
+                ${avatar}
+
+            </div>
+
+
+            <div>
+
+                <h2>
+                    ${escapeHTML(name)}
+                </h2>
+
+
+                <p>
+                    📧
+                    ${escapeHTML(email)}
+                </p>
+
+
+                <p>
+                    📚
+                    ${escapeHTML(course)}
+                </p>
+
+
+                <span class="student-status">
+
+                    ✓
+                    ${escapeHTML(
+                        String(status).toUpperCase()
+                    )}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📅
+                </div>
+
+                <h3 id="attendancePercentage">
+                    0%
+                </h3>
+
+                <p>
+                    Attendance
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📝
+                </div>
+
+                <h3 id="marksAverage">
+                    0%
+                </h3>
+
+                <p>
+                    Marks Average
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📊
+                </div>
+
+                <h3 id="recordCount">
+                    0
+                </h3>
+
+                <p>
+                    Academic Records
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- MANAGEMENT -->
+
+        <div class="management-grid">
+
+
+            <!-- ======================================
+                 ADD ATTENDANCE
+            ======================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📅 Add Attendance
+                    </h2>
+
+                    <span>
+                        Faculty
+                    </span>
+
+                </div>
+
+
+                <form id="attendanceForm">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            SUBJECT
+                        </label>
+
+                        <input
+                            type="text"
+                            id="attendanceSubject"
+                            placeholder="Example: Data Structures"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            DATE
+                        </label>
+
+                        <input
+                            type="date"
+                            id="attendanceDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            ATTENDANCE STATUS
+                        </label>
+
+                        <select
+                            id="attendanceStatus"
+                            required
+                        >
+
+                            <option value="">
+                                Select status
+                            </option>
+
+                            <option value="Present">
+                                Present
+                            </option>
+
+                            <option value="Absent">
+                                Absent
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="attendanceSaveBtn">
+
+                        Save Attendance
+
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- ======================================
+                 ADD MARKS
+            ======================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📝 Add Marks
+                    </h2>
+
+                    <span>
+                        Faculty
+                    </span>
+
+                </div>
+
+
+                <form id="marksForm">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            SUBJECT
+                        </label>
+
+                        <input
+                            type="text"
+                            id="marksSubject"
+                            placeholder="Example: Mathematics"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            EXAM TYPE
+                        </label>
+
+                        <select
+                            id="marksExam"
+                            required
+                        >
+
+                            <option value="">
+                                Select exam
+                            </option>
+
+                            <option value="Internal 1">
+                                Internal 1
+                            </option>
+
+                            <option value="Internal 2">
+                                Internal 2
+                            </option>
+
+                            <option value="Mid Exam">
+                                Mid Exam
+                            </option>
+
+                            <option value="Assignment">
+                                Assignment
+                            </option>
+
+                            <option value="Lab">
+                                Lab
+                            </option>
+
+                            <option value="Semester">
+                                Semester
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            MARKS OBTAINED
+                        </label>
+
+                        <input
+                            type="number"
+                            id="marksObtained"
+                            placeholder="Example: 85"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            MAXIMUM MARKS
+                        </label>
+
+                        <input
+                            type="number"
+                            id="maxMarks"
+                            placeholder="Example: 100"
+                            min="1"
+                            step="0.01"
+                            value="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="marksSaveBtn">
+
+                        Save Marks
+
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- ======================================
+                 ATTENDANCE RECORDS
+            ======================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📅 Attendance Records
+                    </h2>
+
+                    <span id="attendanceLabel">
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div id="attendanceList">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📅
+                        </div>
+
+                        Loading attendance...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 MARKS RECORDS
+            ======================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📝 Marks Records
+                    </h2>
+
+                    <span id="marksLabel">
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div id="marksList">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📝
+                        </div>
+
+                        Loading marks...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    // ==================================================
+    // DEFAULT DATE
+    // ==================================================
+
+    const today =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    document.getElementById(
+        "attendanceDate"
+    ).value = today;
+
+
+    // ==================================================
+    // FORM EVENTS
+    // ==================================================
+
+    document
+        .getElementById(
+            "attendanceForm"
+        )
+        .addEventListener(
+            "submit",
+            saveAttendance
+        );
+
+
+    document
+        .getElementById(
+            "marksForm"
+        )
+        .addEventListener(
+            "submit",
+            saveMarks
+        );
+
+}
+
+
+// ======================================================
+// LOAD ATTENDANCE
+// ======================================================
+
+async function loadAttendance() {
+
+    const attendanceQuery =
+        query(
+            collection(
+                db,
+                "attendance"
+            ),
+
+            where(
+                "studentId",
+                "==",
+                studentId
+            ),
+
+            where(
+                "facultyId",
+                "==",
+                currentFaculty.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(
+            attendanceQuery
+        );
+
+
+    attendanceRecords = [];
+
+
+    snapshot.forEach(
+        record => {
+
+            attendanceRecords.push({
+
+                id:
+                    record.id,
+
+                ...record.data()
+
+            });
+
+        }
+    );
+
+
+    attendanceRecords.sort(
+        (a, b) => {
+
+            return String(
+                b.date || ""
+            )
+            .localeCompare(
+                String(
+                    a.date || ""
+                )
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// LOAD MARKS
+// ======================================================
+
+async function loadMarks() {
+
+    const marksQuery =
+        query(
+            collection(
+                db,
+                "marks"
+            ),
+
+            where(
+                "studentId",
+                "==",
+                studentId
+            ),
+
+            where(
+                "facultyId",
+                "==",
+                currentFaculty.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(
+            marksQuery
+        );
+
+
+    marksRecords = [];
+
+
+    snapshot.forEach(
+        record => {
+
+            marksRecords.push({
+
+                id:
+                    record.id,
+
+                ...record.data()
+
+            });
+
+        }
+    );
+
+
+    marksRecords.sort(
+        (a, b) => {
+
+            const aTime =
+                getTimestampMillis(
+                    a.createdAt
+                );
+
+
+            const bTime =
+                getTimestampMillis(
+                    b.createdAt
+                );
+
+
+            return bTime - aTime;
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// SAVE ATTENDANCE
+// ======================================================
+
+async function saveAttendance(
+    event
+) {
+
+    event.preventDefault();
+
+
+    const subject =
+        document.getElementById(
+            "attendanceSubject"
+        ).value.trim();
+
+
+    const date =
+        document.getElementById(
+            "attendanceDate"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "attendanceStatus"
+        ).value;
+
+
+    const button =
+        document.getElementById(
+            "attendanceSaveBtn"
+        );
+
+
+    if (
+        !subject ||
+        !date ||
+        !status
+    ) {
+
+        showToast(
+            "Please fill all attendance fields.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Saving...";
+
+
+    try {
+
+        // ==========================================
+        // CHECK EXISTING RECORD
+        // ==========================================
+
+        const existingQuery =
+            query(
+                collection(
+                    db,
+                    "attendance"
+                ),
+
+                where(
+                    "studentId",
+                    "==",
+                    studentId
+                ),
+
+                where(
+                    "facultyId",
+                    "==",
+                    currentFaculty.uid
+                ),
+
+                where(
+                    "date",
+                    "==",
+                    date
+                ),
+
+                where(
+                    "subject",
+                    "==",
+                    subject
+                )
+            );
+
+
+        const existingSnapshot =
+            await getDocs(
+                existingQuery
+            );
+
+
+        // ==========================================
+        // UPDATE EXISTING
+        // ==========================================
+
+        if (
+            !existingSnapshot.empty
+        ) {
+
+            const existingDoc =
+                existingSnapshot.docs[0];
+
+
+            await updateDoc(
+                existingDoc.ref,
+                {
+
+                    status:
+                        status,
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            showToast(
+                "Attendance updated successfully.",
+                "success"
+            );
+
+        }
+
+
+        // ==========================================
+        // CREATE NEW
+        // ==========================================
+
+        else {
+
+            await addDoc(
+                collection(
+                    db,
+                    "attendance"
+                ),
+                {
+
+                    studentId:
+                        studentId,
+
+                    facultyId:
+                        currentFaculty.uid,
+
+                    subject:
+                        subject,
+
+                    date:
+                        date,
+
+                    status:
+                        status,
+
+                    createdAt:
+                        serverTimestamp(),
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            showToast(
+                "Attendance saved successfully.",
+                "success"
+            );
+
+        }
+
+
+        // ==========================================
+        // RELOAD
+        // ==========================================
+
+        await loadAttendance();
+
+
+        renderAttendance();
+
+        updateSummary();
+
+
+        // ==========================================
+        // RESET
+        // ==========================================
+
+        document
+            .getElementById(
+                "attendanceSubject"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "attendanceStatus"
+            )
+            .value = "";
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Save attendance error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to save attendance. Check Firestore rules.",
+            "error"
+        );
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Save Attendance";
+
+    }
+
+}
+
+
+// ======================================================
+// SAVE MARKS
+// ======================================================
+
+async function saveMarks(
+    event
+) {
+
+    event.preventDefault();
+
+
+    const subject =
+        document.getElementById(
+            "marksSubject"
+        ).value.trim();
+
+
+    const exam =
+        document.getElementById(
+            "marksExam"
+        ).value;
+
+
+    const marks =
+        Number(
+            document.getElementById(
+                "marksObtained"
+            ).value
+        );
+
+
+    const maxMarks =
+        Number(
+            document.getElementById(
+                "maxMarks"
+            ).value
+        );
+
+
+    const button =
+        document.getElementById(
+            "marksSaveBtn"
+        );
+
+
+    if (
+        !subject ||
+        !exam ||
+        !Number.isFinite(marks) ||
+        !Number.isFinite(maxMarks)
+    ) {
+
+        showToast(
+            "Please fill all marks fields.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (maxMarks <= 0) {
+
+        showToast(
+            "Maximum marks must be greater than zero.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (marks < 0 || marks > maxMarks) {
+
+        showToast(
+            "Marks must be between 0 and maximum marks.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Saving...";
+
+
+    try {
+
+        await addDoc(
+            collection(
+                db,
+                "marks"
+            ),
+            {
+
+                studentId:
+                    studentId,
+
+                facultyId:
+                    currentFaculty.uid,
+
+                subject:
+                    subject,
+
+                exam:
+                    exam,
+
+                marks:
+                    marks,
+
+                maxMarks:
+                    maxMarks,
+
+                createdAt:
+                    serverTimestamp(),
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        showToast(
+            "Marks saved successfully.",
+            "success"
+        );
+
+
+        await loadMarks();
+
+
+        renderMarks();
+
+        updateSummary();
+
+
+        // ==========================================
+        // RESET FORM
+        // ==========================================
+
+        document
+            .getElementById(
+                "marksSubject"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "marksExam"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "marksObtained"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "maxMarks"
+            )
+            .value = "100";
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Save marks error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to save marks. Check Firestore rules.",
+            "error"
+        );
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Save Marks";
+
+    }
+
+}
+
+
+// ======================================================
+// RENDER ATTENDANCE
+// ======================================================
+
+function renderAttendance() {
+
+    const list =
+        document.getElementById(
+            "attendanceList"
+        );
+
+
+    const label =
+        document.getElementById(
+            "attendanceLabel"
+        );
+
+
+    if (!list) return;
+
+
+    label.textContent =
+        `${attendanceRecords.length} record(s)`;
+
+
+    list.innerHTML = "";
+
+
+    if (
+        attendanceRecords.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📅
+                </div>
+
+                No attendance records yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    attendanceRecords.forEach(
+        record => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "record";
+
+
+            const status =
+                String(
+                    record.status ||
+                    ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const statusHTML =
+                status === "present"
+
+                ? `
+                    <span class="present">
+                        ✓ PRESENT
+                    </span>
+                  `
+
+                : `
+                    <span class="absent">
+                        ✕ ABSENT
+                    </span>
+                  `;
+
+
+            item.innerHTML = `
+
+                <div class="record-top">
+
+                    <div>
+
+                        <div class="record-title">
+
+                            ${escapeHTML(
+                                record.subject ||
+                                "Subject"
+                            )}
+
+                        </div>
+
+
+                        <div class="record-subtitle">
+
+                            📅
+                            ${escapeHTML(
+                                record.date ||
+                                "No date"
+                            )}
+
+                            &nbsp; • &nbsp;
+
+                            ${statusHTML}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-actions">
+
+                        <button
+                            type="button"
+                            class="edit-btn">
+
+                            Edit
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="delete-btn">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            // ==========================================
+            // EDIT
+            // ==========================================
+
+            item
+                .querySelector(
+                    ".edit-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        editAttendance(
+                            record
+                        );
+
+                    }
+                );
+
+
+            // ==========================================
+            // DELETE
+            // ==========================================
+
+            item
+                .querySelector(
+                    ".delete-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        deleteAttendance(
+                            record
+                        );
+
+                    }
+                );
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// RENDER MARKS
+// ======================================================
+
+function renderMarks() {
+
+    const list =
+        document.getElementById(
+            "marksList"
+        );
+
+
+    const label =
+        document.getElementById(
+            "marksLabel"
+        );
+
+
+    if (!list) return;
+
+
+    label.textContent =
+        `${marksRecords.length} record(s)`;
+
+
+    list.innerHTML = "";
+
+
+    if (
+        marksRecords.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📝
+                </div>
+
+                No marks records yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    marksRecords.forEach(
+        record => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "record";
+
+
+            const marks =
+                Number(
+                    record.marks || 0
+                );
+
+
+            const maxMarks =
+                Number(
+                    record.maxMarks || 100
+                );
+
+
+            const percentage =
+                maxMarks > 0
+
+                ? (
+                    (marks / maxMarks) *
+                    100
+                  ).toFixed(1)
+
+                : "0.0";
+
+
+            item.innerHTML = `
+
+                <div class="record-top">
+
+                    <div>
+
+                        <div class="record-title">
+
+                            ${escapeHTML(
+                                record.subject ||
+                                "Subject"
+                            )}
+
+                        </div>
+
+
+                        <div class="record-subtitle">
+
+                            📝
+                            ${escapeHTML(
+                                record.exam ||
+                                "Exam"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-actions">
+
+                        <button
+                            type="button"
+                            class="edit-btn">
+
+                            Edit
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="delete-btn">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div style="
+                    margin-top:12px;
+                ">
+
+                    <span class="marks-value">
+
+                        ${escapeHTML(
+                            marks
+                        )}
+
+                        /
+
+                        ${escapeHTML(
+                            maxMarks
+                        )}
+
+                    </span>
+
+
+                    <span class="marks-percent">
+
+                        ${escapeHTML(
+                            percentage
+                        )}%
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            // ==========================================
+            // EDIT
+            // ==========================================
+
+            item
+                .querySelector(
+                    ".edit-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        editMarks(
+                            record
+                        );
+
+                    }
+                );
+
+
+            // ==========================================
+            // DELETE
+            // ==========================================
+
+            item
+                .querySelector(
+                    ".delete-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        deleteMarks(
+                            record
+                        );
+
+                    }
+                );
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// EDIT ATTENDANCE
+// ======================================================
+
+function editAttendance(
+    record
+) {
+
+    const subject =
+        document.getElementById(
+            "attendanceSubject"
+        );
+
+
+    const date =
+        document.getElementById(
+            "attendanceDate"
+        );
+
+
+    const status =
+        document.getElementById(
+            "attendanceStatus"
+        );
+
+
+    subject.value =
+        record.subject || "";
+
+
+    date.value =
+        record.date || "";
+
+
+    status.value =
+        normalizeAttendanceStatus(
+            record.status
+        );
+
+
+    subject.focus();
+
+
+    showToast(
+        "Attendance loaded. Change the values and click Save Attendance.",
+        ""
+    );
+
+}
+
+
+// ======================================================
+// EDIT MARKS
+// ======================================================
+
+async function editMarks(
+    record
+) {
+
+    const subject =
+        document.getElementById(
+            "marksSubject"
+        );
+
+
+    const exam =
+        document.getElementById(
+            "marksExam"
+        );
+
+
+    const marks =
+        document.getElementById(
+            "marksObtained"
+        );
+
+
+    const maxMarks =
+        document.getElementById(
+            "maxMarks"
+        );
+
+
+    subject.value =
+        record.subject || "";
+
+
+    exam.value =
+        record.exam || "";
+
+
+    marks.value =
+        record.marks ?? "";
+
+
+    maxMarks.value =
+        record.maxMarks ?? 100;
+
+
+    subject.focus();
+
+
+    // ==================================================
+    // Change form into update mode
+    // ==================================================
+
+    const form =
+        document.getElementById(
+            "marksForm"
+        );
+
+
+    const button =
+        document.getElementById(
+            "marksSaveBtn"
+        );
+
+
+    form.dataset.editId =
+        record.id;
+
+
+    button.textContent =
+        "Update Marks";
+
+
+    showToast(
+        "Marks loaded. Change the values and click Update Marks.",
+        ""
+    );
+
+}
+
+
+// ======================================================
+// DELETE ATTENDANCE
+// ======================================================
+
+async function deleteAttendance(
+    record
+) {
+
+    const confirmed =
+        confirm(
+            `Delete attendance record for ${record.subject || "this subject"} on ${record.date || "this date"}?`
+        );
+
+
+    if (!confirmed) return;
+
+
+    try {
+
+        await deleteDoc(
+            doc(
+                db,
+                "attendance",
+                record.id
+            )
+        );
+
+
+        showToast(
+            "Attendance deleted.",
+            "success"
+        );
+
+
+        await loadAttendance();
+
+
+        renderAttendance();
+
+        updateSummary();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete attendance error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to delete attendance.",
+            "error"
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// DELETE MARKS
+// ======================================================
+
+async function deleteMarks(
+    record
+) {
+
+    const confirmed =
+        confirm(
+            `Delete marks record for ${record.subject || "this subject"}?`
+        );
+
+
+    if (!confirmed) return;
+
+
+    try {
+
+        await deleteDoc(
+            doc(
+                db,
+                "marks",
+                record.id
+            )
+        );
+
+
+        showToast(
+            "Marks deleted.",
+            "success"
+        );
+
+
+        await loadMarks();
+
+
+        renderMarks();
+
+        updateSummary();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete marks error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to delete marks.",
+            "error"
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// UPDATE MARKS FORM
+// ======================================================
+
+document.addEventListener(
+    "submit",
+    async event => {
+
+        if (
+            event.target.id !==
+            "marksForm"
+        ) {
+
+            return;
+
+        }
+
+
+        const form =
+            event.target;
+
+
+        const editId =
+            form.dataset.editId;
+
+
+        if (!editId) {
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        const subject =
+            document.getElementById(
+                "marksSubject"
+            ).value.trim();
+
+
+        const exam =
+            document.getElementById(
+                "marksExam"
+            ).value;
+
+
+        const marks =
+            Number(
+                document.getElementById(
+                    "marksObtained"
+                ).value
+            );
+
+
+        const maxMarks =
+            Number(
+                document.getElementById(
+                    "maxMarks"
+                ).value
+            );
+
+
+        const button =
+            document.getElementById(
+                "marksSaveBtn"
+            );
+
+
+        if (
+            !subject ||
+            !exam ||
+            !Number.isFinite(marks) ||
+            !Number.isFinite(maxMarks)
+        ) {
+
+            showToast(
+                "Please enter valid marks information.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            marks < 0 ||
+            maxMarks <= 0 ||
+            marks > maxMarks
+        ) {
+
+            showToast(
+                "Invalid marks.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Updating...";
+
+
+        try {
+
+            await updateDoc(
+                doc(
+                    db,
+                    "marks",
+                    editId
+                ),
+                {
+
+                    subject:
+                        subject,
+
+                    exam:
+                        exam,
+
+                    marks:
+                        marks,
+
+                    maxMarks:
+                        maxMarks,
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            showToast(
+                "Marks updated successfully.",
+                "success"
+            );
+
+
+            delete form.dataset.editId;
+
+
+            button.textContent =
+                "Save Marks";
+
+
+            form.reset();
+
+
+            document.getElementById(
+                "maxMarks"
+            ).value = "100";
+
+
+            await loadMarks();
+
+
+            renderMarks();
+
+            updateSummary();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Update marks error:",
+                error
+            );
+
+
+            showToast(
+                "Unable to update marks.",
+                "error"
+            );
+
+        }
+
+        finally {
+
+            button.disabled = false;
+
+
+            if (
+                !form.dataset.editId
+            ) {
+
+                button.textContent =
+                    "Save Marks";
+
+            }
+
+        }
+
+    }
+);
+
+
+// ======================================================
+// UPDATE SUMMARY
+// ======================================================
+
+function updateSummary() {
+
+    const attendancePercentage =
+        document.getElementById(
+            "attendancePercentage"
+        );
+
+
+    const marksAverage =
+        document.getElementById(
+            "marksAverage"
+        );
+
+
+    const recordCount =
+        document.getElementById(
+            "recordCount"
+        );
+
+
+    // ==========================================
+    // ATTENDANCE
+    // ==========================================
+
+    let present = 0;
+
+    let totalAttendance = 0;
+
+
+    attendanceRecords.forEach(
+        record => {
+
+            const status =
+                normalizeAttendanceStatus(
+                    record.status
+                );
+
+
+            if (
+                status === "Present" ||
+                status === "Absent"
+            ) {
+
+                totalAttendance++;
+
+            }
+
+
+            if (
+                status === "Present"
+            ) {
+
+                present++;
+
+            }
+
+        }
+    );
+
+
+    const attendance =
+        totalAttendance > 0
+
+        ? (
+            (present / totalAttendance) *
+            100
+          ).toFixed(1)
+
+        : "0";
+
+
+    attendancePercentage.textContent =
+        `${attendance}%`;
+
+
+    // ==========================================
+    // MARKS
+    // ==========================================
+
+    let totalPercentage = 0;
+
+    let marksCount = 0;
+
+
+    marksRecords.forEach(
+        record => {
+
+            const marks =
+                Number(
+                    record.marks || 0
+                );
+
+
+            const maxMarks =
+                Number(
+                    record.maxMarks || 0
+                );
+
+
+            if (
+                maxMarks > 0
+            ) {
+
+                totalPercentage +=
+                    (marks / maxMarks) *
+                    100;
+
+                marksCount++;
+
+            }
+
+        }
+    );
+
+
+    const average =
+        marksCount > 0
+
+        ? (
+            totalPercentage /
+            marksCount
+          ).toFixed(1)
+
+        : "0";
+
+
+    marksAverage.textContent =
+        `${average}%`;
+
+
+    // ==========================================
+    // TOTAL RECORDS
+    // ==========================================
+
+    recordCount.textContent =
+        attendanceRecords.length +
+        marksRecords.length;
+
+}
+
+
+// ======================================================
+// NORMALIZE ATTENDANCE
+// ======================================================
+
+function normalizeAttendanceStatus(
+    value
+) {
+
+    const status =
+        String(
+            value || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    if (
+        status === "present" ||
+        status === "p"
+    ) {
+
+        return "Present";
+
+    }
+
+
+    if (
+        status === "absent" ||
+        status === "a"
+    ) {
+
+        return "Absent";
+
+    }
+
+
+    return "";
+
+}
+
+
+// ======================================================
+// TIMESTAMP
+// ======================================================
+
+function getTimestampMillis(
+    value
+) {
+
+    if (
+        value &&
+        typeof value.toMillis ===
+            "function"
+    ) {
+
+        return value.toMillis();
+
+    }
+
+
+    if (
+        value &&
+        typeof value.seconds ===
+            "number"
+    ) {
+
+        return value.seconds * 1000;
+
+    }
+
+
+    return 0;
+
+}
+
+
+// ======================================================
+// TOAST
+// ======================================================
+
+function showToast(
+    message,
+    type = ""
+) {
+
+    toast.textContent =
+        message;
+
+
+    toast.className =
+        "";
+
+
+    if (type) {
+
+        toast.classList.add(
+            type
+        );
+
+    }
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.add(
+                "show"
+            );
+
+        },
+        10
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        3500
+    );
+
+}
+
+
+// ======================================================
+// ERROR
+// ======================================================
+
+function showError(
+    message
+) {
+
+    pageContent.innerHTML = `
+
+        <div class="error-page">
+
+            <div>
+
+                ❌
+
+                <br><br>
+
+                ${escapeHTML(message)}
+
+                <br><br>
+
+                <button
+                    class="back-btn"
+                    onclick="
+                        window.location.href =
+                        'faculty-dashboard.html'
+                    ">
+
+                    ← Back to Faculty Dashboard
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+// ======================================================
+// HTML SECURITY
+// ======================================================
+
+function escapeHTML(
+    value
+) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+
+</body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Academic | R Mohan Digital</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #102a43 0%,
+                    #07111f 35%,
+                    #020617 75%
+                );
+
+            color: white;
+
+            padding: 25px;
+
+        }
+
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+        }
+
+
+        /* ==========================================
+           TOPBAR
+        ========================================== */
+
+        .topbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 22px;
+
+            margin-bottom: 22px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(7, 17, 31, 0.88);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.18);
+
+            backdrop-filter: blur(12px);
+
+        }
+
+
+        .topbar h1 {
+
+            font-size: 21px;
+
+        }
+
+
+        .topbar h1 span {
+
+            color: #00e5ff;
+
+            text-shadow:
+                0 0 10px rgba(0, 229, 255, 0.4);
+
+        }
+
+
+        .back-btn {
+
+            padding: 9px 15px;
+
+            border:
+                1px solid #00e5ff;
+
+            border-radius: 8px;
+
+            background:
+                rgba(0, 229, 255, 0.08);
+
+            color: #00e5ff;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+
+        }
+
+
+        .back-btn:hover {
+
+            background: #00e5ff;
+
+            color: #020617;
+
+            box-shadow:
+                0 0 15px rgba(0, 229, 255, 0.3);
+
+        }
+
+
+        /* ==========================================
+           STUDENT HEADER
+        ========================================== */
+
+        .student-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 22px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(7, 17, 31, 0.86);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.18);
+
+        }
+
+
+        .student-avatar {
+
+            width: 80px;
+
+            height: 80px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(0, 229, 255, 0.08);
+
+            border:
+                2px solid #00e5ff;
+
+            color: #00e5ff;
+
+            font-size: 32px;
+
+            box-shadow:
+                0 0 20px rgba(0, 229, 255, 0.2);
+
+            overflow: hidden;
+
+        }
+
+
+        .student-avatar img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .student-header h2 {
+
+            color: #00e5ff;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .student-header p {
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            margin: 4px 0;
+
+        }
+
+
+        .student-status {
+
+            display: inline-block;
+
+            margin-top: 7px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            color: #22c55e;
+
+            background:
+                rgba(34, 197, 94, 0.08);
+
+            border:
+                1px solid rgba(34, 197, 94, 0.3);
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ==========================================
+           SUMMARY
+        ========================================== */
+
+        .summary-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .summary-card {
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(7, 17, 31, 0.84);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.15);
+
+        }
+
+
+        .summary-icon {
+
+            font-size: 25px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .summary-card h3 {
+
+            color: #00e5ff;
+
+            font-size: 25px;
+
+        }
+
+
+        .summary-card p {
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            margin-top: 5px;
+
+        }
+
+
+        /* ==========================================
+           GRID
+        ========================================== */
+
+        .management-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        /* ==========================================
+           PANEL
+        ========================================== */
+
+        .panel {
+
+            padding: 22px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(7, 17, 31, 0.84);
+
+            border:
+                1px solid rgba(0, 229, 255, 0.15);
+
+        }
+
+
+        .panel.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .panel-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .panel-header h2 {
+
+            font-size: 17px;
+
+            color: #00e5ff;
+
+        }
+
+
+        .panel-header span {
+
+            color: #64748b;
+
+            font-size: 10px;
+
+        }
+
+
+        /* ==========================================
+           FORM
+        ========================================== */
+
+        .form-group {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border:
+                1px solid rgba(148, 163, 184, 0.18);
+
+            border-radius: 8px;
+
+            background:
+                rgba(15, 23, 42, 0.85);
+
+            color: white;
+
+            outline: none;
+
+            font-size: 13px;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #00e5ff;
+
+            box-shadow:
+                0 0 10px rgba(0, 229, 255, 0.1);
+
+        }
+
+
+        .form-group select option {
+
+            background: #07111f;
+
+            color: white;
+
+        }
+
+
+        .save-btn {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid #00e5ff;
+
+            border-radius: 8px;
+
+            background:
+                rgba(0, 229, 255, 0.1);
+
+            color: #00e5ff;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+
+        }
+
+
+        .save-btn:hover {
+
+            background: #00e5ff;
+
+            color: #020617;
+
+            box-shadow:
+                0 0 15px rgba(0, 229, 255, 0.3);
+
+        }
+
+
+        .save-btn:disabled {
+
+            opacity: 0.5;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* ==========================================
+           RECORDS
+        ========================================== */
+
+        .record {
+
+            padding: 15px;
+
+            margin-bottom: 10px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(15, 23, 42, 0.72);
+
+            border:
+                1px solid rgba(148, 163, 184, 0.08);
+
+        }
+
+
+        .record-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+        }
+
+
+        .record-title {
+
+            color: #e2e8f0;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .record-subtitle {
+
+            color: #64748b;
+
+            font-size: 10px;
+
+            margin-top: 5px;
+
+        }
+
+
+        .record-actions {
+
+            display: flex;
+
+            gap: 7px;
+
+        }
+
+
+        .edit-btn,
+        .delete-btn {
+
+            padding: 6px 9px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        .edit-btn {
+
+            border:
+                1px solid #38bdf8;
+
+            background:
+                rgba(56, 189, 248, 0.08);
+
+            color: #38bdf8;
+
+        }
+
+
+        .delete-btn {
+
+            border:
+                1px solid #ef4444;
+
+            background:
+                rgba(239, 68, 68, 0.08);
+
+            color: #f87171;
+
+        }
+
+
+        .edit-btn:hover {
+
+            background: #38bdf8;
+
+            color: #020617;
+
+        }
+
+
+        .delete-btn:hover {
+
+            background: #ef4444;
+
+            color: white;
+
+        }
+
+
+        /* ==========================================
+           ATTENDANCE BADGES
+        ========================================== */
+
+        .present {
+
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 15px;
+
+            color: #22c55e;
+
+            background:
+                rgba(34, 197, 94, 0.08);
+
+            border:
+                1px solid rgba(34, 197, 94, 0.25);
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        .absent {
+
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 15px;
+
+            color: #f87171;
+
+            background:
+                rgba(239, 68, 68, 0.08);
+
+            border:
+                1px solid rgba(239, 68, 68, 0.25);
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ==========================================
+           MARKS
+        ========================================== */
+
+        .marks-value {
+
+            color: #00e5ff;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+        }
+
+
+        .marks-percent {
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+            margin-left: 7px;
+
+        }
+
+
+        /* ==========================================
+           EMPTY
+        ========================================== */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 30px 10px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+        }
+
+
+        .empty-icon {
+
+            font-size: 32px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        /* ==========================================
+           TOAST
+        ========================================== */
+
+        #toast {
+
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            min-width: 260px;
+
+            max-width: 90%;
+
+            padding: 14px 18px;
+
+            border-radius: 10px;
+
+            background: #07111f;
+
+            border:
+                1px solid #00e5ff;
+
+            color: #e2e8f0;
+
+            box-shadow:
+                0 0 25px rgba(0,229,255,0.18);
+
+            transform:
+                translateY(100px);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: 0.3s;
+
+            z-index: 500;
+
+        }
+
+
+        #toast.show {
+
+            transform:
+                translateY(0);
+
+            opacity: 1;
+
+        }
+
+
+        #toast.error {
+
+            border-color: #ef4444;
+
+        }
+
+
+        #toast.success {
+
+            border-color: #22c55e;
+
+        }
+
+
+        /* ==========================================
+           LOADING
+        ========================================== */
+
+        .loading-page {
+
+            min-height: 70vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: #38bdf8;
+
+            font-size: 14px;
+
+        }
+
+
+        .error-page {
+
+            min-height: 70vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: #f87171;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 850px) {
+
+            .summary-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .management-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 15px;
+
+            }
+
+
+            .topbar {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+
+            }
+
+
+            .student-header {
+
+                flex-direction: column;
+
+                text-align: center;
+
+            }
+
+
+            .summary-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .record-top {
+
+                flex-direction: column;
+
+            }
+
+
+            .record-actions {
+
+                width: 100%;
+
+            }
+
+
+            .edit-btn,
+            .delete-btn {
+
+                flex: 1;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ==========================================
+         TOPBAR
+    ========================================== -->
+
+    <div class="topbar">
+
+        <h1>
+
+            Student
+            <span>Academic Management</span>
+
+        </h1>
+
+
+        <button
+            class="back-btn"
+            id="backBtn">
+
+            ← Back to Profile
+
+        </button>
+
+    </div>
+
+
+    <!-- ==========================================
+         PAGE CONTENT
+    ========================================== -->
+
+    <div id="pageContent">
+
+        <div class="loading-page">
+
+            Loading student...
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- ==========================================
+     TOAST
+========================================== -->
+
+<div id="toast"></div>
+
+
+<script type="module">
+
+
+import {
+    auth,
+    db
+} from "./firebase.js";
+
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+    doc,
+    getDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+// ======================================================
+// ELEMENTS
+// ======================================================
+
+const pageContent =
+    document.getElementById(
+        "pageContent"
+    );
+
+
+const backBtn =
+    document.getElementById(
+        "backBtn"
+    );
+
+
+const toast =
+    document.getElementById(
+        "toast"
+    );
+
+
+// ======================================================
+// URL STUDENT ID
+// ======================================================
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const studentId =
+    urlParams.get("id");
+
+
+// ======================================================
+// CURRENT USER
+// ======================================================
+
+let currentFaculty = null;
+
+let studentData = null;
+
+let attendanceRecords = [];
+
+let marksRecords = [];
+
+
+// ======================================================
+// BACK BUTTON
+// ======================================================
+
+backBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            `student-profile.html?id=${encodeURIComponent(studentId)}`;
+
+    }
+);
+
+
+// ======================================================
+// AUTH
+// ======================================================
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        if (!studentId) {
+
+            showError(
+                "Student ID is missing."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            // ==========================================
+            // FACULTY PROFILE
+            // ==========================================
+
+            const facultyRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const facultySnapshot =
+                await getDoc(
+                    facultyRef
+                );
+
+
+            if (!facultySnapshot.exists()) {
+
+                showError(
+                    "Faculty profile not found."
+                );
+
+                return;
+
+            }
+
+
+            const faculty =
+                facultySnapshot.data();
+
+
+            const role =
+                String(
+                    faculty.role || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const status =
+                String(
+                    faculty.status || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (
+                role !== "faculty" ||
+                status !== "active"
+            ) {
+
+                showError(
+                    "You are not authorized to manage academic records."
+                );
+
+                return;
+
+            }
+
+
+            currentFaculty = {
+
+                uid:
+                    user.uid,
+
+                ...faculty
+
+            };
+
+
+            // ==========================================
+            // STUDENT
+            // ==========================================
+
+            const studentRef =
+                doc(
+                    db,
+                    "users",
+                    studentId
+                );
+
+
+            const studentSnapshot =
+                await getDoc(
+                    studentRef
+                );
+
+
+            if (!studentSnapshot.exists()) {
+
+                showError(
+                    "Student profile not found."
+                );
+
+                return;
+
+            }
+
+
+            studentData =
+                studentSnapshot.data();
+
+
+            const studentRole =
+                String(
+                    studentData.role || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (
+                studentRole !== "student"
+            ) {
+
+                showError(
+                    "This account is not a student."
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // FACULTY ASSIGNMENT CHECK
+            // ==========================================
+
+            if (
+                studentData.facultyId !==
+                currentFaculty.uid
+            ) {
+
+                showError(
+                    "This student is not assigned to you."
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // RENDER PAGE
+            // ==========================================
+
+            renderPage();
+
+
+            // ==========================================
+            // LOAD RECORDS
+            // ==========================================
+
+            await Promise.all([
+
+                loadAttendance(),
+
+                loadMarks()
+
+            ]);
+
+
+            renderAttendance();
+
+            renderMarks();
+
+            updateSummary();
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Academic page error:",
+                error
+            );
+
+
+            showError(
+                "Unable to load academic management."
+            );
+
+        }
+
+    }
+);
+
+
+// ======================================================
+// RENDER PAGE
+// ======================================================
+
+function renderPage() {
+
+    const name =
+        studentData.name ||
+        studentData.displayName ||
+        "Student";
+
+
+    const email =
+        studentData.email ||
+        "No email";
+
+
+    const course =
+        studentData.course ||
+        studentData.courseName ||
+        "Not assigned";
+
+
+    const status =
+        studentData.status ||
+        "Active";
+
+
+    const photo =
+        studentData.photoURL ||
+        studentData.photo ||
+        "";
+
+
+    const avatar =
+        photo
+
+        ? `
+            <img
+                src="${escapeHTML(photo)}"
+                alt="Student"
+            >
+          `
+
+        : "🎓";
+
+
+    pageContent.innerHTML = `
+
+        <!-- STUDENT HEADER -->
+
+        <div class="student-header">
+
+            <div class="student-avatar">
+
+                ${avatar}
+
+            </div>
+
+
+            <div>
+
+                <h2>
+                    ${escapeHTML(name)}
+                </h2>
+
+
+                <p>
+                    📧
+                    ${escapeHTML(email)}
+                </p>
+
+
+                <p>
+                    📚
+                    ${escapeHTML(course)}
+                </p>
+
+
+                <span class="student-status">
+
+                    ✓
+                    ${escapeHTML(
+                        String(status).toUpperCase()
+                    )}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📅
+                </div>
+
+                <h3 id="attendancePercentage">
+                    0%
+                </h3>
+
+                <p>
+                    Attendance
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📝
+                </div>
+
+                <h3 id="marksAverage">
+                    0%
+                </h3>
+
+                <p>
+                    Marks Average
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📊
+                </div>
+
+                <h3 id="recordCount">
+                    0
+                </h3>
+
+                <p>
+                    Academic Records
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- MANAGEMENT -->
+
+        <div class="management-grid">
+
+
+            <!-- ======================================
+                 ADD ATTENDANCE
+            ======================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📅 Add Attendance
+                    </h2>
+
+                    <span>
+                        Faculty
+                    </span>
+
+                </div>
+
+
+                <form id="attendanceForm">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            SUBJECT
+                        </label>
+
+                        <input
+                            type="text"
+                            id="attendanceSubject"
+                            placeholder="Example: Data Structures"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            DATE
+                        </label>
+
+                        <input
+                            type="date"
+                            id="attendanceDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            ATTENDANCE STATUS
+                        </label>
+
+                        <select
+                            id="attendanceStatus"
+                            required
+                        >
+
+                            <option value="">
+                                Select status
+                            </option>
+
+                            <option value="Present">
+                                Present
+                            </option>
+
+                            <option value="Absent">
+                                Absent
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="attendanceSaveBtn">
+
+                        Save Attendance
+
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- ======================================
+                 ADD MARKS
+            ======================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📝 Add Marks
+                    </h2>
+
+                    <span>
+                        Faculty
+                    </span>
+
+                </div>
+
+
+                <form id="marksForm">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            SUBJECT
+                        </label>
+
+                        <input
+                            type="text"
+                            id="marksSubject"
+                            placeholder="Example: Mathematics"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            EXAM TYPE
+                        </label>
+
+                        <select
+                            id="marksExam"
+                            required
+                        >
+
+                            <option value="">
+                                Select exam
+                            </option>
+
+                            <option value="Internal 1">
+                                Internal 1
+                            </option>
+
+                            <option value="Internal 2">
+                                Internal 2
+                            </option>
+
+                            <option value="Mid Exam">
+                                Mid Exam
+                            </option>
+
+                            <option value="Assignment">
+                                Assignment
+                            </option>
+
+                            <option value="Lab">
+                                Lab
+                            </option>
+
+                            <option value="Semester">
+                                Semester
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            MARKS OBTAINED
+                        </label>
+
+                        <input
+                            type="number"
+                            id="marksObtained"
+                            placeholder="Example: 85"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            MAXIMUM MARKS
+                        </label>
+
+                        <input
+                            type="number"
+                            id="maxMarks"
+                            placeholder="Example: 100"
+                            min="1"
+                            step="0.01"
+                            value="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="marksSaveBtn">
+
+                        Save Marks
+
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- ======================================
+                 ATTENDANCE RECORDS
+            ======================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📅 Attendance Records
+                    </h2>
+
+                    <span id="attendanceLabel">
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div id="attendanceList">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📅
+                        </div>
+
+                        Loading attendance...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 MARKS RECORDS
+            ======================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📝 Marks Records
+                    </h2>
+
+                    <span id="marksLabel">
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div id="marksList">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📝
+                        </div>
+
+                        Loading marks...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    // ==================================================
+    // DEFAULT DATE
+    // ==================================================
+
+    const today =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    document.getElementById(
+        "attendanceDate"
+    ).value = today;
+
+
+    // ==================================================
+    // FORM EVENTS
+    // ==================================================
+
+    document
+        .getElementById(
+            "attendanceForm"
+        )
+        .addEventListener(
+            "submit",
+            saveAttendance
+        );
+
+
+    document
+        .getElementById(
+            "marksForm"
+        )
+        .addEventListener(
+            "submit",
+            saveMarks
+        );
+
+}
+
+
+// ======================================================
+// LOAD ATTENDANCE
+// ======================================================
+
+async function loadAttendance() {
+
+    const attendanceQuery =
+        query(
+            collection(
+                db,
+                "attendance"
+            ),
+
+            where(
+                "studentId",
+                "==",
+                studentId
+            ),
+
+            where(
+                "facultyId",
+                "==",
+                currentFaculty.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(
+            attendanceQuery
+        );
+
+
+    attendanceRecords = [];
+
+
+    snapshot.forEach(
+        record => {
+
+            attendanceRecords.push({
+
+                id:
+                    record.id,
+
+                ...record.data()
+
+            });
+
+        }
+    );
+
+
+    attendanceRecords.sort(
+        (a, b) => {
+
+            return String(
+                b.date || ""
+            )
+            .localeCompare(
+                String(
+                    a.date || ""
+                )
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// LOAD MARKS
+// ======================================================
+
+async function loadMarks() {
+
+    const marksQuery =
+        query(
+            collection(
+                db,
+                "marks"
+            ),
+
+            where(
+                "studentId",
+                "==",
+                studentId
+            ),
+
+            where(
+                "facultyId",
+                "==",
+                currentFaculty.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(
+            marksQuery
+        );
+
+
+    marksRecords = [];
+
+
+    snapshot.forEach(
+        record => {
+
+            marksRecords.push({
+
+                id:
+                    record.id,
+
+                ...record.data()
+
+            });
+
+        }
+    );
+
+
+    marksRecords.sort(
+        (a, b) => {
+
+            const aTime =
+                getTimestampMillis(
+                    a.createdAt
+                );
+
+
+            const bTime =
+                getTimestampMillis(
+                    b.createdAt
+                );
+
+
+            return bTime - aTime;
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// SAVE ATTENDANCE
+// ======================================================
+
+async function saveAttendance(
+    event
+) {
+
+    event.preventDefault();
+
+
+    const subject =
+        document.getElementById(
+            "attendanceSubject"
+        ).value.trim();
+
+
+    const date =
+        document.getElementById(
+            "attendanceDate"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "attendanceStatus"
+        ).value;
+
+
+    const button =
+        document.getElementById(
+            "attendanceSaveBtn"
+        );
+
+
+    if (
+        !subject ||
+        !date ||
+        !status
+    ) {
+
+        showToast(
+            "Please fill all attendance fields.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Saving...";
+
+
+    try {
+
+        // ==========================================
+        // CHECK EXISTING RECORD
+        // ==========================================
+
+        const existingQuery =
+            query(
+                collection(
+                    db,
+                    "attendance"
+                ),
+
+                where(
+                    "studentId",
+                    "==",
+                    studentId
+                ),
+
+                where(
+                    "facultyId",
+                    "==",
+                    currentFaculty.uid
+                ),
+
+                where(
+                    "date",
+                    "==",
+                    date
+                ),
+
+                where(
+                    "subject",
+                    "==",
+                    subject
+                )
+            );
+
+
+        const existingSnapshot =
+            await getDocs(
+                existingQuery
+            );
+
+
+        // ==========================================
+        // UPDATE EXISTING
+        // ==========================================
+
+        if (
+            !existingSnapshot.empty
+        ) {
+
+            const existingDoc =
+                existingSnapshot.docs[0];
+
+
+            await updateDoc(
+                existingDoc.ref,
+                {
+
+                    status:
+                        status,
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            showToast(
+                "Attendance updated successfully.",
+                "success"
+            );
+
+        }
+
+
+        // ==========================================
+        // CREATE NEW
+        // ==========================================
+
+        else {
+
+            await addDoc(
+                collection(
+                    db,
+                    "attendance"
+                ),
+                {
+
+                    studentId:
+                        studentId,
+
+                    facultyId:
+                        currentFaculty.uid,
+
+                    subject:
+                        subject,
+
+                    date:
+                        date,
+
+                    status:
+                        status,
+
+                    createdAt:
+                        serverTimestamp(),
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            showToast(
+                "Attendance saved successfully.",
+                "success"
+            );
+
+        }
+
+
+        // ==========================================
+        // RELOAD
+        // ==========================================
+
+        await loadAttendance();
+
+
+        renderAttendance();
+
+        updateSummary();
+
+
+        // ==========================================
+        // RESET
+        // ==========================================
+
+        document
+            .getElementById(
+                "attendanceSubject"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "attendanceStatus"
+            )
+            .value = "";
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Save attendance error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to save attendance. Check Firestore rules.",
+            "error"
+        );
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Save Attendance";
+
+    }
+
+}
+
+
+// ======================================================
+// SAVE MARKS
+// ======================================================
+
+async function saveMarks(
+    event
+) {
+
+    event.preventDefault();
+
+
+    const subject =
+        document.getElementById(
+            "marksSubject"
+        ).value.trim();
+
+
+    const exam =
+        document.getElementById(
+            "marksExam"
+        ).value;
+
+
+    const marks =
+        Number(
+            document.getElementById(
+                "marksObtained"
+            ).value
+        );
+
+
+    const maxMarks =
+        Number(
+            document.getElementById(
+                "maxMarks"
+            ).value
+        );
+
+
+    const button =
+        document.getElementById(
+            "marksSaveBtn"
+        );
+
+
+    if (
+        !subject ||
+        !exam ||
+        !Number.isFinite(marks) ||
+        !Number.isFinite(maxMarks)
+    ) {
+
+        showToast(
+            "Please fill all marks fields.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (maxMarks <= 0) {
+
+        showToast(
+            "Maximum marks must be greater than zero.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (marks < 0 || marks > maxMarks) {
+
+        showToast(
+            "Marks must be between 0 and maximum marks.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Saving...";
+
+
+    try {
+
+        await addDoc(
+            collection(
+                db,
+                "marks"
+            ),
+            {
+
+                studentId:
+                    studentId,
+
+                facultyId:
+                    currentFaculty.uid,
+
+                subject:
+                    subject,
+
+                exam:
+                    exam,
+
+                marks:
+                    marks,
+
+                maxMarks:
+                    maxMarks,
+
+                createdAt:
+                    serverTimestamp(),
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        showToast(
+            "Marks saved successfully.",
+            "success"
+        );
+
+
+        await loadMarks();
+
+
+        renderMarks();
+
+        updateSummary();
+
+
+        // ==========================================
+        // RESET FORM
+        // ==========================================
+
+        document
+            .getElementById(
+                "marksSubject"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "marksExam"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "marksObtained"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "maxMarks"
+            )
+            .value = "100";
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Save marks error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to save marks. Check Firestore rules.",
+            "error"
+        );
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Save Marks";
+
+    }
+
+}
+
+
+// ======================================================
+// RENDER ATTENDANCE
+// ======================================================
+
+function renderAttendance() {
+
+    const list =
+        document.getElementById(
+            "attendanceList"
+        );
+
+
+    const label =
+        document.getElementById(
+            "attendanceLabel"
+        );
+
+
+    if (!list) return;
+
+
+    label.textContent =
+        `${attendanceRecords.length} record(s)`;
+
+
+    list.innerHTML = "";
+
+
+    if (
+        attendanceRecords.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📅
+                </div>
+
+                No attendance records yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    attendanceRecords.forEach(
+        record => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "record";
+
+
+            const status =
+                String(
+                    record.status ||
+                    ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const statusHTML =
+                status === "present"
+
+                ? `
+                    <span class="present">
+                        ✓ PRESENT
+                    </span>
+                  `
+
+                : `
+                    <span class="absent">
+                        ✕ ABSENT
+                    </span>
+                  `;
+
+
+            item.innerHTML = `
+
+                <div class="record-top">
+
+                    <div>
+
+                        <div class="record-title">
+
+                            ${escapeHTML(
+                                record.subject ||
+                                "Subject"
+                            )}
+
+                        </div>
+
+
+                        <div class="record-subtitle">
+
+                            📅
+                            ${escapeHTML(
+                                record.date ||
+                                "No date"
+                            )}
+
+                            &nbsp; • &nbsp;
+
+                            ${statusHTML}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-actions">
+
+                        <button
+                            type="button"
+                            class="edit-btn">
+
+                            Edit
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="delete-btn">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            // ==========================================
+            // EDIT
+            // ==========================================
+
+            item
+                .querySelector(
+                    ".edit-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        editAttendance(
+                            record
+                        );
+
+                    }
+                );
+
+
+            // ==========================================
+            // DELETE
+            // ==========================================
+
+            item
+                .querySelector(
+                    ".delete-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        deleteAttendance(
+                            record
+                        );
+
+                    }
+                );
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// RENDER MARKS
+// ======================================================
+
+function renderMarks() {
+
+    const list =
+        document.getElementById(
+            "marksList"
+        );
+
+
+    const label =
+        document.getElementById(
+            "marksLabel"
+        );
+
+
+    if (!list) return;
+
+
+    label.textContent =
+        `${marksRecords.length} record(s)`;
+
+
+    list.innerHTML = "";
+
+
+    if (
+        marksRecords.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📝
+                </div>
+
+                No marks records yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    marksRecords.forEach(
+        record => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "record";
+
+
+            const marks =
+                Number(
+                    record.marks || 0
+                );
+
+
+            const maxMarks =
+                Number(
+                    record.maxMarks || 100
+                );
+
+
+            const percentage =
+                maxMarks > 0
+
+                ? (
+                    (marks / maxMarks) *
+                    100
+                  ).toFixed(1)
+
+                : "0.0";
+
+
+            item.innerHTML = `
+
+                <div class="record-top">
+
+                    <div>
+
+                        <div class="record-title">
+
+                            ${escapeHTML(
+                                record.subject ||
+                                "Subject"
+                            )}
+
+                        </div>
+
+
+                        <div class="record-subtitle">
+
+                            📝
+                            ${escapeHTML(
+                                record.exam ||
+                                "Exam"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-actions">
+
+                        <button
+                            type="button"
+                            class="edit-btn">
+
+                            Edit
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="delete-btn">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div style="
+                    margin-top:12px;
+                ">
+
+                    <span class="marks-value">
+
+                        ${escapeHTML(
+                            marks
+                        )}
+
+                        /
+
+                        ${escapeHTML(
+                            maxMarks
+                        )}
+
+                    </span>
+
+
+                    <span class="marks-percent">
+
+                        ${escapeHTML(
+                            percentage
+                        )}%
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            // ==========================================
+            // EDIT
+            // ==========================================
+
+            item
+                .querySelector(
+                    ".edit-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        editMarks(
+                            record
+                        );
+
+                    }
+                );
+
+
+            // ==========================================
+            // DELETE
+            // ==========================================
+
+            item
+                .querySelector(
+                    ".delete-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        deleteMarks(
+                            record
+                        );
+
+                    }
+                );
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// EDIT ATTENDANCE
+// ======================================================
+
+function editAttendance(
+    record
+) {
+
+    const subject =
+        document.getElementById(
+            "attendanceSubject"
+        );
+
+
+    const date =
+        document.getElementById(
+            "attendanceDate"
+        );
+
+
+    const status =
+        document.getElementById(
+            "attendanceStatus"
+        );
+
+
+    subject.value =
+        record.subject || "";
+
+
+    date.value =
+        record.date || "";
+
+
+    status.value =
+        normalizeAttendanceStatus(
+            record.status
+        );
+
+
+    subject.focus();
+
+
+    showToast(
+        "Attendance loaded. Change the values and click Save Attendance.",
+        ""
+    );
+
+}
+
+
+// ======================================================
+// EDIT MARKS
+// ======================================================
+
+async function editMarks(
+    record
+) {
+
+    const subject =
+        document.getElementById(
+            "marksSubject"
+        );
+
+
+    const exam =
+        document.getElementById(
+            "marksExam"
+        );
+
+
+    const marks =
+        document.getElementById(
+            "marksObtained"
+        );
+
+
+    const maxMarks =
+        document.getElementById(
+            "maxMarks"
+        );
+
+
+    subject.value =
+        record.subject || "";
+
+
+    exam.value =
+        record.exam || "";
+
+
+    marks.value =
+        record.marks ?? "";
+
+
+    maxMarks.value =
+        record.maxMarks ?? 100;
+
+
+    subject.focus();
+
+
+    // ==================================================
+    // Change form into update mode
+    // ==================================================
+
+    const form =
+        document.getElementById(
+            "marksForm"
+        );
+
+
+    const button =
+        document.getElementById(
+            "marksSaveBtn"
+        );
+
+
+    form.dataset.editId =
+        record.id;
+
+
+    button.textContent =
+        "Update Marks";
+
+
+    showToast(
+        "Marks loaded. Change the values and click Update Marks.",
+        ""
+    );
+
+}
+
+
+// ======================================================
+// DELETE ATTENDANCE
+// ======================================================
+
+async function deleteAttendance(
+    record
+) {
+
+    const confirmed =
+        confirm(
+            `Delete attendance record for ${record.subject || "this subject"} on ${record.date || "this date"}?`
+        );
+
+
+    if (!confirmed) return;
+
+
+    try {
+
+        await deleteDoc(
+            doc(
+                db,
+                "attendance",
+                record.id
+            )
+        );
+
+
+        showToast(
+            "Attendance deleted.",
+            "success"
+        );
+
+
+        await loadAttendance();
+
+
+        renderAttendance();
+
+        updateSummary();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete attendance error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to delete attendance.",
+            "error"
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// DELETE MARKS
+// ======================================================
+
+async function deleteMarks(
+    record
+) {
+
+    const confirmed =
+        confirm(
+            `Delete marks record for ${record.subject || "this subject"}?`
+        );
+
+
+    if (!confirmed) return;
+
+
+    try {
+
+        await deleteDoc(
+            doc(
+                db,
+                "marks",
+                record.id
+            )
+        );
+
+
+        showToast(
+            "Marks deleted.",
+            "success"
+        );
+
+
+        await loadMarks();
+
+
+        renderMarks();
+
+        updateSummary();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete marks error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to delete marks.",
+            "error"
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// UPDATE MARKS FORM
+// ======================================================
+
+document.addEventListener(
+    "submit",
+    async event => {
+
+        if (
+            event.target.id !==
+            "marksForm"
+        ) {
+
+            return;
+
+        }
+
+
+        const form =
+            event.target;
+
+
+        const editId =
+            form.dataset.editId;
+
+
+        if (!editId) {
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        const subject =
+            document.getElementById(
+                "marksSubject"
+            ).value.trim();
+
+
+        const exam =
+            document.getElementById(
+                "marksExam"
+            ).value;
+
+
+        const marks =
+            Number(
+                document.getElementById(
+                    "marksObtained"
+                ).value
+            );
+
+
+        const maxMarks =
+            Number(
+                document.getElementById(
+                    "maxMarks"
+                ).value
+            );
+
+
+        const button =
+            document.getElementById(
+                "marksSaveBtn"
+            );
+
+
+        if (
+            !subject ||
+            !exam ||
+            !Number.isFinite(marks) ||
+            !Number.isFinite(maxMarks)
+        ) {
+
+            showToast(
+                "Please enter valid marks information.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            marks < 0 ||
+            maxMarks <= 0 ||
+            marks > maxMarks
+        ) {
+
+            showToast(
+                "Invalid marks.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Updating...";
+
+
+        try {
+
+            await updateDoc(
+                doc(
+                    db,
+                    "marks",
+                    editId
+                ),
+                {
+
+                    subject:
+                        subject,
+
+                    exam:
+                        exam,
+
+                    marks:
+                        marks,
+
+                    maxMarks:
+                        maxMarks,
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            showToast(
+                "Marks updated successfully.",
+                "success"
+            );
+
+
+            delete form.dataset.editId;
+
+
+            button.textContent =
+                "Save Marks";
+
+
+            form.reset();
+
+
+            document.getElementById(
+                "maxMarks"
+            ).value = "100";
+
+
+            await loadMarks();
+
+
+            renderMarks();
+
+            updateSummary();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Update marks error:",
+                error
+            );
+
+
+            showToast(
+                "Unable to update marks.",
+                "error"
+            );
+
+        }
+
+        finally {
+
+            button.disabled = false;
+
+
+            if (
+                !form.dataset.editId
+            ) {
+
+                button.textContent =
+                    "Save Marks";
+
+            }
+
+        }
+
+    }
+);
+
+
+// ======================================================
+// UPDATE SUMMARY
+// ======================================================
+
+function updateSummary() {
+
+    const attendancePercentage =
+        document.getElementById(
+            "attendancePercentage"
+        );
+
+
+    const marksAverage =
+        document.getElementById(
+            "marksAverage"
+        );
+
+
+    const recordCount =
+        document.getElementById(
+            "recordCount"
+        );
+
+
+    // ==========================================
+    // ATTENDANCE
+    // ==========================================
+
+    let present = 0;
+
+    let totalAttendance = 0;
+
+
+    attendanceRecords.forEach(
+        record => {
+
+            const status =
+                normalizeAttendanceStatus(
+                    record.status
+                );
+
+
+            if (
+                status === "Present" ||
+                status === "Absent"
+            ) {
+
+                totalAttendance++;
+
+            }
+
+
+            if (
+                status === "Present"
+            ) {
+
+                present++;
+
+            }
+
+        }
+    );
+
+
+    const attendance =
+        totalAttendance > 0
+
+        ? (
+            (present / totalAttendance) *
+            100
+          ).toFixed(1)
+
+        : "0";
+
+
+    attendancePercentage.textContent =
+        `${attendance}%`;
+
+
+    // ==========================================
+    // MARKS
+    // ==========================================
+
+    let totalPercentage = 0;
+
+    let marksCount = 0;
+
+
+    marksRecords.forEach(
+        record => {
+
+            const marks =
+                Number(
+                    record.marks || 0
+                );
+
+
+            const maxMarks =
+                Number(
+                    record.maxMarks || 0
+                );
+
+
+            if (
+                maxMarks > 0
+            ) {
+
+                totalPercentage +=
+                    (marks / maxMarks) *
+                    100;
+
+                marksCount++;
+
+            }
+
+        }
+    );
+
+
+    const average =
+        marksCount > 0
+
+        ? (
+            totalPercentage /
+            marksCount
+          ).toFixed(1)
+
+        : "0";
+
+
+    marksAverage.textContent =
+        `${average}%`;
+
+
+    // ==========================================
+    // TOTAL RECORDS
+    // ==========================================
+
+    recordCount.textContent =
+        attendanceRecords.length +
+        marksRecords.length;
+
+}
+
+
+// ======================================================
+// NORMALIZE ATTENDANCE
+// ======================================================
+
+function normalizeAttendanceStatus(
+    value
+) {
+
+    const status =
+        String(
+            value || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    if (
+        status === "present" ||
+        status === "p"
+    ) {
+
+        return "Present";
+
+    }
+
+
+    if (
+        status === "absent" ||
+        status === "a"
+    ) {
+
+        return "Absent";
+
+    }
+
+
+    return "";
+
+}
+
+
+// ======================================================
+// TIMESTAMP
+// ======================================================
+
+function getTimestampMillis(
+    value
+) {
+
+    if (
+        value &&
+        typeof value.toMillis ===
+            "function"
+    ) {
+
+        return value.toMillis();
+
+    }
+
+
+    if (
+        value &&
+        typeof value.seconds ===
+            "number"
+    ) {
+
+        return value.seconds * 1000;
+
+    }
+
+
+    return 0;
+
+}
+
+
+// ======================================================
+// TOAST
+// ======================================================
+
+function showToast(
+    message,
+    type = ""
+) {
+
+    toast.textContent =
+        message;
+
+
+    toast.className =
+        "";
+
+
+    if (type) {
+
+        toast.classList.add(
+            type
+        );
+
+    }
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.add(
+                "show"
+            );
+
+        },
+        10
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        3500
+    );
+
+}
+
+
+// ======================================================
+// ERROR
+// ======================================================
+
+function showError(
+    message
+) {
+
+    pageContent.innerHTML = `
+
+        <div class="error-page">
+
+            <div>
+
+                ❌
+
+                <br><br>
+
+                ${escapeHTML(message)}
+
+                <br><br>
+
+                <button
+                    class="back-btn"
+                    onclick="
+                        window.location.href =
+                        'faculty-dashboard.html'
+                    ">
+
+                    ← Back to Faculty Dashboard
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+// ======================================================
+// HTML SECURITY
+// ======================================================
+
+function escapeHTML(
+    value
+) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+
+</body>
+
+</html>
