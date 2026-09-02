@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assignments | R Mohan Digital</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .dashboard-header {
+            background: #ffffff;
+            min-height: 76px;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5eaf2;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .brand-text h2 {
+            color: #172033;
+            font-size: 19px;
+        }
+
+        .brand-text small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .back-btn,
+        .logout-btn {
+            border: 1px solid #dbe3ef;
+            background: white;
+            color: #334155;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .back-btn:hover {
+            background: #eff6ff;
+            color: #2563eb;
+            border-color: #bfdbfe;
+        }
+
+        .logout-btn:hover {
+            background: #fee2e2;
+            color: #dc2626;
+            border-color: #fecaca;
+        }
+
+        /* =====================================
+           MAIN
+        ===================================== */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 35px 25px 60px;
+        }
+
+        /* =====================================
+           MESSAGE
+        ===================================== */
+
+        .message {
+            display: none;
+            background: #fff7ed;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* =====================================
+           PAGE HEADER
+        ===================================== */
+
+        .page-header {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, .15);
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #dbeafe;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .student-info {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .student-badge {
+            background: rgba(255,255,255,.14);
+            border: 1px solid rgba(255,255,255,.25);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        /* =====================================
+           STATS
+        ===================================== */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            background: #eff6ff;
+            border-radius: 11px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card h3 {
+            font-size: 24px;
+            color: #172033;
+        }
+
+        .stat-card p {
+            color: #718096;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* =====================================
+           FILTER
+        ===================================== */
+
+        .filter-card {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 12px;
+        }
+
+        .search-box,
+        .status-filter {
+            width: 100%;
+            border: 1px solid #dbe3ef;
+            background: #f8fafc;
+            padding: 12px 14px;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            color: #172033;
+        }
+
+        .search-box:focus,
+        .status-filter:focus {
+            border-color: #2563eb;
+            background: white;
+        }
+
+        /* =====================================
+           ASSIGNMENT LIST
+        ===================================== */
+
+        .assignments-section {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+        }
+
+        .count-badge {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .assignments-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        /* =====================================
+           ASSIGNMENT CARD
+        ===================================== */
+
+        .assignment-card {
+            background: #f8fafc;
+            border: 1px solid #e5eaf2;
+            border-radius: 15px;
+            padding: 20px;
+            transition: .25s;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-2px);
+            background: white;
+            border-color: #bfdbfe;
+            box-shadow: 0 8px 22px rgba(37, 99, 235, .07);
+        }
+
+        .assignment-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .assignment-title {
+            font-size: 17px;
+            color: #172033;
+            margin-bottom: 6px;
+        }
+
+        .assignment-subject {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* =====================================
+           STATUS
+        ===================================== */
+
+        .status {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .status-pending {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-today {
+            background: #fef3c7;
+            color: #a16207;
+        }
+
+        .status-overdue {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .status-no-date {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        /* =====================================
+           DESCRIPTION
+        ===================================== */
+
+        .assignment-description {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 12px 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* =====================================
+           META
+        ===================================== */
+
+        .assignment-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .meta-item {
+            background: white;
+            border: 1px solid #e8edf5;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .meta-item span {
+            color: #172033;
+            font-size: 13px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* =====================================
+           EMPTY
+        ===================================== */
+
+        .empty-state {
+            text-align: center;
+            padding: 45px 20px;
+            color: #94a3b8;
+            background: #f8fafc;
+            border-radius: 13px;
+            border: 1px dashed #dbe3ef;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state h3 {
+            color: #64748b;
+            margin-bottom: 6px;
+            font-size: 17px;
+        }
+
+        .empty-state p {
+            font-size: 13px;
+        }
+
+        /* =====================================
+           LOADING
+        ===================================== */
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+
+        .spinner {
+            width: 34px;
+            height: 34px;
+            border: 3px solid #dbeafe;
+            border-top-color: #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 900px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .assignment-meta {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .dashboard-header {
+                padding: 12px 18px;
+            }
+
+            .brand-text h2 {
+                font-size: 16px;
+            }
+
+            .brand-text small {
+                font-size: 10px;
+            }
+
+            .brand-logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .back-btn {
+                display: none;
+            }
+
+            .logout-btn {
+                padding: 8px 12px;
+            }
+
+            .container {
+                padding: 20px 15px 40px;
+            }
+
+            .page-header {
+                padding: 23px;
+            }
+
+            .page-header h1 {
+                font-size: 23px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+
+            .assignment-top {
+                flex-direction: column;
+            }
+
+            .assignment-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .assignments-section {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="dashboard-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                RM
+            </div>
+
+            <div class="brand-text">
+
+                <h2>
+                    R Mohan Digital
+                </h2>
+
+                <small>
+                    Student Portal
+                </small>
+
+            </div>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                class="back-btn"
+                id="backBtn">
+
+                ← Dashboard
+
+            </button>
+
+            <button
+                class="logout-btn"
+                id="logoutBtn">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="container">
+
+        <div
+            class="message"
+            id="message">
+        </div>
+
+
+        <!-- =====================================
+             PAGE HEADER
+        ====================================== -->
+
+        <section class="page-header">
+
+            <h1>
+                📝 My Assignments
+            </h1>
+
+            <p>
+                View assignments given by your faculty, check due dates,
+                and keep track of your academic work.
+            </p>
+
+            <div class="student-info">
+
+                <span class="student-badge">
+                    👤 <span id="studentName">Loading...</span>
+                </span>
+
+                <span class="student-badge">
+                    📚 <span id="studentCourse">Loading...</span>
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             STATISTICS
+        ====================================== -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <h3 id="totalAssignments">
+                    0
+                </h3>
+
+                <p>
+                    Total Assignments
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
+                <h3 id="pendingAssignments">
+                    0
+                </h3>
+
+                <p>
+                    Pending
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📅
+                </div>
+
+                <h3 id="todayAssignments">
+                    0
+                </h3>
+
+                <p>
+                    Due Today
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⚠️
+                </div>
+
+                <h3 id="overdueAssignments">
+                    0
+                </h3>
+
+                <p>
+                    Overdue
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             FILTER
+        ====================================== -->
+
+        <section class="filter-card">
+
+            <div class="filter-row">
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    class="search-box"
+                    placeholder="🔎 Search assignments by title or subject...">
+
+                <select
+                    id="statusFilter"
+                    class="status-filter">
+
+                    <option value="all">
+                        All Assignments
+                    </option>
+
+                    <option value="pending">
+                        Pending
+                    </option>
+
+                    <option value="today">
+                        Due Today
+                    </option>
+
+                    <option value="overdue">
+                        Overdue
+                    </option>
+
+                    <option value="no-date">
+                        No Due Date
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             ASSIGNMENTS
+        ====================================== -->
+
+        <section class="assignments-section">
+
+            <div class="section-header">
+
+                <h2>
+                    📚 Assignment List
+                </h2>
+
+                <span
+                    class="count-badge"
+                    id="assignmentCount">
+
+                    0 Assignments
+
+                </span>
+
+            </div>
+
+
+            <div
+                class="assignments-list"
+                id="assignmentsList">
+
+                <div class="loading">
+
+                    <div class="spinner"></div>
+
+                    Loading assignments...
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        © 2026 R Mohan Digital · Student Portal
+    </footer>
+
+
+    <!-- =====================================
+         FIREBASE
+    ====================================== -->
+
+    <script type="module">
+
+        import {
+            auth,
+            db
+        } from "./firebase.js";
+
+
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+        import {
+            doc,
+            getDoc,
+            collection,
+            query,
+            where,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+        /* =====================================
+           ELEMENTS
+        ===================================== */
+
+        const message =
+            document.getElementById("message");
+
+        const studentName =
+            document.getElementById("studentName");
+
+        const studentCourse =
+            document.getElementById("studentCourse");
+
+        const assignmentsList =
+            document.getElementById("assignmentsList");
+
+        const assignmentCount =
+            document.getElementById("assignmentCount");
+
+        const totalAssignments =
+            document.getElementById("totalAssignments");
+
+        const pendingAssignments =
+            document.getElementById("pendingAssignments");
+
+        const todayAssignments =
+            document.getElementById("todayAssignments");
+
+        const overdueAssignments =
+            document.getElementById("overdueAssignments");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const statusFilter =
+            document.getElementById("statusFilter");
+
+        const backBtn =
+            document.getElementById("backBtn");
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
+
+        let currentStudent = null;
+
+        let allAssignments = [];
+
+
+        /* =====================================
+           MESSAGE
+        ===================================== */
+
+        function showMessage(text) {
+
+            message.textContent = text;
+
+            message.style.display = "block";
+
+        }
+
+
+        /* =====================================
+           ESCAPE HTML
+        ===================================== */
+
+        function escapeHTML(value) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+                return "";
+            }
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =====================================
+           DATE HELPERS
+        ===================================== */
+
+        function getDateOnly(value) {
+
+            if (!value) {
+                return null;
+            }
+
+            try {
+
+                if (
+                    typeof value.toDate === "function"
+                ) {
+
+                    const date =
+                        value.toDate();
+
+                    return new Date(
+                        date.getFullYear(),
+                        date.getMonth(),
+                        date.getDate()
+                    );
+
+                }
+
+
+                if (value instanceof Date) {
+
+                    return new Date(
+                        value.getFullYear(),
+                        value.getMonth(),
+                        value.getDate()
+                    );
+
+                }
+
+
+                const text =
+                    String(value);
+
+
+                /*
+                 * Handles:
+                 * YYYY-MM-DD
+                 */
+
+                if (
+                    /^\d{4}-\d{2}-\d{2}$/.test(text)
+                ) {
+
+                    const parts =
+                        text.split("-").map(Number);
+
+                    return new Date(
+                        parts[0],
+                        parts[1] - 1,
+                        parts[2]
+                    );
+
+                }
+
+
+                const parsed =
+                    new Date(text);
+
+
+                if (
+                    isNaN(parsed.getTime())
+                ) {
+
+                    return null;
+
+                }
+
+
+                return new Date(
+                    parsed.getFullYear(),
+                    parsed.getMonth(),
+                    parsed.getDate()
+                );
+
+            }
+
+            catch (error) {
+
+                return null;
+
+            }
+
+        }
+
+
+        function formatDate(value) {
+
+            const date =
+                getDateOnly(value);
+
+
+            if (!date) {
+
+                return "No due date";
+
+            }
+
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        function getToday() {
+
+            const now =
+                new Date();
+
+            return new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate()
+            );
+
+        }
+
+
+        /* =====================================
+           GET ASSIGNMENT STATUS
+        ===================================== */
+
+        function getAssignmentStatus(assignment) {
+
+            const dueDate =
+                getDateOnly(
+                    assignment.dueDate
+                );
+
+
+            if (!dueDate) {
+
+                return {
+                    key: "no-date",
+                    label: "NO DUE DATE",
+                    className: "status-no-date"
+                };
+
+            }
+
+
+            const today =
+                getToday();
+
+
+            const todayTime =
+                today.getTime();
+
+
+            const dueTime =
+                dueDate.getTime();
+
+
+            if (dueTime < todayTime) {
+
+                return {
+                    key: "overdue",
+                    label: "OVERDUE",
+                    className: "status-overdue"
+                };
+
+            }
+
+
+            if (dueTime === todayTime) {
+
+                return {
+                    key: "today",
+                    label: "DUE TODAY",
+                    className: "status-today"
+                };
+
+            }
+
+
+            return {
+                key: "pending",
+                label: "PENDING",
+                className: "status-pending"
+            };
+
+        }
+
+
+        /* =====================================
+           LOAD STUDENT
+        ===================================== */
+
+        async function loadStudent(user) {
+
+            try {
+
+                const studentRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const studentSnap =
+                    await getDoc(studentRef);
+
+
+                if (!studentSnap.exists()) {
+
+                    showMessage(
+                        "Student profile not found in Firestore."
+                    );
+
+                    return false;
+
+                }
+
+
+                const data =
+                    studentSnap.data();
+
+
+                const role =
+                    String(
+                        data.role || ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+
+                if (role !== "student") {
+
+                    showMessage(
+                        "This account is not registered as a student."
+                    );
+
+                    return false;
+
+                }
+
+
+                const status =
+                    String(
+                        data.status || ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+
+                if (status !== "active") {
+
+                    showMessage(
+                        "Your student account is not active."
+                    );
+
+                    return false;
+
+                }
+
+
+                currentStudent = {
+                    ...data,
+                    uid: user.uid
+                };
+
+
+                studentName.textContent =
+                    data.name ||
+                    "Student";
+
+
+                studentCourse.textContent =
+                    data.course ||
+                    "Course not selected";
+
+
+                return true;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Student loading error:",
+                    error
+                );
+
+                showMessage(
+                    "Unable to load your student profile."
+                );
+
+                return false;
+
+            }
+
+        }
+
+
+        /* =====================================
+           LOAD ASSIGNMENTS
+        ===================================== */
+
+        async function loadAssignments(uid) {
+
+            assignmentsList.innerHTML = `
+
+                <div class="loading">
+
+                    <div class="spinner"></div>
+
+                    Loading assignments...
+
+                </div>
+
+            `;
+
+
+            try {
+
+                /*
+                 * Standard assignment structure:
+                 *
+                 * assignments/{assignmentId}
+                 *
+                 * studentId
+                 * facultyId
+                 * title
+                 * subject
+                 * description
+                 * dueDate
+                 * createdAt
+                 */
+
+                const q =
+                    query(
+                        collection(
+                            db,
+                            "assignments"
+                        ),
+                        where(
+                            "studentId",
+                            "==",
+                            uid
+                        )
+                    );
+
+
+                const snapshot =
+                    await getDocs(q);
+
+
+                allAssignments = [];
+
+
+                snapshot.forEach(docSnap => {
+
+                    const data =
+                        docSnap.data();
+
+
+                    allAssignments.push({
+
+                        id: docSnap.id,
+
+                        ...data
+
+                    });
+
+                });
+
+
+                /*
+                 * Sort newest due dates first.
+                 */
+
+                allAssignments.sort(
+                    (a, b) => {
+
+                        const dateA =
+                            getDateOnly(
+                                a.dueDate
+                            );
+
+                        const dateB =
+                            getDateOnly(
+                                b.dueDate
+                            );
+
+
+                        if (!dateA && !dateB) {
+                            return 0;
+                        }
+
+                        if (!dateA) {
+                            return 1;
+                        }
+
+                        if (!dateB) {
+                            return -1;
+                        }
+
+
+                        return (
+                            dateA.getTime() -
+                            dateB.getTime()
+                        );
+
+                    }
+                );
+
+
+                updateStatistics();
+
+
+                renderAssignments(
+                    allAssignments
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Assignments error:",
+                    error
+                );
+
+
+                assignmentsList.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ⚠️
+                        </div>
+
+                        <h3>
+                            Unable to load assignments
+                        </h3>
+
+                        <p>
+                            Please check your Firebase configuration
+                            and Firestore permissions.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =====================================
+           STATISTICS
+        ===================================== */
+
+        function updateStatistics() {
+
+            let pending = 0;
+
+            let today = 0;
+
+            let overdue = 0;
+
+
+            allAssignments.forEach(
+                assignment => {
+
+                    const status =
+                        getAssignmentStatus(
+                            assignment
+                        );
+
+
+                    if (
+                        status.key === "pending"
+                    ) {
+
+                        pending++;
+
+                    }
+
+                    else if (
+                        status.key === "today"
+                    ) {
+
+                        today++;
+
+                    }
+
+                    else if (
+                        status.key === "overdue"
+                    ) {
+
+                        overdue++;
+
+                    }
+
+                }
+            );
+
+
+            totalAssignments.textContent =
+                allAssignments.length;
+
+
+            pendingAssignments.textContent =
+                pending;
+
+
+            todayAssignments.textContent =
+                today;
+
+
+            overdueAssignments.textContent =
+                overdue;
+
+
+            assignmentCount.textContent =
+                allAssignments.length +
+                (
+                    allAssignments.length === 1
+                        ? " Assignment"
+                        : " Assignments"
+                );
+
+        }
+
+
+        /* =====================================
+           RENDER ASSIGNMENTS
+        ===================================== */
+
+        function renderAssignments(
+            assignments
+        ) {
+
+            if (!assignments.length) {
+
+                assignmentsList.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            📝
+                        </div>
+
+                        <h3>
+                            No assignments found
+                        </h3>
+
+                        <p>
+                            Your faculty has not assigned any work
+                            to you yet.
+                        </p>
+
+                    </div>
+
+                `;
+
+                assignmentCount.textContent =
+                    "0 Assignments";
+
+                return;
+
+            }
+
+
+            assignmentsList.innerHTML = "";
+
+
+            assignments.forEach(
+                assignment => {
+
+                    const title =
+                        assignment.title ||
+                        assignment.name ||
+                        assignment.assignmentTitle ||
+                        "Untitled Assignment";
+
+
+                    const subject =
+                        assignment.subject ||
+                        assignment.subjectName ||
+                        assignment.course ||
+                        "Subject not specified";
+
+
+                    const description =
+                        assignment.description ||
+                        assignment.instructions ||
+                        assignment.details ||
+                        "No description provided.";
+
+
+                    const faculty =
+                        assignment.facultyName ||
+                        assignment.faculty ||
+                        "Faculty not specified";
+
+
+                    const dueDate =
+                        assignment.dueDate ||
+                        assignment.deadline ||
+                        null;
+
+
+                    const status =
+                        getAssignmentStatus(
+                            {
+                                ...assignment,
+                                dueDate
+                            }
+                        );
+
+
+                    const createdDate =
+                        formatDate(
+                            assignment.createdAt
+                        );
+
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "assignment-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="assignment-top">
+
+                            <div>
+
+                                <h3 class="assignment-title">
+                                    📝 ${escapeHTML(title)}
+                                </h3>
+
+                                <div class="assignment-subject">
+                                    📚 ${escapeHTML(subject)}
+                                </div>
+
+                            </div>
+
+                            <span class="status ${status.className}">
+                                ${escapeHTML(status.label)}
+                            </span>
+
+                        </div>
+
+
+                        <div class="assignment-description">
+
+                            ${escapeHTML(description)}
+
+                        </div>
+
+
+                        <div class="assignment-meta">
+
+
+                            <div class="meta-item">
+
+                                <strong>
+                                    📅 Due Date
+                                </strong>
+
+                                <span>
+                                    ${escapeHTML(
+                                        formatDate(dueDate)
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="meta-item">
+
+                                <strong>
+                                    👨‍🏫 Faculty
+                                </strong>
+
+                                <span>
+                                    ${escapeHTML(faculty)}
+                                </span>
+
+                            </div>
+
+
+                            <div class="meta-item">
+
+                                <strong>
+                                    🕐 Assigned On
+                                </strong>
+
+                                <span>
+                                    ${escapeHTML(createdDate)}
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    `;
+
+
+                    assignmentsList.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+
+            assignmentCount.textContent =
+                assignments.length +
+                (
+                    assignments.length === 1
+                        ? " Assignment"
+                        : " Assignments"
+                );
+
+        }
+
+
+        /* =====================================
+           FILTER ASSIGNMENTS
+        ===================================== */
+
+        function filterAssignments() {
+
+            const search =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            const filter =
+                statusFilter.value;
+
+
+            const filtered =
+                allAssignments.filter(
+                    assignment => {
+
+                        const title =
+                            String(
+                                assignment.title ||
+                                assignment.name ||
+                                assignment.assignmentTitle ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const subject =
+                            String(
+                                assignment.subject ||
+                                assignment.subjectName ||
+                                assignment.course ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const matchesSearch =
+                            !search ||
+                            title.includes(search) ||
+                            subject.includes(search);
+
+
+                        const status =
+                            getAssignmentStatus(
+                                {
+                                    ...assignment,
+                                    dueDate:
+                                        assignment.dueDate ||
+                                        assignment.deadline ||
+                                        null
+                                }
+                            );
+
+
+                        const matchesStatus =
+                            filter === "all" ||
+                            status.key === filter;
+
+
+                        return (
+                            matchesSearch &&
+                            matchesStatus
+                        );
+
+                    }
+                );
+
+
+            renderAssignments(
+                filtered
+            );
+
+        }
+
+
+        /* =====================================
+           SEARCH
+        ===================================== */
+
+        searchInput.addEventListener(
+            "input",
+            filterAssignments
+        );
+
+
+        /* =====================================
+           STATUS FILTER
+        ===================================== */
+
+        statusFilter.addEventListener(
+            "change",
+            filterAssignments
+        );
+
+
+        /* =====================================
+           BACK BUTTON
+        ===================================== */
+
+        backBtn.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }
+        );
+
+
+        /* =====================================
+           LOGOUT
+        ===================================== */
+
+        logoutBtn.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await signOut(
+                        auth
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                    alert(
+                        "Unable to logout. Please try again."
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =====================================
+           AUTH
+        ===================================== */
+
+        onAuthStateChanged(
+            auth,
+            async user => {
+
+                if (!user) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                const validStudent =
+                    await loadStudent(
+                        user
+                    );
+
+
+                if (!validStudent) {
+                    return;
+                }
+
+
+                await loadAssignments(
+                    user.uid
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
