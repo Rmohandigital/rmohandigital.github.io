@@ -1,0 +1,3011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Assignments | R Mohan Digital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #020617;
+            color: #e5f6ff;
+            min-height: 100vh;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #07111f;
+            border-right: 1px solid rgba(0, 229, 255, 0.18);
+            padding: 22px 15px;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px 10px 25px;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #00e5ff, #2563eb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
+        }
+
+        .logo-area h2 {
+            font-size: 16px;
+            color: #00e5ff;
+        }
+
+        .logo-area span {
+            font-size: 11px;
+            color: #78909c;
+        }
+
+        .menu {
+            margin-top: 25px;
+        }
+
+        .menu-title {
+            color: #607d8b;
+            font-size: 11px;
+            margin: 0 10px 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #a9c3d1;
+            padding: 13px 12px;
+            margin-bottom: 5px;
+            border-radius: 9px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            background: rgba(0, 229, 255, 0.09);
+            color: #00e5ff;
+            box-shadow: inset 3px 0 0 #00e5ff;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            height: 75px;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #07111f;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+
+        .topbar-left h1 {
+            font-size: 22px;
+            color: white;
+        }
+
+        .topbar-left p {
+            color: #78909c;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .faculty-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faculty-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00e5ff, #2563eb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .faculty-details {
+            text-align: right;
+        }
+
+        .faculty-details strong {
+            display: block;
+            color: white;
+            font-size: 14px;
+        }
+
+        .faculty-details span {
+            color: #78909c;
+            font-size: 11px;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 30px;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h2 {
+            color: white;
+            font-size: 28px;
+        }
+
+        .page-heading p {
+            color: #78909c;
+            margin-top: 7px;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: rgba(7, 17, 31, 0.92);
+            border: 1px solid rgba(0, 229, 255, 0.14);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .stat-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card h3 {
+            font-size: 27px;
+            color: #00e5ff;
+        }
+
+        .stat-card p {
+            color: #78909c;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* ================= TOOLBAR ================= */
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 13px 15px;
+            background: #07111f;
+            border: 1px solid rgba(0, 229, 255, 0.16);
+            border-radius: 9px;
+            color: white;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #00e5ff;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.12);
+        }
+
+        .search-box input::placeholder {
+            color: #607d8b;
+        }
+
+        .add-btn,
+        .refresh-btn {
+            border: none;
+            border-radius: 9px;
+            padding: 12px 17px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #00e5ff, #2563eb);
+            color: white;
+            box-shadow: 0 5px 18px rgba(0, 229, 255, 0.18);
+        }
+
+        .refresh-btn {
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.16);
+            color: #00e5ff;
+        }
+
+        .add-btn:hover,
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ================= ASSIGNMENT TABLE ================= */
+
+        .table-card {
+            background: #07111f;
+            border: 1px solid rgba(0, 229, 255, 0.14);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h3 {
+            color: white;
+            font-size: 17px;
+        }
+
+        .assignment-count {
+            color: #78909c;
+            font-size: 12px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px 18px;
+            color: #78909c;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(0, 0, 0, 0.12);
+        }
+
+        td {
+            padding: 16px 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #c6d7df;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background: rgba(0, 229, 255, 0.025);
+        }
+
+        .assignment-name {
+            color: white;
+            font-weight: bold;
+        }
+
+        .assignment-subject {
+            color: #00e5ff;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .student-name {
+            color: white;
+            font-weight: bold;
+        }
+
+        .student-email {
+            color: #607d8b;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .date {
+            color: #c6d7df;
+        }
+
+        /* ================= STATUS ================= */
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .status.pending {
+            color: #00e5ff;
+            background: rgba(0, 229, 255, 0.09);
+        }
+
+        .status.today {
+            color: #ffc107;
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .status.overdue {
+            color: #ff5252;
+            background: rgba(255, 82, 82, 0.1);
+        }
+
+        .status.no-date {
+            color: #90a4ae;
+            background: rgba(144, 164, 174, 0.1);
+        }
+
+        /* ================= ACTION BUTTONS ================= */
+
+        .actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .action-btn {
+            border: none;
+            padding: 7px 10px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .edit-btn {
+            background: rgba(0, 229, 255, 0.09);
+            color: #00e5ff;
+        }
+
+        .delete-btn {
+            background: rgba(255, 82, 82, 0.09);
+            color: #ff5252;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* ================= EMPTY / LOADING ================= */
+
+        .empty {
+            text-align: center;
+            padding: 55px 20px;
+            color: #78909c;
+        }
+
+        .empty-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .empty h3 {
+            color: white;
+            margin-bottom: 7px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #78909c;
+        }
+
+        .spinner {
+            width: 35px;
+            height: 35px;
+            border: 3px solid rgba(0, 229, 255, 0.15);
+            border-top-color: #00e5ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.72);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 620px;
+            max-height: 92vh;
+            overflow-y: auto;
+            background: #07111f;
+            border: 1px solid rgba(0, 229, 255, 0.22);
+            border-radius: 17px;
+            padding: 25px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .modal-header h2 {
+            color: white;
+            font-size: 21px;
+        }
+
+        .close-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            color: #b0bec5;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .close-btn:hover {
+            color: #00e5ff;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #a9c3d1;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 13px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            background: #020617;
+            color: white;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #00e5ff;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .form-group select option {
+            background: #07111f;
+            color: white;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #00e5ff, #2563eb);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ================= TOAST ================= */
+
+        #toast {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            background: #07111f;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: white;
+            padding: 13px 18px;
+            border-radius: 9px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+            font-size: 13px;
+        }
+
+        #toast.show {
+            display: block;
+        }
+
+        #toast.error {
+            border-color: rgba(255, 82, 82, 0.4);
+        }
+
+        /* ================= MOBILE ================= */
+
+        .mobile-menu {
+            display: none;
+            border: none;
+            background: transparent;
+            color: #00e5ff;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1050px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: 0.25s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .faculty-details {
+                display: none;
+            }
+
+            .toolbar {
+                flex-wrap: wrap;
+            }
+
+            .search-box {
+                max-width: none;
+                flex-basis: 100%;
+                order: 1;
+            }
+
+            .add-btn {
+                order: 2;
+            }
+
+            .refresh-btn {
+                order: 3;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-card h3 {
+                font-size: 22px;
+            }
+
+            .page-heading h2 {
+                font-size: 23px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .modal-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo-area">
+
+        <div class="logo">
+            RM
+        </div>
+
+        <div>
+            <h2>R Mohan Digital</h2>
+            <span>Faculty Portal</span>
+        </div>
+
+    </div>
+
+
+    <div class="menu">
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+        <a href="faculty-dashboard.html">
+            🏠
+            <span>Dashboard</span>
+        </a>
+
+        <a href="faculty-dashboard.html">
+            📚
+            <span>My Courses</span>
+        </a>
+
+        <a href="faculty-dashboard.html">
+            👨‍🎓
+            <span>My Students</span>
+        </a>
+
+        <a href="faculty-assignments.html" class="active">
+            📝
+            <span>Assignments</span>
+        </a>
+
+        <a href="faculty-dashboard.html">
+            📢
+            <span>Announcements</span>
+        </a>
+
+        <a href="faculty-dashboard.html">
+            🔔
+            <span>Notifications</span>
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div class="topbar-left">
+
+            <div style="display:flex;align-items:center;gap:12px;">
+
+                <button
+                    class="mobile-menu"
+                    id="mobileMenu"
+                >
+                    ☰
+                </button>
+
+                <div>
+                    <h1>Assignment Management</h1>
+                    <p>Manage assignments for your students</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faculty-info">
+
+            <div class="faculty-details">
+
+                <strong id="facultyName">
+                    Loading...
+                </strong>
+
+                <span id="facultyEmail">
+                    Loading...
+                </span>
+
+            </div>
+
+            <div class="faculty-avatar" id="facultyAvatar">
+                F
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <main class="content">
+
+        <div class="page-heading">
+
+            <h2>📝 Assignments</h2>
+
+            <p>
+                Create and manage assignments assigned to your students.
+            </p>
+
+        </div>
+
+
+        <!-- ================= STATS ================= -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <h3 id="totalAssignments">
+                    0
+                </h3>
+
+                <p>
+                    Total Assignments
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍🎓
+                </div>
+
+                <h3 id="totalStudents">
+                    0
+                </h3>
+
+                <p>
+                    My Students
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⏰
+                </div>
+
+                <h3 id="dueToday">
+                    0
+                </h3>
+
+                <p>
+                    Due Today
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⚠️
+                </div>
+
+                <h3 id="overdue">
+                    0
+                </h3>
+
+                <p>
+                    Overdue
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= TOOLBAR ================= -->
+
+        <div class="toolbar">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="🔍 Search assignment or student..."
+                >
+
+            </div>
+
+
+            <button
+                class="add-btn"
+                id="addAssignmentBtn"
+            >
+                ➕ Add Assignment
+            </button>
+
+
+            <button
+                class="refresh-btn"
+                id="refreshBtn"
+            >
+                🔄 Refresh
+            </button>
+
+        </div>
+
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="table-card">
+
+            <div class="table-header">
+
+                <h3>
+                    Assignment List
+                </h3>
+
+                <span
+                    class="assignment-count"
+                    id="assignmentCount"
+                >
+                    0 assignments
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <div id="tableContainer">
+
+                    <div class="loading">
+
+                        <div class="spinner"></div>
+
+                        Loading assignments...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ================= ASSIGNMENT MODAL ================= -->
+
+<div class="modal" id="assignmentModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Assignment
+            </h2>
+
+            <button
+                class="close-btn"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="assignmentForm">
+
+            <div class="form-group">
+
+                <label>
+                    Assignment Title *
+                </label>
+
+                <input
+                    type="text"
+                    id="assignmentTitle"
+                    placeholder="Example: Data Structures Assignment 1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Subject *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="assignmentSubject"
+                        placeholder="Example: Data Structures"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Due Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="assignmentDueDate"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Select Student *
+                </label>
+
+                <select
+                    id="studentSelect"
+                    required
+                >
+
+                    <option value="">
+                        Loading students...
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="assignmentDescription"
+                    placeholder="Enter assignment instructions..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitBtn"
+            >
+                ➕ Create Assignment
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast"></div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+    import {
+        auth,
+        db
+    } from "./firebase.js";
+
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+    import {
+        collection,
+        doc,
+        getDoc,
+        getDocs,
+        query,
+        where,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+    /* ==========================================
+       VARIABLES
+    ========================================== */
+
+    let currentUser = null;
+    let currentFaculty = null;
+
+    let students = [];
+    let assignments = [];
+
+    let editingAssignmentId = null;
+
+
+    /* ==========================================
+       ELEMENTS
+    ========================================== */
+
+    const tableContainer =
+        document.getElementById("tableContainer");
+
+    const assignmentModal =
+        document.getElementById("assignmentModal");
+
+    const assignmentForm =
+        document.getElementById("assignmentForm");
+
+    const studentSelect =
+        document.getElementById("studentSelect");
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const submitBtn =
+        document.getElementById("submitBtn");
+
+    const modalTitle =
+        document.getElementById("modalTitle");
+
+
+    /* ==========================================
+       AUTH
+    ========================================== */
+
+    onAuthStateChanged(
+        auth,
+        async (user) => {
+
+            if (!user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+            }
+
+
+            currentUser = user;
+
+
+            try {
+
+                const profileRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const profileSnap =
+                    await getDoc(profileRef);
+
+
+                if (!profileSnap.exists()) {
+
+                    showToast(
+                        "Faculty profile not found.",
+                        true
+                    );
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+                }
+
+
+                currentFaculty =
+                    profileSnap.data();
+
+
+                const role =
+                    String(
+                        currentFaculty.role || ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+
+                const status =
+                    String(
+                        currentFaculty.status || ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+
+                if (role !== "faculty") {
+
+                    showToast(
+                        "Faculty access required.",
+                        true
+                    );
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "login.html";
+
+                    }, 1200);
+
+                    return;
+                }
+
+
+                if (
+                    status !== "" &&
+                    status !== "active"
+                ) {
+
+                    showToast(
+                        "Your faculty account is not active.",
+                        true
+                    );
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "login.html";
+
+                    }, 1200);
+
+                    return;
+                }
+
+
+                displayFacultyInfo();
+
+
+                await loadStudents();
+
+                await loadAssignments();
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Authentication error:",
+                    error
+                );
+
+                tableContainer.innerHTML = `
+                    <div class="empty">
+                        <div class="empty-icon">⚠️</div>
+                        <h3>Unable to load page</h3>
+                        <p>
+                            ${escapeHTML(error.message)}
+                        </p>
+                    </div>
+                `;
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       FACULTY INFORMATION
+    ========================================== */
+
+    function displayFacultyInfo() {
+
+        const name =
+            currentFaculty.name ||
+            "Faculty";
+
+
+        const email =
+            currentFaculty.email ||
+            currentUser.email ||
+            "";
+
+
+        document.getElementById(
+            "facultyName"
+        ).textContent = name;
+
+
+        document.getElementById(
+            "facultyEmail"
+        ).textContent = email;
+
+
+        document.getElementById(
+            "facultyAvatar"
+        ).textContent =
+            getInitials(name);
+
+    }
+
+
+    /* ==========================================
+       LOAD STUDENTS
+    ========================================== */
+
+    async function loadStudents() {
+
+        students = [];
+
+
+        try {
+
+            const usersRef =
+                collection(
+                    db,
+                    "users"
+                );
+
+
+            const studentQuery =
+                query(
+                    usersRef,
+                    where(
+                        "facultyId",
+                        "==",
+                        currentUser.uid
+                    )
+                );
+
+
+            const snapshot =
+                await getDocs(
+                    studentQuery
+                );
+
+
+            snapshot.forEach(
+                (item) => {
+
+                    const data =
+                        item.data();
+
+
+                    const role =
+                        String(
+                            data.role || ""
+                        )
+                        .toLowerCase()
+                        .trim();
+
+
+                    if (role === "student") {
+
+                        students.push({
+                            id: item.id,
+                            ...data
+                        });
+
+                    }
+
+                }
+            );
+
+
+            students.sort(
+                (a, b) =>
+                    String(
+                        a.name || ""
+                    ).localeCompare(
+                        String(
+                            b.name || ""
+                        )
+                    )
+            );
+
+
+            document.getElementById(
+                "totalStudents"
+            ).textContent =
+                students.length;
+
+
+            populateStudentSelect();
+
+        }
+        catch (error) {
+
+            console.error(
+                "Student loading error:",
+                error
+            );
+
+
+            studentSelect.innerHTML = `
+                <option value="">
+                    Unable to load students
+                </option>
+            `;
+
+
+            throw error;
+
+        }
+
+    }
+
+
+    /* ==========================================
+       POPULATE STUDENT SELECT
+    ========================================== */
+
+    function populateStudentSelect(
+        selectedId = ""
+    ) {
+
+        if (students.length === 0) {
+
+            studentSelect.innerHTML = `
+                <option value="">
+                    No students assigned
+                </option>
+            `;
+
+            return;
+        }
+
+
+        studentSelect.innerHTML =
+            `
+                <option value="">
+                    Select a student
+                </option>
+            ` +
+            students.map(
+                student => {
+
+                    const selected =
+                        student.id === selectedId
+                            ? "selected"
+                            : "";
+
+
+                    return `
+                        <option
+                            value="${escapeHTML(student.id)}"
+                            ${selected}
+                        >
+                            ${escapeHTML(
+                                student.name ||
+                                student.email ||
+                                "Unnamed Student"
+                            )}
+                        </option>
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /* ==========================================
+       LOAD ASSIGNMENTS
+    ========================================== */
+
+    async function loadAssignments() {
+
+        tableContainer.innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                Loading assignments...
+            </div>
+        `;
+
+
+        assignments = [];
+
+
+        try {
+
+            const assignmentsRef =
+                collection(
+                    db,
+                    "assignments"
+                );
+
+
+            const assignmentQuery =
+                query(
+                    assignmentsRef,
+                    where(
+                        "facultyId",
+                        "==",
+                        currentUser.uid
+                    )
+                );
+
+
+            const snapshot =
+                await getDocs(
+                    assignmentQuery
+                );
+
+
+            snapshot.forEach(
+                item => {
+
+                    assignments.push({
+                        id: item.id,
+                        ...item.data()
+                    });
+
+                }
+            );
+
+
+            assignments.sort(
+                (a, b) => {
+
+                    const dateA =
+                        parseDate(
+                            a.dueDate
+                        );
+
+                    const dateB =
+                        parseDate(
+                            b.dueDate
+                        );
+
+
+                    if (!dateA && !dateB) {
+                        return 0;
+                    }
+
+                    if (!dateA) {
+                        return 1;
+                    }
+
+                    if (!dateB) {
+                        return -1;
+                    }
+
+
+                    return dateA - dateB;
+
+                }
+            );
+
+
+            updateStatistics();
+
+            renderAssignments();
+
+        }
+        catch (error) {
+
+            console.error(
+                "Assignment loading error:",
+                error
+            );
+
+
+            tableContainer.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">⚠️</div>
+                    <h3>Unable to load assignments</h3>
+                    <p>
+                        ${escapeHTML(error.message)}
+                    </p>
+                </div>
+            `;
+
+        }
+
+    }
+
+
+    /* ==========================================
+       UPDATE STATISTICS
+    ========================================== */
+
+    function updateStatistics() {
+
+        let today = 0;
+        let overdue = 0;
+
+
+        assignments.forEach(
+            assignment => {
+
+                const status =
+                    getStatus(
+                        assignment.dueDate
+                    );
+
+
+                if (
+                    status.type === "today"
+                ) {
+
+                    today++;
+
+                }
+
+
+                if (
+                    status.type === "overdue"
+                ) {
+
+                    overdue++;
+
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalAssignments"
+        ).textContent =
+            assignments.length;
+
+
+        document.getElementById(
+            "dueToday"
+        ).textContent =
+            today;
+
+
+        document.getElementById(
+            "overdue"
+        ).textContent =
+            overdue;
+
+
+        document.getElementById(
+            "assignmentCount"
+        ).textContent =
+            `${assignments.length} assignment${
+                assignments.length === 1
+                    ? ""
+                    : "s"
+            }`;
+
+    }
+
+
+    /* ==========================================
+       RENDER ASSIGNMENTS
+    ========================================== */
+
+    function renderAssignments(
+        filteredAssignments = null
+    ) {
+
+        const list =
+            filteredAssignments ||
+            assignments;
+
+
+        if (list.length === 0) {
+
+            tableContainer.innerHTML = `
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        No Assignments Found
+                    </h3>
+
+                    <p>
+                        Create your first assignment
+                        using the Add Assignment button.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        const rows =
+            list.map(
+                assignment => {
+
+                    const student =
+                        students.find(
+                            item =>
+                                item.id ===
+                                assignment.studentId
+                        );
+
+
+                    const studentName =
+                        student?.name ||
+                        assignment.studentName ||
+                        "Unknown Student";
+
+
+                    const studentEmail =
+                        student?.email ||
+                        "";
+
+
+                    const status =
+                        getStatus(
+                            assignment.dueDate
+                        );
+
+
+                    const dueDate =
+                        parseDate(
+                            assignment.dueDate
+                        );
+
+
+                    return `
+                        <tr>
+
+                            <td>
+
+                                <div class="assignment-name">
+                                    ${escapeHTML(
+                                        assignment.title ||
+                                        "Untitled Assignment"
+                                    )}
+                                </div>
+
+                                <div class="assignment-subject">
+                                    ${escapeHTML(
+                                        assignment.subject ||
+                                        "General"
+                                    )}
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="student-name">
+                                    ${escapeHTML(
+                                        studentName
+                                    )}
+                                </div>
+
+                                <div class="student-email">
+                                    ${escapeHTML(
+                                        studentEmail
+                                    )}
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="date">
+                                    ${
+                                        dueDate
+                                            ? formatDate(dueDate)
+                                            : "No Due Date"
+                                    }
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="status ${status.className}">
+                                    ${status.label}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="actions">
+
+                                    <button
+                                        class="action-btn edit-btn"
+                                        data-action="edit"
+                                        data-id="${escapeHTML(
+                                            assignment.id
+                                        )}"
+                                    >
+                                        ✏️ Edit
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete-btn"
+                                        data-action="delete"
+                                        data-id="${escapeHTML(
+                                            assignment.id
+                                        )}"
+                                    >
+                                        🗑️ Delete
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    `;
+
+                }
+            ).join("");
+
+
+        tableContainer.innerHTML = `
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Assignment</th>
+                        <th>Student</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    ${rows}
+                </tbody>
+
+            </table>
+        `;
+
+
+        document
+            .querySelectorAll(
+                "[data-action='edit']"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            editAssignment(
+                                button.dataset.id
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-action='delete']"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            deleteAssignment(
+                                button.dataset.id
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+    }
+
+
+    /* ==========================================
+       ADD ASSIGNMENT
+    ========================================== */
+
+    document.getElementById(
+        "addAssignmentBtn"
+    ).addEventListener(
+        "click",
+        () => {
+
+            openAddModal();
+
+        }
+    );
+
+
+    function openAddModal() {
+
+        editingAssignmentId = null;
+
+        modalTitle.textContent =
+            "Add Assignment";
+
+        submitBtn.textContent =
+            "➕ Create Assignment";
+
+
+        assignmentForm.reset();
+
+
+        populateStudentSelect();
+
+
+        assignmentModal.classList.add(
+            "show"
+        );
+
+    }
+
+
+    /* ==========================================
+       EDIT ASSIGNMENT
+    ========================================== */
+
+    function editAssignment(id) {
+
+        const assignment =
+            assignments.find(
+                item =>
+                    item.id === id
+            );
+
+
+        if (!assignment) {
+
+            showToast(
+                "Assignment not found.",
+                true
+            );
+
+            return;
+        }
+
+
+        editingAssignmentId =
+            id;
+
+
+        modalTitle.textContent =
+            "Edit Assignment";
+
+
+        submitBtn.textContent =
+            "💾 Save Changes";
+
+
+        document.getElementById(
+            "assignmentTitle"
+        ).value =
+            assignment.title || "";
+
+
+        document.getElementById(
+            "assignmentSubject"
+        ).value =
+            assignment.subject || "";
+
+
+        document.getElementById(
+            "assignmentDescription"
+        ).value =
+            assignment.description || "";
+
+
+        document.getElementById(
+            "assignmentDueDate"
+        ).value =
+            convertDateForInput(
+                assignment.dueDate
+            );
+
+
+        populateStudentSelect(
+            assignment.studentId || ""
+        );
+
+
+        assignmentModal.classList.add(
+            "show"
+        );
+
+    }
+
+
+    /* ==========================================
+       SUBMIT ASSIGNMENT
+    ========================================== */
+
+    assignmentForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            if (!currentUser) {
+
+                showToast(
+                    "You are not logged in.",
+                    true
+                );
+
+                return;
+            }
+
+
+            const title =
+                document.getElementById(
+                    "assignmentTitle"
+                ).value.trim();
+
+
+            const subject =
+                document.getElementById(
+                    "assignmentSubject"
+                ).value.trim();
+
+
+            const description =
+                document.getElementById(
+                    "assignmentDescription"
+                ).value.trim();
+
+
+            const dueDate =
+                document.getElementById(
+                    "assignmentDueDate"
+                ).value;
+
+
+            const studentId =
+                studentSelect.value;
+
+
+            if (!title) {
+
+                showToast(
+                    "Please enter assignment title.",
+                    true
+                );
+
+                return;
+            }
+
+
+            if (!subject) {
+
+                showToast(
+                    "Please enter subject.",
+                    true
+                );
+
+                return;
+            }
+
+
+            if (!studentId) {
+
+                showToast(
+                    "Please select a student.",
+                    true
+                );
+
+                return;
+            }
+
+
+            const student =
+                students.find(
+                    item =>
+                        item.id === studentId
+                );
+
+
+            if (!student) {
+
+                showToast(
+                    "Selected student is invalid.",
+                    true
+                );
+
+                return;
+            }
+
+
+            submitBtn.disabled = true;
+
+            submitBtn.textContent =
+                editingAssignmentId
+                    ? "⏳ Saving..."
+                    : "⏳ Creating...";
+
+
+            try {
+
+                if (editingAssignmentId) {
+
+                    await updateExistingAssignment({
+                        title,
+                        subject,
+                        description,
+                        dueDate,
+                        studentId,
+                        studentName:
+                            student.name ||
+                            student.email ||
+                            "Student"
+                    });
+
+                }
+                else {
+
+                    await createAssignment({
+                        title,
+                        subject,
+                        description,
+                        dueDate,
+                        studentId,
+                        studentName:
+                            student.name ||
+                            student.email ||
+                            "Student"
+                    });
+
+                }
+
+
+                closeModal();
+
+                await loadAssignments();
+
+
+                showToast(
+                    editingAssignmentId
+                        ? "Assignment updated successfully."
+                        : "Assignment created successfully."
+                );
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Save assignment error:",
+                    error
+                );
+
+
+                showToast(
+                    error.message ||
+                    "Unable to save assignment.",
+                    true
+                );
+
+            }
+            finally {
+
+                submitBtn.disabled =
+                    false;
+
+
+                submitBtn.textContent =
+                    editingAssignmentId
+                        ? "💾 Save Changes"
+                        : "➕ Create Assignment";
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       CREATE
+    ========================================== */
+
+    async function createAssignment(data) {
+
+        const assignmentData = {
+
+            title: data.title,
+
+            subject: data.subject,
+
+            description:
+                data.description,
+
+            dueDate:
+                data.dueDate || "",
+
+            facultyId:
+                currentUser.uid,
+
+            facultyName:
+                currentFaculty.name ||
+                currentUser.email ||
+                "Faculty",
+
+            studentId:
+                data.studentId,
+
+            studentName:
+                data.studentName,
+
+            createdAt:
+                serverTimestamp(),
+
+            updatedAt:
+                serverTimestamp()
+
+        };
+
+
+        await addDoc(
+            collection(
+                db,
+                "assignments"
+            ),
+            assignmentData
+        );
+
+    }
+
+
+    /* ==========================================
+       UPDATE
+    ========================================== */
+
+    async function updateExistingAssignment(
+        data
+    ) {
+
+        const assignmentRef =
+            doc(
+                db,
+                "assignments",
+                editingAssignmentId
+            );
+
+
+        await updateDoc(
+            assignmentRef,
+            {
+
+                title:
+                    data.title,
+
+                subject:
+                    data.subject,
+
+                description:
+                    data.description,
+
+                dueDate:
+                    data.dueDate || "",
+
+                studentId:
+                    data.studentId,
+
+                studentName:
+                    data.studentName,
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       DELETE
+    ========================================== */
+
+    async function deleteAssignment(id) {
+
+        const assignment =
+            assignments.find(
+                item =>
+                    item.id === id
+            );
+
+
+        if (!assignment) {
+
+            showToast(
+                "Assignment not found.",
+                true
+            );
+
+            return;
+        }
+
+
+        const title =
+            assignment.title ||
+            "this assignment";
+
+
+        const confirmed =
+            confirm(
+                `Are you sure you want to delete "${title}"?`
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
+        try {
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "assignments",
+                    id
+                )
+            );
+
+
+            await loadAssignments();
+
+
+            showToast(
+                "Assignment deleted successfully."
+            );
+
+        }
+        catch (error) {
+
+            console.error(
+                "Delete assignment error:",
+                error
+            );
+
+
+            showToast(
+                error.message ||
+                "Unable to delete assignment.",
+                true
+            );
+
+        }
+
+    }
+
+
+    /* ==========================================
+       CLOSE MODAL
+    ========================================== */
+
+    document.getElementById(
+        "closeModal"
+    ).addEventListener(
+        "click",
+        closeModal
+    );
+
+
+    assignmentModal.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target ===
+                assignmentModal
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+    function closeModal() {
+
+        assignmentModal.classList.remove(
+            "show"
+        );
+
+        assignmentForm.reset();
+
+        editingAssignmentId = null;
+
+        modalTitle.textContent =
+            "Add Assignment";
+
+        submitBtn.textContent =
+            "➕ Create Assignment";
+
+    }
+
+
+    /* ==========================================
+       SEARCH
+    ========================================== */
+
+    searchInput.addEventListener(
+        "input",
+        () => {
+
+            const search =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            if (!search) {
+
+                renderAssignments();
+
+                return;
+            }
+
+
+            const filtered =
+                assignments.filter(
+                    assignment => {
+
+                        const student =
+                            students.find(
+                                item =>
+                                    item.id ===
+                                    assignment.studentId
+                            );
+
+
+                        const studentName =
+                            student?.name ||
+                            assignment.studentName ||
+                            "";
+
+
+                        const text =
+                            [
+                                assignment.title,
+                                assignment.subject,
+                                assignment.description,
+                                studentName
+                            ]
+                            .join(" ")
+                            .toLowerCase();
+
+
+                        return text.includes(
+                            search
+                        );
+
+                    }
+                );
+
+
+            renderAssignments(
+                filtered
+            );
+
+        }
+    );
+
+
+    /* ==========================================
+       REFRESH
+    ========================================== */
+
+    document.getElementById(
+        "refreshBtn"
+    ).addEventListener(
+        "click",
+        async () => {
+
+            const button =
+                document.getElementById(
+                    "refreshBtn"
+                );
+
+
+            button.disabled = true;
+
+            button.textContent =
+                "⏳ Loading...";
+
+
+            try {
+
+                await loadStudents();
+
+                await loadAssignments();
+
+                showToast(
+                    "Assignments refreshed."
+                );
+
+            }
+            catch (error) {
+
+                showToast(
+                    error.message ||
+                    "Unable to refresh.",
+                    true
+                );
+
+            }
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "🔄 Refresh";
+
+        }
+    );
+
+
+    /* ==========================================
+       STATUS
+    ========================================== */
+
+    function getStatus(
+        dueDateValue
+    ) {
+
+        const date =
+            parseDate(
+                dueDateValue
+            );
+
+
+        if (!date) {
+
+            return {
+
+                type: "none",
+
+                label: "No Due Date",
+
+                className: "no-date"
+
+            };
+
+        }
+
+
+        const today =
+            new Date();
+
+
+        today.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        date.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        if (
+            date.getTime() <
+            today.getTime()
+        ) {
+
+            return {
+
+                type: "overdue",
+
+                label: "Overdue",
+
+                className: "overdue"
+
+            };
+
+        }
+
+
+        if (
+            date.getTime() ===
+            today.getTime()
+        ) {
+
+            return {
+
+                type: "today",
+
+                label: "Due Today",
+
+                className: "today"
+
+            };
+
+        }
+
+
+        return {
+
+            type: "pending",
+
+            label: "Pending",
+
+            className: "pending"
+
+        };
+
+    }
+
+
+    /* ==========================================
+       DATE PARSER
+    ========================================== */
+
+    function parseDate(value) {
+
+        if (!value) {
+            return null;
+        }
+
+
+        if (
+            typeof value === "object" &&
+            typeof value.toDate === "function"
+        ) {
+
+            return value.toDate();
+
+        }
+
+
+        if (
+            typeof value === "object" &&
+            value.seconds !== undefined
+        ) {
+
+            return new Date(
+                Number(value.seconds) *
+                1000
+            );
+
+        }
+
+
+        if (
+            value instanceof Date
+        ) {
+
+            return new Date(
+                value.getTime()
+            );
+
+        }
+
+
+        if (
+            typeof value === "string"
+        ) {
+
+            const valueTrimmed =
+                value.trim();
+
+
+            if (
+                /^\d{4}-\d{2}-\d{2}$/
+                    .test(valueTrimmed)
+            ) {
+
+                const parts =
+                    valueTrimmed.split("-");
+
+
+                return new Date(
+                    Number(parts[0]),
+                    Number(parts[1]) - 1,
+                    Number(parts[2])
+                );
+
+            }
+
+
+            const date =
+                new Date(
+                    valueTrimmed
+                );
+
+
+            if (
+                !isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return date;
+
+            }
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /* ==========================================
+       DATE INPUT FORMAT
+    ========================================== */
+
+    function convertDateForInput(
+        value
+    ) {
+
+        if (!value) {
+            return "";
+        }
+
+
+        if (
+            typeof value === "string" &&
+            /^\d{4}-\d{2}-\d{2}$/
+                .test(value)
+        ) {
+
+            return value;
+
+        }
+
+
+        const date =
+            parseDate(value);
+
+
+        if (!date) {
+            return "";
+        }
+
+
+        const year =
+            date.getFullYear();
+
+
+        const month =
+            String(
+                date.getMonth() + 1
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        const day =
+            String(
+                date.getDate()
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        return `${year}-${month}-${day}`;
+
+    }
+
+
+    /* ==========================================
+       FORMAT DATE
+    ========================================== */
+
+    function formatDate(date) {
+
+        if (!date) {
+            return "No Due Date";
+        }
+
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       INITIALS
+    ========================================== */
+
+    function getInitials(name) {
+
+        const parts =
+            String(name)
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean);
+
+
+        if (parts.length === 0) {
+            return "F";
+        }
+
+
+        if (parts.length === 1) {
+
+            return parts[0]
+                .substring(0, 2)
+                .toUpperCase();
+
+        }
+
+
+        return (
+            parts[0][0] +
+            parts[parts.length - 1][0]
+        ).toUpperCase();
+
+    }
+
+
+    /* ==========================================
+       ESCAPE HTML
+    ========================================== */
+
+    function escapeHTML(value) {
+
+        return String(
+            value ?? ""
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+    }
+
+
+    /* ==========================================
+       TOAST
+    ========================================== */
+
+    let toastTimer;
+
+
+    function showToast(
+        message,
+        isError = false
+    ) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        toast.textContent =
+            message;
+
+
+        toast.className =
+            "show";
+
+
+        if (isError) {
+
+            toast.classList.add(
+                "error"
+            );
+
+        }
+
+
+        clearTimeout(
+            toastTimer
+        );
+
+
+        toastTimer =
+            setTimeout(
+                () => {
+
+                    toast.className =
+                        "";
+
+                },
+                3500
+            );
+
+    }
+
+
+    /* ==========================================
+       MOBILE SIDEBAR
+    ========================================== */
+
+    document.getElementById(
+        "mobileMenu"
+    ).addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("open");
+
+        }
+    );
+
+
+</script>
+
+</body>
+</html>
