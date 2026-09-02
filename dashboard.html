@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Student Profile | R Mohan Digital</title>
+    <title>Student Dashboard | R Mohan Digital</title>
 
     <style>
         * {
@@ -16,36 +16,55 @@
         }
 
         body {
-            background: #f4f8ff;
-            color: #111827;
+            background: #22c55e;
+            color: #0f172a;
+            min-height: 100vh;
         }
 
-        /* HEADER */
+        /* ==============================
+           HEADER
+        ============================== */
 
         .dashboard-header {
-            background: linear-gradient(135deg, #2563eb, #0f172a);
-            color: white;
+            background: #000000;
+            color: #2563eb;
             padding: 25px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 3px solid #1e3a8a;
         }
 
         .dashboard-header h2 {
             font-size: 25px;
+            color: #2563eb;
+        }
+
+        .dashboard-header small {
+            display: block;
+            color: #60a5fa;
+            margin-top: 5px;
         }
 
         .logout-btn {
-            background: white;
-            color: #2563eb;
+            background: #2563eb;
+            color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 11px 22px;
             border-radius: 25px;
             font-weight: bold;
             cursor: pointer;
+            transition: .3s;
         }
 
-        /* MAIN */
+        .logout-btn:hover {
+            background: #1e3a8a;
+            transform: scale(1.05);
+        }
+
+        /* ==============================
+           MAIN
+        ============================== */
 
         .dashboard-container {
             max-width: 1100px;
@@ -53,24 +72,43 @@
             padding: 0 20px;
         }
 
-        /* PROFILE CARD */
+        /* ==============================
+           MESSAGE
+        ============================== */
+
+        .message {
+            display: none;
+            background: #000000;
+            color: #2563eb;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px solid #1e3a8a;
+        }
+
+        /* ==============================
+           PROFILE CARD
+        ============================== */
 
         .profile-card {
-            background: white;
+            background: #000000;
             border-radius: 20px;
             padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
             display: flex;
             align-items: center;
             gap: 30px;
             margin-bottom: 30px;
+            border: 2px solid #1e3a8a;
         }
 
         .profile-photo {
             width: 120px;
             height: 120px;
+            min-width: 120px;
             border-radius: 50%;
-            background: #e5edff;
+            background: #020617;
             border: 5px solid #2563eb;
             display: flex;
             justify-content: center;
@@ -90,42 +128,59 @@
         }
 
         .profile-info h1 {
-            color: #0f172a;
+            color: #2563eb;
             margin-bottom: 8px;
+            font-size: 30px;
         }
 
         .profile-info p {
-            color: #666;
-            margin: 5px 0;
+            color: #93c5fd;
+            margin: 7px 0;
         }
 
         .course {
-            color: #2563eb !important;
+            color: #1d4ed8 !important;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: #172554;
+            color: #60a5fa;
+            font-size: 13px;
             font-weight: bold;
         }
 
-        /* PROFILE COMPLETION */
+        /* ==============================
+           PROFILE COMPLETION
+        ============================== */
 
         .completion-card {
-            background: white;
+            background: #000000;
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
             margin-bottom: 30px;
+            border: 2px solid #1e3a8a;
         }
 
         .completion-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
         }
 
         .completion-header h2 {
-            color: #0f172a;
+            color: #2563eb;
         }
 
         .percentage {
-            color: #2563eb;
+            color: #1d4ed8;
             font-size: 25px;
             font-weight: bold;
         }
@@ -133,7 +188,7 @@
         .progress-bar {
             width: 100%;
             height: 18px;
-            background: #e5e7eb;
+            background: #172554;
             border-radius: 20px;
             overflow: hidden;
         }
@@ -155,9 +210,17 @@
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
+            transition: .3s;
         }
 
-        /* DASHBOARD GRID */
+        .complete-btn:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+        }
+
+        /* ==============================
+           DASHBOARD GRID
+        ============================== */
 
         .dashboard-grid {
             display: grid;
@@ -166,15 +229,18 @@
         }
 
         .dashboard-card {
-            background: white;
+            background: #000000;
             padding: 25px;
             border-radius: 18px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .07);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .35);
             transition: .3s;
+            border: 2px solid #1e3a8a;
+            cursor: pointer;
         }
 
         .dashboard-card:hover {
             transform: translateY(-5px);
+            border-color: #2563eb;
         }
 
         .dashboard-card .icon {
@@ -183,28 +249,72 @@
         }
 
         .dashboard-card h3 {
-            color: #0f172a;
+            color: #2563eb;
             margin-bottom: 8px;
         }
 
         .dashboard-card p {
-            color: #666;
+            color: #93c5fd;
             line-height: 1.5;
         }
 
-        /* PROFILE DETAILS */
+        /* ==============================
+           FACULTY CARD
+        ============================== */
 
-        .details-card {
-            background: white;
+        .faculty-card {
+            background: #000000;
             margin-top: 30px;
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            border: 2px solid #1e3a8a;
+        }
+
+        .faculty-card h2 {
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+        .faculty-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .faculty-item {
+            background: #020617;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #172554;
+        }
+
+        .faculty-item strong {
+            display: block;
+            color: #1d4ed8;
+            margin-bottom: 6px;
+        }
+
+        .faculty-item span {
+            color: #93c5fd;
+        }
+
+        /* ==============================
+           PROFILE DETAILS
+        ============================== */
+
+        .details-card {
+            background: #000000;
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            border: 2px solid #1e3a8a;
         }
 
         .details-card h2 {
             margin-bottom: 25px;
-            color: #0f172a;
+            color: #2563eb;
         }
 
         .details-grid {
@@ -215,21 +325,35 @@
 
         .detail {
             padding: 15px;
-            background: #f8fbff;
+            background: #020617;
             border-radius: 10px;
+            border: 1px solid #172554;
         }
 
         .detail strong {
             display: block;
-            color: #2563eb;
+            color: #1d4ed8;
             margin-bottom: 5px;
         }
 
         .detail span {
-            color: #555;
+            color: #93c5fd;
         }
 
-        /* MOBILE */
+        /* ==============================
+           LOADING
+        ============================== */
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        /* ==============================
+           MOBILE
+        ============================== */
 
         @media (max-width: 700px) {
 
@@ -237,9 +361,21 @@
                 padding: 20px;
             }
 
+            .dashboard-header h2 {
+                font-size: 20px;
+            }
+
             .profile-card {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .profile-info h1 {
+                font-size: 25px;
+            }
+
+            .faculty-info {
+                grid-template-columns: 1fr;
             }
 
             .details-grid {
@@ -249,31 +385,50 @@
             .dashboard-container {
                 margin-top: 25px;
             }
+
+            .completion-header {
+                gap: 10px;
+            }
+
+            .completion-header h2 {
+                font-size: 19px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+    <!-- ==============================
+         HEADER
+    ============================== -->
 
     <header class="dashboard-header">
 
-        <h2>R Mohan Digital</h2>
+        <div>
+            <h2>R Mohan Digital</h2>
+            <small>Student Dashboard</small>
+        </div>
 
-        <button class="logout-btn" onclick="logout()">
+        <button class="logout-btn" id="logoutBtn">
             Logout
         </button>
 
     </header>
 
 
-    <!-- MAIN -->
+    <!-- ==============================
+         MAIN
+    ============================== -->
 
     <main class="dashboard-container">
 
+        <div class="message" id="message"></div>
 
-        <!-- PROFILE -->
+
+        <!-- ==============================
+             PROFILE
+        ============================== -->
 
         <section class="profile-card">
 
@@ -284,27 +439,33 @@
             <div class="profile-info">
 
                 <h1 id="studentName">
-                    Student Name
+                    Loading...
                 </h1>
 
                 <p id="studentEmail">
-                    student@email.com
+                    Loading...
                 </p>
 
                 <p class="course" id="studentCourse">
-                    Course
+                    Course: Loading...
                 </p>
 
                 <p id="studentPhone">
-                    Phone Number
+                    Phone: Loading...
                 </p>
+
+                <span class="status-badge" id="studentStatus">
+                    Checking status...
+                </span>
 
             </div>
 
         </section>
 
 
-        <!-- PROFILE COMPLETION -->
+        <!-- ==============================
+             PROFILE COMPLETION
+        ============================== -->
 
         <section class="completion-card">
 
@@ -316,35 +477,33 @@
 
                 <span
                     class="percentage"
-                    id="profilePercentage"
-                >
+                    id="profilePercentage">
                     40%
                 </span>
 
             </div>
 
-
             <div class="progress-bar">
 
                 <div
                     class="progress"
-                    id="profileProgress"
-                ></div>
+                    id="profileProgress">
+                </div>
 
             </div>
 
-
             <a
                 href="#profileDetails"
-                class="complete-btn"
-            >
+                class="complete-btn">
                 Complete Your Profile
             </a>
 
         </section>
 
 
-        <!-- DASHBOARD FEATURES -->
+        <!-- ==============================
+             DASHBOARD FEATURES
+        ============================== -->
 
         <section class="dashboard-grid">
 
@@ -359,7 +518,7 @@
                     My Course
                 </h3>
 
-                <p>
+                <p id="courseInfo">
                     View your enrolled course and learning materials.
                 </p>
 
@@ -453,18 +612,88 @@
         </section>
 
 
-        <!-- PROFILE DETAILS -->
+        <!-- ==============================
+             ASSIGNED FACULTY
+        ============================== -->
+
+        <section class="faculty-card">
+
+            <h2>
+                👨‍🏫 My Faculty
+            </h2>
+
+            <div class="faculty-info">
+
+                <div class="faculty-item">
+
+                    <strong>
+                        Faculty Name
+                    </strong>
+
+                    <span id="facultyName">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div class="faculty-item">
+
+                    <strong>
+                        Faculty Email
+                    </strong>
+
+                    <span id="facultyEmail">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div class="faculty-item">
+
+                    <strong>
+                        Faculty Phone
+                    </strong>
+
+                    <span id="facultyPhone">
+                        Not available
+                    </span>
+
+                </div>
+
+
+                <div class="faculty-item">
+
+                    <strong>
+                        Faculty Course
+                    </strong>
+
+                    <span id="facultyCourse">
+                        Not available
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             PROFILE DETAILS
+        ============================== -->
 
         <section
             class="details-card"
-            id="profileDetails"
-        >
+            id="profileDetails">
 
             <h2>
                 My Profile
             </h2>
 
             <div class="details-grid">
+
 
                 <div class="detail">
 
@@ -521,10 +750,49 @@
                 <div class="detail">
 
                     <strong>
+                        Role
+                    </strong>
+
+                    <span id="detailRole">
+                        Student
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <strong>
+                        Account Status
+                    </strong>
+
+                    <span id="detailStatus">
+                        Checking...
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <strong>
+                        Faculty ID
+                    </strong>
+
+                    <span id="detailFacultyId">
+                        Not assigned
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <strong>
                         Biography
                     </strong>
 
-                    <span>
+                    <span id="detailBiography">
                         Complete your profile to add biography.
                     </span>
 
@@ -537,7 +805,7 @@
                         Date of Birth
                     </strong>
 
-                    <span>
+                    <span id="detailDob">
                         Not added
                     </span>
 
@@ -547,16 +815,547 @@
 
         </section>
 
+
     </main>
 
 
-    <script>
+    <!-- ==============================
+         FIREBASE BACKEND
+    ============================== -->
 
-        function logout() {
+    <script type="module">
 
-            alert("Logout will be connected to Firebase.");
+        import {
+            auth,
+            db
+        } from "./firebase.js";
 
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+        import {
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+        /* ==============================
+           ELEMENTS
+        ============================== */
+
+        const studentName =
+            document.getElementById("studentName");
+
+        const studentEmail =
+            document.getElementById("studentEmail");
+
+        const studentCourse =
+            document.getElementById("studentCourse");
+
+        const studentPhone =
+            document.getElementById("studentPhone");
+
+        const studentStatus =
+            document.getElementById("studentStatus");
+
+        const profilePhoto =
+            document.getElementById("profilePhoto");
+
+        const detailName =
+            document.getElementById("detailName");
+
+        const detailEmail =
+            document.getElementById("detailEmail");
+
+        const detailPhone =
+            document.getElementById("detailPhone");
+
+        const detailCourse =
+            document.getElementById("detailCourse");
+
+        const detailRole =
+            document.getElementById("detailRole");
+
+        const detailStatus =
+            document.getElementById("detailStatus");
+
+        const detailFacultyId =
+            document.getElementById("detailFacultyId");
+
+        const detailBiography =
+            document.getElementById("detailBiography");
+
+        const detailDob =
+            document.getElementById("detailDob");
+
+        const facultyName =
+            document.getElementById("facultyName");
+
+        const facultyEmail =
+            document.getElementById("facultyEmail");
+
+        const facultyPhone =
+            document.getElementById("facultyPhone");
+
+        const facultyCourse =
+            document.getElementById("facultyCourse");
+
+        const courseInfo =
+            document.getElementById("courseInfo");
+
+        const profilePercentage =
+            document.getElementById("profilePercentage");
+
+        const profileProgress =
+            document.getElementById("profileProgress");
+
+        const message =
+            document.getElementById("message");
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
+
+        /* ==============================
+           SHOW MESSAGE
+        ============================== */
+
+        function showMessage(text) {
+
+            message.textContent = text;
+
+            message.style.display = "block";
         }
+
+
+        /* ==============================
+           ESCAPE HTML
+        ============================== */
+
+        function escapeHTML(value) {
+
+            if (value === null ||
+                value === undefined) {
+
+                return "";
+            }
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+
+        /* ==============================
+           PROFILE COMPLETION
+        ============================== */
+
+        function calculateProfileCompletion(data) {
+
+            const fields = [
+                data.name,
+                data.email,
+                data.phone,
+                data.course,
+                data.biography,
+                data.dob
+            ];
+
+            let completed = 0;
+
+            fields.forEach(field => {
+
+                if (
+                    field !== undefined &&
+                    field !== null &&
+                    String(field).trim() !== ""
+                ) {
+                    completed++;
+                }
+
+            });
+
+            const percentage =
+                Math.round(
+                    (completed / fields.length) * 100
+                );
+
+            profilePercentage.textContent =
+                percentage + "%";
+
+            profileProgress.style.width =
+                percentage + "%";
+        }
+
+
+        /* ==============================
+           LOAD FACULTY
+        ============================== */
+
+        async function loadFaculty(facultyId) {
+
+            if (!facultyId) {
+
+                facultyName.textContent =
+                    "No faculty assigned";
+
+                facultyEmail.textContent =
+                    "Not available";
+
+                facultyPhone.textContent =
+                    "Not available";
+
+                facultyCourse.textContent =
+                    "Not available";
+
+                return;
+            }
+
+
+            try {
+
+                const facultyRef =
+                    doc(
+                        db,
+                        "users",
+                        facultyId
+                    );
+
+                const facultySnap =
+                    await getDoc(facultyRef);
+
+
+                if (!facultySnap.exists()) {
+
+                    facultyName.textContent =
+                        "Faculty profile not found";
+
+                    facultyEmail.textContent =
+                        "Not available";
+
+                    facultyPhone.textContent =
+                        "Not available";
+
+                    facultyCourse.textContent =
+                        "Not available";
+
+                    return;
+                }
+
+
+                const data =
+                    facultySnap.data();
+
+
+                facultyName.textContent =
+                    data.name || "Not available";
+
+                facultyEmail.textContent =
+                    data.email || "Not available";
+
+                facultyPhone.textContent =
+                    data.phone || "Not available";
+
+                facultyCourse.textContent =
+                    data.course || "Not available";
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Faculty loading error:",
+                    error
+                );
+
+                facultyName.textContent =
+                    "Unable to load faculty";
+
+                facultyEmail.textContent =
+                    "Unable to load";
+
+                facultyPhone.textContent =
+                    "Unable to load";
+
+                facultyCourse.textContent =
+                    "Unable to load";
+            }
+        }
+
+
+        /* ==============================
+           LOAD STUDENT
+        ============================== */
+
+        async function loadStudent(user) {
+
+            try {
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+                const userSnap =
+                    await getDoc(userRef);
+
+
+                if (!userSnap.exists()) {
+
+                    showMessage(
+                        "Student profile not found in Firestore."
+                    );
+
+                    return;
+                }
+
+
+                const data =
+                    userSnap.data();
+
+
+                /* ==========================
+                   ROLE CHECK
+                ========================== */
+
+                const role =
+                    String(
+                        data.role || ""
+                    ).toLowerCase();
+
+
+                if (role !== "student") {
+
+                    showMessage(
+                        "This account is not registered as a student."
+                    );
+
+                    return;
+                }
+
+
+                /* ==========================
+                   STATUS CHECK
+                ========================== */
+
+                const status =
+                    String(
+                        data.status || ""
+                    ).toLowerCase();
+
+
+                if (status !== "active") {
+
+                    showMessage(
+                        "Your student account is not active."
+                    );
+
+                    return;
+                }
+
+
+                /* ==========================
+                   PROFILE DATA
+                ========================== */
+
+                const name =
+                    data.name || "Student";
+
+                const email =
+                    data.email ||
+                    user.email ||
+                    "Not available";
+
+                const phone =
+                    data.phone ||
+                    "Not added";
+
+                const course =
+                    data.course ||
+                    "Not selected";
+
+                const biography =
+                    data.biography ||
+                    "Complete your profile to add biography.";
+
+                const dob =
+                    data.dob ||
+                    "Not added";
+
+                const facultyId =
+                    data.facultyId ||
+                    "";
+
+
+                /* ==========================
+                   TOP PROFILE
+                ========================== */
+
+                studentName.textContent =
+                    name;
+
+                studentEmail.textContent =
+                    email;
+
+                studentCourse.textContent =
+                    "Course: " + course;
+
+                studentPhone.textContent =
+                    "Phone: " + phone;
+
+                studentStatus.textContent =
+                    "ACTIVE";
+
+
+                /* ==========================
+                   PROFILE DETAILS
+                ========================== */
+
+                detailName.textContent =
+                    name;
+
+                detailEmail.textContent =
+                    email;
+
+                detailPhone.textContent =
+                    phone;
+
+                detailCourse.textContent =
+                    course;
+
+                detailRole.textContent =
+                    "Student";
+
+                detailStatus.textContent =
+                    data.status || "Active";
+
+                detailFacultyId.textContent =
+                    facultyId || "Not assigned";
+
+                detailBiography.textContent =
+                    biography;
+
+                detailDob.textContent =
+                    dob;
+
+
+                /* ==========================
+                   COURSE
+                ========================== */
+
+                courseInfo.textContent =
+                    course === "Not selected"
+                        ? "No course has been selected yet."
+                        : "You are enrolled in " +
+                          course + ".";
+
+
+                /* ==========================
+                   PROFILE PHOTO
+                ========================== */
+
+                if (data.photoURL) {
+
+                    profilePhoto.innerHTML =
+                        `<img src="${escapeHTML(
+                            data.photoURL
+                        )}" alt="Student Photo">`;
+
+                }
+
+
+                /* ==========================
+                   COMPLETION
+                ========================== */
+
+                calculateProfileCompletion(
+                    data
+                );
+
+
+                /* ==========================
+                   FACULTY
+                ========================== */
+
+                await loadFaculty(
+                    facultyId
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Student loading error:",
+                    error
+                );
+
+                showMessage(
+                    "Unable to load your profile. Please check Firebase."
+                );
+            }
+        }
+
+
+        /* ==============================
+           AUTH STATE
+        ============================== */
+
+        onAuthStateChanged(
+            auth,
+            async (user) => {
+
+                if (!user) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+                }
+
+
+                await loadStudent(user);
+            }
+        );
+
+
+        /* ==============================
+           LOGOUT
+        ============================== */
+
+        logoutBtn.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "login.html";
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                    alert(
+                        "Unable to logout. Please try again."
+                    );
+                }
+            }
+        );
 
     </script>
 
