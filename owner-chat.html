@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Owner Chat | R Mohan Digital</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 270px;
+    background: #091827;
+    border-right: 1px solid #17344c;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    color: #38bdf8;
+    font-weight: bold;
+    font-size: 21px;
+    margin-bottom: 30px;
+}
+
+.menu button,
+.logout {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 8px;
+    border-radius: 9px;
+    background: transparent;
+    color: white;
+    border: 1px solid transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
+.menu button:hover,
+.menu button.active {
+    background: #102d46;
+    color: #38bdf8;
+    border-color: #1e567f;
+}
+
+.logout {
+    margin-top: auto;
+    background: #32151b;
+    color: #ff8997;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.topbar {
+    height: 70px;
+    background: #091827;
+    border-bottom: 1px solid #17344c;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+}
+
+.profile {
+    color: #8ba8bd;
+}
+
+.chat {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+.list {
+    width: 340px;
+    background: #081522;
+    border-right: 1px solid #17344c;
+    display: flex;
+    flex-direction: column;
+}
+
+.search {
+    padding: 15px;
+    border-bottom: 1px solid #17344c;
+}
+
+.row {
+    display: flex;
+    gap: 7px;
+    margin-top: 8px;
+}
+
+input {
+    background: #0c2033;
+    border: 1px solid #244a64;
+    border-radius: 9px;
+    padding: 11px;
+    color: white;
+    outline: none;
+}
+
+input:focus {
+    border-color: #38bdf8;
+}
+
+.phone {
+    flex: 1;
+}
+
+.primary {
+    background: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.items {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.item {
+    padding: 15px;
+    border-bottom: 1px solid #102d42;
+    cursor: pointer;
+}
+
+.item:hover,
+.item.active {
+    background: #102d46;
+}
+
+.item-name {
+    font-weight: bold;
+}
+
+.item-info {
+    color: #7793a8;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.header {
+    height: 70px;
+    background: #0a1c2d;
+    border-bottom: 1px solid #173b55;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.header-name {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.header-info {
+    color: #7894a8;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+    background:
+        radial-gradient(
+            circle,
+            #0d2438,
+            #07111f
+        );
+}
+
+.empty {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #718a9d;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.message.me {
+    justify-content: flex-end;
+}
+
+.bubble {
+    max-width: 70%;
+    padding: 10px 13px;
+    background: #122c42;
+    border-radius: 12px;
+}
+
+.me .bubble {
+    background: #075985;
+}
+
+.sender {
+    color: #38bdf8;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.text {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.info {
+    margin-top: 6px;
+    color: #8ba5b6;
+    font-size: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.delete {
+    background: transparent;
+    border: none;
+    color: #ff8795;
+    cursor: pointer;
+}
+
+.deleted {
+    color: #8197a8;
+    font-style: italic;
+}
+
+.composer {
+    padding: 12px;
+    background: #091827;
+    border-top: 1px solid #17344c;
+    display: flex;
+    gap: 8px;
+}
+
+.message-input {
+    flex: 1;
+}
+
+.send {
+    width: 90px;
+}
+
+.back {
+    display: none;
+    margin-right: 10px;
+}
+
+@media(max-width:800px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .list {
+        width: 100%;
+    }
+
+    .window {
+        display: none;
+    }
+
+    .chat.open .list {
+        display: none;
+    }
+
+    .chat.open .window {
+        display: flex;
+    }
+
+    .back {
+        display: block;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+
+<aside class="sidebar">
+
+    <div class="logo">
+        R MOHAN DIGITAL
+    </div>
+
+    <div class="menu">
+
+        <button
+            onclick="location.href='admin-dashboard.html'">
+            🏠 Dashboard
+        </button>
+
+        <button class="active">
+            💬 Chat
+        </button>
+
+    </div>
+
+    <button
+        class="logout"
+        id="logout">
+        🚪 Logout
+    </button>
+
+</aside>
+
+
+<main class="main">
+
+<header class="topbar">
+
+    <h2>👑 Owner Chat</h2>
+
+    <div
+        class="profile"
+        id="profile">
+        Loading...
+    </div>
+
+</header>
+
+
+<div
+    class="chat"
+    id="chat">
+
+
+    <aside class="list">
+
+        <div class="search">
+
+            <div>
+                Search by phone number
+            </div>
+
+            <div class="row">
+
+                <input
+                    id="phone"
+                    class="phone"
+                    placeholder="+91 9876543210">
+
+                <button
+                    class="primary"
+                    id="find">
+                    Chat
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="items"
+            id="items">
+
+            <div class="empty">
+                Loading chats...
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <section class="window">
+
+        <div class="header">
+
+            <button
+                class="primary back"
+                id="back">
+                ←
+            </button>
+
+            <div>
+
+                <div
+                    class="header-name"
+                    id="chatName">
+                    Select a chat
+                </div>
+
+                <div
+                    class="header-info"
+                    id="chatInfo">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="messages"
+            id="messages">
+
+            <div class="empty">
+                Search for a faculty, mentor or student
+                using their phone number.
+            </div>
+
+        </div>
+
+
+        <form
+            class="composer"
+            id="form">
+
+            <input
+                id="message"
+                class="message-input"
+                placeholder="Type a message..."
+                disabled
+                autocomplete="off">
+
+            <button
+                class="primary send">
+                Send
+            </button>
+
+        </form>
+
+    </section>
+
+</div>
+
+</main>
+
+</div>
+
+
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+    collection,
+    getDocs,
+    doc,
+    getDoc,
+    setDoc,
+    addDoc,
+    updateDoc,
+    query,
+    orderBy,
+    onSnapshot,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+let user = null;
+let profile = null;
+let people = [];
+let activeChat = null;
+let stopMessages = null;
+
+
+// ==========================================================
+// HELPERS
+// ==========================================================
+
+function normalizePhone(phone) {
+
+    let value =
+        String(phone || "")
+        .replace(/\D/g, "");
+
+    if (value.length > 10) {
+        value = value.slice(-10);
+    }
+
+    return value;
+
+}
+
+
+function esc(value) {
+
+    return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+// ==========================================================
+// AUTH
+// ==========================================================
+
+onAuthStateChanged(auth, async current => {
+
+    if (!current) {
+
+        location.href = "login.html";
+        return;
+
+    }
+
+    user = current;
+
+    await loadProfile();
+
+    await loadPeople();
+
+    await loadChats();
+
+});
+
+
+// ==========================================================
+// OWNER PROFILE
+// ==========================================================
+
+async function loadProfile() {
+
+    const snap =
+        await getDoc(
+            doc(db, "users", user.uid)
+        );
+
+
+    if (snap.exists()) {
+
+        profile = snap.data();
+
+    } else {
+
+        profile = {
+
+            name:
+                user.displayName ||
+                user.email ||
+                "Owner",
+
+            phone: "",
+
+            role: "owner"
+
+        };
+
+    }
+
+
+    document
+        .getElementById("profile")
+        .textContent =
+        profile.name || "Owner";
+
+}
+
+
+// ==========================================================
+// LOAD ALL PEOPLE
+// ==========================================================
+
+async function loadPeople() {
+
+    people = [];
+
+
+    const users =
+        await getDocs(
+            collection(db, "users")
+        );
+
+
+    users.forEach(item => {
+
+        const d = item.data();
+
+        if (!d.phone) return;
+
+
+        people.push({
+
+            authUid: item.id,
+
+            name: d.name || "User",
+
+            phone: d.phone,
+
+            phoneKey:
+                normalizePhone(d.phone),
+
+            role:
+                d.role || "user"
+
+        });
+
+    });
+
+
+    const students =
+        await getDocs(
+            collection(db, "students")
+        );
+
+
+    students.forEach(item => {
+
+        const d = item.data();
+
+        if (!d.phone) return;
+
+
+        people.push({
+
+            authUid:
+                d.authUid ||
+                d.uid ||
+                d.userId ||
+                null,
+
+            name:
+                d.name || "Student",
+
+            phone:
+                d.phone,
+
+            phoneKey:
+                normalizePhone(d.phone),
+
+            role:
+                "student"
+
+        });
+
+    });
+
+}
+
+
+// ==========================================================
+// PHONE SEARCH
+// ==========================================================
+
+document
+.getElementById("find")
+.addEventListener("click", async () => {
+
+    const number =
+        normalizePhone(
+            document.getElementById("phone").value
+        );
+
+
+    if (!number) {
+
+        alert("Enter a phone number.");
+        return;
+
+    }
+
+
+    const person =
+        people.find(
+            p => p.phoneKey === number
+        );
+
+
+    if (!person) {
+
+        alert(
+            "No user was found with this phone number."
+        );
+
+        return;
+
+    }
+
+
+    if (!person.authUid) {
+
+        alert(
+            "This account does not have a Firebase Auth UID."
+        );
+
+        return;
+
+    }
+
+
+    if (person.authUid === user.uid) {
+
+        alert("You cannot message yourself.");
+        return;
+
+    }
+
+
+    await createDirectChat(person);
+
+});
+
+
+// ==========================================================
+// CREATE DIRECT CHAT
+// ==========================================================
+
+async function createDirectChat(person) {
+
+    const memberUids =
+        [
+            user.uid,
+            person.authUid
+        ].sort();
+
+
+    const chatId =
+        "direct_" +
+        memberUids.join("_");
+
+
+    const ref =
+        doc(
+            db,
+            "directChats",
+            chatId
+        );
+
+
+    const snap =
+        await getDoc(ref);
+
+
+    if (!snap.exists()) {
+
+        await setDoc(ref, {
+
+            memberUids,
+
+            memberNames: {
+
+                [user.uid]:
+                    profile.name || "Owner",
+
+                [person.authUid]:
+                    person.name
+
+            },
+
+            memberPhones: {
+
+                [user.uid]:
+                    profile.phone || "",
+
+                [person.authUid]:
+                    person.phone || ""
+
+            },
+
+            createdBy:
+                user.uid,
+
+            createdAt:
+                serverTimestamp()
+
+        });
+
+    }
+
+
+    openChat(
+        chatId,
+        person.name,
+        person.phone,
+        person.role
+    );
+
+}
+
+
+// ==========================================================
+// OPEN CHAT
+// ==========================================================
+
+function openChat(
+    id,
+    name,
+    phone,
+    role
+) {
+
+    activeChat = {
+
+        id,
+        name,
+        phone,
+        role
+
+    };
+
+
+    document
+        .getElementById("chatName")
+        .textContent = name;
+
+
+    document
+        .getElementById("chatInfo")
+        .textContent =
+        `${phone || ""} • ${role || ""}`;
+
+
+    document
+        .getElementById("message")
+        .disabled = false;
+
+
+    document
+        .getElementById("chat")
+        .classList.add("open");
+
+
+    listenMessages();
+
+}
+
+
+// ==========================================================
+// CHAT LIST
+// ==========================================================
+
+async function loadChats() {
+
+    const box =
+        document.getElementById("items");
+
+
+    const snap =
+        await getDocs(
+            collection(
+                db,
+                "directChats"
+            )
+        );
+
+
+    box.innerHTML = "";
+
+
+    let count = 0;
+
+
+    snap.forEach(item => {
+
+        const d = item.data();
+
+
+        if (
+            !d.memberUids?.includes(
+                user.uid
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        count++;
+
+
+        const other =
+            d.memberUids.find(
+                uid =>
+                    uid !== user.uid
+            );
+
+
+        const name =
+            d.memberNames?.[other] ||
+            "Chat";
+
+
+        const phone =
+            d.memberPhones?.[other] ||
+            "";
+
+
+        const div =
+            document.createElement("div");
+
+
+        div.className = "item";
+
+
+        div.innerHTML = `
+
+            <div class="item-name">
+                💬 ${esc(name)}
+            </div>
+
+            <div class="item-info">
+                ${esc(phone)}
+            </div>
+
+        `;
+
+
+        div.onclick = () => {
+
+            openChat(
+                item.id,
+                name,
+                phone,
+                ""
+            );
+
+        };
+
+
+        box.appendChild(div);
+
+    });
+
+
+    if (!count) {
+
+        box.innerHTML = `
+
+            <div
+                class="empty"
+                style="padding:30px;">
+
+                No chats yet.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+// ==========================================================
+// REAL TIME MESSAGES
+// ==========================================================
+
+function listenMessages() {
+
+    if (stopMessages) {
+
+        stopMessages();
+
+    }
+
+
+    const ref =
+        collection(
+            db,
+            "directChats",
+            activeChat.id,
+            "messages"
+        );
+
+
+    stopMessages =
+        onSnapshot(
+
+            query(
+                ref,
+                orderBy(
+                    "createdAt",
+                    "asc"
+                )
+            ),
+
+            snapshot => {
+
+                const box =
+                    document.getElementById(
+                        "messages"
+                    );
+
+
+                box.innerHTML = "";
+
+
+                if (snapshot.empty) {
+
+                    box.innerHTML = `
+
+                        <div class="empty">
+                            No messages yet.
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                snapshot.forEach(item => {
+
+                    drawMessage(
+                        box,
+                        item.id,
+                        item.data()
+                    );
+
+                });
+
+
+                box.scrollTop =
+                    box.scrollHeight;
+
+            }
+
+        );
+
+}
+
+
+// ==========================================================
+// MESSAGE UI
+// ==========================================================
+
+function drawMessage(
+    box,
+    messageId,
+    data
+) {
+
+    const mine =
+        data.senderId === user.uid;
+
+
+    const row =
+        document.createElement("div");
+
+
+    row.className =
+        "message " +
+        (mine ? "me" : "");
+
+
+    if (data.deleted) {
+
+        row.innerHTML = `
+
+            <div class="bubble">
+
+                <div class="deleted">
+                    🚫 This message was deleted.
+                </div>
+
+            </div>
+
+        `;
+
+    } else {
+
+        const time =
+            data.createdAt?.toDate
+                ? data.createdAt.toDate()
+                : new Date();
+
+
+        row.innerHTML = `
+
+            <div class="bubble">
+
+                ${
+                    !mine
+                    ?
+                    `<div class="sender">
+                        ${esc(
+                            data.senderName ||
+                            "User"
+                        )}
+                    </div>`
+                    :
+                    ""
+                }
+
+                <div class="text">
+                    ${esc(data.text)}
+                </div>
+
+                <div class="info">
+
+                    ${time.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    })}
+
+                    <button class="delete">
+                        🗑
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        row
+        .querySelector(".delete")
+        .onclick = async () => {
+
+            if (
+                !confirm(
+                    "Delete this message for everyone?"
+                )
+            ) return;
+
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "directChats",
+                    activeChat.id,
+                    "messages",
+                    messageId
+                ),
+
+                {
+
+                    deleted: true,
+
+                    text: "",
+
+                    deletedBy:
+                        user.uid,
+
+                    deletedAt:
+                        serverTimestamp()
+
+                }
+
+            );
+
+        };
+
+    }
+
+
+    box.appendChild(row);
+
+}
+
+
+// ==========================================================
+// SEND
+// ==========================================================
+
+document
+.getElementById("form")
+.addEventListener("submit", async event => {
+
+    event.preventDefault();
+
+
+    if (!activeChat) {
+
+        alert("Select a chat first.");
+        return;
+
+    }
+
+
+    const input =
+        document.getElementById(
+            "message"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) return;
+
+
+    await addDoc(
+
+        collection(
+            db,
+            "directChats",
+            activeChat.id,
+            "messages"
+        ),
+
+        {
+
+            senderId:
+                user.uid,
+
+            senderName:
+                profile.name ||
+                "Owner",
+
+            senderRole:
+                profile.role ||
+                "owner",
+
+            senderPhone:
+                profile.phone ||
+                "",
+
+            text,
+
+            deleted: false,
+
+            createdAt:
+                serverTimestamp()
+
+        }
+
+    );
+
+
+    input.value = "";
+
+});
+
+
+// ==========================================================
+// MOBILE BACK
+// ==========================================================
+
+document
+.getElementById("back")
+.addEventListener("click", () => {
+
+    document
+        .getElementById("chat")
+        .classList.remove("open");
+
+});
+
+
+// ==========================================================
+// LOGOUT
+// ==========================================================
+
+document
+.getElementById("logout")
+.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    location.href = "login.html";
+
+});
+
+</script>
+
+</body>
+</html>
