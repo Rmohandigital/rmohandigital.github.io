@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>R Mohan Digital | Chat Center</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --chat-color:#00e5ff;
+    --chat-color-soft:rgba(0,229,255,.10);
+    --bg:#020617;
+    --panel:#07111f;
+    --panel2:#0b1728;
+    --border:rgba(0,229,255,.16);
+    --text:#f8fafc;
+    --muted:#94a3b8;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(
+            circle at top left,
+            #102a43 0%,
+            #07111f 35%,
+            #020617 75%
+        );
+    color:var(--text);
+    overflow:hidden;
+}
+
+
+/* =========================
+   MAIN CHAT APP
+========================= */
+
+.chat-app{
+    width:100%;
+    height:100vh;
+    display:flex;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.chat-sidebar{
+    width:340px;
+    height:100vh;
+    background:rgba(3,12,24,.98);
+    border-right:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    z-index:20;
+}
+
+.chat-sidebar-header{
+    padding:20px;
+    border-bottom:1px solid var(--border);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-logo{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:2px solid var(--chat-color);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:var(--chat-color);
+    font-weight:bold;
+    box-shadow:0 0 15px rgba(0,229,255,.3);
+}
+
+.brand h2{
+    font-size:17px;
+}
+
+.brand p{
+    font-size:10px;
+    color:var(--chat-color);
+    margin-top:3px;
+    letter-spacing:1px;
+}
+
+
+/* SEARCH */
+
+.search-box{
+    padding:12px;
+    border-bottom:1px solid var(--border);
+}
+
+.search-box input{
+    width:100%;
+    padding:11px 14px;
+    border-radius:20px;
+    border:1px solid rgba(148,163,184,.15);
+    outline:none;
+    background:#0b1728;
+    color:white;
+}
+
+.search-box input:focus{
+    border-color:var(--chat-color);
+}
+
+
+/* CHAT LIST */
+
+.chat-list{
+    flex:1;
+    overflow-y:auto;
+}
+
+.chat-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    cursor:pointer;
+    border-bottom:1px solid rgba(148,163,184,.05);
+    transition:.2s;
+}
+
+.chat-item:hover{
+    background:var(--chat-color-soft);
+}
+
+.chat-item.active{
+    background:var(--chat-color-soft);
+    border-left:3px solid var(--chat-color);
+}
+
+.chat-avatar{
+    width:48px;
+    height:48px;
+    flex-shrink:0;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--chat-color-soft);
+    border:1px solid var(--chat-color);
+    font-size:21px;
+}
+
+.chat-item-info{
+    min-width:0;
+    flex:1;
+}
+
+.chat-item-top{
+    display:flex;
+    justify-content:space-between;
+    gap:5px;
+}
+
+.chat-item-name{
+    font-weight:bold;
+    font-size:14px;
+}
+
+.chat-time{
+    color:#64748b;
+    font-size:10px;
+}
+
+.chat-preview{
+    color:#64748b;
+    font-size:11px;
+    margin-top:5px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+
+/* =========================
+   CHAT AREA
+========================= */
+
+.chat-main{
+    flex:1;
+    min-width:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,229,255,.025),
+            transparent 55%
+        );
+}
+
+
+/* HEADER */
+
+.chat-header{
+    min-height:75px;
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(7,17,31,.96);
+    border-bottom:1px solid var(--border);
+}
+
+.chat-header-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.header-avatar{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--chat-color-soft);
+    border:1px solid var(--chat-color);
+}
+
+.header-name{
+    font-weight:bold;
+    font-size:15px;
+}
+
+.header-status{
+    color:#22c55e;
+    font-size:10px;
+    margin-top:4px;
+}
+
+.header-actions{
+    display:flex;
+    gap:8px;
+}
+
+
+/* BUTTONS */
+
+.icon-btn,
+.header-btn{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--chat-color-soft);
+    color:var(--chat-color);
+    cursor:pointer;
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.icon-btn:hover,
+.header-btn:hover{
+    transform:translateY(-2px);
+    background:var(--chat-color);
+    color:#02120a;
+    box-shadow:0 0 15px rgba(0,229,255,.3);
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+.messages{
+    flex:1;
+    overflow-y:auto;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.empty-chat{
+    margin:auto;
+    text-align:center;
+    color:#64748b;
+}
+
+.empty-chat-icon{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+
+/* MESSAGE */
+
+.message-row{
+    display:flex;
+    width:100%;
+}
+
+.message-row.mine{
+    justify-content:flex-end;
+}
+
+.message-row.other{
+    justify-content:flex-start;
+}
+
+.message{
+    position:relative;
+    max-width:min(65%,550px);
+    padding:9px 12px 7px;
+    border-radius:12px;
+    background:#0b1728;
+    border:1px solid rgba(148,163,184,.08);
+}
+
+.message-row.mine .message{
+    background:var(--chat-color-soft);
+    border-color:rgba(0,229,255,.12);
+    border-bottom-right-radius:3px;
+}
+
+.message-row.other .message{
+    border-bottom-left-radius:3px;
+}
+
+.message-sender{
+    color:var(--chat-color);
+    font-size:10px;
+    font-weight:bold;
+    margin-bottom:4px;
+}
+
+.message-text{
+    font-size:14px;
+    line-height:1.45;
+    word-break:break-word;
+}
+
+.message-bottom{
+    display:flex;
+    justify-content:flex-end;
+    gap:5px;
+    margin-top:4px;
+}
+
+.message-time{
+    color:#64748b;
+    font-size:9px;
+}
+
+.delete-message{
+    border:none;
+    background:none;
+    color:#64748b;
+    cursor:pointer;
+    font-size:10px;
+}
+
+.delete-message:hover{
+    color:#ef4444;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.message-input-area{
+    min-height:72px;
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(7,17,31,.98);
+    border-top:1px solid var(--border);
+}
+
+.message-input{
+    flex:1;
+    padding:13px 17px;
+    border-radius:25px;
+    border:1px solid rgba(148,163,184,.15);
+    outline:none;
+    background:#0b1728;
+    color:white;
+    font-size:14px;
+}
+
+.message-input:focus{
+    border-color:var(--chat-color);
+    box-shadow:0 0 10px rgba(0,229,255,.08);
+}
+
+.send-btn{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    border:1px solid var(--chat-color);
+    background:var(--chat-color-soft);
+    color:var(--chat-color);
+    cursor:pointer;
+    font-size:18px;
+    transition:.2s;
+}
+
+.send-btn:hover{
+    background:var(--chat-color);
+    color:#02120a;
+    transform:scale(1.06);
+}
+
+
+/* =========================
+   RIGHT SETTINGS PANEL
+========================= */
+
+.settings-panel{
+    position:fixed;
+    right:0;
+    top:0;
+    width:310px;
+    height:100vh;
+    background:#07111f;
+    border-left:1px solid var(--border);
+    z-index:100;
+    transform:translateX(100%);
+    transition:.3s ease;
+    padding:22px;
+    overflow-y:auto;
+}
+
+.settings-panel.open{
+    transform:translateX(0);
+}
+
+.settings-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.settings-title h2{
+    font-size:18px;
+}
+
+.settings-section{
+    margin-bottom:25px;
+}
+
+.settings-section h3{
+    font-size:13px;
+    margin-bottom:12px;
+    color:var(--chat-color);
+}
+
+.theme-options{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.theme-option{
+    height:42px;
+    border-radius:8px;
+    cursor:pointer;
+    border:2px solid transparent;
+}
+
+.theme-option:hover{
+    border-color:white;
+}
+
+.theme-cyan{
+    background:#00e5ff;
+}
+
+.theme-green{
+    background:#22c55e;
+}
+
+.theme-purple{
+    background:#a855f7;
+}
+
+.theme-blue{
+    background:#3b82f6;
+}
+
+.theme-orange{
+    background:#f97316;
+}
+
+.theme-pink{
+    background:#ec4899;
+}
+
+
+/* =========================
+   ANNOUNCEMENT
+========================= */
+
+.announcement{
+    margin:0 25px 10px;
+    padding:10px 15px;
+    border-radius:10px;
+    background:rgba(250,204,21,.08);
+    border:1px solid rgba(250,204,21,.2);
+    color:#facc15;
+    font-size:11px;
+    display:none;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:300;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(500px,100%);
+    padding:25px;
+    border-radius:16px;
+    background:#07111f;
+    border:1px solid var(--border);
+    box-shadow:0 20px 80px rgba(0,0,0,.5);
+}
+
+.modal-box h2{
+    margin-bottom:20px;
+    color:var(--chat-color);
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-size:11px;
+    color:#94a3b8;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid rgba(148,163,184,.15);
+    outline:none;
+    background:#0b1728;
+    color:white;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+.primary-btn,
+.secondary-btn{
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.primary-btn{
+    border:1px solid var(--chat-color);
+    background:var(--chat-color-soft);
+    color:var(--chat-color);
+}
+
+.primary-btn:hover{
+    background:var(--chat-color);
+    color:#02120a;
+}
+
+.secondary-btn{
+    border:1px solid #475569;
+    background:transparent;
+    color:#94a3b8;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-back{
+    display:none;
+}
+
+@media(max-width:750px){
+
+    .chat-sidebar{
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%;
+        max-width:360px;
+        transform:translateX(-100%);
+        transition:.3s;
+        z-index:50;
+    }
+
+    .chat-sidebar.open{
+        transform:translateX(0);
+    }
+
+    .mobile-back{
+        display:block;
+    }
+
+    .chat-header{
+        padding-left:10px;
+    }
+
+    .messages{
+        padding:15px 10px;
+    }
+
+    .message{
+        max-width:85%;
+    }
+
+    .message-input-area{
+        padding:9px;
+    }
+
+    .settings-panel{
+        width:100%;
+    }
+
+}
+
+@media(max-width:420px){
+
+    .header-actions .header-btn{
+        display:none;
+    }
+
+    .message{
+        max-width:90%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="chat-app">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="chat-sidebar" id="chatSidebar">
+
+        <div class="chat-sidebar-header">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    RM
+                </div>
+
+                <div>
+                    <h2>R Mohan Digital</h2>
+                    <p>CHAT CENTER</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchChats"
+                placeholder="Search chats..."
+            >
+
+        </div>
+
+
+        <div class="chat-list" id="chatList">
+
+            <div class="chat-item active"
+                 data-chat="general">
+
+                <div class="chat-avatar">
+                    👥
+                </div>
+
+                <div class="chat-item-info">
+
+                    <div class="chat-item-top">
+
+                        <span class="chat-item-name">
+                            R Mohan Digital Group
+                        </span>
+
+                        <span class="chat-time">
+                            Now
+                        </span>
+
+                    </div>
+
+                    <div class="chat-preview">
+                        Welcome to the official group
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-item"
+                 data-chat="announcements">
+
+                <div class="chat-avatar">
+                    📢
+                </div>
+
+                <div class="chat-item-info">
+
+                    <div class="chat-item-top">
+
+                        <span class="chat-item-name">
+                            Announcements
+                        </span>
+
+                    </div>
+
+                    <div class="chat-preview">
+                        Important announcements
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CHAT
+    ========================== -->
+
+    <main class="chat-main">
+
+
+        <header class="chat-header">
+
+            <div class="chat-header-left">
+
+                <button
+                    class="icon-btn mobile-back"
+                    id="mobileChatMenu">
+                    ☰
+                </button>
+
+                <div class="header-avatar"
+                     id="headerAvatar">
+                    👥
+                </div>
+
+                <div>
+
+                    <div class="header-name"
+                         id="headerName">
+                        R Mohan Digital Group
+                    </div>
+
+                    <div class="header-status"
+                         id="headerStatus">
+                        Online
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    class="header-btn"
+                    id="addPersonBtn"
+                    title="Add person">
+                    👤+
+                </button>
+
+                <button
+                    class="header-btn"
+                    id="announcementBtn"
+                    title="Announcement">
+                    📢
+                </button>
+
+                <button
+                    class="header-btn"
+                    id="themeBtn"
+                    title="Chat theme">
+                    🎨
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div
+            class="announcement"
+            id="announcementBar">
+        </div>
+
+
+        <section
+            class="messages"
+            id="messages">
+
+            <div class="empty-chat">
+
+                <div class="empty-chat-icon">
+                    💬
+                </div>
+
+                <h3>
+                    R Mohan Digital Chat
+                </h3>
+
+                <p>
+                    Messages are protected by Firebase.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <div class="message-input-area">
+
+            <button
+                class="icon-btn"
+                id="emojiBtn">
+                😊
+            </button>
+
+            <input
+                type="text"
+                class="message-input"
+                id="messageInput"
+                placeholder="Type a message..."
+                autocomplete="off"
+            >
+
+            <button
+                class="send-btn"
+                id="sendBtn">
+                ➤
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     THEME PANEL
+========================== -->
+
+<div
+    class="settings-panel"
+    id="settingsPanel">
+
+    <div class="settings-title">
+
+        <h2>
+            Chat Appearance
+        </h2>
+
+        <button
+            class="icon-btn"
+            id="closeSettings">
+            ✕
+        </button>
+
+    </div>
+
+
+    <div class="settings-section">
+
+        <h3>
+            CHAT COLOR
+        </h3>
+
+        <div class="theme-options">
+
+            <button
+                class="theme-option theme-cyan"
+                data-color="#00e5ff">
+            </button>
+
+            <button
+                class="theme-option theme-green"
+                data-color="#22c55e">
+            </button>
+
+            <button
+                class="theme-option theme-purple"
+                data-color="#a855f7">
+            </button>
+
+            <button
+                class="theme-option theme-blue"
+                data-color="#3b82f6">
+            </button>
+
+            <button
+                class="theme-option theme-orange"
+                data-color="#f97316">
+            </button>
+
+            <button
+                class="theme-option theme-pink"
+                data-color="#ec4899">
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="settings-section">
+
+        <h3>
+            CHAT THEME
+        </h3>
+
+        <button
+            class="primary-btn"
+            id="darkThemeBtn"
+            style="width:100%;">
+            🌙 Dark Neon
+        </button>
+
+        <br><br>
+
+        <button
+            class="secondary-btn"
+            id="resetThemeBtn"
+            style="width:100%;">
+            Reset Theme
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ADD PERSON MODAL
+========================== -->
+
+<div
+    class="modal"
+    id="personModal">
+
+    <div class="modal-box">
+
+        <h2>
+            Add Person
+        </h2>
+
+        <div class="form-group">
+
+            <label>
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="personPhone"
+                placeholder="+91 9876543210">
+
+        </div>
+
+        <div
+            id="personResult"
+            style="
+                color:#94a3b8;
+                font-size:12px;
+                margin-bottom:15px;
+            ">
+        </div>
+
+        <div class="modal-actions">
+
+            <button
+                class="secondary-btn"
+                id="closePersonModal">
+                Cancel
+            </button>
+
+            <button
+                class="primary-btn"
+                id="findPersonBtn">
+                Find Person
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ANNOUNCEMENT MODAL
+========================== -->
+
+<div
+    class="modal"
+    id="announcementModal">
+
+    <div class="modal-box">
+
+        <h2>
+            📢 Create Announcement
+        </h2>
+
+        <div class="form-group">
+
+            <label>
+                Announcement
+            </label>
+
+            <textarea
+                id="announcementText"
+                placeholder="Write announcement...">
+            </textarea>
+
+        </div>
+
+        <div class="modal-actions">
+
+            <button
+                class="secondary-btn"
+                id="closeAnnouncementModal">
+                Cancel
+            </button>
+
+            <button
+                class="primary-btn"
+                id="sendAnnouncementBtn">
+                Publish
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module" src="./chat.js"></script>
+
+</body>
+
+</html>
