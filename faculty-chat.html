@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Faculty Chat | R Mohan Digital</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+
+/* ==================================================
+   SIDEBAR
+================================================== */
+
+.sidebar {
+    width: 280px;
+    background: #091827;
+    border-right: 1px solid #12304d;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #38bdf8;
+    margin-bottom: 30px;
+}
+
+.menu button {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: #d8e7f5;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.menu button:hover,
+.menu button.active {
+    background: #102d46;
+    border-color: #1e567f;
+    color: #38bdf8;
+}
+
+.logout {
+    margin-top: auto;
+    background: #32151b !important;
+    color: #ff8090 !important;
+}
+
+
+/* ==================================================
+   MAIN
+================================================== */
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.topbar {
+    height: 70px;
+    background: #091827;
+    border-bottom: 1px solid #12304d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+}
+
+.topbar h1 {
+    font-size: 21px;
+}
+
+.profile {
+    color: #8fb1cc;
+}
+
+
+/* ==================================================
+   CHAT
+================================================== */
+
+.chat-container {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+.chat-list {
+    width: 330px;
+    background: #081522;
+    border-right: 1px solid #12304d;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-area {
+    padding: 15px;
+    border-bottom: 1px solid #12304d;
+}
+
+.search-row {
+    display: flex;
+    gap: 7px;
+}
+
+input,
+textarea,
+select {
+    background: #0c2033;
+    border: 1px solid #214766;
+    color: white;
+    border-radius: 9px;
+    padding: 11px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #38bdf8;
+}
+
+.phone-input {
+    flex: 1;
+}
+
+.primary {
+    background: #0ea5e9;
+    border: none;
+    color: white;
+    border-radius: 9px;
+    padding: 10px 14px;
+}
+
+.primary:hover {
+    background: #0284c7;
+}
+
+.chat-items {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chat-item {
+    padding: 15px;
+    border-bottom: 1px solid #102b41;
+    cursor: pointer;
+}
+
+.chat-item:hover,
+.chat-item.active {
+    background: #102d46;
+}
+
+.chat-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.chat-preview {
+    font-size: 12px;
+    color: #7f9bb2;
+}
+
+
+/* ==================================================
+   CHAT WINDOW
+================================================== */
+
+.chat-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.chat-header {
+    height: 70px;
+    background: #0a1c2d;
+    border-bottom: 1px solid #173851;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-header-name {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.chat-header-phone {
+    color: #7998ae;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+    background:
+        radial-gradient(circle at center, #0d2235 0%, #07111f 75%);
+}
+
+.empty {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6f899d;
+    text-align: center;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.message.me {
+    justify-content: flex-end;
+}
+
+.bubble {
+    max-width: min(70%, 650px);
+    padding: 10px 13px;
+    border-radius: 12px;
+    background: #122c42;
+    position: relative;
+}
+
+.message.me .bubble {
+    background: #075985;
+}
+
+.sender {
+    color: #38bdf8;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.message.me .sender {
+    color: #bae6fd;
+}
+
+.message-text {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.message-info {
+    font-size: 10px;
+    color: #88a5b8;
+    margin-top: 6px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #ff8795;
+    font-size: 12px;
+}
+
+.deleted {
+    color: #8298a9;
+    font-style: italic;
+}
+
+
+/* ==================================================
+   COMPOSER
+================================================== */
+
+.composer {
+    padding: 12px;
+    background: #091827;
+    border-top: 1px solid #12304d;
+    display: flex;
+    gap: 8px;
+}
+
+.message-input {
+    flex: 1;
+}
+
+.send {
+    width: 90px;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width: 800px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .chat-list {
+        width: 100%;
+    }
+
+    .chat-window {
+        display: none;
+    }
+
+    .chat-container.chat-open .chat-list {
+        display: none;
+    }
+
+    .chat-container.chat-open .chat-window {
+        display: flex;
+        width: 100%;
+    }
+
+    .back-button {
+        display: block;
+    }
+
+}
+
+@media(min-width: 801px) {
+
+    .back-button {
+        display: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            R MOHAN DIGITAL
+        </div>
+
+        <div class="menu">
+
+            <button onclick="location.href='faculty-dashboard.html'">
+                🏠 Dashboard
+            </button>
+
+            <button class="active">
+                💬 Chat
+            </button>
+
+        </div>
+
+        <button class="logout" id="logoutBtn">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>💬 Faculty Chat</h1>
+
+            <div class="profile" id="profileName">
+                Loading...
+            </div>
+
+        </header>
+
+
+        <div class="chat-container" id="chatContainer">
+
+
+            <!-- CHAT LIST -->
+
+            <aside class="chat-list">
+
+                <div class="search-area">
+
+                    <div style="margin-bottom:8px;color:#9db7ca;">
+                        Find person by phone number
+                    </div>
+
+                    <div class="search-row">
+
+                        <input
+                            id="phoneInput"
+                            class="phone-input"
+                            placeholder="+91 9876543210"
+                        >
+
+                        <button
+                            class="primary"
+                            id="searchBtn">
+                            Chat
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chat-items" id="chatItems">
+
+                    <div class="empty">
+                        Loading chats...
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- CHAT WINDOW -->
+
+            <section class="chat-window">
+
+                <div class="chat-header">
+
+                    <button
+                        class="primary back-button"
+                        onclick="closeChat()"
+                        style="margin-right:12px;">
+                        ←
+                    </button>
+
+                    <div>
+
+                        <div
+                            class="chat-header-name"
+                            id="chatName">
+                            Select a chat
+                        </div>
+
+                        <div
+                            class="chat-header-phone"
+                            id="chatPhone">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="messages"
+                    id="messages">
+
+                    <div class="empty">
+                        Select a person to start chatting.
+                    </div>
+
+                </div>
+
+
+                <form
+                    class="composer"
+                    id="messageForm">
+
+                    <input
+                        id="messageInput"
+                        class="message-input"
+                        placeholder="Type a message..."
+                        autocomplete="off"
+                        disabled>
+
+                    <button
+                        class="primary send"
+                        type="submit">
+                        Send
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+    collection,
+    getDocs,
+    doc,
+    getDoc,
+    setDoc,
+    addDoc,
+    updateDoc,
+    query,
+    orderBy,
+    onSnapshot,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+let currentUser = null;
+let currentProfile = null;
+
+let people = [];
+let activeChat = null;
+
+let unsubscribeMessages = null;
+
+
+// ==========================================================
+// PHONE NORMALIZATION
+// ==========================================================
+
+function normalizePhone(phone) {
+
+    if (!phone) return "";
+
+    let digits = String(phone).replace(/\D/g, "");
+
+    if (digits.length > 10) {
+        digits = digits.slice(-10);
+    }
+
+    return digits;
+}
+
+
+// ==========================================================
+// ESCAPE HTML
+// ==========================================================
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+// ==========================================================
+// AUTH
+// ==========================================================
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        location.href = "login.html";
+        return;
+
+    }
+
+    currentUser = user;
+
+    await loadProfile();
+
+    await loadPeople();
+
+    await loadDirectChats();
+
+});
+
+
+// ==========================================================
+// PROFILE
+// ==========================================================
+
+async function loadProfile() {
+
+    const userRef = doc(db, "users", currentUser.uid);
+
+    const snap = await getDoc(userRef);
+
+    if (snap.exists()) {
+
+        currentProfile = snap.data();
+
+    } else {
+
+        const studentRef =
+            doc(db, "students", currentUser.uid);
+
+        const studentSnap =
+            await getDoc(studentRef);
+
+        if (studentSnap.exists()) {
+
+            currentProfile = studentSnap.data();
+
+        } else {
+
+            currentProfile = {
+
+                name:
+                    currentUser.displayName ||
+                    currentUser.email ||
+                    "Faculty",
+
+                phone: "",
+
+                role: "faculty"
+
+            };
+
+        }
+
+    }
+
+    document.getElementById("profileName").textContent =
+        currentProfile.name || "Faculty";
+
+}
+
+
+// ==========================================================
+// LOAD PEOPLE
+// ==========================================================
+
+async function loadPeople() {
+
+    people = [];
+
+    const usersSnap =
+        await getDocs(collection(db, "users"));
+
+    usersSnap.forEach((item) => {
+
+        const data = item.data();
+
+        if (!data.phone) return;
+
+        people.push({
+
+            id: item.id,
+
+            authUid: item.id,
+
+            name: data.name || "User",
+
+            phone: data.phone,
+
+            phoneKey: normalizePhone(data.phone),
+
+            role: data.role || "user",
+
+            type: "user"
+
+        });
+
+    });
+
+
+    const studentsSnap =
+        await getDocs(collection(db, "students"));
+
+    studentsSnap.forEach((item) => {
+
+        const data = item.data();
+
+        if (!data.phone) return;
+
+        people.push({
+
+            id: item.id,
+
+            authUid:
+                data.authUid ||
+                data.uid ||
+                data.userId ||
+                null,
+
+            name: data.name || "Student",
+
+            phone: data.phone,
+
+            phoneKey: normalizePhone(data.phone),
+
+            role: "student",
+
+            type: "student"
+
+        });
+
+    });
+
+}
+
+
+// ==========================================================
+// SEARCH PHONE
+// ==========================================================
+
+document.getElementById("searchBtn")
+.addEventListener("click", async () => {
+
+    const phone =
+        normalizePhone(
+            document.getElementById("phoneInput").value
+        );
+
+    if (!phone) {
+
+        alert("Enter a phone number.");
+        return;
+
+    }
+
+    const person =
+        people.find(
+            item => item.phoneKey === phone
+        );
+
+    if (!person) {
+
+        alert(
+            "No account found with this phone number."
+        );
+
+        return;
+
+    }
+
+    if (!person.authUid) {
+
+        alert(
+            "This account does not have a Firebase Auth UID. Add authUid to the student account."
+        );
+
+        return;
+
+    }
+
+    if (person.authUid === currentUser.uid) {
+
+        alert("You cannot chat with yourself.");
+        return;
+
+    }
+
+    await openDirectChat(person);
+
+});
+
+
+// ==========================================================
+// CREATE DIRECT CHAT
+// ==========================================================
+
+async function openDirectChat(person) {
+
+    const ids = [
+
+        currentUser.uid,
+        person.authUid
+
+    ].sort();
+
+    const chatId =
+        "direct_" + ids.join("_");
+
+
+    const chatRef =
+        doc(db, "directChats", chatId);
+
+
+    const chatSnap =
+        await getDoc(chatRef);
+
+
+    if (!chatSnap.exists()) {
+
+        await setDoc(chatRef, {
+
+            memberUids: ids,
+
+            memberNames: {
+
+                [currentUser.uid]:
+                    currentProfile.name || "Faculty",
+
+                [person.authUid]:
+                    person.name
+
+            },
+
+            memberPhones: {
+
+                [currentUser.uid]:
+                    currentProfile.phone || "",
+
+                [person.authUid]:
+                    person.phone || ""
+
+            },
+
+            createdBy: currentUser.uid,
+
+            createdAt: serverTimestamp()
+
+        });
+
+    }
+
+
+    await openDirectById(
+        chatId,
+        person
+    );
+
+}
+
+
+// ==========================================================
+// OPEN DIRECT CHAT
+// ==========================================================
+
+async function openDirectById(chatId, person) {
+
+    activeChat = {
+
+        type: "direct",
+
+        id: chatId,
+
+        name: person.name,
+
+        phone: person.phone
+
+    };
+
+
+    document.getElementById("chatName")
+        .textContent = person.name;
+
+    document.getElementById("chatPhone")
+        .textContent =
+        `${person.phone || ""} • ${person.role || ""}`;
+
+
+    document.getElementById("messageInput")
+        .disabled = false;
+
+
+    document.getElementById("chatContainer")
+        .classList.add("chat-open");
+
+
+    startMessageListener();
+
+}
+
+
+// ==========================================================
+// LOAD DIRECT CHAT LIST
+// ==========================================================
+
+async function loadDirectChats() {
+
+    const container =
+        document.getElementById("chatItems");
+
+    container.innerHTML = "";
+
+
+    const snap =
+        await getDocs(
+            collection(db, "directChats")
+        );
+
+
+    let count = 0;
+
+
+    snap.forEach((item) => {
+
+        const data = item.data();
+
+        if (!data.memberUids?.includes(currentUser.uid)) {
+            return;
+        }
+
+
+        count++;
+
+
+        const otherUid =
+            data.memberUids.find(
+                uid => uid !== currentUser.uid
+            );
+
+
+        const name =
+            data.memberNames?.[otherUid] ||
+            "Chat";
+
+
+        const phone =
+            data.memberPhones?.[otherUid] ||
+            "";
+
+
+        const div =
+            document.createElement("div");
+
+        div.className = "chat-item";
+
+
+        div.innerHTML = `
+
+            <div class="chat-name">
+                💬 ${escapeHTML(name)}
+            </div>
+
+            <div class="chat-preview">
+                ${escapeHTML(phone)}
+            </div>
+
+        `;
+
+
+        div.onclick = () => {
+
+            const person =
+                people.find(
+                    p => p.authUid === otherUid
+                );
+
+
+            openDirectById(
+
+                item.id,
+
+                person || {
+
+                    name,
+
+                    phone
+
+                }
+
+            );
+
+        };
+
+
+        container.appendChild(div);
+
+    });
+
+
+    if (count === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty" style="padding:30px;">
+                No chats yet.<br><br>
+                Search a phone number above.
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+// ==========================================================
+// MESSAGE LISTENER
+// ==========================================================
+
+function startMessageListener() {
+
+    if (unsubscribeMessages) {
+
+        unsubscribeMessages();
+        unsubscribeMessages = null;
+
+    }
+
+
+    const path =
+        activeChat.type === "direct"
+            ? collection(
+                db,
+                "directChats",
+                activeChat.id,
+                "messages"
+            )
+            : null;
+
+
+    if (!path) return;
+
+
+    const messagesQuery =
+        query(
+            path,
+            orderBy("createdAt", "asc")
+        );
+
+
+    unsubscribeMessages =
+        onSnapshot(
+            messagesQuery,
+            (snapshot) => {
+
+                const container =
+                    document.getElementById("messages");
+
+                container.innerHTML = "";
+
+
+                if (snapshot.empty) {
+
+                    container.innerHTML = `
+
+                        <div class="empty">
+                            No messages yet.<br>
+                            Send the first message.
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                snapshot.forEach((item) => {
+
+                    renderMessage(
+                        container,
+                        item.id,
+                        item.data()
+                    );
+
+                });
+
+
+                container.scrollTop =
+                    container.scrollHeight;
+
+            },
+
+            (error) => {
+
+                console.error(error);
+
+                document.getElementById(
+                    "messages"
+                ).innerHTML = `
+
+                    <div class="empty">
+                        Unable to load messages.
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+}
+
+
+// ==========================================================
+// RENDER MESSAGE
+// ==========================================================
+
+function renderMessage(
+    container,
+    messageId,
+    data
+) {
+
+    const mine =
+        data.senderId === currentUser.uid;
+
+
+    const wrapper =
+        document.createElement("div");
+
+    wrapper.className =
+        "message " +
+        (mine ? "me" : "other");
+
+
+    if (data.deleted) {
+
+        wrapper.innerHTML = `
+
+            <div class="bubble">
+
+                <div class="deleted">
+                    🚫 This message was deleted.
+                </div>
+
+            </div>
+
+        `;
+
+    } else {
+
+        const date =
+            data.createdAt?.toDate
+                ? data.createdAt.toDate()
+                : new Date();
+
+
+        wrapper.innerHTML = `
+
+            <div class="bubble">
+
+                ${
+                    !mine
+                    ?
+                    `<div class="sender">
+                        ${escapeHTML(
+                            data.senderName || "User"
+                        )}
+                    </div>`
+                    :
+                    ""
+                }
+
+                <div class="message-text">
+                    ${escapeHTML(data.text)}
+                </div>
+
+                <div class="message-info">
+
+                    ${date.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    })}
+
+                    <button
+                        class="delete-btn"
+                        title="Delete message">
+                        🗑
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        wrapper
+            .querySelector(".delete-btn")
+            .onclick = async () => {
+
+                const ok =
+                    confirm(
+                        "Delete this message for everyone?"
+                    );
+
+                if (!ok) return;
+
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "directChats",
+                        activeChat.id,
+                        "messages",
+                        messageId
+                    ),
+
+                    {
+
+                        deleted: true,
+
+                        text: "",
+
+                        deletedBy:
+                            currentUser.uid,
+
+                        deletedAt:
+                            serverTimestamp()
+
+                    }
+
+                );
+
+            };
+
+    }
+
+
+    container.appendChild(wrapper);
+
+}
+
+
+// ==========================================================
+// SEND MESSAGE
+// ==========================================================
+
+document
+.getElementById("messageForm")
+.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+
+    if (!activeChat) {
+
+        alert("Select a chat first.");
+        return;
+
+    }
+
+
+    const input =
+        document.getElementById("messageInput");
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) return;
+
+
+    await addDoc(
+
+        collection(
+            db,
+            "directChats",
+            activeChat.id,
+            "messages"
+        ),
+
+        {
+
+            senderId:
+                currentUser.uid,
+
+            senderName:
+                currentProfile.name ||
+                "Faculty",
+
+            senderRole:
+                currentProfile.role ||
+                "faculty",
+
+            senderPhone:
+                currentProfile.phone ||
+                "",
+
+            text: text,
+
+            deleted: false,
+
+            createdAt:
+                serverTimestamp()
+
+        }
+
+    );
+
+
+    input.value = "";
+
+});
+
+
+// ==========================================================
+// CLOSE MOBILE CHAT
+// ==========================================================
+
+window.closeChat = function() {
+
+    document
+        .getElementById("chatContainer")
+        .classList.remove("chat-open");
+
+};
+
+
+// ==========================================================
+// LOGOUT
+// ==========================================================
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    location.href = "login.html";
+
+});
+
+</script>
+
+</body>
+</html>
