@@ -1018,6 +1018,145 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="loader-spinner"></div>
 </div>
 
+    <script>
+/* =========================================================
+   R MOHAN DIGITAL
+   GLOBAL BUTTON / LINK LOADING SYSTEM
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const loader = document.getElementById("page-loader");
+
+    if (!loader) return;
+
+
+    /* -----------------------------------------------------
+       SHOW LOADER
+       ----------------------------------------------------- */
+
+    function showPageLoader() {
+        loader.classList.add("active");
+    }
+
+
+    /* -----------------------------------------------------
+       HIDE LOADER
+       ----------------------------------------------------- */
+
+    function hidePageLoader() {
+        loader.classList.remove("active");
+    }
+
+
+    /* -----------------------------------------------------
+       ALL BUTTONS
+       ----------------------------------------------------- */
+
+    document.querySelectorAll("button").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            /*
+             * Don't show loader for buttons that are only
+             * opening/closing menus.
+             */
+            if (
+                this.classList.contains("mobile-menu-toggle") ||
+                this.getAttribute("aria-expanded") !== null
+            ) {
+                return;
+            }
+
+            showPageLoader();
+
+        });
+
+    });
+
+
+    /* -----------------------------------------------------
+       ALL LINKS
+       ----------------------------------------------------- */
+
+    document.querySelectorAll("a").forEach(function (link) {
+
+        link.addEventListener("click", function (event) {
+
+            const href = this.getAttribute("href");
+
+            /*
+             * Ignore empty links.
+             */
+            if (
+                !href ||
+                href === "#" ||
+                href === "javascript:void(0)" ||
+                href.startsWith("javascript:")
+            ) {
+                return;
+            }
+
+
+            /*
+             * Smooth scrolling links
+             * Don't show full-screen loader.
+             */
+            if (href.startsWith("#")) {
+                return;
+            }
+
+
+            /*
+             * External links and normal page links
+             * show the loading screen.
+             */
+            showPageLoader();
+
+        });
+
+    });
+
+
+    /* -----------------------------------------------------
+       FORM SUBMIT
+       ----------------------------------------------------- */
+
+    document.querySelectorAll("form").forEach(function (form) {
+
+        form.addEventListener("submit", function () {
+
+            showPageLoader();
+
+        });
+
+    });
+
+
+    /* -----------------------------------------------------
+       HIDE LOADER WHEN PAGE IS READY
+       ----------------------------------------------------- */
+
+    window.addEventListener("pageshow", function () {
+
+        hidePageLoader();
+
+    });
+
+
+    /* -----------------------------------------------------
+       BACK/FORWARD CACHE SUPPORT
+       ----------------------------------------------------- */
+
+    window.addEventListener("popstate", function () {
+
+        hidePageLoader();
+
+    });
+
+
+});
+</script>
 </body>
 </html>
 
