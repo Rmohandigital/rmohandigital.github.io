@@ -1379,3 +1379,320 @@ footer p{
 
     .hero-content p { font-size: 14px !important; }
 }
+
+
+/* =========================================================
+   R MOHAN DIGITAL - FINAL BUTTON & PAGE TRANSITIONS
+   ========================================================= */
+
+/* ---------- GLOBAL SMOOTH TRANSITIONS ---------- */
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+/* =========================================================
+   ALL BUTTONS
+   ========================================================= */
+
+button {
+    cursor: pointer;
+}
+
+
+/* Hover effect */
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* Click effect */
+
+button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   ALL LINKS / BUTTON-LIKE LINKS
+   ========================================================= */
+
+a {
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+}
+
+a:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   NAVIGATION LINKS
+   ========================================================= */
+
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 70%;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.nav-buttons a,
+.login-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-buttons a::before,
+.login-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.nav-buttons a:hover::before,
+.login-btn:hover::before {
+    left: 120%;
+}
+
+.nav-buttons a:hover,
+.login-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   REGISTER BUTTON
+   ========================================================= */
+
+.register-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.register-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+.register-btn:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+   ========================================================= */
+
+.hero a,
+.hero button {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero a:hover,
+.hero button:hover {
+    transform: translateY(-4px);
+}
+
+.hero a:active,
+.hero button:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   TEAM LOGIN BUTTON
+   ========================================================= */
+
+.team-login,
+.team-login-btn,
+#team-login-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.team-login:hover,
+.team-login-btn:hover,
+#team-login-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   SERVICE / COURSE BUTTONS
+   ========================================================= */
+
+.service-card,
+.course-card,
+.team-card,
+.testimonial-card {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.service-card:hover,
+.course-card:hover,
+.team-card:hover {
+    transform: translateY(-7px);
+}
+
+
+/* =========================================================
+   CONTACT BUTTON
+   ========================================================= */
+
+.contact button,
+.contact-form button,
+#contact-form button {
+    position: relative;
+    overflow: hidden;
+}
+
+.contact button:hover,
+.contact-form button:hover,
+#contact-form button:hover {
+    transform: translateY(-3px);
+}
+
+.contact button:active,
+.contact-form button:active,
+#contact-form button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   WHATSAPP BUTTON
+   ========================================================= */
+
+.whatsapp-float {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float:active {
+    transform: scale(0.92);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
+.mobile-menu-toggle {
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.mobile-menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+.mobile-menu-toggle:active {
+    transform: scale(0.9);
+}
+
+
+/* =========================================================
+   FORM INPUT TRANSITIONS
+   ========================================================= */
+
+input,
+textarea,
+select {
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   IMAGE HOVER TRANSITIONS
+   ========================================================= */
+
+img {
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+.team-card img:hover {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
