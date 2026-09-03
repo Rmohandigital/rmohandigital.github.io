@@ -1696,3 +1696,100 @@ img {
         scroll-behavior: auto !important;
     }
 }
+
+/* =========================================================
+   R MOHAN DIGITAL
+   GLOBAL BUTTON LOADING ANIMATION
+   ========================================================= */
+
+/* Full-screen loading background */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+/* Show loader */
+.page-loader.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+
+/* =========================================================
+   CIRCULAR SPINNER
+   ========================================================= */
+
+.loader-spinner {
+    width: 78px;
+    height: 78px;
+
+    border-radius: 50%;
+
+    border: 9px solid #e1f3fa;
+    border-top-color: #9ed4e5;
+
+    animation: rmohanLoaderSpin 0.85s linear infinite;
+}
+
+
+/* Spinner animation */
+@keyframes rmohanLoaderSpin {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   BUTTON PRESS EFFECT
+   ========================================================= */
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:active,
+a:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   MOBILE SPINNER
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .loader-spinner {
+        width: 65px;
+        height: 65px;
+        border-width: 8px;
+    }
+
+}
