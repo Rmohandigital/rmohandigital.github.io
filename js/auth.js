@@ -1,714 +1,724 @@
-// ==========================================
+// ============================================================
 // R MOHAN DIGITAL
-// LOGIN & ROLE SYSTEM
-// OWNER + MENTOR + FACULTY + STUDENT
-// ==========================================
-
-import { auth, db } from "../firebase.js";
+// FINAL LOGIN SYSTEM
+// Student / Faculty / Mentor / Owner
+// ============================================================
 
 import {
-    signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+    auth,
+    db
+} from "../firebase.js";
+
+import {
+    signInWithEmailAndPassword,
+    signOut
+} from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 import {
     doc,
     getDoc
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+} from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-// ==========================================
-// SELECTED LOGIN ROLE
-// ==========================================
+// ============================================================
+// VARIABLES
+// ============================================================
 
 let selectedRole = "";
 
 
-// ==========================================
-// ROLE BUTTONS
-// ==========================================
-//
-// Your login.html should have buttons with:
-//
-// data-role="owner"
-// data-role="mentor"
-// data-role="faculty"
-// data-role="student"
-//
-// Example:
-//
-// <button class="role-btn" data-role="owner">
-//     👑 Owner
-// </button>
-//
+// ============================================================
+// PAGE LOAD
+// ============================================================
 
-const roleButtons =
-    document.querySelectorAll(
-        ".role-btn"
-    );
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
+        setupRoleButtons();
 
-roleButtons.forEach(
-    button => {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                // Remove selection
-                roleButtons.forEach(
-                    btn => {
-                        btn.classList.remove(
-                            "selected"
-                        );
-                    }
-                );
-
-
-                // Select clicked button
-                this.classList.add(
-                    "selected"
-                );
-
-
-                selectedRole =
-                    String(
-                        this.dataset.role || ""
-                    )
-                    .trim()
-                    .toLowerCase();
-
-
-                console.log(
-                    "Selected login role:",
-                    selectedRole
-                );
-
-
-                const loginMessage =
-                    document.getElementById(
-                        "loginMessage"
-                    );
-
-
-                if (loginMessage) {
-
-                    loginMessage.style.color =
-                        "#00e5ff";
-
-                    loginMessage.textContent =
-                        "Selected: " +
-                        this.textContent.trim();
-
-                }
-
-            }
-        );
+        setupLoginForm();
 
     }
 );
 
 
-// ==========================================
-// PASSWORD SHOW / HIDE
-// ==========================================
+// ============================================================
+// ROLE BUTTONS
+// ============================================================
 
-window.toggleLoginPassword =
-function () {
+function setupRoleButtons() {
 
-    const password =
-        document.getElementById(
-            "loginPassword"
-        );
-
-    const button =
-        document.querySelector(
-            ".toggle-password"
+    const roleButtons =
+        document.querySelectorAll(
+            ".role-btn"
         );
 
 
-    if (!password || !button) {
-        return;
-    }
-
-
-    if (
-        password.type ===
-        "password"
-    ) {
-
-        password.type =
-            "text";
-
-        button.textContent =
-            "🙈";
-
-    }
-
-    else {
-
-        password.type =
-            "password";
-
-        button.textContent =
-            "👁";
-
-    }
-
-};
-
-
-// ==========================================
-// LOGIN FORM
-// ==========================================
-
-const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
-
-
-const loginMessage =
-    document.getElementById(
-        "loginMessage"
-    );
-
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-
-            // ==================================
-            // GET INPUTS
-            // ==================================
-
-            const emailInput =
-                document.getElementById(
-                    "loginEmail"
-                );
-
-
-            const passwordInput =
-                document.getElementById(
-                    "loginPassword"
-                );
-
-
-            if (
-                !emailInput ||
-                !passwordInput
-            ) {
-
-                console.error(
-                    "Login input fields not found."
-                );
-
-                return;
-
-            }
-
-
-            const email =
-                emailInput.value.trim();
-
-
-            const password =
-                passwordInput.value;
-
-
-            // ==================================
-            // EMPTY CHECK
-            // ==================================
-
-            if (
-                !email ||
-                !password
-            ) {
-
-                loginMessage.style.color =
-                    "red";
-
-                loginMessage.textContent =
-                    "Please enter email and password.";
-
-                return;
-
-            }
-
-
-            // ==================================
-            // ROLE SELECTION CHECK
-            // ==================================
-
-            if (!selectedRole) {
-
-                loginMessage.style.color =
-                    "red";
-
-                loginMessage.textContent =
-                    "Please select Owner, Mentor, Faculty or Student.";
-
-                return;
-
-            }
-
-
-            loginMessage.style.color =
-                "#00e5ff";
-
-            loginMessage.textContent =
-                "Logging in...";
-
-
-            try {
-
-                // ==================================
-                // FIREBASE AUTHENTICATION
-                // ==================================
-
-                const result =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-
-                const user =
-                    result.user;
-
-
-                console.log(
-                    "Firebase UID:",
-                    user.uid
-                );
-
-
-                // ==================================
-                // GET USER PROFILE
-                // ==================================
-
-                const userRef =
-                    doc(
-                        db,
-                        "users",
-                        user.uid
-                    );
-
-
-                const userSnapshot =
-                    await getDoc(
-                        userRef
-                    );
-
-
-                // ==================================
-                // PROFILE NOT FOUND
-                // ==================================
-
-                if (
-                    !userSnapshot.exists()
-                ) {
-
-                    loginMessage.style.color =
-                        "red";
-
-                    loginMessage.textContent =
-                        "Your Firebase profile is not found.";
-
-                    console.error(
-                        "Missing users document:",
-                        user.uid
-                    );
-
-                    return;
-
-                }
-
-
-                // ==================================
-                // USER DATA
-                // ==================================
-
-                const userData =
-                    userSnapshot.data();
-
-
-                console.log(
-                    "Firebase user data:",
-                    userData
-                );
-
-
-                // ==================================
-                // ROLE
-                // ==================================
-
-                const role =
-                    String(
-                        userData.role || ""
-                    )
-                    .trim()
-                    .toLowerCase();
-
-
-                // ==================================
-                // STATUS
-                // ==================================
-
-                const status =
-                    String(
-                        userData.status || ""
-                    )
-                    .trim()
-                    .toLowerCase();
-
-
-                console.log(
-                    "Database role:",
-                    role
-                );
-
-
-                console.log(
-                    "Database status:",
-                    status
-                );
-
-
-                // ==================================
-                // ROLE NOT CONFIGURED
-                // ==================================
-
-                if (!role) {
-
-                    loginMessage.style.color =
-                        "red";
-
-                    loginMessage.textContent =
-                        "Your account role is not configured.";
-
-                    return;
-
-                }
-
-
-                // ==================================
-                // SELECTED ROLE MATCH
-                // ==================================
-
-                let rolesMatch = false;
-
-
-                // OWNER
-                if (
-                    selectedRole ===
-                    "owner"
-                ) {
-
-                    if (
-                        role === "owner" ||
-                        role === "admin"
-                    ) {
-
-                        rolesMatch = true;
-
-                    }
-
-                }
-
-
-                // MENTOR
-                else if (
-                    selectedRole ===
-                    "mentor"
-                ) {
-
-                    if (
-                        role === "mentor"
-                    ) {
-
-                        rolesMatch = true;
-
-                    }
-
-                }
-
-
-                // FACULTY
-                else if (
-                    selectedRole ===
-                    "faculty"
-                ) {
-
-                    if (
-                        role === "faculty"
-                    ) {
-
-                        rolesMatch = true;
-
-                    }
-
-                }
-
-
-                // STUDENT
-                else if (
-                    selectedRole ===
-                    "student"
-                ) {
-
-                    if (
-                        role === "student"
-                    ) {
-
-                        rolesMatch = true;
-
-                    }
-
-                }
-
-
-                // ==================================
-                // WRONG ROLE
-                // ==================================
-
-                if (!rolesMatch) {
-
-                    loginMessage.style.color =
-                        "red";
-
-                    loginMessage.textContent =
-                        "This account does not belong to the selected role.";
-
-                    console.error(
-                        "Selected role:",
-                        selectedRole,
-                        "Database role:",
-                        role
-                    );
-
-                    return;
-
-                }
-
-
-                // ==================================
-                // STATUS CHECK
-                // ==================================
-
-                if (
-                    status !== "active"
-                ) {
-
-                    loginMessage.style.color =
-                        "red";
-
-
-                    if (
-                        status ===
-                        "pending"
-                    ) {
-
-                        loginMessage.textContent =
-                            "Your account is pending approval.";
-
-                    }
-
-                    else if (
-                        status ===
-                        "rejected"
-                    ) {
-
-                        loginMessage.textContent =
-                            "Your account has been rejected.";
-
-                    }
-
-                    else {
-
-                        loginMessage.textContent =
-                            "Your account is not active.";
-
-                    }
-
-
-                    return;
-
-                }
-
-
-                // ==================================
-                // LOGIN SUCCESS
-                // ==================================
-
-                loginMessage.style.color =
-                    "#00ff88";
-
-                loginMessage.textContent =
-                    "Login successful!";
-
-
-                // ==================================
-                // REDIRECT
-                // ==================================
-
-                setTimeout(
-                    function () {
-
-
-                        // ==========================
-                        // OWNER
-                        // ==========================
-
-                        if (
-                            role === "owner" ||
-                            role === "admin"
-                        ) {
-
-                            window.location.href =
-                                "admin-dashboard.html";
-
-                            return;
-
+    roleButtons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    // Remove previous selection
+                    roleButtons.forEach(
+                        btn => {
+                            btn.classList.remove(
+                                "selected"
+                            );
                         }
+                    );
 
 
-                        // ==========================
-                        // MENTOR
-                        // ==========================
-
-                        if (
-                            role === "mentor"
-                        ) {
-
-                            window.location.href =
-                                "mentor-dashboard.html";
-
-                            return;
-
-                        }
+                    // Select current button
+                    button.classList.add(
+                        "selected"
+                    );
 
 
-                        // ==========================
-                        // FACULTY
-                        // ==========================
-
-                        if (
-                            role === "faculty"
-                        ) {
-
-                            window.location.href =
-                                "faculty-dashboard.html";
-
-                            return;
-
-                        }
+                    selectedRole =
+                        button.dataset.role;
 
 
-                        // ==========================
-                        // STUDENT
-                        // ==========================
-
-                        if (
-                            role === "student"
-                        ) {
-
-                            window.location.href =
-                                "dashboard.html";
-
-                            return;
-
-                        }
-
-
-                    },
-                    600
-                );
-
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Firebase login error:",
-                    error
-                );
-
-
-                loginMessage.style.color =
-                    "red";
-
-
-                // ==================================
-                // FIREBASE ERROR MESSAGES
-                // ==================================
-
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
-
-                    loginMessage.textContent =
-                        "Incorrect email or password.";
+                    showMessage(
+                        "",
+                        ""
+                    );
 
                 }
-
-                else if (
-                    error.code ===
-                    "auth/invalid-email"
-                ) {
-
-                    loginMessage.textContent =
-                        "Please enter a valid email.";
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    loginMessage.textContent =
-                        "No account found with this email.";
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/wrong-password"
-                ) {
-
-                    loginMessage.textContent =
-                        "Incorrect password.";
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/too-many-requests"
-                ) {
-
-                    loginMessage.textContent =
-                        "Too many login attempts. Try again later.";
-
-                }
-
-                else {
-
-                    loginMessage.textContent =
-                        "Login failed. Please try again.";
-
-                }
-
-            }
+            );
 
         }
     );
 
 }
+
+
+// ============================================================
+// LOGIN FORM
+// ============================================================
+
+function setupLoginForm() {
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+
+    if (!loginForm) {
+        return;
+    }
+
+
+    loginForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+            await loginUser();
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// LOGIN USER
+// ============================================================
+
+async function loginUser() {
+
+    const email =
+        document
+            .getElementById("loginEmail")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
+
+
+    // ========================================================
+    // CHECK ROLE
+    // ========================================================
+
+    if (!selectedRole) {
+
+        showMessage(
+            "Please select your login type first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    // ========================================================
+    // CHECK INPUTS
+    // ========================================================
+
+    if (!email || !password) {
+
+        showMessage(
+            "Please enter email and password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    // ========================================================
+    // LOGIN BUTTON
+    // ========================================================
+
+    const loginButton =
+        document.querySelector(
+            ".login-btn-main"
+        );
+
+
+    if (loginButton) {
+
+        loginButton.disabled =
+            true;
+
+        loginButton.textContent =
+            "Logging in...";
+
+    }
+
+
+    try {
+
+        // ====================================================
+        // FIREBASE LOGIN
+        // ====================================================
+
+        const result =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user =
+            result.user;
+
+
+        console.log(
+            "Logged in UID:",
+            user.uid
+        );
+
+
+        // ====================================================
+        // GET USER PROFILE
+        // ====================================================
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                user.uid
+            );
+
+
+        const userSnap =
+            await getDoc(
+                userRef
+            );
+
+
+        if (!userSnap.exists()) {
+
+            await signOut(auth);
+
+
+            showMessage(
+                "Profile not found. Please contact the administrator.",
+                "error"
+            );
+
+
+            resetLoginButton();
+
+            return;
+
+        }
+
+
+        const profile =
+            userSnap.data();
+
+
+        console.log(
+            "User profile:",
+            profile
+        );
+
+
+        // ====================================================
+        // GET ROLE
+        // ====================================================
+
+        const userRole =
+            String(
+                profile.role || ""
+            )
+            .toLowerCase()
+            .trim();
+
+
+        const status =
+            String(
+                profile.status || ""
+            )
+            .toLowerCase()
+            .trim();
+
+
+        // ====================================================
+        // VERIFY SELECTED ROLE
+        // ====================================================
+
+        if (
+            selectedRole !==
+            userRole
+        ) {
+
+            await signOut(auth);
+
+
+            showMessage(
+                "This account does not belong to the selected login type.",
+                "error"
+            );
+
+
+            resetLoginButton();
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // OWNER
+        // ====================================================
+
+        if (
+            userRole === "owner"
+        ) {
+
+            if (
+                status !== "active" &&
+                status !== "approved"
+            ) {
+
+                await signOut(auth);
+
+                showMessage(
+                    "Your Owner account is not active.",
+                    "error"
+                );
+
+                resetLoginButton();
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "admin-dashboard.html";
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // MENTOR
+        // ====================================================
+
+        if (
+            userRole === "mentor"
+        ) {
+
+            if (
+                status !== "active" &&
+                status !== "approved"
+            ) {
+
+                await signOut(auth);
+
+                showMessage(
+                    "Your Mentor account is not active.",
+                    "error"
+                );
+
+                resetLoginButton();
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "mentor-dashboard.html";
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // FACULTY
+        // ====================================================
+
+        if (
+            userRole === "faculty"
+        ) {
+
+            if (
+                status !== "active" &&
+                status !== "approved"
+            ) {
+
+                await signOut(auth);
+
+                showMessage(
+                    "Your Faculty account is not active.",
+                    "error"
+                );
+
+                resetLoginButton();
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "faculty-dashboard.html";
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // STUDENT
+        // ========================================================
+
+        if (
+            userRole === "student"
+        ) {
+
+            // ------------------------------------------------
+            // PENDING
+            // ------------------------------------------------
+
+            if (
+                status === "pending"
+            ) {
+
+                await signOut(auth);
+
+
+                showMessage(
+                    "Your registration is waiting for mentor approval.",
+                    "error"
+                );
+
+
+                resetLoginButton();
+
+                return;
+
+            }
+
+
+            // ------------------------------------------------
+            // REJECTED
+            // ------------------------------------------------
+
+            if (
+                status === "rejected"
+            ) {
+
+                await signOut(auth);
+
+
+                showMessage(
+                    "Your registration was rejected. Please contact the mentor.",
+                    "error"
+                );
+
+
+                resetLoginButton();
+
+                return;
+
+            }
+
+
+            // ------------------------------------------------
+            // APPROVED
+            // ------------------------------------------------
+
+            if (
+                status === "approved" ||
+                status === "active"
+            ) {
+
+                window.location.href =
+                    "student-dashboard.html";
+
+                return;
+
+            }
+
+
+            // ------------------------------------------------
+            // UNKNOWN STATUS
+            // ------------------------------------------------
+
+            await signOut(auth);
+
+
+            showMessage(
+                "Your student account status is not configured.",
+                "error"
+            );
+
+
+            resetLoginButton();
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // UNKNOWN ROLE
+        // ====================================================
+
+        await signOut(auth);
+
+
+        showMessage(
+            "Your account role is not configured.",
+            "error"
+        );
+
+
+        resetLoginButton();
+
+    }
+    catch (error) {
+
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
+
+
+        showMessage(
+            getLoginErrorMessage(error),
+            "error"
+        );
+
+
+        resetLoginButton();
+
+    }
+
+}
+
+
+// ============================================================
+// RESET LOGIN BUTTON
+// ============================================================
+
+function resetLoginButton() {
+
+    const loginButton =
+        document.querySelector(
+            ".login-btn-main"
+        );
+
+
+    if (loginButton) {
+
+        loginButton.disabled =
+            false;
+
+        loginButton.textContent =
+            "Login";
+
+    }
+
+}
+
+
+// ============================================================
+// MESSAGE
+// ============================================================
+
+function showMessage(
+    message,
+    type
+) {
+
+    const messageBox =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    if (!messageBox) {
+        return;
+    }
+
+
+    messageBox.textContent =
+        message;
+
+
+    if (type === "error") {
+
+        messageBox.style.color =
+            "#dc2626";
+
+    }
+    else if (type === "success") {
+
+        messageBox.style.color =
+            "#16a34a";
+
+    }
+    else {
+
+        messageBox.style.color =
+            "#2563eb";
+
+    }
+
+}
+
+
+// ============================================================
+// FIREBASE ERROR MESSAGES
+// ============================================================
+
+function getLoginErrorMessage(error) {
+
+    const code =
+        error.code || "";
+
+
+    switch (code) {
+
+        case "auth/invalid-credential":
+
+            return "Invalid email or password.";
+
+
+        case "auth/invalid-login-credentials":
+
+            return "Invalid email or password.";
+
+
+        case "auth/user-not-found":
+
+            return "No account found with this email.";
+
+
+        case "auth/wrong-password":
+
+            return "Incorrect password.";
+
+
+        case "auth/invalid-email":
+
+            return "Please enter a valid email address.";
+
+
+        case "auth/user-disabled":
+
+            return "This account has been disabled.";
+
+
+        case "auth/too-many-requests":
+
+            return "Too many login attempts. Please try again later.";
+
+
+        case "auth/network-request-failed":
+
+            return "Network error. Please check your internet connection.";
+
+
+        default:
+
+            return (
+                error.message ||
+                "Login failed. Please try again."
+            );
+
+    }
+
+}
+
+
+// ============================================================
+// PASSWORD SHOW / HIDE
+// Your existing login.html already calls this function.
+// ============================================================
+
+window.toggleLoginPassword =
+    function () {
+
+        const passwordInput =
+            document.getElementById(
+                "loginPassword"
+            );
+
+
+        if (!passwordInput) {
+            return;
+        }
+
+
+        if (
+            passwordInput.type ===
+            "password"
+        ) {
+
+            passwordInput.type =
+                "text";
+
+        }
+        else {
+
+            passwordInput.type =
+                "password";
+
+        }
+
+    };
