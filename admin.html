@@ -7,308 +7,671 @@
     <title>Team Login | R Mohan Digital</title>
 
     <style>
+
+        /* =====================================================
+           BASIC RESET
+        ===================================================== */
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+
+        /* =====================================================
+           BODY
+        ===================================================== */
+
         body {
             min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             background:
-                radial-gradient(circle at top, #102a52 0%, #050b16 45%, #02050a 100%);
+                radial-gradient(
+                    circle at top,
+                    #102a52 0%,
+                    #050b16 45%,
+                    #02050a 100%
+                );
+
             color: white;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
             padding: 20px;
         }
 
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
         .login-container {
             width: 100%;
+
             max-width: 460px;
         }
 
+
+        /* =====================================================
+           LOGIN BOX
+        ===================================================== */
+
         .login-box {
-            background: rgba(5, 14, 28, 0.95);
-            border: 1px solid rgba(0, 180, 255, 0.35);
+            background:
+                rgba(5, 14, 28, 0.96);
+
+            border:
+                1px solid
+                rgba(0, 180, 255, 0.35);
+
             border-radius: 24px;
+
             padding: 32px 28px;
+
             box-shadow:
-                0 0 25px rgba(0, 170, 255, 0.18),
-                inset 0 0 25px rgba(0, 170, 255, 0.03);
+                0 0 25px
+                rgba(0, 170, 255, 0.18),
+
+                inset 0 0 25px
+                rgba(0, 170, 255, 0.03);
         }
+
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
 
         .brand {
             text-align: center;
+
             margin-bottom: 25px;
         }
 
+
         .brand-icon {
             width: 70px;
+
             height: 70px;
+
             margin: auto;
+
             border-radius: 20px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            background: linear-gradient(135deg, #00b7ff, #0066ff);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00b7ff,
+                    #0066ff
+                );
+
             color: white;
+
             font-size: 25px;
+
             font-weight: bold;
-            box-shadow: 0 0 25px rgba(0, 170, 255, 0.45);
+
+            box-shadow:
+                0 0 25px
+                rgba(0, 170, 255, 0.45);
         }
+
 
         .brand h1 {
             margin-top: 15px;
+
             font-size: 25px;
         }
 
+
         .brand p {
             margin-top: 7px;
+
             color: #72cfff;
+
             font-size: 12px;
+
             letter-spacing: 3px;
         }
 
+
+        /* =====================================================
+           SECTION TITLE
+        ===================================================== */
+
         .section-title {
             color: #9bdfff;
+
             font-size: 14px;
+
             margin-bottom: 12px;
         }
 
-        /* ROLE BUTTONS */
+
+        /* =====================================================
+           ROLES
+        ===================================================== */
 
         .roles {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1fr 1fr;
+
             gap: 10px;
+
             margin-bottom: 10px;
         }
 
+
         .role-btn {
-            border: 1px solid rgba(0, 190, 255, 0.25);
-            background: rgba(10, 27, 49, 0.9);
+            border:
+                1px solid
+                rgba(0, 190, 255, 0.25);
+
+            background:
+                rgba(10, 27, 49, 0.9);
+
             color: #cdeeff;
+
             border-radius: 12px;
+
             padding: 13px 10px;
+
             cursor: pointer;
+
             font-size: 14px;
-            transition: 0.2s ease;
+
+            transition:
+                0.2s ease;
         }
+
 
         .role-btn:hover {
-            border-color: #00b7ff;
-            background: rgba(0, 150, 255, 0.12);
-            transform: translateY(-1px);
+            border-color:
+                #00b7ff;
+
+            background:
+                rgba(0, 150, 255, 0.12);
+
+            transform:
+                translateY(-1px);
         }
 
+
         .role-btn.selected {
-            border-color: #00c8ff;
-            background: rgba(0, 160, 255, 0.2);
+            border-color:
+                #00c8ff;
+
+            background:
+                rgba(0, 160, 255, 0.2);
+
             color: white;
+
             box-shadow:
-                0 0 12px rgba(0, 190, 255, 0.25);
+                0 0 12px
+                rgba(0, 190, 255, 0.25);
         }
+
+
+        /* =====================================================
+           SELECTED ROLE
+        ===================================================== */
 
         .selected-role {
             text-align: center;
+
             min-height: 22px;
-            margin: 4px 0 20px;
-            color: #00d9ff;
+
+            margin:
+                4px 0 20px;
+
+            color:
+                #00d9ff;
+
             font-size: 13px;
+
             font-weight: bold;
         }
 
-        /* INPUTS */
+
+        /* =====================================================
+           INPUT GROUP
+        ===================================================== */
 
         .input-group {
             margin-bottom: 17px;
         }
 
+
         .input-group label {
             display: block;
+
             color: #a9dfff;
+
             font-size: 13px;
+
             margin-bottom: 7px;
         }
 
+
+        /* =====================================================
+           INPUT WRAPPER
+        ===================================================== */
+
         .input-wrapper {
             position: relative;
+
+            width: 100%;
         }
+
+
+        /* =====================================================
+           INPUT
+        ===================================================== */
 
         .input-wrapper input {
             width: 100%;
+
             height: 48px;
-            padding: 0 48px 0 15px;
+
+            padding:
+                0 52px 0 15px;
+
             border-radius: 12px;
-            border: 1px solid rgba(0, 180, 255, 0.25);
-            background: #071525;
+
+            border:
+                1px solid
+                rgba(0, 180, 255, 0.25);
+
+            background:
+                #071525;
+
             color: white;
+
             outline: none;
+
             font-size: 14px;
         }
 
+
         .input-wrapper input:focus {
-            border-color: #00bfff;
-            box-shadow: 0 0 12px rgba(0, 190, 255, 0.15);
+            border-color:
+                #00bfff;
+
+            box-shadow:
+                0 0 12px
+                rgba(0, 190, 255, 0.15);
         }
+
 
         .input-wrapper input::placeholder {
-            color: #688198;
+            color:
+                #688198;
         }
 
-        /* PASSWORD EYE */
 
-        .toggle-password {
+        /* =====================================================
+           PASSWORD EYE BUTTON
+        ===================================================== */
+
+        .password-eye {
             position: absolute;
-            right: 7px;
-            top: 7px;
-            width: 34px;
-            height: 34px;
+
+            right: 6px;
+
+            top: 6px;
+
+            width: 36px;
+
+            height: 36px;
+
             border: none;
+
+            outline: none;
+
             border-radius: 9px;
-            background: transparent;
-            color: white;
+
+            background:
+                transparent;
+
             cursor: pointer;
-            font-size: 18px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            z-index: 5;
+
+            z-index: 100;
+
+            padding: 0;
+
+            margin: 0;
         }
 
-        .toggle-password:hover {
-            background: rgba(0, 180, 255, 0.12);
+
+        .password-eye:hover {
+            background:
+                rgba(0, 190, 255, 0.14);
         }
 
-        /* LOGIN BUTTON */
+
+        /* =====================================================
+           ACTUAL EYE ICON
+        ===================================================== */
+
+        .eye-icon {
+            position: relative;
+
+            display: block;
+
+            width: 20px;
+
+            height: 13px;
+
+            border:
+                2px solid
+                #8edfff;
+
+            border-radius:
+                75% 25%;
+
+            transform:
+                rotate(45deg);
+
+            transition:
+                0.2s ease;
+
+            visibility: visible;
+
+            opacity: 1;
+        }
+
+
+        /* PUPIL */
+
+        .eye-icon::after {
+            content: "";
+
+            position: absolute;
+
+            width: 6px;
+
+            height: 6px;
+
+            left: 5px;
+
+            top: 2px;
+
+            border-radius: 50%;
+
+            background:
+                #8edfff;
+
+            transform:
+                rotate(-45deg);
+        }
+
+
+        /* HOVER */
+
+        .password-eye:hover
+        .eye-icon {
+            border-color:
+                #00d9ff;
+
+            box-shadow:
+                0 0 8px
+                rgba(0, 217, 255, 0.7);
+        }
+
+
+        .password-eye:hover
+        .eye-icon::after {
+            background:
+                #00d9ff;
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
 
         #loginButton {
             width: 100%;
+
             height: 50px;
+
             margin-top: 5px;
+
             border: none;
+
             border-radius: 13px;
-            background: linear-gradient(90deg, #008cff, #00c6ff);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #008cff,
+                    #00c6ff
+                );
+
             color: white;
+
             font-size: 15px;
+
             font-weight: bold;
+
             cursor: pointer;
-            box-shadow: 0 0 18px rgba(0, 170, 255, 0.25);
-            transition: 0.2s ease;
+
+            box-shadow:
+                0 0 18px
+                rgba(0, 170, 255, 0.25);
+
+            transition:
+                0.2s ease;
         }
 
+
         #loginButton:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 0 25px rgba(0, 190, 255, 0.4);
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 0 25px
+                rgba(0, 190, 255, 0.4);
         }
+
 
         #loginButton:disabled {
             opacity: 0.55;
+
             cursor: not-allowed;
+
             transform: none;
         }
 
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
         #loginMessage {
             min-height: 22px;
+
             margin-top: 15px;
+
             text-align: center;
+
             font-size: 13px;
+
             line-height: 1.5;
         }
+
+
+        /* =====================================================
+           SECURITY
+        ===================================================== */
 
         .security-note {
             text-align: center;
+
             margin-top: 22px;
-            color: #607991;
+
+            color:
+                #607991;
+
             font-size: 11px;
+
             line-height: 1.5;
         }
 
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
         @media (max-width: 500px) {
+
             .login-box {
-                padding: 27px 20px;
+                padding:
+                    27px 20px;
             }
+
 
             .roles {
                 gap: 8px;
             }
 
+
             .role-btn {
                 font-size: 13px;
             }
+
         }
+
     </style>
 </head>
 
+
 <body>
+
 
 <div class="login-container">
 
     <div class="login-box">
 
-        <!-- BRAND -->
+
+        <!-- =================================================
+             BRAND
+        ================================================= -->
+
         <div class="brand">
-            <div class="brand-icon">RM</div>
 
-            <h1>R Mohan Digital</h1>
+            <div class="brand-icon">
+                RM
+            </div>
 
-            <p>CONTROL CENTER</p>
+            <h1>
+                R Mohan Digital
+            </h1>
+
+            <p>
+                CONTROL CENTER
+            </p>
+
         </div>
 
 
-        <!-- ROLE -->
+        <!-- =================================================
+             ROLE
+        ================================================= -->
+
         <div class="section-title">
             Select your access
         </div>
 
+
         <div class="roles">
+
 
             <button
                 type="button"
                 class="role-btn"
                 data-role="mentor">
+
                 👨‍🏫 Mentor
+
             </button>
+
 
             <button
                 type="button"
                 class="role-btn"
                 data-role="admin">
+
                 👑 Owner
+
             </button>
+
 
             <button
                 type="button"
                 class="role-btn"
                 data-role="editor">
+
                 ✏️ Editor
+
             </button>
+
 
             <button
                 type="button"
                 class="role-btn"
                 data-role="faculty">
+
                 🎓 Faculty
+
             </button>
 
+
         </div>
+
 
         <div
             id="selectedRoleText"
             class="selected-role">
+
             Please select an access role
+
         </div>
 
 
-        <!-- EMAIL -->
+        <!-- =================================================
+             EMAIL
+        ================================================= -->
+
         <div class="input-group">
 
             <label for="loginEmail">
                 Email Address
             </label>
+
 
             <div class="input-wrapper">
 
@@ -322,37 +685,51 @@
 
         </div>
 
-<!-- PASSWORD -->
-<div class="input-group">
 
-    <label for="loginPassword">
-        Password
-    </label>
+        <!-- =================================================
+             PASSWORD
+        ================================================= -->
 
-    <div class="input-wrapper">
+        <div class="input-group">
 
-        <input
-            type="password"
-            id="loginPassword"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-        >
+            <label for="loginPassword">
+                Password
+            </label>
 
-        <button
-            type="button"
-            id="toggleLoginPassword"
-            class="password-eye"
-            aria-label="Show password"
-            title="Show password"
-        >
-            <span class="eye-icon"></span>
-        </button>
 
-    </div>
+            <div class="input-wrapper">
 
-</div>
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    autocomplete="current-password">
 
-        <!-- LOGIN -->
+
+                <!-- PASSWORD EYE -->
+
+                <button
+                    type="button"
+                    id="toggleLoginPassword"
+                    class="password-eye"
+                    aria-label="Show password"
+                    title="Show password">
+
+                    <span
+                        class="eye-icon">
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             LOGIN
+        ================================================= -->
+
         <button
             type="button"
             id="loginButton">
@@ -362,256 +739,280 @@
         </button>
 
 
-        <!-- MESSAGE -->
+        <!-- =================================================
+             MESSAGE
+        ================================================= -->
+
         <div id="loginMessage"></div>
 
 
+        <!-- =================================================
+             SECURITY
+        ================================================= -->
+
         <div class="security-note">
+
             🔐 Authorized team members only
+
         </div>
+
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      ROLE SELECTION
-===================================================== -->
+========================================================= -->
 
 <script>
 
     window.selectedLoginRole = "";
 
-    document.addEventListener("DOMContentLoaded", function () {
 
-        const roleButtons =
-            document.querySelectorAll(".role-btn");
-
-        const selectedRoleText =
-            document.getElementById("selectedRoleText");
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
 
 
-        roleButtons.forEach(function (button) {
-
-            button.addEventListener("click", function () {
-
-                roleButtons.forEach(function (btn) {
-                    btn.classList.remove("selected");
-                });
-
-                button.classList.add("selected");
-
-                window.selectedLoginRole =
-                    button.dataset.role;
-
-                const roleName =
-                    button.textContent
-                        .replace(/[^\w\s]/g, "")
-                        .trim();
-
-                selectedRoleText.textContent =
-                    "Selected: " + roleName;
-
-            });
-
-        });
-
-    });
-
-</script>
-
-
-<!-- =====================================================
-     PASSWORD SHOW / HIDE
-     THIS IS THE ONLY PASSWORD EYE CODE
-===================================================== -->
-
-<script>
-
-    function toggleTeamPassword(event) {
-
-        if (event) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
-        const password =
-            document.getElementById("loginPassword");
-
-        const eyeOpen =
-            document.getElementById("eyeOpen");
-
-        const eyeClosed =
-            document.getElementById("eyeClosed");
-
-        const button =
-            document.getElementById("toggleLoginPassword");
-
-
-        if (!password) {
-            return;
-        }
-
-
-        if (password.type === "password") {
-
-            password.type = "text";
-
-            if (eyeOpen) {
-                eyeOpen.style.display = "none";
-            }
-
-            if (eyeClosed) {
-                eyeClosed.style.display = "inline";
-            }
-
-            if (button) {
-                button.setAttribute(
-                    "aria-label",
-                    "Hide password"
+            const roleButtons =
+                document.querySelectorAll(
+                    ".role-btn"
                 );
 
-                button.setAttribute(
-                    "title",
-                    "Hide password"
-                );
-            }
 
-        } else {
-
-            password.type = "password";
-
-            if (eyeOpen) {
-                eyeOpen.style.display = "inline";
-            }
-
-            if (eyeClosed) {
-                eyeClosed.style.display = "none";
-            }
-
-            if (button) {
-                button.setAttribute(
-                    "aria-label",
-                    "Show password"
+            const selectedRoleText =
+                document.getElementById(
+                    "selectedRoleText"
                 );
 
-                button.setAttribute(
-                    "title",
-                    "Show password"
-                );
-            }
 
-        }
-
-    }
+            roleButtons.forEach(
+                function (button) {
 
 
-    document.addEventListener("DOMContentLoaded", function () {
+                    button.addEventListener(
+                        "click",
+                        function () {
 
-        const button =
-            document.getElementById("toggleLoginPassword");
 
-        if (button) {
+                            roleButtons.forEach(
+                                function (btn) {
 
-            button.addEventListener(
-                "click",
-                toggleTeamPassword
+                                    btn.classList.remove(
+                                        "selected"
+                                    );
+
+                                }
+                            );
+
+
+                            button.classList.add(
+                                "selected"
+                            );
+
+
+                            window.selectedLoginRole =
+                                button.dataset.role;
+
+
+                            let roleName = "";
+
+
+                            switch (
+                                window.selectedLoginRole
+                            ) {
+
+                                case "mentor":
+
+                                    roleName =
+                                        "Mentor";
+
+                                    break;
+
+
+                                case "admin":
+
+                                    roleName =
+                                        "Owner";
+
+                                    break;
+
+
+                                case "editor":
+
+                                    roleName =
+                                        "Editor";
+
+                                    break;
+
+
+                                case "faculty":
+
+                                    roleName =
+                                        "Faculty";
+
+                                    break;
+
+
+                                default:
+
+                                    roleName =
+                                        "Team Member";
+                            }
+
+
+                            selectedRoleText.textContent =
+                                "Selected: " +
+                                roleName;
+
+
+                            console.log(
+                                "Selected Team Role:",
+                                window.selectedLoginRole
+                            );
+
+                        }
+                    );
+
+                }
             );
 
         }
-
-    });
+    );
 
 </script>
 
 
-<!-- =====================================================
-     IMPORTANT:
-     DO NOT LOAD js/auth.js HERE
-===================================================== -->
+
+<!-- =========================================================
+     PASSWORD SHOW / HIDE
+     
+     THIS IS THE ONLY PASSWORD EYE CODE.
+========================================================= -->
+
+<script>
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+
+            const password =
+                document.getElementById(
+                    "loginPassword"
+                );
+
+
+            const eyeButton =
+                document.getElementById(
+                    "toggleLoginPassword"
+                );
+
+
+            const eyeIcon =
+                document.querySelector(
+                    ".eye-icon"
+                );
+
+
+            if (
+                !password ||
+                !eyeButton ||
+                !eyeIcon
+            ) {
+
+                console.error(
+                    "Password eye elements were not found."
+                );
+
+                return;
+            }
+
+
+            eyeButton.addEventListener(
+                "click",
+                function (event) {
+
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    if (
+                        password.type ===
+                        "password"
+                    ) {
+
+
+                        password.type =
+                            "text";
+
+
+                        eyeIcon.style.opacity =
+                            "0.45";
+
+
+                        eyeButton.setAttribute(
+                            "aria-label",
+                            "Hide password"
+                        );
+
+
+                        eyeButton.setAttribute(
+                            "title",
+                            "Hide password"
+                        );
+
+
+                    } else {
+
+
+                        password.type =
+                            "password";
+
+
+                        eyeIcon.style.opacity =
+                            "1";
+
+
+                        eyeButton.setAttribute(
+                            "aria-label",
+                            "Show password"
+                        );
+
+
+                        eyeButton.setAttribute(
+                            "title",
+                            "Show password"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+
+
+<!-- =========================================================
+     TEAM LOGIN AUTHENTICATION
+     
+     ONLY ONE admin-auth.js
+========================================================= -->
 
 <script
     type="module"
     src="js/admin-auth.js">
 </script>
 
-        <!-- PASSWORD EYE SCRIPT -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-        const password =
-            document.getElementById("loginPassword");
-
-        const eyeButton =
-            document.getElementById("toggleLoginPassword");
-
-        const eyeIcon =
-            document.querySelector(".eye-icon");
-
-
-        if (!password || !eyeButton || !eyeIcon) {
-
-            console.error(
-                "Password eye elements were not found."
-            );
-
-            return;
-        }
-
-
-        eyeButton.addEventListener("click", function (event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-
-            if (password.type === "password") {
-
-                password.type = "text";
-
-                eyeButton.setAttribute(
-                    "aria-label",
-                    "Hide password"
-                );
-
-                eyeButton.setAttribute(
-                    "title",
-                    "Hide password"
-                );
-
-                eyeIcon.style.opacity = "0.45";
-
-
-            } else {
-
-                password.type = "password";
-
-                eyeButton.setAttribute(
-                    "aria-label",
-                    "Show password"
-                );
-
-                eyeButton.setAttribute(
-                    "title",
-                    "Show password"
-                );
-
-                eyeIcon.style.opacity = "1";
-
-            }
-
-        });
-
-    });
-    </script>
-
-
-    <!-- TEAM LOGIN AUTH -->
-    <script
-        type="module"
-        src="js/admin-auth.js">
-    </script>
 
 </body>
 </html>
