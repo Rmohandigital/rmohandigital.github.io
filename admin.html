@@ -536,5 +536,82 @@
     src="js/admin-auth.js">
 </script>
 
+        <!-- PASSWORD EYE SCRIPT -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const password =
+            document.getElementById("loginPassword");
+
+        const eyeButton =
+            document.getElementById("toggleLoginPassword");
+
+        const eyeIcon =
+            document.querySelector(".eye-icon");
+
+
+        if (!password || !eyeButton || !eyeIcon) {
+
+            console.error(
+                "Password eye elements were not found."
+            );
+
+            return;
+        }
+
+
+        eyeButton.addEventListener("click", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                eyeButton.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+                eyeButton.setAttribute(
+                    "title",
+                    "Hide password"
+                );
+
+                eyeIcon.style.opacity = "0.45";
+
+
+            } else {
+
+                password.type = "password";
+
+                eyeButton.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+                eyeButton.setAttribute(
+                    "title",
+                    "Show password"
+                );
+
+                eyeIcon.style.opacity = "1";
+
+            }
+
+        });
+
+    });
+    </script>
+
+
+    <!-- TEAM LOGIN AUTH -->
+    <script
+        type="module"
+        src="js/admin-auth.js">
+    </script>
+
 </body>
 </html>
