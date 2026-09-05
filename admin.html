@@ -113,6 +113,7 @@
             justify-content: center;
 
             font-size: 32px;
+            font-weight: bold;
 
             border: 2px solid #00e5ff;
 
@@ -238,6 +239,7 @@
         .input-box {
 
             position: relative;
+            width: 100%;
 
         }
 
@@ -245,7 +247,7 @@
 
             width: 100%;
 
-            padding: 14px 42px 14px 14px;
+            padding: 14px 48px 14px 14px;
 
             border-radius: 10px;
 
@@ -278,24 +280,68 @@
 
         }
 
+        /* ================================
+           PASSWORD EYE BUTTON
+           ================================ */
+
         .toggle-password {
 
             position: absolute;
 
-            right: 10px;
+            right: 8px;
             top: 50%;
 
+            width: 36px;
+            height: 36px;
+
             transform: translateY(-50%);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             background: transparent;
 
             border: none;
 
+            border-radius: 8px;
+
             color: #38bdf8;
 
             cursor: pointer;
 
-            font-size: 18px;
+            font-size: 20px;
+
+            padding: 0;
+
+            z-index: 5;
+
+            transition: 0.2s;
+
+        }
+
+        .toggle-password:hover {
+
+            color: #00e5ff;
+
+            background: rgba(0, 229, 255, 0.10);
+
+            box-shadow:
+                0 0 10px rgba(0, 229, 255, 0.15);
+
+        }
+
+        .toggle-password:active {
+
+            transform: translateY(-50%) scale(0.92);
+
+        }
+
+        .toggle-password:focus {
+
+            outline: 1px solid #00e5ff;
+
+            outline-offset: 1px;
 
         }
 
@@ -409,6 +455,8 @@
 <div class="login-card">
 
 
+    <!-- BRAND -->
+
     <div class="brand">
 
         <div class="brand-icon">
@@ -421,6 +469,8 @@
 
     </div>
 
+
+    <!-- ROLE -->
 
     <div class="role-title">
         Select your access
@@ -462,8 +512,6 @@
         </button>
 
 
-        <!-- NEW FACULTY BUTTON -->
-
         <button
             type="button"
             class="role-btn"
@@ -477,8 +525,12 @@
     </div>
 
 
+    <!-- LOGIN FORM -->
+
     <form id="loginForm">
 
+
+        <!-- EMAIL -->
 
         <div class="input-group">
 
@@ -500,6 +552,8 @@
         </div>
 
 
+        <!-- PASSWORD -->
+
         <div class="input-group">
 
             <label for="loginPassword">
@@ -515,10 +569,14 @@
                     autocomplete="current-password"
                     required>
 
+                <!-- PASSWORD SHOW/HIDE -->
+
                 <button
                     type="button"
                     class="toggle-password"
-                    onclick="toggleLoginPassword()">
+                    id="toggleLoginPassword"
+                    aria-label="Show password"
+                    title="Show password">
 
                     👁
 
@@ -528,6 +586,8 @@
 
         </div>
 
+
+        <!-- LOGIN BUTTON -->
 
         <button
             type="submit"
@@ -539,11 +599,15 @@
         </button>
 
 
+        <!-- MESSAGE -->
+
         <div id="loginMessage"></div>
 
 
     </form>
 
+
+    <!-- FOOTER -->
 
     <div class="footer">
 
@@ -555,8 +619,84 @@
 </div>
 
 
-<script type="module"
-        src="js/auth.js">
+<!-- =========================================
+     PASSWORD SHOW/HIDE SCRIPT
+     ========================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const passwordInput =
+        document.getElementById("loginPassword");
+
+    const toggleButton =
+        document.getElementById("toggleLoginPassword");
+
+
+    if (!passwordInput || !toggleButton) {
+
+        console.error(
+            "Password input or toggle button not found."
+        );
+
+        return;
+
+    }
+
+
+    toggleButton.addEventListener("click", function () {
+
+        if (passwordInput.type === "password") {
+
+            /* SHOW PASSWORD */
+
+            passwordInput.type = "text";
+
+            toggleButton.textContent = "🙈";
+
+            toggleButton.setAttribute(
+                "aria-label",
+                "Hide password"
+            );
+
+            toggleButton.setAttribute(
+                "title",
+                "Hide password"
+            );
+
+        } else {
+
+            /* HIDE PASSWORD */
+
+            passwordInput.type = "password";
+
+            toggleButton.textContent = "👁";
+
+            toggleButton.setAttribute(
+                "aria-label",
+                "Show password"
+            );
+
+            toggleButton.setAttribute(
+                "title",
+                "Show password"
+            );
+
+        }
+
+    });
+
+});
+
+</script>
+
+
+<!-- YOUR EXISTING AUTH SYSTEM -->
+
+<script
+    type="module"
+    src="js/auth.js">
 </script>
 
 
