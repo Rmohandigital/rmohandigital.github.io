@@ -1,288 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>R Mohan Digital | Control Login</title>
+    <title>Team Login | R Mohan Digital</title>
 
     <style>
-
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
             min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #102a52 0%, #050b16 45%, #02050a 100%);
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-
-            background:
-                radial-gradient(
-                    circle at top,
-                    #102a43 0%,
-                    #07111f 35%,
-                    #020617 75%
-                );
-
-            color: white;
-            overflow-x: hidden;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-
-            width: 400px;
-            height: 400px;
-
-            background: #00e5ff;
-            filter: blur(180px);
-            opacity: 0.10;
-
-            top: -150px;
-            left: -100px;
-
-            pointer-events: none;
+        .login-container {
+            width: 100%;
+            max-width: 460px;
         }
 
-        body::after {
-            content: "";
-            position: fixed;
-
-            width: 350px;
-            height: 350px;
-
-            background: #2563eb;
-            filter: blur(170px);
-            opacity: 0.12;
-
-            bottom: -150px;
-            right: -100px;
-
-            pointer-events: none;
-        }
-
-        /* =========================
-           LOGIN CARD
-        ========================= */
-
-        .login-card {
-            width: 92%;
-            max-width: 430px;
-
-            padding: 35px 28px;
-
-            background:
-                rgba(7, 17, 31, 0.88);
-
-            border:
-                1px solid
-                rgba(0, 229, 255, 0.35);
-
-            border-radius: 22px;
-
+        .login-box {
+            background: rgba(5, 14, 28, 0.95);
+            border: 1px solid rgba(0, 180, 255, 0.35);
+            border-radius: 24px;
+            padding: 32px 28px;
             box-shadow:
-                0 0 25px
-                rgba(0, 229, 255, 0.12),
-
-                0 0 80px
-                rgba(37, 99, 235, 0.08);
-
-            backdrop-filter: blur(15px);
-
-            position: relative;
-            z-index: 2;
+                0 0 25px rgba(0, 170, 255, 0.18),
+                inset 0 0 25px rgba(0, 170, 255, 0.03);
         }
-
-        /* =========================
-           BRAND
-        ========================= */
 
         .brand {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 25px;
         }
 
         .brand-icon {
-            width: 72px;
-            height: 72px;
-
-            margin: 0 auto 15px;
-
-            border-radius: 50%;
-
+            width: 70px;
+            height: 70px;
+            margin: auto;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-
-            font-size: 32px;
+            background: linear-gradient(135deg, #00b7ff, #0066ff);
+            color: white;
+            font-size: 25px;
             font-weight: bold;
-
-            border: 2px solid #00e5ff;
-
-            box-shadow:
-                0 0 15px #00e5ff,
-
-                inset 0 0 15px
-                rgba(0, 229, 255, 0.15);
+            box-shadow: 0 0 25px rgba(0, 170, 255, 0.45);
         }
 
         .brand h1 {
+            margin-top: 15px;
             font-size: 25px;
-            color: #ffffff;
-
-            text-shadow:
-                0 0 10px
-                rgba(0, 229, 255, 0.6);
         }
 
-        .brand span {
-            display: block;
-
+        .brand p {
             margin-top: 7px;
-
-            color: #38bdf8;
-
-            font-size: 13px;
-
-            letter-spacing: 2px;
+            color: #72cfff;
+            font-size: 12px;
+            letter-spacing: 3px;
         }
 
-        /* =========================
-           ROLE SELECTION
-        ========================= */
-
-        .role-title {
-            text-align: center;
-
-            color: #94a3b8;
-
+        .section-title {
+            color: #9bdfff;
             font-size: 14px;
-
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
-        .role-buttons {
+        /* ROLE BUTTONS */
+
+        .roles {
             display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 7px;
-
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
             margin-bottom: 10px;
         }
 
         .role-btn {
-            padding: 12px 4px;
-
-            min-height: 68px;
-
-            border-radius: 10px;
-
-            border:
-                1px solid #1e3a5f;
-
-            background:
-                rgba(15, 23, 42, 0.8);
-
-            color: #cbd5e1;
-
+            border: 1px solid rgba(0, 190, 255, 0.25);
+            background: rgba(10, 27, 49, 0.9);
+            color: #cdeeff;
+            border-radius: 12px;
+            padding: 13px 10px;
             cursor: pointer;
-
-            transition:
-                all 0.25s ease;
-
-            font-size: 11px;
-
-            outline: none;
-
-            user-select: none;
+            font-size: 14px;
+            transition: 0.2s ease;
         }
 
         .role-btn:hover {
-            border-color: #00e5ff;
-
-            color: #00e5ff;
-
-            box-shadow:
-                0 0 12px
-                rgba(0, 229, 255, 0.25);
-
-            transform:
-                translateY(-2px);
+            border-color: #00b7ff;
+            background: rgba(0, 150, 255, 0.12);
+            transform: translateY(-1px);
         }
 
         .role-btn.selected {
-            background:
-                rgba(0, 229, 255, 0.15);
-
-            border:
-                2px solid #00e5ff;
-
-            color: #00e5ff;
-
+            border-color: #00c8ff;
+            background: rgba(0, 160, 255, 0.2);
+            color: white;
             box-shadow:
-                0 0 15px
-                rgba(0, 229, 255, 0.35),
-
-                inset 0 0 12px
-                rgba(0, 229, 255, 0.08);
-
-            transform:
-                translateY(-2px);
+                0 0 12px rgba(0, 190, 255, 0.25);
         }
-
-        .role-btn:active {
-            transform: scale(0.96);
-        }
-
-        /* =========================
-           SELECTED ROLE TEXT
-        ========================= */
 
         .selected-role {
-            min-height: 25px;
-
             text-align: center;
-
-            margin-bottom: 20px;
-
+            min-height: 22px;
+            margin: 4px 0 20px;
+            color: #00d9ff;
             font-size: 13px;
-
-            color: #38bdf8;
-
             font-weight: bold;
-
-            letter-spacing: 0.3px;
-
-            opacity: 0;
-
-            transition:
-                opacity 0.25s ease;
         }
 
-        .selected-role.show {
-            opacity: 1;
-        }
-
-        .selected-role span {
-            color: #ffffff;
-        }
-
-        /* =========================
-           INPUT
-        ========================= */
+        /* INPUTS */
 
         .input-group {
             margin-bottom: 17px;
@@ -290,389 +129,194 @@
 
         .input-group label {
             display: block;
-
-            margin-bottom: 7px;
-
+            color: #a9dfff;
             font-size: 13px;
-
-            color: #94a3b8;
+            margin-bottom: 7px;
         }
 
-        .input-box {
+        .input-wrapper {
             position: relative;
-            width: 100%;
         }
 
-        .input-box input {
+        .input-wrapper input {
             width: 100%;
-
-            padding:
-                14px 52px 14px 14px;
-
-            border-radius: 10px;
-
-            border:
-                1px solid #1e3a5f;
-
-            outline: none;
-
-            background: #07111f;
-
+            height: 48px;
+            padding: 0 48px 0 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 180, 255, 0.25);
+            background: #071525;
             color: white;
-
+            outline: none;
             font-size: 14px;
-
-            transition: 0.25s;
         }
 
-        .input-box input:focus {
-            border-color: #00e5ff;
-
-            box-shadow:
-                0 0 12px
-                rgba(0, 229, 255, 0.18);
+        .input-wrapper input:focus {
+            border-color: #00bfff;
+            box-shadow: 0 0 12px rgba(0, 190, 255, 0.15);
         }
 
-        .input-box input::placeholder {
-            color: #64748b;
+        .input-wrapper input::placeholder {
+            color: #688198;
         }
 
-        /* =========================
-           PASSWORD EYE BUTTON
-        ========================= */
+        /* PASSWORD EYE */
 
         .toggle-password {
             position: absolute;
-
-            right: 6px;
-            top: 50%;
-
-            width: 40px;
-            height: 40px;
-
-            transform:
-                translateY(-50%);
-
+            right: 7px;
+            top: 7px;
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 9px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
             display: flex;
-
             align-items: center;
             justify-content: center;
-
-            background: transparent;
-
-            border: none;
-
-            border-radius: 8px;
-
-            color: #38bdf8;
-
-            cursor: pointer;
-
-            padding: 0;
-
-            z-index: 10;
-
-            -webkit-tap-highlight-color:
-                transparent;
-        }
-
-        .toggle-password svg {
-            width: 21px;
-            height: 21px;
-
-            stroke: currentColor;
-
-            fill: none;
-
-            stroke-width: 2;
-
-            stroke-linecap: round;
-
-            stroke-linejoin: round;
-
-            pointer-events: none;
+            z-index: 5;
         }
 
         .toggle-password:hover {
-            color: #00e5ff;
-
-            background:
-                rgba(0, 229, 255, 0.10);
-
-            box-shadow:
-                0 0 10px
-                rgba(0, 229, 255, 0.15);
+            background: rgba(0, 180, 255, 0.12);
         }
 
-        .toggle-password:active {
-            transform:
-                translateY(-50%)
-                scale(0.90);
-        }
+        /* LOGIN BUTTON */
 
-        .toggle-password:focus {
-            outline:
-                1px solid #00e5ff;
-
-            outline-offset: 1px;
-        }
-
-        /* =========================
-           LOGIN BUTTON
-        ========================= */
-
-        .login-btn {
+        #loginButton {
             width: 100%;
-
-            padding: 14px;
-
+            height: 50px;
             margin-top: 5px;
-
             border: none;
-
-            border-radius: 10px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #0284c7,
-                    #00e5ff
-                );
-
-            color: #001018;
-
+            border-radius: 13px;
+            background: linear-gradient(90deg, #008cff, #00c6ff);
+            color: white;
             font-size: 15px;
-
             font-weight: bold;
-
             cursor: pointer;
-
-            box-shadow:
-                0 0 20px
-                rgba(0, 229, 255, 0.22);
-
-            transition: 0.25s;
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.25);
+            transition: 0.2s ease;
         }
 
-        .login-btn:hover {
-            transform:
-                translateY(-2px);
-
-            box-shadow:
-                0 0 30px
-                rgba(0, 229, 255, 0.40);
+        #loginButton:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 25px rgba(0, 190, 255, 0.4);
         }
 
-        .login-btn:active {
-            transform: scale(0.98);
-        }
-
-        .login-btn:disabled {
-            opacity: 0.6;
-
+        #loginButton:disabled {
+            opacity: 0.55;
             cursor: not-allowed;
-
             transform: none;
         }
 
-        /* =========================
-           MESSAGE
-        ========================= */
-
         #loginMessage {
             min-height: 22px;
-
-            text-align: center;
-
             margin-top: 15px;
-
-            font-size: 13px;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        .footer {
             text-align: center;
-
-            margin-top: 25px;
-
-            color: #475569;
-
-            font-size: 11px;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
-        /* =========================
-           MOBILE
-        ========================= */
+        .security-note {
+            text-align: center;
+            margin-top: 22px;
+            color: #607991;
+            font-size: 11px;
+            line-height: 1.5;
+        }
 
         @media (max-width: 500px) {
-
-            .login-card {
-                padding:
-                    28px 20px;
+            .login-box {
+                padding: 27px 20px;
             }
 
-            .role-buttons {
-                grid-template-columns:
-                    repeat(2, 1fr);
-
+            .roles {
                 gap: 8px;
             }
 
             .role-btn {
-                font-size: 12px;
-            }
-
-            .brand h1 {
-                font-size: 22px;
+                font-size: 13px;
             }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+<div class="login-container">
 
-<div class="login-card">
+    <div class="login-box">
 
+        <!-- BRAND -->
+        <div class="brand">
+            <div class="brand-icon">RM</div>
 
-    <!-- =========================
-         BRAND
-    ========================= -->
+            <h1>R Mohan Digital</h1>
 
-    <div class="brand">
-
-        <div class="brand-icon">
-            RM
+            <p>CONTROL CENTER</p>
         </div>
 
-        <h1>
-            R Mohan Digital
-        </h1>
 
-        <span>
-            CONTROL CENTER
-        </span>
+        <!-- ROLE -->
+        <div class="section-title">
+            Select your access
+        </div>
 
-    </div>
+        <div class="roles">
 
+            <button
+                type="button"
+                class="role-btn"
+                data-role="mentor">
+                👨‍🏫 Mentor
+            </button>
 
-    <!-- =========================
-         ROLE TITLE
-    ========================= -->
+            <button
+                type="button"
+                class="role-btn"
+                data-role="admin">
+                👑 Owner
+            </button>
 
-    <div class="role-title">
+            <button
+                type="button"
+                class="role-btn"
+                data-role="editor">
+                ✏️ Editor
+            </button>
 
-        Select your access
+            <button
+                type="button"
+                class="role-btn"
+                data-role="faculty">
+                🎓 Faculty
+            </button>
 
-    </div>
+        </div>
 
-
-    <!-- =========================
-         ROLE BUTTONS
-    ========================= -->
-
-    <div class="role-buttons">
-
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="mentor">
-
-            👨‍🏫<br>
-
-            Mentor
-
-        </button>
-
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="admin">
-
-            👑<br>
-
-            Owner
-
-        </button>
-
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="editor">
-
-            ✏️<br>
-
-            Editor
-
-        </button>
-
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="faculty">
-
-            🎓<br>
-
-            Faculty
-
-        </button>
-
-
-    </div>
-
-
-    <!-- =========================
-         SELECTED ROLE DISPLAY
-    ========================= -->
-
-    <div
-        class="selected-role"
-        id="selectedRoleDisplay">
-
-        Selected:
-        <span id="selectedRoleName"></span>
-
-    </div>
-
-
-    <!-- =========================
-         LOGIN FORM
-    ========================= -->
-
-    <form id="loginForm">
+        <div
+            id="selectedRoleText"
+            class="selected-role">
+            Please select an access role
+        </div>
 
 
         <!-- EMAIL -->
-
         <div class="input-group">
 
-            <label
-                for="loginEmail"
-                id="loginIdLabel">
-
+            <label for="loginEmail">
                 Email Address
-
             </label>
 
-
-            <div class="input-box">
+            <div class="input-wrapper">
 
                 <input
                     type="email"
                     id="loginEmail"
-                    placeholder="Enter your email"
-                    autocomplete="username"
-                    required>
+                    placeholder="Enter your team email"
+                    autocomplete="username">
 
             </div>
 
@@ -680,28 +324,19 @@
 
 
         <!-- PASSWORD -->
-
         <div class="input-group">
 
-            <label
-                for="loginPassword">
-
+            <label for="loginPassword">
                 Password
-
             </label>
 
-
-            <div class="input-box">
+            <div class="input-wrapper">
 
                 <input
                     type="password"
                     id="loginPassword"
                     placeholder="Enter your password"
-                    autocomplete="current-password"
-                    required>
-
-
-                <!-- EYE BUTTON -->
+                    autocomplete="current-password">
 
                 <button
                     type="button"
@@ -710,25 +345,12 @@
                     aria-label="Show password"
                     title="Show password">
 
-                    <!-- CLOSED EYE -->
-
-                    <svg
-                        id="eyeIcon"
-                        viewBox="0 0 24 24">
-
-                        <path
-                            d="M2 12s3.5-7 10-7
-                               10 7 10 7-3.5 7-10 7
-                               S2 12 2 12Z">
-                        </path>
-
-                        <circle
-                            cx="12"
-                            cy="12"
-                            r="3">
-                        </circle>
-
-                    </svg>
+                    <span id="eyeOpen">👁</span>
+                    <span
+                        id="eyeClosed"
+                        style="display:none;">
+                        🙈
+                    </span>
 
                 </button>
 
@@ -738,336 +360,188 @@
 
 
         <!-- LOGIN -->
-
         <button
-            type="submit"
-            class="login-btn"
+            type="button"
             id="loginButton">
 
-            Login
+            Team Login
 
         </button>
 
 
         <!-- MESSAGE -->
-
         <div id="loginMessage"></div>
 
 
-    </form>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-        © 2026 R Mohan Digital
+        <div class="security-note">
+            🔐 Authorized team members only
+        </div>
 
     </div>
-
 
 </div>
 
 
 <!-- =====================================================
-     TEAM LOGIN UI
-     ===================================================== -->
+     ROLE SELECTION
+===================================================== -->
 
 <script>
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+    window.selectedLoginRole = "";
 
-
-        /* =================================================
-           ROLE SELECTION
-        ================================================= */
+    document.addEventListener("DOMContentLoaded", function () {
 
         const roleButtons =
-            document.querySelectorAll(
-                ".role-btn"
-            );
+            document.querySelectorAll(".role-btn");
 
+        const selectedRoleText =
+            document.getElementById("selectedRoleText");
 
-        const selectedRoleDisplay =
-            document.getElementById(
-                "selectedRoleDisplay"
-            );
 
+        roleButtons.forEach(function (button) {
 
-        const selectedRoleName =
-            document.getElementById(
-                "selectedRoleName"
-            );
+            button.addEventListener("click", function () {
 
+                roleButtons.forEach(function (btn) {
+                    btn.classList.remove("selected");
+                });
 
-        roleButtons.forEach(
-            function (button) {
+                button.classList.add("selected");
 
+                window.selectedLoginRole =
+                    button.dataset.role;
 
-                button.addEventListener(
-                    "click",
-                    function () {
+                const roleName =
+                    button.textContent
+                        .replace(/[^\w\s]/g, "")
+                        .trim();
 
+                selectedRoleText.textContent =
+                    "Selected: " + roleName;
 
-                        /* Remove selected class */
+            });
 
-                        roleButtons.forEach(
-                            function (btn) {
+        });
 
-                                btn.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-
-                        /* Select clicked button */
-
-                        button.classList.add(
-                            "selected"
-                        );
-
-
-                        /* Get role */
-
-                        const role =
-                            button.getAttribute(
-                                "data-role"
-                            );
-
-
-                        /* Display role */
-
-                        let displayName = role;
-
-
-                        if (
-                            role === "admin"
-                        ) {
-
-                            displayName =
-                                "Owner";
-
-                        }
-
-                        else if (
-                            role === "mentor"
-                        ) {
-
-                            displayName =
-                                "Mentor";
-
-                        }
-
-                        else if (
-                            role === "faculty"
-                        ) {
-
-                            displayName =
-                                "Faculty";
-
-                        }
-
-                        else if (
-                            role === "editor"
-                        ) {
-
-                            displayName =
-                                "Editor";
-
-                        }
-
-
-                        selectedRoleName.textContent =
-                            displayName;
-
-
-                        selectedRoleDisplay.classList.add(
-                            "show"
-                        );
-
-
-                        /* Make role available */
-
-                        window.selectedLoginRole =
-                            role;
-
-
-                        console.log(
-                            "Selected Team Role:",
-                            role
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-        /* =================================================
-           PASSWORD SHOW / HIDE
-        ================================================= */
-
-        const passwordInput =
-            document.getElementById(
-                "loginPassword"
-            );
-
-
-        const toggleButton =
-            document.getElementById(
-                "toggleLoginPassword"
-            );
-
-
-        const eyeIcon =
-            document.getElementById(
-                "eyeIcon"
-            );
-
-
-        if (
-            passwordInput &&
-            toggleButton &&
-            eyeIcon
-        ) {
-
-
-            toggleButton.addEventListener(
-                "click",
-                function (event) {
-
-
-                    event.preventDefault();
-
-                    event.stopPropagation();
-
-
-                    if (
-                        passwordInput.type ===
-                        "password"
-                    ) {
-
-
-                        /* =========================
-                           SHOW PASSWORD
-                        ========================= */
-
-                        passwordInput.type =
-                            "text";
-
-
-                        toggleButton.setAttribute(
-                            "aria-label",
-                            "Hide password"
-                        );
-
-
-                        toggleButton.setAttribute(
-                            "title",
-                            "Hide password"
-                        );
-
-
-                        /* Open eye */
-
-                        eyeIcon.innerHTML = `
-
-                            <path
-                                d="M2 12s3.5-7 10-7
-                                   10 7 10 7-3.5 7-10 7
-                                   S2 12 2 12Z">
-                            </path>
-
-                            <circle
-                                cx="12"
-                                cy="12"
-                                r="3">
-                            </circle>
-
-                            <line
-                                x1="3"
-                                y1="3"
-                                x2="21"
-                                y2="21">
-                            </line>
-
-                        `;
-
-                    }
-
-                    else {
-
-
-                        /* =========================
-                           HIDE PASSWORD
-                        ========================= */
-
-                        passwordInput.type =
-                            "password";
-
-
-                        toggleButton.setAttribute(
-                            "aria-label",
-                            "Show password"
-                        );
-
-
-                        toggleButton.setAttribute(
-                            "title",
-                            "Show password"
-                        );
-
-
-                        /* Closed eye */
-
-                        eyeIcon.innerHTML = `
-
-                            <path
-                                d="M2 12s3.5-7 10-7
-                                   10 7 10 7-3.5 7-10 7
-                                   S2 12 2 12Z">
-                            </path>
-
-                            <circle
-                                cx="12"
-                                cy="12"
-                                r="3">
-                            </circle>
-
-                        `;
-
-                    }
-
-                }
-            );
-
-        }
-
-    }
-);
+    });
 
 </script>
 
 
 <!-- =====================================================
-     IMPORTANT
-     
-     TEAM LOGIN ONLY
-     
-     DO NOT ADD auth.js HERE
-     ===================================================== -->
+     PASSWORD SHOW / HIDE
+     THIS IS THE ONLY PASSWORD EYE CODE
+===================================================== -->
+
+<script>
+
+    function toggleTeamPassword(event) {
+
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        const password =
+            document.getElementById("loginPassword");
+
+        const eyeOpen =
+            document.getElementById("eyeOpen");
+
+        const eyeClosed =
+            document.getElementById("eyeClosed");
+
+        const button =
+            document.getElementById("toggleLoginPassword");
+
+
+        if (!password) {
+            return;
+        }
+
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            if (eyeOpen) {
+                eyeOpen.style.display = "none";
+            }
+
+            if (eyeClosed) {
+                eyeClosed.style.display = "inline";
+            }
+
+            if (button) {
+                button.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+                button.setAttribute(
+                    "title",
+                    "Hide password"
+                );
+            }
+
+        } else {
+
+            password.type = "password";
+
+            if (eyeOpen) {
+                eyeOpen.style.display = "inline";
+            }
+
+            if (eyeClosed) {
+                eyeClosed.style.display = "none";
+            }
+
+            if (button) {
+                button.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+                button.setAttribute(
+                    "title",
+                    "Show password"
+                );
+            }
+
+        }
+
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const button =
+            document.getElementById("toggleLoginPassword");
+
+        if (button) {
+
+            button.addEventListener(
+                "click",
+                toggleTeamPassword
+            );
+
+        }
+
+    });
+
+</script>
+
+
+<!-- =====================================================
+     IMPORTANT:
+     DO NOT LOAD js/auth.js HERE
+===================================================== -->
 
 <script
     type="module"
     src="js/admin-auth.js">
 </script>
 
-
 </body>
-
 </html>
