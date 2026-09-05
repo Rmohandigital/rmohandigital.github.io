@@ -1,19 +1,27 @@
 // ============================================================
 // R MOHAN DIGITAL
 // FINAL LOGIN SYSTEM
-// Student / Faculty / Mentor / Owner
+//
+// OWNER    -> Email + Password
+// MENTOR   -> Email + Password
+// FACULTY  -> Email + Password
+// STUDENT  -> Student ID + Password
 // ============================================================
+
 
 import {
     auth,
     db
 } from "../firebase.js";
 
+
 import {
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    sendPasswordResetEmail
 } from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 
 import {
     doc,
@@ -41,6 +49,10 @@ document.addEventListener(
 
         setupLoginForm();
 
+        setupPasswordToggle();
+
+        setupForgotPassword();
+
     }
 );
 
@@ -57,43 +69,124 @@ function setupRoleButtons() {
         );
 
 
-    roleButtons.forEach(
-        button => {
+    roleButtons.forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-                    // Remove previous selection
-                    roleButtons.forEach(
-                        btn => {
-                            btn.classList.remove(
-                                "selected"
-                            );
-                        }
-                    );
+                // Remove previous selection
 
+                roleButtons.forEach(btn => {
 
-                    // Select current button
-                    button.classList.add(
+                    btn.classList.remove(
                         "selected"
                     );
 
-
-                    selectedRole =
-                        button.dataset.role;
+                });
 
 
-                    showMessage(
-                        "",
-                        ""
-                    );
+                // Select current role
 
-                }
-            );
+                button.classList.add(
+                    "selected"
+                );
 
-        }
-    );
+
+                selectedRole =
+                    button.dataset.role;
+
+
+                // Change login field
+
+                updateLoginField();
+
+
+                showMessage(
+                    "",
+                    ""
+                );
+
+            }
+        );
+
+    });
+
+}
+
+
+// ============================================================
+// CHANGE EMAIL FIELD FOR STUDENT
+// ============================================================
+
+function updateLoginField() {
+
+    const label =
+        document.getElementById(
+            "loginIdLabel"
+        );
+
+
+    const input =
+        document.getElementById(
+            "loginEmail"
+        );
+
+
+    if (!label || !input) {
+        return;
+    }
+
+
+    // ========================================================
+    // STUDENT
+    // ========================================================
+
+    if (selectedRole === "student") {
+
+        label.textContent =
+            "Student ID";
+
+
+        input.type =
+            "text";
+
+
+        input.placeholder =
+            "Example: SM12345678";
+
+
+        input.autocomplete =
+            "username";
+
+
+        input.value = "";
+
+    }
+
+
+    // ========================================================
+    // OTHER USERS
+    // ========================================================
+
+    else {
+
+        label.textContent =
+            "Email Address";
+
+
+        input.type =
+            "email";
+
+
+        input.placeholder =
+            "Enter your email";
+
+
+        input.autocomplete =
+            "username";
+
+    }
 
 }
 
@@ -135,21 +228,25 @@ function setupLoginForm() {
 
 async function loginUser() {
 
-    const email =
+    const loginValue =
         document
-            .getElementById("loginEmail")
+            .getElementById(
+                "loginEmail"
+            )
             .value
             .trim();
 
 
     const password =
         document
-            .getElementById("loginPassword")
+            .getElementById(
+                "loginPassword"
+            )
             .value;
 
 
     // ========================================================
-    // CHECK ROLE
+    // ROLE CHECK
     // ========================================================
 
     if (!selectedRole) {
@@ -165,17 +262,49 @@ async function loginUser() {
 
 
     // ========================================================
-    // CHECK INPUTS
+    // INPUT CHECK
     // ========================================================
 
-    if (!email || !password) {
+    if (!loginValue || !password) {
 
         showMessage(
-            "Please enter email and password.",
+            selectedRole === "student"
+                ? "Please enter Student ID and password."
+                : "Please enter email and password.",
             "error"
         );
 
         return;
+
+    }
+
+
+    // ========================================================
+    // STUDENT ID VALIDATION
+    // ========================================================
+
+    if (selectedRole === "student") {
+
+        const studentId =
+            loginValue
+                .toUpperCase()
+                .replace(/\s/g, "");
+
+
+        const studentIdPattern =
+            /^SM\d{8}$/;
+
+
+        if (!studentIdPattern.test(studentId)) {
+
+            showMessage(
+                "Invalid Student ID. Example: SM12345678",
+                "error"
+            );
+
+            return;
+
+        }
 
     }
 
@@ -203,6 +332,40 @@ async function loginUser() {
 
     try {
 
+        let firebaseEmail =
+            loginValue;
+
+
+        // ====================================================
+        // STUDENT
+        //
+        // Student registration creates:
+        //
+        // sm12345678@student.rmdigital.local
+        //
+        // internally.
+        //
+        // Student only needs to type:
+        //
+        // SM12345678
+        // ====================================================
+
+        if (selectedRole === "student") {
+
+            const studentId =
+                loginValue
+                    .toUpperCase()
+                    .replace(/\s/g, "");
+
+
+            firebaseEmail =
+                studentId.toLowerCase()
+                +
+                "@student.rmdigital.local";
+
+        }
+
+
         // ====================================================
         // FIREBASE LOGIN
         // ====================================================
@@ -210,7 +373,7 @@ async function loginUser() {
         const result =
             await signInWithEmailAndPassword(
                 auth,
-                email,
+                firebaseEmail,
                 password
             );
 
@@ -292,7 +455,7 @@ async function loginUser() {
 
 
         // ====================================================
-        // VERIFY SELECTED ROLE
+        // VERIFY ROLE
         // ====================================================
 
         if (
@@ -331,10 +494,12 @@ async function loginUser() {
 
                 await signOut(auth);
 
+
                 showMessage(
                     "Your Owner account is not active.",
                     "error"
                 );
+
 
                 resetLoginButton();
 
@@ -366,10 +531,12 @@ async function loginUser() {
 
                 await signOut(auth);
 
+
                 showMessage(
                     "Your Mentor account is not active.",
                     "error"
                 );
+
 
                 resetLoginButton();
 
@@ -401,10 +568,12 @@ async function loginUser() {
 
                 await signOut(auth);
 
+
                 showMessage(
                     "Your Faculty account is not active.",
                     "error"
                 );
+
 
                 resetLoginButton();
 
@@ -423,15 +592,16 @@ async function loginUser() {
 
         // ====================================================
         // STUDENT
-        // ========================================================
+        // ====================================================
 
         if (
             userRole === "student"
         ) {
 
-            // ------------------------------------------------
+
+            // -----------------------------------------------
             // PENDING
-            // ------------------------------------------------
+            // -----------------------------------------------
 
             if (
                 status === "pending"
@@ -453,9 +623,9 @@ async function loginUser() {
             }
 
 
-            // ------------------------------------------------
+            // -----------------------------------------------
             // REJECTED
-            // ------------------------------------------------
+            // -----------------------------------------------
 
             if (
                 status === "rejected"
@@ -477,9 +647,9 @@ async function loginUser() {
             }
 
 
-            // ------------------------------------------------
+            // -----------------------------------------------
             // APPROVED
-            // ------------------------------------------------
+            // -----------------------------------------------
 
             if (
                 status === "approved" ||
@@ -494,9 +664,9 @@ async function loginUser() {
             }
 
 
-            // ------------------------------------------------
+            // -----------------------------------------------
             // UNKNOWN STATUS
-            // ------------------------------------------------
+            // -----------------------------------------------
 
             await signOut(auth);
 
@@ -530,6 +700,7 @@ async function loginUser() {
         resetLoginButton();
 
     }
+
     catch (error) {
 
         console.error(
@@ -547,6 +718,233 @@ async function loginUser() {
         resetLoginButton();
 
     }
+
+}
+
+
+// ============================================================
+// FORGOT PASSWORD
+// ============================================================
+
+function setupForgotPassword() {
+
+    const button =
+        document.getElementById(
+            "forgotPasswordBtn"
+        );
+
+
+    if (!button) {
+        return;
+    }
+
+
+    button.addEventListener(
+        "click",
+        async () => {
+
+            await forgotPassword();
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// FORGOT PASSWORD
+// ============================================================
+
+async function forgotPassword() {
+
+    const loginValue =
+        document
+            .getElementById(
+                "loginEmail"
+            )
+            .value
+            .trim();
+
+
+    // ========================================================
+    // ROLE NOT SELECTED
+    // ========================================================
+
+    if (!selectedRole) {
+
+        showMessage(
+            "Please select your login type first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    // ========================================================
+    // NO INPUT
+    // ========================================================
+
+    if (!loginValue) {
+
+        showMessage(
+            selectedRole === "student"
+                ? "Enter your Student ID first."
+                : "Enter your email address first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    let resetEmail =
+        loginValue;
+
+
+    // ========================================================
+    // STUDENT
+    // ========================================================
+
+    if (selectedRole === "student") {
+
+        const studentId =
+            loginValue
+                .toUpperCase()
+                .replace(/\s/g, "");
+
+
+        if (!/^SM\d{8}$/.test(studentId)) {
+
+            showMessage(
+                "Enter a valid Student ID, for example SM12345678.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * IMPORTANT:
+         *
+         * The current student registration system creates
+         * the Firebase Auth account using:
+         *
+         * SM12345678@student.rmdigital.local
+         *
+         * That is an internal Firebase login email.
+         *
+         * Therefore Firebase cannot send a useful
+         * password-reset email to the student's normal
+         * email address for those existing accounts.
+         *
+         * We show a clear message instead of pretending
+         * that the reset was sent.
+         */
+
+        showMessage(
+            "For Student ID accounts created with the current registration system, please contact the mentor to reset your password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    // ========================================================
+    // OWNER / MENTOR / FACULTY
+    // ========================================================
+
+    try {
+
+        await sendPasswordResetEmail(
+            auth,
+            resetEmail
+        );
+
+
+        showMessage(
+            "Password reset email sent. Please check your email inbox.",
+            "success"
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "PASSWORD RESET ERROR:",
+            error
+        );
+
+
+        showMessage(
+            getResetErrorMessage(error),
+            "error"
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// PASSWORD SHOW / HIDE
+// ============================================================
+
+function setupPasswordToggle() {
+
+    const button =
+        document.getElementById(
+            "togglePassword"
+        );
+
+
+    const input =
+        document.getElementById(
+            "loginPassword"
+        );
+
+
+    if (!button || !input) {
+        return;
+    }
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            if (
+                input.type ===
+                "password"
+            ) {
+
+                input.type =
+                    "text";
+
+                button.textContent =
+                    "🙈";
+
+            }
+
+            else {
+
+                input.type =
+                    "password";
+
+                button.textContent =
+                    "👁";
+
+            }
+
+        }
+    );
 
 }
 
@@ -606,12 +1004,16 @@ function showMessage(
             "#dc2626";
 
     }
-    else if (type === "success") {
+
+    else if (
+        type === "success"
+    ) {
 
         messageBox.style.color =
             "#16a34a";
 
     }
+
     else {
 
         messageBox.style.color =
@@ -623,10 +1025,12 @@ function showMessage(
 
 
 // ============================================================
-// FIREBASE ERROR MESSAGES
+// LOGIN ERROR MESSAGES
 // ============================================================
 
-function getLoginErrorMessage(error) {
+function getLoginErrorMessage(
+    error
+) {
 
     const code =
         error.code || "";
@@ -636,17 +1040,19 @@ function getLoginErrorMessage(error) {
 
         case "auth/invalid-credential":
 
-            return "Invalid email or password.";
+            return "Invalid Student ID/email or password.";
 
 
         case "auth/invalid-login-credentials":
 
-            return "Invalid email or password.";
+            return "Invalid Student ID/email or password.";
 
 
         case "auth/user-not-found":
 
-            return "No account found with this email.";
+            return selectedRole === "student"
+                ? "Student ID not found."
+                : "No account found with this email.";
 
 
         case "auth/wrong-password":
@@ -687,38 +1093,46 @@ function getLoginErrorMessage(error) {
 
 
 // ============================================================
-// PASSWORD SHOW / HIDE
-// Your existing login.html already calls this function.
+// RESET PASSWORD ERROR
 // ============================================================
 
-window.toggleLoginPassword =
-    function () {
+function getResetErrorMessage(
+    error
+) {
 
-        const passwordInput =
-            document.getElementById(
-                "loginPassword"
+    const code =
+        error.code || "";
+
+
+    switch (code) {
+
+        case "auth/user-not-found":
+
+            return "No account found with this email.";
+
+
+        case "auth/invalid-email":
+
+            return "Please enter a valid email address.";
+
+
+        case "auth/too-many-requests":
+
+            return "Too many requests. Please try again later.";
+
+
+        case "auth/network-request-failed":
+
+            return "Network error. Please check your internet connection.";
+
+
+        default:
+
+            return (
+                error.message ||
+                "Password reset failed."
             );
 
+    }
 
-        if (!passwordInput) {
-            return;
-        }
-
-
-        if (
-            passwordInput.type ===
-            "password"
-        ) {
-
-            passwordInput.type =
-                "text";
-
-        }
-        else {
-
-            passwordInput.type =
-                "password";
-
-        }
-
-    };
+}
