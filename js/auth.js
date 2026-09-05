@@ -1,614 +1,214 @@
-// ======================================================
-// R MOHAN DIGITAL - FINAL LOGIN SYSTEM
-// Owner / Mentor / Faculty = Email + Password
-// Student = Student ID + Password
-// ======================================================
+// ============================================
+// R MOHAN DIGITAL - LOGIN SYSTEM
+// ============================================
 
 import { auth, db } from "./firebase.js";
 
 import {
     signInWithEmailAndPassword,
-    signOut,
     sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 import {
     doc,
-    getDoc,
-    getDocs,
-    collection,
-    query,
-    where
+    getDoc
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-const $ = id => document.getElementById(id);
 
-let selectedRole = "student";
+// ============================================
+// ELEMENTS
+// ============================================
 
-/* ======================================================
-   ROLE BUTTONS
-====================================================== */
+const loginForm = document.getElementById("loginForm");
 
-document.querySelectorAll(".role-btn").forEach(button => {
+const loginEmail = document.getElementById("loginEmail");
 
-    button.addEventListener("click", () => {
+const loginPassword = document.getElementById("loginPassword");
 
-        document.querySelectorAll(".role-btn")
-            .forEach(btn => btn.classList.remove("active"));
+const loginIdLabel = document.getElementById("loginIdLabel");
 
-        button.classList.add("active");
+const loginMessage = document.getElementById("loginMessage");
 
-        selectedRole =
-            String(button.dataset.role || "student").toLowerCase();
+const togglePassword =
+    document.getElementById("togglePassword");
 
-        updateLoginMode();
-    });
+const forgotPasswordBtn =
+    document.getElementById("forgotPasswordBtn");
 
-});
+const forgotWrapper =
+    document.getElementById("forgotWrapper");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const roleButtons =
+    document.querySelectorAll(".role-btn");
 
 
-/* ======================================================
-   LOGIN MODE
-====================================================== */
+// ============================================
+// CURRENT ROLE
+// ============================================
 
-function updateLoginMode() {
+let selectedRole = null;
 
-    const emailInput = $("email");
-    const emailLabel =
-        document.querySelector('label[for="email"]');
 
-    if (!emailInput) return;
+// ============================================
+// SHOW MESSAGE
+// ============================================
 
-    if (selectedRole === "student") {
+function showMessage(message, type = "error") {
 
-        if (emailLabel) {
-            emailLabel.textContent = "Student ID";
-        }
+    loginMessage.textContent = message;
 
-        emailInput.placeholder = "Enter Student ID";
+    if (type === "success") {
 
-        // Keep automatically supplied student ID
-        const urlParams = new URLSearchParams(
-            window.location.search
-        );
-
-        const studentId = urlParams.get("studentId");
-
-        if (studentId) {
-            emailInput.value = studentId;
-        }
+        loginMessage.style.color = "#16a34a";
 
     } else {
 
-        if (emailLabel) {
-            emailLabel.textContent = "Email Address";
-        }
-
-        emailInput.placeholder = "Enter your email";
+        loginMessage.style.color = "#dc2626";
 
     }
+
 }
 
 
-/* ======================================================
-   AUTOMATIC STUDENT ID FROM REGISTRATION
-====================================================== */
+// ============================================
+// SELECT LOGIN ROLE
+// ============================================
 
-window.addEventListener("DOMContentLoaded", () => {
+function selectRole(role) {
 
-    const params =
-        new URLSearchParams(window.location.search);
+    selectedRole = role;
 
-    const studentId =
-        params.get("studentId");
 
-    if (studentId && $("email")) {
+    // Remove selected from all buttons
 
-        // Automatically select Student
-        const studentButton =
-            document.querySelector(
-                '.role-btn[data-role="student"]'
-            );
+    roleButtons.forEach(button => {
 
-        if (studentButton) {
+        button.classList.remove("selected");
 
-            document.querySelectorAll(".role-btn")
-                .forEach(btn =>
-                    btn.classList.remove("active")
-                );
+    });
 
-            studentButton.classList.add("active");
 
-            selectedRole = "student";
+    // Select current button
+
+    const selectedButton =
+        document.querySelector(
+            `.role-btn[data-role="${role}"]`
+        );
+
+    if (selectedButton) {
+
+        selectedButton.classList.add("selected");
+
+    }
+
+
+    // ========================================
+    // STUDENT LOGIN
+    // ========================================
+
+    if (role === "student") {
+
+        loginIdLabel.textContent =
+            "Student ID";
+
+        loginEmail.placeholder =
+            "Enter your Student ID";
+
+        loginEmail.autocomplete =
+            "username";
+
+
+        // Students use Student ID + password
+
+        if (
+            loginEmail.value &&
+            !loginEmail.value.toUpperCase().startsWith("SM")
+        ) {
+
+            loginEmail.value = "";
+
         }
 
-        $("email").value = studentId;
 
-        updateLoginMode();
+        // Student forgot password is hidden
+        // because student authentication uses
+        // an internal Firebase login email.
 
-        // Put cursor in password field
-        setTimeout(() => {
+        if (forgotWrapper) {
 
-            if ($("password")) {
-                $("password").focus();
-            }
+            forgotWrapper.style.display = "none";
 
-        }, 300);
+        }
+
     }
+
+    // ========================================
+    // OWNER / MENTOR / FACULTY
+    // ========================================
+
+    else {
+
+        loginIdLabel.textContent =
+            "Email Address";
+
+        loginEmail.placeholder =
+            "Enter your email";
+
+        loginEmail.autocomplete =
+            "username";
+
+
+        if (forgotWrapper) {
+
+            forgotWrapper.style.display = "block";
+
+        }
+
+    }
+
+}
+
+
+// ============================================
+// ROLE BUTTON CLICK
+// ============================================
+
+roleButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const role =
+            button.getAttribute("data-role");
+
+        selectRole(role);
+
+    });
 
 });
 
 
-/* ======================================================
-   LOGIN
-====================================================== */
+// ============================================
+// PASSWORD SHOW / HIDE
+// ============================================
 
-const loginBtn = $("loginBtn");
+if (togglePassword) {
 
-if (loginBtn) {
+    togglePassword.addEventListener("click", () => {
 
-    loginBtn.addEventListener("click", async () => {
+        if (loginPassword.type === "password") {
 
-        const loginValue =
-            $("email")?.value.trim();
+            loginPassword.type = "text";
 
-        const password =
-            $("password")?.value;
+            togglePassword.textContent = "🙈";
 
-        if (!loginValue) {
+        } else {
 
-            alert(
-                selectedRole === "student"
-                    ? "Please enter your Student ID."
-                    : "Please enter your email."
-            );
+            loginPassword.type = "password";
 
-            return;
-        }
-
-        if (!password) {
-
-            alert("Please enter your password.");
-
-            return;
-        }
-
-        loginBtn.disabled = true;
-        loginBtn.textContent = "Logging in...";
-
-        try {
-
-            /* ==================================================
-               STUDENT LOGIN
-            ================================================== */
-
-            if (selectedRole === "student") {
-
-                const studentId =
-                    loginValue.toUpperCase();
-
-                console.log(
-                    "Student login:",
-                    studentId
-                );
-
-                // Find student by Student ID
-                const studentQuery = query(
-                    collection(db, "users"),
-                    where("studentId", "==", studentId)
-                );
-
-                const studentSnapshot =
-                    await getDocs(studentQuery);
-
-                if (studentSnapshot.empty) {
-
-                    alert(
-                        "Student ID not found.\n\n" +
-                        "Please check your Student ID."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                const studentDoc =
-                    studentSnapshot.docs[0];
-
-                const studentData =
-                    studentDoc.data();
-
-                /* ----------------------------------------------
-                   Check account status
-                ---------------------------------------------- */
-
-                const status =
-                    String(
-                        studentData.status || ""
-                    ).toLowerCase();
-
-                if (
-                    status === "pending" ||
-                    status === "waiting"
-                ) {
-
-                    alert(
-                        "Your registration is still waiting for mentor approval."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                if (
-                    status === "rejected"
-                ) {
-
-                    alert(
-                        "Your student registration was rejected."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                if (
-                    status !== "approved" &&
-                    studentData.active !== true
-                ) {
-
-                    alert(
-                        "Your student account is not active yet."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                /* ----------------------------------------------
-                   Student Auth email
-                ---------------------------------------------- */
-
-                const loginEmail =
-                    studentData.loginEmail ||
-                    studentData.email;
-
-                if (!loginEmail) {
-
-                    alert(
-                        "Student login information is incomplete."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                /* ----------------------------------------------
-                   Firebase login
-                ---------------------------------------------- */
-
-                const credential =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        loginEmail,
-                        password
-                    );
-
-                const uid =
-                    credential.user.uid;
-
-                /* ----------------------------------------------
-                   Verify Firebase UID profile
-                ---------------------------------------------- */
-
-                const userSnap =
-                    await getDoc(
-                        doc(db, "users", uid)
-                    );
-
-                if (!userSnap.exists()) {
-
-                    await signOut(auth);
-
-                    alert(
-                        "Student profile was not found."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                const finalData =
-                    userSnap.data();
-
-                const finalStatus =
-                    String(
-                        finalData.status || ""
-                    ).toLowerCase();
-
-                if (
-                    finalStatus !== "approved" &&
-                    finalData.active !== true
-                ) {
-
-                    await signOut(auth);
-
-                    alert(
-                        "Your student account is not approved yet."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                /* ----------------------------------------------
-                   SUCCESS
-                ---------------------------------------------- */
-
-                window.location.href =
-                    "student-dashboard.html";
-
-                return;
-            }
-
-
-            /* ==================================================
-               OWNER / MENTOR / FACULTY LOGIN
-            ================================================== */
-
-            const credential =
-                await signInWithEmailAndPassword(
-                    auth,
-                    loginValue,
-                    password
-                );
-
-            const user =
-                credential.user;
-
-            const profileSnap =
-                await getDoc(
-                    doc(db, "users", user.uid)
-                );
-
-            if (!profileSnap.exists()) {
-
-                await signOut(auth);
-
-                alert(
-                    "Your account profile was not found."
-                );
-
-                loginBtn.disabled = false;
-                loginBtn.textContent = "Login";
-
-                return;
-            }
-
-            const data =
-                profileSnap.data();
-
-            const role =
-                String(
-                    data.role || ""
-                ).toLowerCase();
-
-            const status =
-                String(
-                    data.status || ""
-                ).toLowerCase();
-
-
-            /* ----------------------------------------------
-               OWNER
-            ---------------------------------------------- */
-
-            if (
-                selectedRole === "owner"
-            ) {
-
-                if (
-                    role !== "owner" &&
-                    role !== "admin"
-                ) {
-
-                    await signOut(auth);
-
-                    alert(
-                        "This account is not an Owner account."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                window.location.href =
-                    "admin-dashboard.html";
-
-                return;
-            }
-
-
-            /* ----------------------------------------------
-               MENTOR
-            ---------------------------------------------- */
-
-            if (
-                selectedRole === "mentor"
-            ) {
-
-                if (role !== "mentor") {
-
-                    await signOut(auth);
-
-                    alert(
-                        "This account is not a Mentor account."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                if (
-                    status !== "active" &&
-                    data.active !== true
-                ) {
-
-                    await signOut(auth);
-
-                    alert(
-                        "Your mentor account is not active."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                window.location.href =
-                    "mentor-dashboard.html";
-
-                return;
-            }
-
-
-            /* ----------------------------------------------
-               FACULTY
-            ---------------------------------------------- */
-
-            if (
-                selectedRole === "faculty"
-            ) {
-
-                if (role !== "faculty") {
-
-                    await signOut(auth);
-
-                    alert(
-                        "This account is not a Faculty account."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                if (
-                    status !== "active" &&
-                    data.active !== true
-                ) {
-
-                    await signOut(auth);
-
-                    alert(
-                        "Your faculty account is not active."
-                    );
-
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = "Login";
-
-                    return;
-                }
-
-                window.location.href =
-                    "faculty-dashboard.html";
-
-                return;
-            }
-
-
-            /* ----------------------------------------------
-               UNKNOWN ROLE
-            ---------------------------------------------- */
-
-            await signOut(auth);
-
-            alert(
-                "Your account role is not configured."
-            );
-
-        } catch (error) {
-
-            console.error(
-                "LOGIN ERROR:",
-                error
-            );
-
-            let message =
-                "Login failed.";
-
-            if (
-                error.code ===
-                "auth/invalid-credential"
-            ) {
-
-                message =
-                    "Invalid Student ID/email or password.";
-
-            } else if (
-                error.code ===
-                "auth/wrong-password"
-            ) {
-
-                message =
-                    "Incorrect password.";
-
-            } else if (
-                error.code ===
-                "auth/user-not-found"
-            ) {
-
-                message =
-                    "Account not found.";
-
-            } else if (
-                error.code ===
-                "auth/too-many-requests"
-            ) {
-
-                message =
-                    "Too many login attempts. Please try again later.";
-
-            } else if (
-                error.code ===
-                "permission-denied"
-            ) {
-
-                message =
-                    "Firestore permission denied. Check your Firestore rules.";
-
-            } else if (error.message) {
-
-                message =
-                    error.message;
-            }
-
-            alert(message);
-
-        } finally {
-
-            loginBtn.disabled = false;
-            loginBtn.textContent = "Login";
+            togglePassword.textContent = "👁";
 
         }
 
@@ -617,137 +217,621 @@ if (loginBtn) {
 }
 
 
-/* ======================================================
-   SHOW / HIDE PASSWORD
-====================================================== */
+// ============================================
+// STUDENT INTERNAL LOGIN EMAIL
+// ============================================
+//
+// Your registration system creates Firebase Auth
+// using:
+//
+// SM12345678
+// ↓
+// sm12345678@student.rmdigital.local
+//
+// Student does NOT need to know this email.
+// They only enter their Student ID.
+// ============================================
 
-const togglePassword =
-    $("togglePassword");
+function createStudentLoginEmail(studentId) {
 
-if (togglePassword) {
-
-    togglePassword.addEventListener(
-        "click",
-        () => {
-
-            const password =
-                $("password");
-
-            if (!password) return;
-
-            if (
-                password.type === "password"
-            ) {
-
-                password.type = "text";
-                togglePassword.textContent = "🙈";
-
-            } else {
-
-                password.type = "password";
-                togglePassword.textContent = "👁";
-
-            }
-
-        }
+    return (
+        studentId
+            .trim()
+            .toLowerCase()
+        + "@student.rmdigital.local"
     );
 
 }
 
 
-/* ======================================================
-   FORGOT PASSWORD
-====================================================== */
+// ============================================
+// LOGIN
+// ============================================
 
-const forgotPassword =
-    $("forgotPassword");
+loginForm.addEventListener("submit", async (event) => {
 
-if (forgotPassword) {
+    event.preventDefault();
 
-    forgotPassword.addEventListener(
+
+    showMessage("");
+
+
+    // ========================================
+    // ROLE CHECK
+    // ========================================
+
+    if (!selectedRole) {
+
+        showMessage(
+            "Please select Owner, Mentor, Faculty or Student."
+        );
+
+        return;
+
+    }
+
+
+    let loginValue =
+        loginEmail.value.trim();
+
+    const password =
+        loginPassword.value;
+
+
+    // ========================================
+    // VALIDATION
+    // ========================================
+
+    if (!loginValue) {
+
+        showMessage(
+            selectedRole === "student"
+                ? "Please enter your Student ID."
+                : "Please enter your email."
+        );
+
+        return;
+
+    }
+
+
+    if (!password) {
+
+        showMessage(
+            "Please enter your password."
+        );
+
+        return;
+
+    }
+
+
+    // ========================================
+    // STUDENT VALIDATION
+    // ========================================
+
+    if (selectedRole === "student") {
+
+        loginValue =
+            loginValue.toUpperCase();
+
+
+        if (!/^SM\d{8}$/.test(loginValue)) {
+
+            showMessage(
+                "Invalid Student ID. Example: SM12345678"
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    // ========================================
+    // DISABLE BUTTON
+    // ========================================
+
+    loginButton.disabled = true;
+
+    loginButton.textContent =
+        "Logging in...";
+
+
+    try {
+
+        let firebaseEmail;
+
+
+        // ====================================
+        // STUDENT
+        // ====================================
+
+        if (selectedRole === "student") {
+
+            firebaseEmail =
+                createStudentLoginEmail(
+                    loginValue
+                );
+
+        }
+
+        // ====================================
+        // OTHER USERS
+        // ====================================
+
+        else {
+
+            firebaseEmail =
+                loginValue.toLowerCase();
+
+        }
+
+
+        console.log(
+            "Login role:",
+            selectedRole
+        );
+
+        console.log(
+            "Firebase login email:",
+            firebaseEmail
+        );
+
+
+        // ====================================
+        // FIREBASE LOGIN
+        // ====================================
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                firebaseEmail,
+                password
+            );
+
+
+        const user =
+            userCredential.user;
+
+
+        console.log(
+            "Firebase login successful:",
+            user.uid
+        );
+
+
+        // ====================================
+        // GET USER PROFILE
+        // ====================================
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                user.uid
+            );
+
+        const userSnapshot =
+            await getDoc(userRef);
+
+
+        if (!userSnapshot.exists()) {
+
+            showMessage(
+                "Your profile was not found in the system."
+            );
+
+            await auth.signOut();
+
+            return;
+
+        }
+
+
+        const userData =
+            userSnapshot.data();
+
+
+        console.log(
+            "User profile:",
+            userData
+        );
+
+
+        // ====================================
+        // NORMALIZE ROLE
+        // ====================================
+
+        const databaseRole =
+            String(
+                userData.role || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        const databaseStatus =
+            String(
+                userData.status || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        // ====================================
+        // CHECK SELECTED ROLE
+        // ====================================
+
+        if (
+            selectedRole !== databaseRole &&
+            !(
+                selectedRole === "owner" &&
+                (
+                    databaseRole === "admin" ||
+                    databaseRole === "owner"
+                )
+            )
+        ) {
+
+            showMessage(
+                "This account does not have " +
+                selectedRole +
+                " access."
+            );
+
+            await auth.signOut();
+
+            return;
+
+        }
+
+
+        // ====================================
+        // OWNER
+        // ====================================
+
+        if (databaseRole === "owner" ||
+            databaseRole === "admin") {
+
+            showMessage(
+                "Login successful. Opening Owner dashboard...",
+                "success"
+            );
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+            }, 500);
+
+            return;
+
+        }
+
+
+        // ====================================
+        // MENTOR
+        // ====================================
+
+        if (databaseRole === "mentor") {
+
+            if (
+                databaseStatus !== "active" &&
+                userData.active !== true
+            ) {
+
+                showMessage(
+                    "Your mentor account is not active."
+                );
+
+                await auth.signOut();
+
+                return;
+
+            }
+
+
+            showMessage(
+                "Login successful. Opening Mentor dashboard...",
+                "success"
+            );
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "mentor-dashboard.html";
+
+            }, 500);
+
+            return;
+
+        }
+
+
+        // ====================================
+        // FACULTY
+        // ====================================
+
+        if (databaseRole === "faculty") {
+
+            if (
+                databaseStatus !== "active" &&
+                databaseStatus !== "approved" &&
+                userData.active !== true
+            ) {
+
+                showMessage(
+                    "Your faculty account is not active."
+                );
+
+                await auth.signOut();
+
+                return;
+
+            }
+
+
+            showMessage(
+                "Login successful. Opening Faculty dashboard...",
+                "success"
+            );
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "faculty-dashboard.html";
+
+            }, 500);
+
+            return;
+
+        }
+
+
+        // ====================================
+        // STUDENT
+        // ====================================
+
+        if (databaseRole === "student") {
+
+
+            // --------------------------------
+            // PENDING
+            // --------------------------------
+
+            if (
+                databaseStatus === "pending"
+            ) {
+
+                showMessage(
+                    "Your registration is waiting for mentor approval."
+                );
+
+                await auth.signOut();
+
+                return;
+
+            }
+
+
+            // --------------------------------
+            // REJECTED
+            // --------------------------------
+
+            if (
+                databaseStatus === "rejected"
+            ) {
+
+                showMessage(
+                    "Your student registration was rejected."
+                );
+
+                await auth.signOut();
+
+                return;
+
+            }
+
+
+            // --------------------------------
+            // APPROVED
+            // --------------------------------
+
+            if (
+                databaseStatus === "approved" ||
+                databaseStatus === "active"
+            ) {
+
+                showMessage(
+                    "Login successful. Opening Student dashboard...",
+                    "success"
+                );
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "student-dashboard.html";
+
+                }, 500);
+
+                return;
+
+            }
+
+
+            // --------------------------------
+            // UNKNOWN STATUS
+            // --------------------------------
+
+            showMessage(
+                "Your student account status is not configured."
+            );
+
+            await auth.signOut();
+
+            return;
+
+        }
+
+
+        // ====================================
+        // UNKNOWN ROLE
+        // ====================================
+
+        showMessage(
+            "Your account role is not configured."
+        );
+
+        await auth.signOut();
+
+
+    } catch (error) {
+
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
+
+
+        // ====================================
+        // FIREBASE ERROR MESSAGES
+        // ====================================
+
+        if (
+            error.code ===
+            "auth/invalid-credential"
+        ) {
+
+            showMessage(
+                selectedRole === "student"
+                    ? "Invalid Student ID or password."
+                    : "Invalid email or password."
+            );
+
+        }
+
+        else if (
+            error.code ===
+            "auth/user-not-found"
+        ) {
+
+            showMessage(
+                selectedRole === "student"
+                    ? "Student ID not found."
+                    : "Account not found."
+            );
+
+        }
+
+        else if (
+            error.code ===
+            "auth/wrong-password"
+        ) {
+
+            showMessage(
+                "Incorrect password."
+            );
+
+        }
+
+        else if (
+            error.code ===
+            "auth/too-many-requests"
+        ) {
+
+            showMessage(
+                "Too many login attempts. Please try again later."
+            );
+
+        }
+
+        else {
+
+            showMessage(
+                "Login failed: " +
+                error.message
+            );
+
+        }
+
+    }
+
+    finally {
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+            "Login";
+
+    }
+
+});
+
+
+// ============================================
+// FORGOT PASSWORD
+// ============================================
+
+if (forgotPasswordBtn) {
+
+    forgotPasswordBtn.addEventListener(
         "click",
         async () => {
 
-            const value =
-                $("email")?.value.trim();
+            if (!selectedRole) {
 
-            if (!value) {
-
-                alert(
-                    selectedRole === "student"
-                        ? "Enter your Student ID first."
-                        : "Enter your email address first."
+                showMessage(
+                    "Please select Owner, Mentor or Faculty first."
                 );
 
                 return;
+
             }
 
+
+            if (selectedRole === "student") {
+
+                showMessage(
+                    "Students log in using Student ID and password."
+                );
+
+                return;
+
+            }
+
+
+            const email =
+                loginEmail.value.trim();
+
+
+            if (!email) {
+
+                showMessage(
+                    "Enter your email address first."
+                );
+
+                return;
+
+            }
+
+
             try {
-
-                let email = value;
-
-                /* ------------------------------------------
-                   Student forgot password
-                ------------------------------------------ */
-
-                if (
-                    selectedRole === "student"
-                ) {
-
-                    const studentId =
-                        value.toUpperCase();
-
-                    const q =
-                        query(
-                            collection(db, "users"),
-                            where(
-                                "studentId",
-                                "==",
-                                studentId
-                            )
-                        );
-
-                    const snap =
-                        await getDocs(q);
-
-                    if (snap.empty) {
-
-                        alert(
-                            "Student ID not found."
-                        );
-
-                        return;
-                    }
-
-                    const data =
-                        snap.docs[0].data();
-
-                    email =
-                        data.loginEmail ||
-                        data.email;
-
-                    if (!email) {
-
-                        alert(
-                            "No recovery email is available for this student account."
-                        );
-
-                        return;
-                    }
-                }
-
-                /* ------------------------------------------
-                   Send Firebase reset email
-                ------------------------------------------ */
 
                 await sendPasswordResetEmail(
                     auth,
                     email
                 );
 
-                alert(
-                    "Password reset link has been sent to your registered email."
+
+                showMessage(
+                    "Password reset email sent. Check your inbox.",
+                    "success"
                 );
+
 
             } catch (error) {
 
@@ -756,10 +840,12 @@ if (forgotPassword) {
                     error
                 );
 
-                alert(
-                    error.message ||
-                    "Unable to send password reset email."
+
+                showMessage(
+                    "Password reset failed: " +
+                    error.message
                 );
+
             }
 
         }
@@ -768,8 +854,74 @@ if (forgotPassword) {
 }
 
 
-/* ======================================================
-   INITIAL MODE
-====================================================== */
+// ============================================
+// AUTOMATIC STUDENT LOGIN
+// ============================================
+//
+// When registration redirects:
+//
+// login.html?studentId=SM86216678
+//
+// automatically:
+//
+// 1. Select Student
+// 2. Fill Student ID
+// ============================================
 
-updateLoginMode();
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const studentIdFromURL =
+    urlParams.get("studentId");
+
+
+if (studentIdFromURL) {
+
+    const studentId =
+        studentIdFromURL
+            .trim()
+            .toUpperCase();
+
+
+    if (/^SM\d{8}$/.test(studentId)) {
+
+        console.log(
+            "Student ID received from registration:",
+            studentId
+        );
+
+
+        // Select Student automatically
+
+        selectRole("student");
+
+
+        // Fill Student ID automatically
+
+        loginEmail.value =
+            studentId;
+
+
+        // Put cursor in password
+
+        loginPassword.focus();
+
+    }
+
+}
+
+
+// ============================================
+// DEFAULT LOGIN
+// ============================================
+//
+// If there is no studentId in the URL,
+// nothing is selected automatically.
+// User can select the required role.
+// ============================================
+
+console.log(
+    "R Mohan Digital auth.js loaded successfully."
+);
