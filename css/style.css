@@ -1793,3 +1793,95 @@ a:active {
     }
 
 }
+
+/* =====================================================
+   PASSWORD EYE BUTTON
+===================================================== */
+
+.password-eye {
+    position: absolute;
+    right: 8px;
+    top: 7px;
+
+    width: 36px;
+    height: 34px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 20;
+}
+
+
+/* Eye outer shape */
+
+.eye-icon {
+    position: relative;
+
+    width: 19px;
+    height: 12px;
+
+    border: 2px solid #8edfff;
+
+    border-radius: 70% 20%;
+
+    transform: rotate(45deg);
+
+    display: block;
+
+    transition: 0.2s ease;
+}
+
+
+/* Eye pupil */
+
+.eye-icon::after {
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    background: #8edfff;
+
+    border-radius: 50%;
+
+    top: 2px;
+    left: 5px;
+
+    transform: rotate(-45deg);
+}
+
+
+/* Hover */
+
+.password-eye:hover .eye-icon {
+    border-color: #00cfff;
+
+    box-shadow:
+        0 0 8px rgba(0, 207, 255, 0.7);
+}
+
+.password-eye:hover .eye-icon::after {
+    background: #00cfff;
+}
+
+
+/* Button focus */
+
+.password-eye:focus-visible {
+    outline: 1px solid #00cfff;
+    border-radius: 8px;
+}
