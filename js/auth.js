@@ -1,9 +1,15 @@
-// ============================================
+// ============================================================
 // R MOHAN DIGITAL
-// STUDENT LOGIN SYSTEM
-// ============================================
-
-import { auth, db } from "./firebase.js";
+// STUDENT LOGIN AUTHENTICATION
+// File: js/auth.js
+//
+// Used ONLY by login.html
+//
+// Student login:
+// Student ID + Password + Puzzle
+//
+// DO NOT USE THIS FILE IN admin.html
+// ============================================================
 
 import {
     signInWithEmailAndPassword
@@ -14,10 +20,15 @@ import {
     getDoc
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
+import {
+    auth,
+    db
+} from "./firebase.js";
 
-// ============================================
-// PAGE ELEMENTS
-// ============================================
+
+// ============================================================
+// DOM
+// ============================================================
 
 const loginForm =
     document.getElementById("loginForm");
@@ -28,14 +39,14 @@ const loginEmail =
 const loginPassword =
     document.getElementById("loginPassword");
 
-const togglePassword =
-    document.getElementById("togglePassword");
-
 const loginButton =
     document.getElementById("loginButton");
 
 const loginMessage =
     document.getElementById("loginMessage");
+
+const togglePassword =
+    document.getElementById("togglePassword");
 
 const puzzleGrid =
     document.getElementById("puzzleGrid");
@@ -47,30 +58,9 @@ const puzzleStatus =
     document.getElementById("puzzleStatus");
 
 
-// ============================================
-// CHECK REQUIRED ELEMENTS
-// ============================================
-
-console.log(
-    "R Mohan Digital Student Login starting..."
-);
-
-if (!loginForm) {
-    console.error("loginForm not found.");
-}
-
-if (!loginEmail) {
-    console.error("loginEmail not found.");
-}
-
-if (!loginPassword) {
-    console.error("loginPassword not found.");
-}
-
-
-// ============================================
-// GET STUDENT ID FROM REGISTRATION URL
-// ============================================
+// ============================================================
+// STUDENT ID FROM REGISTRATION
+// ============================================================
 
 const urlParams =
     new URLSearchParams(
@@ -81,65 +71,58 @@ const studentIdFromURL =
     urlParams.get("studentId");
 
 
-// ============================================
-// AUTOMATIC STUDENT ID
-// ============================================
-
-if (studentIdFromURL) {
-
-    const studentId =
-        studentIdFromURL
-            .trim()
-            .toUpperCase();
+console.log(
+    "Student ID received from registration:",
+    studentIdFromURL
+);
 
 
-    // Check correct format
+// ============================================================
+// STUDENT ID VALIDATION
+// ============================================================
 
-    if (/^SM\d{8}$/.test(studentId)) {
+function validStudentId(studentId) {
 
-        loginEmail.value =
-            studentId;
-
-
-        // Student ID came from registration,
-        // so don't allow editing.
-
-        loginEmail.readOnly =
-            true;
-
-
-        console.log(
-            "Student ID received from registration:",
-            studentId
-        );
-
-    } else {
-
-        console.warn(
-            "Invalid Student ID received:",
-            studentIdFromURL
-        );
-
-    }
-
-} else {
-
-    console.log(
-        "No Student ID in URL. Student can enter ID manually."
+    return /^SM\d{8}$/.test(
+        studentId
     );
 
 }
 
 
-// ============================================
-// PASSWORD SHOW / HIDE
-// ============================================
+// ============================================================
+// AUTO FILL STUDENT ID
+// ============================================================
 
-if (togglePassword) {
+if (
+    studentIdFromURL &&
+    validStudentId(studentIdFromURL)
+) {
+
+    loginEmail.value =
+        studentIdFromURL.toUpperCase();
+
+    loginEmail.readOnly = true;
+
+    loginEmail.style.opacity = "0.85";
+
+}
+
+
+// ============================================================
+// PASSWORD SHOW / HIDE
+// ============================================================
+
+if (
+    togglePassword &&
+    loginPassword
+) {
 
     togglePassword.addEventListener(
         "click",
-        () => {
+        function (event) {
+
+            event.preventDefault();
 
             if (
                 loginPassword.type ===
@@ -152,6 +135,11 @@ if (togglePassword) {
                 togglePassword.textContent =
                     "🙈";
 
+                togglePassword.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
             } else {
 
                 loginPassword.type =
@@ -159,6 +147,11 @@ if (togglePassword) {
 
                 togglePassword.textContent =
                     "👁";
+
+                togglePassword.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
 
             }
 
@@ -168,49 +161,180 @@ if (togglePassword) {
 }
 
 
-// ============================================
-// CREATE INTERNAL FIREBASE EMAIL
-// ============================================
-//
-// Student enters:
-//
-// SM86216678
-//
-// Firebase internally uses:
-//
-// sm86216678@student.rmdigital.local
-//
-// The student never needs to know
-// the internal email.
-// ============================================
+// ============================================================
+// PUZZLE
+// ============================================================
 
-function createStudentLoginEmail(
-    studentId
-) {
+let puzzleSolved = false;
 
-    return (
-        studentId
-            .trim()
-            .toLowerCase()
-        +
-        "@student.rmdigital.local"
-    );
+let puzzleTarget = null;
+
+
+// ============================================================
+// RANDOM NUMBER
+// ============================================================
+
+function randomNumber() {
+
+    return Math.floor(
+        Math.random() * 9
+    ) + 1;
 
 }
 
 
-// ============================================
-// MESSAGE FUNCTION
-// ============================================
+// ============================================================
+// CREATE PUZZLE
+// ============================================================
+
+function createPuzzle() {
+
+    if (!puzzleGrid) return;
+
+
+    puzzleSolved = false;
+
+    puzzleTarget =
+        randomNumber();
+
+
+    if (targetNumber) {
+
+        targetNumber.textContent =
+            puzzleTarget;
+
+    }
+
+
+    if (puzzleStatus) {
+
+        puzzleStatus.textContent =
+            "Select the correct number.";
+
+        puzzleStatus.style.color =
+            "#94a3b8";
+
+    }
+
+
+    if (loginButton) {
+
+        loginButton.disabled =
+            true;
+
+    }
+
+
+    puzzleGrid.innerHTML = "";
+
+
+    const numbers = [
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 9
+    ];
+
+
+    // Shuffle numbers
+
+    numbers.sort(
+        () => Math.random() - 0.5
+    );
+
+
+    numbers.forEach(number => {
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.type =
+            "button";
+
+        button.textContent =
+            number;
+
+        button.className =
+            "puzzle-number";
+
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                // Correct
+                if (
+                    number ===
+                    puzzleTarget
+                ) {
+
+                    puzzleSolved =
+                        true;
+
+                    puzzleStatus.textContent =
+                        "✓ Puzzle completed!";
+
+                    puzzleStatus.style.color =
+                        "#22c55e";
+
+
+                    // Highlight correct
+                    button.style.borderColor =
+                        "#22c55e";
+
+                    button.style.color =
+                        "#22c55e";
+
+
+                    if (loginButton) {
+
+                        loginButton.disabled =
+                            false;
+
+                    }
+
+                    return;
+                }
+
+
+                // Wrong
+                puzzleStatus.textContent =
+                    "✕ Wrong number. Try again.";
+
+                puzzleStatus.style.color =
+                    "#f87171";
+
+            }
+        );
+
+
+        puzzleGrid.appendChild(
+            button
+        );
+
+    });
+
+}
+
+
+// ============================================================
+// START PUZZLE
+// ============================================================
+
+createPuzzle();
+
+
+// ============================================================
+// LOGIN MESSAGE
+// ============================================================
 
 function showMessage(
     message,
     type = "error"
 ) {
 
-    if (!loginMessage) {
-        return;
-    }
+    if (!loginMessage) return;
 
 
     loginMessage.textContent =
@@ -220,250 +344,105 @@ function showMessage(
     if (type === "success") {
 
         loginMessage.style.color =
-            "#16a34a";
+            "#22c55e";
+
+    } else if (type === "info") {
+
+        loginMessage.style.color =
+            "#38bdf8";
 
     } else {
 
         loginMessage.style.color =
-            "#dc2626";
+            "#f87171";
 
     }
 
 }
 
 
-// ============================================
-// PUZZLE GAME
-// ============================================
-
-let puzzleSolved =
-    false;
-
-
-// ============================================
-// CREATE PUZZLE
-// ============================================
-
-function createPuzzle() {
-
-    if (
-        !puzzleGrid ||
-        !targetNumber
-    ) {
-
-        console.error(
-            "Puzzle elements not found."
-        );
-
-        return;
-
-    }
-
-
-    puzzleSolved =
-        false;
-
-
-    loginButton.disabled =
-        true;
-
-    loginButton.textContent =
-        "Complete Puzzle First";
-
-
-    puzzleStatus.textContent =
-        "Complete the puzzle to continue.";
-
-    puzzleStatus.style.color =
-        "#64748b";
-
-
-    puzzleGrid.innerHTML =
-        "";
-
-
-    // ----------------------------------------
-    // NUMBERS
-    // ----------------------------------------
-
-    const numbers = [
-        1, 2, 3,
-        4, 5, 6,
-        7, 8, 9
-    ];
-
-
-    // ----------------------------------------
-    // RANDOM TARGET
-    // ----------------------------------------
-
-    const target =
-        numbers[
-            Math.floor(
-                Math.random() *
-                numbers.length
-            )
-        ];
-
-
-    targetNumber.textContent =
-        target;
-
-
-    // ----------------------------------------
-    // SHUFFLE NUMBERS
-    // ----------------------------------------
-
-    numbers.sort(
-        () =>
-            Math.random() - 0.5
-    );
-
-
-    // ----------------------------------------
-    // CREATE BUTTONS
-    // ----------------------------------------
-
-    numbers.forEach(
-        number => {
-
-            const tile =
-                document.createElement(
-                    "button"
-                );
-
-
-            tile.type =
-                "button";
-
-
-            tile.className =
-                "puzzle-tile";
-
-
-            tile.textContent =
-                number;
-
-
-            tile.addEventListener(
-                "click",
-                () => {
-
-                    // Puzzle already solved
-
-                    if (puzzleSolved) {
-                        return;
-                    }
-
-
-                    // --------------------------------
-                    // CORRECT
-                    // --------------------------------
-
-                    if (
-                        number === target
-                    ) {
-
-                        tile.classList.add(
-                            "correct"
-                        );
-
-
-                        puzzleSolved =
-                            true;
-
-
-                        puzzleStatus.textContent =
-                            "✓ Puzzle completed! You can login now.";
-
-                        puzzleStatus.style.color =
-                            "#16a34a";
-
-
-                        loginButton.disabled =
-                            false;
-
-
-                        loginButton.textContent =
-                            "Login";
-
-
-                        console.log(
-                            "Puzzle completed."
-                        );
-
-                    }
-
-
-                    // --------------------------------
-                    // WRONG
-                    // --------------------------------
-
-                    else {
-
-                        tile.classList.add(
-                            "wrong"
-                        );
-
-
-                        puzzleStatus.textContent =
-                            "Try again! Find " +
-                            target;
-
-                        puzzleStatus.style.color =
-                            "#dc2626";
-
-
-                        setTimeout(
-                            () => {
-
-                                tile.classList.remove(
-                                    "wrong"
-                                );
-
-                            },
-                            500
-                        );
-
-                    }
-
-                }
-            );
-
-
-            puzzleGrid.appendChild(
-                tile
-            );
-
-        }
+// ============================================================
+// STUDENT INTERNAL FIREBASE EMAIL
+// ============================================================
+
+function createStudentFirebaseEmail(
+    studentId
+) {
+
+    return (
+        studentId
+            .toLowerCase()
+            .trim()
+        +
+        "@student.rmdigital.local"
     );
 
 }
 
 
-// ============================================
-// START PUZZLE
-// ============================================
+// ============================================================
+// FIREBASE ERROR
+// ============================================================
 
-createPuzzle();
+function firebaseErrorMessage(error) {
+
+    if (!error) {
+
+        return "Login failed.";
+
+    }
 
 
-// ============================================
+    switch (error.code) {
+
+        case "auth/invalid-credential":
+            return "Incorrect Student ID or password.";
+
+        case "auth/invalid-login-credentials":
+            return "Incorrect Student ID or password.";
+
+        case "auth/user-not-found":
+            return "Student account not found.";
+
+        case "auth/wrong-password":
+            return "Incorrect password.";
+
+        case "auth/invalid-email":
+            return "Invalid Student ID.";
+
+        case "auth/user-disabled":
+            return "This student account has been disabled.";
+
+        case "auth/too-many-requests":
+            return "Too many login attempts. Please try again later.";
+
+        case "auth/network-request-failed":
+            return "Network error. Check your internet connection.";
+
+        default:
+            return error.message ||
+                   "Unable to login.";
+    }
+
+}
+
+
+// ============================================================
 // STUDENT LOGIN
-// ============================================
+// ============================================================
 
 if (loginForm) {
 
     loginForm.addEventListener(
         "submit",
-        async (event) => {
+        async function (event) {
 
             event.preventDefault();
 
 
-            // --------------------------------
+            // ------------------------------------------------
             // PUZZLE CHECK
-            // --------------------------------
+            // ------------------------------------------------
 
             if (!puzzleSolved) {
 
@@ -472,13 +451,12 @@ if (loginForm) {
                 );
 
                 return;
-
             }
 
 
-            // --------------------------------
-            // GET VALUES
-            // --------------------------------
+            // ------------------------------------------------
+            // STUDENT ID
+            // ------------------------------------------------
 
             const studentId =
                 loginEmail.value
@@ -486,32 +464,37 @@ if (loginForm) {
                     .toUpperCase();
 
 
+            // ------------------------------------------------
+            // PASSWORD
+            // ------------------------------------------------
+
             const password =
                 loginPassword.value;
 
 
-            // --------------------------------
-            // STUDENT ID VALIDATION
-            // --------------------------------
+            // ------------------------------------------------
+            // VALIDATE STUDENT ID
+            // ------------------------------------------------
 
             if (
-                !/^SM\d{8}$/.test(
+                !validStudentId(
                     studentId
                 )
             ) {
 
                 showMessage(
-                    "Invalid Student ID. Example: SM12345678"
+                    "Enter a valid Student ID."
                 );
 
-                return;
+                loginEmail.focus();
 
+                return;
             }
 
 
-            // --------------------------------
-            // PASSWORD VALIDATION
-            // --------------------------------
+            // ------------------------------------------------
+            // PASSWORD
+            // ------------------------------------------------
 
             if (!password) {
 
@@ -519,54 +502,46 @@ if (loginForm) {
                     "Please enter your password."
                 );
 
-                return;
+                loginPassword.focus();
 
+                return;
             }
 
 
-            // --------------------------------
-            // DISABLE LOGIN
-            // --------------------------------
+            // ------------------------------------------------
+            // DISABLE
+            // ------------------------------------------------
 
             loginButton.disabled =
                 true;
 
             loginButton.textContent =
-                "Logging in...";
+                "Signing in...";
 
 
-            showMessage("");
+            showMessage(
+                "Checking student account...",
+                "info"
+            );
 
 
             try {
 
-                // =================================
-                // CREATE INTERNAL FIREBASE EMAIL
-                // =================================
+                // --------------------------------------------
+                // CREATE INTERNAL EMAIL
+                // --------------------------------------------
 
                 const firebaseEmail =
-                    createStudentLoginEmail(
+                    createStudentFirebaseEmail(
                         studentId
                     );
 
 
-                console.log(
-                    "Student ID:",
-                    studentId
-                );
+                // --------------------------------------------
+                // FIREBASE LOGIN
+                // --------------------------------------------
 
-
-                console.log(
-                    "Firebase login email:",
-                    firebaseEmail
-                );
-
-
-                // =================================
-                // FIREBASE AUTH LOGIN
-                // =================================
-
-                const userCredential =
+                const credential =
                     await signInWithEmailAndPassword(
                         auth,
                         firebaseEmail,
@@ -575,18 +550,18 @@ if (loginForm) {
 
 
                 const user =
-                    userCredential.user;
+                    credential.user;
 
 
                 console.log(
-                    "Firebase login successful:",
+                    "Student Firebase login:",
                     user.uid
                 );
 
 
-                // =================================
-                // GET USER PROFILE
-                // =================================
+                // --------------------------------------------
+                // LOAD USER PROFILE
+                // --------------------------------------------
 
                 const userRef =
                     doc(
@@ -596,131 +571,105 @@ if (loginForm) {
                     );
 
 
-                const userSnapshot =
+                const userSnap =
                     await getDoc(
                         userRef
                     );
 
 
-                // =================================
-                // PROFILE NOT FOUND
-                // =================================
-
-                if (
-                    !userSnapshot.exists()
-                ) {
-
-                    showMessage(
-                        "Student profile was not found."
-                    );
-
+                if (!userSnap.exists()) {
 
                     await auth.signOut();
 
-                    return;
+                    showMessage(
+                        "Student profile not found."
+                    );
 
+                    return;
                 }
 
 
                 const userData =
-                    userSnapshot.data();
+                    userSnap.data();
 
 
-                console.log(
-                    "Student profile:",
-                    userData
-                );
-
-
-                // =================================
+                // --------------------------------------------
                 // CHECK ROLE
-                // =================================
+                // --------------------------------------------
 
                 const role =
                     String(
                         userData.role || ""
                     )
-                    .trim()
-                    .toLowerCase();
+                        .trim()
+                        .toLowerCase();
 
 
                 if (
                     role !== "student"
                 ) {
 
+                    await auth.signOut();
+
                     showMessage(
                         "This account is not a student account."
                     );
 
-
-                    await auth.signOut();
-
                     return;
-
                 }
 
 
-                // =================================
-                // CHECK STATUS
-                // =================================
+                // --------------------------------------------
+                // STATUS
+                // --------------------------------------------
 
                 const status =
                     String(
                         userData.status || ""
                     )
-                    .trim()
-                    .toLowerCase();
+                        .trim()
+                        .toLowerCase();
 
 
-                console.log(
-                    "Student status:",
-                    status
-                );
-
-
-                // =================================
-                // PENDING
-                // =================================
-
-                if (
-                    status === "pending"
-                ) {
-
-                    showMessage(
-                        "Your registration is waiting for mentor approval."
-                    );
-
-
-                    await auth.signOut();
-
-                    return;
-
-                }
-
-
-                // =================================
+                // --------------------------------------------
                 // REJECTED
-                // =================================
+                // --------------------------------------------
 
                 if (
                     status === "rejected"
                 ) {
 
-                    showMessage(
-                        "Your student registration was rejected."
-                    );
-
-
                     await auth.signOut();
 
-                    return;
+                    showMessage(
+                        "Your registration was rejected."
+                    );
 
+                    return;
                 }
 
 
-                // =================================
-                // APPROVED
-                // =================================
+                // --------------------------------------------
+                // PENDING
+                // --------------------------------------------
+
+                if (
+                    status === "pending"
+                ) {
+
+                    await auth.signOut();
+
+                    showMessage(
+                        "Your registration is still waiting for approval."
+                    );
+
+                    return;
+                }
+
+
+                // --------------------------------------------
+                // APPROVED / ACTIVE
+                // --------------------------------------------
 
                 if (
                     status === "approved" ||
@@ -728,159 +677,57 @@ if (loginForm) {
                 ) {
 
                     showMessage(
-                        "Login successful! Opening Student Dashboard...",
+                        "Login successful. Opening dashboard...",
                         "success"
                     );
 
 
-                    console.log(
-                        "Student approved."
-                    );
-
-
-                    // Small delay so the
-                    // success message is visible.
-
                     setTimeout(
-                        () => {
+                        function () {
 
                             window.location.href =
                                 "student-dashboard.html";
 
                         },
-                        700
+                        500
                     );
 
-
                     return;
-
                 }
 
 
-                // =================================
+                // --------------------------------------------
                 // UNKNOWN STATUS
-                // =================================
+                // --------------------------------------------
+
+                await auth.signOut();
 
                 showMessage(
                     "Your student account status is not configured."
                 );
 
 
-                await auth.signOut();
-
-
             } catch (error) {
 
                 console.error(
-                    "STUDENT LOGIN ERROR:",
+                    "Student login error:",
                     error
                 );
 
 
-                // =================================
-                // FIREBASE ERRORS
-                // =================================
+                showMessage(
+                    firebaseErrorMessage(
+                        error
+                    )
+                );
 
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
+            } finally {
 
-                    showMessage(
-                        "Invalid Student ID or password."
-                    );
+                loginButton.disabled =
+                    !puzzleSolved;
 
-                }
-
-                else if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    showMessage(
-                        "Student ID not found."
-                    );
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/wrong-password"
-                ) {
-
-                    showMessage(
-                        "Incorrect password."
-                    );
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/invalid-api-key"
-                ) {
-
-                    showMessage(
-                        "Firebase API key is invalid."
-                    );
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/network-request-failed"
-                ) {
-
-                    showMessage(
-                        "Network connection failed. Please check your internet connection."
-                    );
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/operation-not-allowed"
-                ) {
-
-                    showMessage(
-                        "Firebase Email/Password login is not enabled."
-                    );
-
-                }
-
-                else {
-
-                    showMessage(
-                        "Login failed: " +
-                        error.message
-                    );
-
-                }
-
-            }
-
-            finally {
-
-                // --------------------------------
-                // RESTORE BUTTON
-                // --------------------------------
-
-                if (puzzleSolved) {
-
-                    loginButton.disabled =
-                        false;
-
-                    loginButton.textContent =
-                        "Login";
-
-                } else {
-
-                    loginButton.disabled =
-                        true;
-
-                    loginButton.textContent =
-                        "Complete Puzzle First";
-
-                }
+                loginButton.textContent =
+                    "Login";
 
             }
 
@@ -890,10 +737,10 @@ if (loginForm) {
 }
 
 
-// ============================================
-// FINAL LOG
-// ============================================
-
 console.log(
     "R Mohan Digital Student Login loaded successfully."
+);
+
+console.log(
+    "Student puzzle is active only on login.html."
 );
