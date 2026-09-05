@@ -2,19 +2,15 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Login | R Mohan Digital</title>
 
-    <link
-        rel="stylesheet"
-        href="css/style.css">
-
+    <link rel="stylesheet"
+          href="css/style.css">
 
     <style>
 
@@ -22,17 +18,12 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
             min-height: 100vh;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             padding: 20px;
@@ -49,15 +40,13 @@
                 );
         }
 
-
-        /* ==============================
+        /* ==========================
            LOGIN CONTAINER
-        ============================== */
+        ========================== */
 
         .login-container {
 
             width: 450px;
-
             max-width: 100%;
 
             background: white;
@@ -73,30 +62,29 @@
             text-align: center;
         }
 
-
-        /* ==============================
+        /* ==========================
            LOGO
-        ============================== */
+        ========================== */
 
         .logo-circle {
 
             width: 65px;
-
             height: 65px;
 
-            margin: 0 auto 15px;
+            margin:
+                0 auto 15px;
 
             display: flex;
 
             align-items: center;
-
             justify-content: center;
 
             border-radius: 50%;
 
             background: #0f172a;
 
-            border: 3px solid #2563eb;
+            border:
+                3px solid #2563eb;
 
             color: #00e5ff;
 
@@ -109,30 +97,29 @@
                 rgba(37, 99, 235, 0.35);
         }
 
-
         .login-container h1 {
 
             color: #2563eb;
 
-            margin: 0 0 8px;
+            margin:
+                0 0 8px;
 
             font-size: 27px;
         }
-
 
         .subtitle {
 
             color: #666;
 
-            margin: 0 0 25px;
+            margin:
+                0 0 25px;
 
             font-size: 14px;
         }
 
-
-        /* ==============================
+        /* ==========================
            ROLE TITLE
-        ============================== */
+        ========================== */
 
         .role-title {
 
@@ -147,10 +134,9 @@
             margin-bottom: 10px;
         }
 
-
-        /* ==============================
+        /* ==========================
            ROLE SELECTION
-        ============================== */
+        ========================== */
 
         .role-selection {
 
@@ -163,7 +149,6 @@
 
             margin-bottom: 25px;
         }
-
 
         .role-btn {
 
@@ -189,12 +174,13 @@
             transition: 0.25s;
         }
 
-
         .role-btn:hover {
 
-            border-color: #2563eb;
+            border-color:
+                #2563eb;
 
-            color: #2563eb;
+            color:
+                #2563eb;
 
             transform:
                 translateY(-2px);
@@ -204,10 +190,10 @@
                 rgba(37, 99, 235, 0.12);
         }
 
-
         .role-btn.selected {
 
-            border-color: #2563eb;
+            border-color:
+                #2563eb;
 
             background:
                 rgba(
@@ -217,7 +203,8 @@
                     0.10
                 );
 
-            color: #2563eb;
+            color:
+                #2563eb;
 
             box-shadow:
                 0 0 15px
@@ -229,16 +216,14 @@
                 );
         }
 
-
-        /* ==============================
+        /* ==========================
            FORM
-        ============================== */
+        ========================== */
 
         .login-form {
 
             text-align: left;
         }
-
 
         .login-form label {
 
@@ -252,7 +237,6 @@
 
             font-size: 14px;
         }
-
 
         .login-form input {
 
@@ -277,7 +261,6 @@
             transition: 0.2s;
         }
 
-
         .login-form input:focus {
 
             border-color:
@@ -293,10 +276,9 @@
                 );
         }
 
-
-        /* ==============================
+        /* ==========================
            PASSWORD
-        ============================== */
+        ========================== */
 
         .password-wrapper {
 
@@ -305,12 +287,10 @@
             width: 100%;
         }
 
-
         .password-wrapper input {
 
             padding-right: 50px;
         }
-
 
         .toggle-password {
 
@@ -324,16 +304,15 @@
                 translateY(-50%);
 
             width: 35px;
-
             height: 35px;
 
             padding: 0;
-
             margin: 0;
 
             border: none;
 
-            background: transparent;
+            background:
+                transparent;
 
             cursor: pointer;
 
@@ -342,20 +321,48 @@
             display: flex;
 
             align-items: center;
-
             justify-content: center;
         }
 
+        /* ==========================
+           FORGOT PASSWORD
+        ========================== */
 
-        .toggle-password:hover {
+        .forgot-wrapper {
 
-            background: transparent;
+            text-align: right;
+
+            margin-top: -8px;
+
+            margin-bottom: 18px;
         }
 
+        .forgot-btn {
 
-        /* ==============================
+            border: none;
+
+            background: transparent;
+
+            color: #2563eb;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            padding: 0;
+        }
+
+        .forgot-btn:hover {
+
+            text-decoration:
+                underline;
+        }
+
+        /* ==========================
            LOGIN BUTTON
-        ============================== */
+        ========================== */
 
         .login-btn-main {
 
@@ -367,7 +374,8 @@
 
             border-radius: 8px;
 
-            background: #0f172a;
+            background:
+                #0f172a;
 
             color: white;
 
@@ -380,10 +388,10 @@
             transition: 0.3s;
         }
 
-
         .login-btn-main:hover {
 
-            background: #2563eb;
+            background:
+                #2563eb;
 
             box-shadow:
                 0 8px 20px
@@ -395,10 +403,17 @@
                 );
         }
 
+        .login-btn-main:disabled {
 
-        /* ==============================
+            opacity: 0.6;
+
+            cursor:
+                not-allowed;
+        }
+
+        /* ==========================
            MESSAGE
-        ============================== */
+        ========================== */
 
         .message {
 
@@ -409,12 +424,13 @@
             font-size: 14px;
 
             font-weight: 600;
+
+            line-height: 1.5;
         }
 
-
-        /* ==============================
+        /* ==========================
            REGISTER
-        ============================== */
+        ========================== */
 
         .register-link {
 
@@ -425,16 +441,17 @@
             font-size: 14px;
         }
 
-
         .register-link a {
 
-            color: #2563eb;
+            color:
+                #2563eb;
 
-            text-decoration: none;
+            text-decoration:
+                none;
 
-            font-weight: 600;
+            font-weight:
+                600;
         }
-
 
         .register-link a:hover {
 
@@ -442,10 +459,9 @@
                 underline;
         }
 
-
-        /* ==============================
+        /* ==========================
            HOME
-        ============================== */
+        ========================== */
 
         .back-home {
 
@@ -453,13 +469,14 @@
 
             margin-top: 15px;
 
-            color: #2563eb;
+            color:
+                #2563eb;
 
-            text-decoration: none;
+            text-decoration:
+                none;
 
             font-size: 14px;
         }
-
 
         .back-home:hover {
 
@@ -467,34 +484,35 @@
                 underline;
         }
 
-
-        /* ==============================
+        /* ==========================
            MOBILE
-        ============================== */
+        ========================== */
 
         @media (max-width: 500px) {
 
             .login-container {
 
-                padding: 28px 20px;
+                padding:
+                    28px 20px;
 
-                border-radius: 15px;
+                border-radius:
+                    15px;
             }
-
 
             .login-container h1 {
 
-                font-size: 23px;
+                font-size:
+                    23px;
             }
-
 
             .role-btn {
 
-                font-size: 12px;
+                font-size:
+                    12px;
 
-                min-height: 50px;
+                min-height:
+                    50px;
             }
-
         }
 
     </style>
@@ -504,13 +522,11 @@
 
 <body>
 
-
     <div class="login-container">
-
 
         <!-- ==========================
              LOGO
-        =========================== -->
+        ========================== -->
 
         <div class="logo-circle">
             RM
@@ -529,7 +545,7 @@
 
         <!-- ==========================
              ROLE SELECTION
-        =========================== -->
+        ========================== -->
 
         <div class="role-title">
             Select Login Type
@@ -537,7 +553,6 @@
 
 
         <div class="role-selection">
-
 
             <!-- OWNER -->
 
@@ -586,22 +601,22 @@
 
             </button>
 
-
         </div>
 
 
         <!-- ==========================
              LOGIN FORM
-        =========================== -->
+        ========================== -->
 
         <form
             id="loginForm"
             class="login-form">
 
 
-            <!-- EMAIL -->
+            <!-- LOGIN ID LABEL -->
 
             <label
+                id="loginIdLabel"
                 for="loginEmail">
 
                 Email Address
@@ -609,11 +624,13 @@
             </label>
 
 
+            <!-- LOGIN ID -->
+
             <input
-                type="email"
+                type="text"
                 id="loginEmail"
                 placeholder="Enter your email"
-                autocomplete="email"
+                autocomplete="username"
                 required
             >
 
@@ -631,7 +648,6 @@
             <div
                 class="password-wrapper">
 
-
                 <input
                     type="password"
                     id="loginPassword"
@@ -644,12 +660,28 @@
                 <button
                     type="button"
                     class="toggle-password"
-                    onclick="toggleLoginPassword()">
+                    id="togglePassword">
 
                     👁
 
                 </button>
 
+            </div>
+
+
+            <!-- FORGOT PASSWORD -->
+
+            <div
+                class="forgot-wrapper">
+
+                <button
+                    type="button"
+                    id="forgotPasswordBtn"
+                    class="forgot-btn">
+
+                    Forgot Password?
+
+                </button>
 
             </div>
 
@@ -664,13 +696,12 @@
 
             </button>
 
-
         </form>
 
 
         <!-- ==========================
              MESSAGE
-        =========================== -->
+        ========================== -->
 
         <div
             id="loginMessage"
@@ -680,7 +711,7 @@
 
         <!-- ==========================
              REGISTER
-        =========================== -->
+        ========================== -->
 
         <p class="register-link">
 
@@ -695,7 +726,7 @@
 
         <!-- ==========================
              HOME
-        =========================== -->
+        ========================== -->
 
         <a
             href="index.html"
@@ -705,13 +736,12 @@
 
         </a>
 
-
     </div>
 
 
     <!-- ==========================
          FIREBASE AUTH
-    =========================== -->
+    ========================== -->
 
     <script
         type="module"
