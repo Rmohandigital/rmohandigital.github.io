@@ -1,42 +1,18 @@
 // ============================================================
 // R MOHAN DIGITAL
-// STUDENT REGISTRATION - FINAL VERSION
-// ============================================================
-// OTP VERIFICATION REMOVED
+// FINAL STUDENT REGISTRATION SYSTEM
 //
-// Registration flow:
-//
-// Name
-// Email
-// Phone
-// Password
-// Course
-// ₹50 UPI / QR
+// Student registration:
+// Name + Email + Password + Phone + Course
+// ₹50 UPI / QR Payment
 // Payment Screenshot
-//        ↓
-// Firebase creates account
-//        ↓
-// Student ID generated
-//        ↓
-// SM12345678
-//        ↓
-// Student status = Pending
-//        ↓
-// Mentor approves
-//        ↓
-// Student logs in using:
-// Student ID + Password
+// No OTP
+// Automatic Student ID: SM12345678
+// Mentor approval required
+// Go To Login -> Student ID automatically filled
 // ============================================================
 
-
-// ============================================================
-// FIREBASE
-// ============================================================
-
-import {
-    auth,
-    db
-} from "../firebase.js";
+import { auth, db } from "../firebase.js";
 
 import {
     createUserWithEmailAndPassword,
@@ -48,17 +24,17 @@ import {
     doc,
     setDoc,
     getDoc,
+    getDocs,
     collection,
     query,
     where,
-    getDocs,
     serverTimestamp
 } from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
 // ============================================================
-// HTML ELEMENTS
+// ELEMENTS
 // ============================================================
 
 const nameInput =
@@ -76,52 +52,35 @@ const phoneInput =
 const courseInput =
     document.getElementById("course");
 
+const paymentScreenshotInput =
+    document.getElementById("paymentScreenshot");
+
 const registerBtn =
     document.getElementById("registerBtn");
 
-const paymentScreenshot =
-    document.getElementById("paymentScreenshot");
-
 
 // ============================================================
-// CHECK REQUIRED ELEMENTS
+// CHECK ELEMENTS
 // ============================================================
 
-if (!nameInput) {
-    console.error("Name input not found.");
-}
+if (!nameInput ||
+    !emailInput ||
+    !passwordInput ||
+    !phoneInput ||
+    !courseInput ||
+    !paymentScreenshotInput ||
+    !registerBtn) {
 
-if (!emailInput) {
-    console.error("Email input not found.");
-}
-
-if (!passwordInput) {
-    console.error("Password input not found.");
-}
-
-if (!phoneInput) {
-    console.error("Phone input not found.");
-}
-
-if (!courseInput) {
-    console.error("Course input not found.");
-}
-
-if (!registerBtn) {
-    console.error("Register button not found.");
+    console.error(
+        "Registration form elements are missing."
+    );
 }
 
 
 // ============================================================
-// GENERATE STUDENT ID
-// ============================================================
-//
+// STUDENT ID GENERATOR
 // Example:
-//
 // SM12345678
-//
-// SM = Student Mohan
-// 8 digits = unique random number
 // ============================================================
 
 function generateStudentID() {
@@ -137,42 +96,27 @@ function generateStudentID() {
 
 
 // ============================================================
-// CHECK WHETHER STUDENT ID ALREADY EXISTS
+// CHECK IF STUDENT ID ALREADY EXISTS
 // ============================================================
 
 async function studentIDExists(studentID) {
 
     try {
 
-        const usersQuery =
+        const q =
             query(
                 collection(db, "users"),
-                where("studentId", "==", studentID)
+                where(
+                    "studentId",
+                    "==",
+                    studentID
+                )
             );
 
-        const usersSnapshot =
-            await getDocs(usersQuery);
+        const snapshot =
+            await getDocs(q);
 
-        if (!usersSnapshot.empty) {
-            return true;
-        }
-
-
-        const studentsQuery =
-            query(
-                collection(db, "students"),
-                where("studentId", "==", studentID)
-            );
-
-        const studentsSnapshot =
-            await getDocs(studentsQuery);
-
-        if (!studentsSnapshot.empty) {
-            return true;
-        }
-
-
-        return false;
+        return !snapshot.empty;
 
     } catch (error) {
 
@@ -181,7 +125,7 @@ async function studentIDExists(studentID) {
             error
         );
 
-        return false;
+        throw error;
     }
 }
 
@@ -192,12 +136,10 @@ async function studentIDExists(studentID) {
 
 async function createUniqueStudentID() {
 
-    let studentID = "";
-
+    let studentID;
     let exists = true;
 
     let attempts = 0;
-
 
     while (exists && attempts < 10) {
 
@@ -205,11 +147,12 @@ async function createUniqueStudentID() {
             generateStudentID();
 
         exists =
-            await studentIDExists(studentID);
+            await studentIDExists(
+                studentID
+            );
 
         attempts++;
     }
-
 
     if (exists) {
 
@@ -218,88 +161,22 @@ async function createUniqueStudentID() {
         );
     }
 
-
     return studentID;
 }
 
 
 // ============================================================
-// NORMALIZE PHONE NUMBER
-// ============================================================
-
-function normalizePhone(phone) {
-
-    let value =
-        String(phone || "")
-            .replace(/\D/g, "");
-
-    // Remove India country code if entered
-    if (value.startsWith("91") && value.length === 12) {
-
-        value =
-            value.substring(2);
-    }
-
-    return value;
-}
-
-
-// ============================================================
-// VALIDATE PHONE
-// ============================================================
-
-function validatePhone(phone) {
-
-    const cleanPhone =
-        normalizePhone(phone);
-
-    return /^[6-9][0-9]{9}$/.test(
-        cleanPhone
-    );
-}
-
-
-// ============================================================
-// VALIDATE PASSWORD
-// ============================================================
-
-function validatePassword(password) {
-
-    return (
-        typeof password === "string" &&
-        password.length >= 6
-    );
-}
-
-
-// ============================================================
-// VALIDATE EMAIL
-// ============================================================
-
-function validateEmail(email) {
-
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(email);
-}
-
-
-// ============================================================
 // COMPRESS PAYMENT SCREENSHOT
-// ============================================================
 //
-// Firebase Storage is NOT required here.
-//
-// The screenshot is compressed and stored in Firestore.
-//
-// This avoids the Storage "Upgrade" problem.
-//
-// Maximum target size is kept below Firestore document limit.
+// Firebase Storage is NOT required.
+// The screenshot is converted to a small JPEG
+// and saved inside Firestore.
 // ============================================================
 
 function compressImage(
     file,
-    maxWidth = 1000,
-    maxHeight = 1000,
+    maxWidth = 900,
+    maxHeight = 900,
     quality = 0.65
 ) {
 
@@ -308,40 +185,19 @@ function compressImage(
 
             if (!file) {
 
-                reject(
-                    new Error(
-                        "Payment screenshot is required."
-                    )
-                );
+                resolve("");
 
                 return;
             }
-
-
-            if (
-                !file.type.startsWith("image/")
-            ) {
-
-                reject(
-                    new Error(
-                        "Please upload a valid image."
-                    )
-                );
-
-                return;
-            }
-
 
             const reader =
                 new FileReader();
-
 
             reader.onload =
                 function(event) {
 
                     const img =
                         new Image();
-
 
                     img.onload =
                         function() {
@@ -353,87 +209,83 @@ function compressImage(
                                 img.height;
 
 
-                            // Resize
+                            // ------------------------------
+                            // RESIZE
+                            // ------------------------------
+
                             if (
-                                width > maxWidth ||
-                                height > maxHeight
+                                width >
+                                maxWidth
                             ) {
 
-                                const ratio =
-                                    Math.min(
-                                        maxWidth / width,
-                                        maxHeight / height
-                                    );
+                                height =
+                                    height *
+                                    (maxWidth /
+                                    width);
 
                                 width =
-                                    Math.round(
-                                        width * ratio
-                                    );
-
-                                height =
-                                    Math.round(
-                                        height * ratio
-                                    );
+                                    maxWidth;
                             }
 
+                            if (
+                                height >
+                                maxHeight
+                            ) {
+
+                                width =
+                                    width *
+                                    (maxHeight /
+                                    height);
+
+                                height =
+                                    maxHeight;
+                            }
+
+
+                            // ------------------------------
+                            // CANVAS
+                            // ------------------------------
 
                             const canvas =
                                 document.createElement(
                                     "canvas"
                                 );
 
-
                             canvas.width =
-                                width;
+                                Math.round(width);
 
                             canvas.height =
-                                height;
+                                Math.round(height);
 
 
-                            const context =
+                            const ctx =
                                 canvas.getContext(
                                     "2d"
                                 );
 
 
-                            context.drawImage(
+                            ctx.drawImage(
                                 img,
                                 0,
                                 0,
-                                width,
-                                height
+                                canvas.width,
+                                canvas.height
                             );
 
 
-                            const compressed =
+                            // ------------------------------
+                            // JPEG
+                            // ------------------------------
+
+                            const dataURL =
                                 canvas.toDataURL(
                                     "image/jpeg",
                                     quality
                                 );
 
-
-                            // Safety check
-                            if (
-                                compressed.length >
-                                850000
-                            ) {
-
-                                const smaller =
-                                    canvas.toDataURL(
-                                        "image/jpeg",
-                                        0.45
-                                    );
-
-                                resolve(
-                                    smaller
-                                );
-
-                            } else {
-
-                                resolve(
-                                    compressed
-                                );
-                            }
+                            resolve(
+                                dataURL
+                            );
                         };
 
 
@@ -442,9 +294,10 @@ function compressImage(
 
                             reject(
                                 new Error(
-                                    "Unable to read the screenshot."
+                                    "Unable to read the payment screenshot."
                                 )
                             );
+
                         };
 
 
@@ -458,9 +311,10 @@ function compressImage(
 
                     reject(
                         new Error(
-                            "Unable to read the selected file."
+                            "Unable to read selected file."
                         )
                     );
+
                 };
 
 
@@ -471,290 +325,571 @@ function compressImage(
 
 
 // ============================================================
-// SHOW MESSAGE
+// VALIDATE PAYMENT SCREENSHOT
 // ============================================================
 
-function showMessage(
-    message,
-    type = "error"
-) {
+function validatePaymentScreenshot() {
 
-    let box =
-        document.getElementById(
-            "registrationMessage"
+    const file =
+        paymentScreenshotInput.files[0];
+
+    if (!file) {
+
+        alert(
+            "Please upload your payment screenshot."
         );
 
-
-    if (!box) {
-
-        box =
-            document.createElement("div");
-
-        box.id =
-            "registrationMessage";
-
-
-        box.style.marginTop =
-            "15px";
-
-        box.style.padding =
-            "12px";
-
-        box.style.borderRadius =
-            "10px";
-
-        box.style.fontSize =
-            "14px";
-
-        box.style.textAlign =
-            "center";
-
-
-        registerBtn
-            .parentElement
-            .appendChild(box);
+        return false;
     }
 
 
-    box.textContent =
-        message;
+    // Maximum original file size = 8 MB
 
+    if (
+        file.size >
+        8 * 1024 * 1024
+    ) {
 
-    if (type === "success") {
+        alert(
+            "Payment screenshot must be 8 MB or smaller."
+        );
 
-        box.style.background =
-            "#dcfce7";
-
-        box.style.color =
-            "#166534";
-
-        box.style.border =
-            "1px solid #86efac";
-
-    } else {
-
-        box.style.background =
-            "#fee2e2";
-
-        box.style.color =
-            "#991b1b";
-
-        box.style.border =
-            "1px solid #fca5a5";
+        return false;
     }
+
+
+    // Allowed types
+
+    const allowedTypes = [
+        "image/png",
+        "image/jpeg",
+        "image/jpg"
+    ];
+
+    if (
+        !allowedTypes.includes(
+            file.type
+        )
+    ) {
+
+        alert(
+            "Please upload a PNG or JPG payment screenshot."
+        );
+
+        return false;
+    }
+
+    return true;
 }
 
 
 // ============================================================
-// DISABLE REGISTER BUTTON
+// BASIC VALIDATION
 // ============================================================
 
-function setRegisterLoading(
-    loading
+function validateForm() {
+
+    const name =
+        nameInput.value.trim();
+
+    const email =
+        emailInput.value.trim();
+
+    const password =
+        passwordInput.value;
+
+    const phone =
+        phoneInput.value.trim();
+
+    const course =
+        courseInput.value;
+
+
+    // ------------------------------
+    // NAME
+    // ------------------------------
+
+    if (!name) {
+
+        alert(
+            "Please enter your full name."
+        );
+
+        nameInput.focus();
+
+        return false;
+    }
+
+
+    if (name.length < 2) {
+
+        alert(
+            "Please enter a valid name."
+        );
+
+        nameInput.focus();
+
+        return false;
+    }
+
+
+    // ------------------------------
+    // EMAIL
+    // ------------------------------
+
+    if (!email) {
+
+        alert(
+            "Please enter your email address."
+        );
+
+        emailInput.focus();
+
+        return false;
+    }
+
+
+    // Simple email validation
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (
+        !emailPattern.test(email)
+    ) {
+
+        alert(
+            "Please enter a valid email address."
+        );
+
+        emailInput.focus();
+
+        return false;
+    }
+
+
+    // ------------------------------
+    // PASSWORD
+    // ------------------------------
+
+    if (!password) {
+
+        alert(
+            "Please create a password."
+        );
+
+        passwordInput.focus();
+
+        return false;
+    }
+
+
+    if (password.length < 6) {
+
+        alert(
+            "Password must contain at least 6 characters."
+        );
+
+        passwordInput.focus();
+
+        return false;
+    }
+
+
+    // ------------------------------
+    // PHONE
+    // ------------------------------
+
+    if (!phone) {
+
+        alert(
+            "Please enter your phone number."
+        );
+
+        phoneInput.focus();
+
+        return false;
+    }
+
+
+    // Remove spaces / symbols
+    const cleanPhone =
+        phone.replace(
+            /[\s\-()+]/g,
+            ""
+        );
+
+
+    if (
+        cleanPhone.length < 10
+    ) {
+
+        alert(
+            "Please enter a valid phone number."
+        );
+
+        phoneInput.focus();
+
+        return false;
+    }
+
+
+    // ------------------------------
+    // COURSE
+    // ------------------------------
+
+    if (!course) {
+
+        alert(
+            "Please select a course."
+        );
+
+        courseInput.focus();
+
+        return false;
+    }
+
+
+    // ------------------------------
+    // PAYMENT
+    // ------------------------------
+
+    if (
+        !validatePaymentScreenshot()
+    ) {
+
+        return false;
+    }
+
+
+    return true;
+}
+
+
+// ============================================================
+// SHOW SUCCESS SCREEN
+// ============================================================
+
+function showRegistrationSuccess(
+    studentID,
+    studentName
 ) {
 
-    if (!registerBtn) {
+    const container =
+        document.querySelector(
+            ".register-container"
+        );
+
+
+    if (!container) {
+
+        alert(
+            "Registration completed!\n\n" +
+            "Student ID: " +
+            studentID
+        );
+
+        window.location.href =
+            "login.html?studentId=" +
+            encodeURIComponent(
+                studentID
+            );
+
         return;
     }
 
 
-    if (loading) {
+    // --------------------------------------------
+    // SUCCESS SCREEN
+    // --------------------------------------------
 
-        registerBtn.disabled =
-            true;
+    container.innerHTML = `
 
-        registerBtn.dataset.originalText =
-            registerBtn.textContent;
+        <div style="
+            grid-column:1/-1;
+            text-align:center;
+            padding:50px 25px;
+        ">
 
-        registerBtn.textContent =
-            "Registering...";
+            <div style="
+                width:85px;
+                height:85px;
+                margin:0 auto 20px;
+                border-radius:50%;
+                background:#16a34a;
+                color:white;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:42px;
+                box-shadow:0 0 30px rgba(22,163,74,.4);
+            ">
+                ✓
+            </div>
 
-        registerBtn.style.opacity =
-            "0.7";
 
-        registerBtn.style.cursor =
-            "not-allowed";
+            <h1 style="
+                color:#2563EB;
+                margin-bottom:12px;
+            ">
+                Registration Completed!
+            </h1>
 
-    } else {
 
-        registerBtn.disabled =
-            false;
+            <p style="
+                color:#555;
+                font-size:16px;
+                margin-bottom:25px;
+            ">
+                Welcome ${escapeHTML(studentName)}.
+            </p>
 
-        registerBtn.textContent =
-            registerBtn.dataset.originalText ||
-            "Register";
 
-        registerBtn.style.opacity =
-            "1";
+            <div style="
+                max-width:450px;
+                margin:0 auto;
+                background:#0f172a;
+                color:white;
+                padding:25px;
+                border-radius:15px;
+                box-shadow:0 0 25px rgba(37,99,235,.3);
+            ">
 
-        registerBtn.style.cursor =
-            "pointer";
+                <p style="
+                    color:#cbd5e1;
+                    margin-bottom:8px;
+                ">
+                    Your Student ID
+                </p>
+
+
+                <div style="
+                    font-size:30px;
+                    font-weight:bold;
+                    letter-spacing:2px;
+                    color:#38bdf8;
+                    margin-bottom:20px;
+                ">
+                    ${escapeHTML(studentID)}
+                </div>
+
+
+                <p style="
+                    color:#cbd5e1;
+                    line-height:1.6;
+                ">
+                    Save this Student ID.
+                    You will use it with your password
+                    to log in.
+                </p>
+
+            </div>
+
+
+            <div style="
+                max-width:450px;
+                margin:20px auto;
+                padding:15px;
+                border-radius:10px;
+                background:#eff6ff;
+                color:#1e3a8a;
+            ">
+
+                ⏳
+                <strong>
+                    Please wait for mentor approval.
+                </strong>
+
+                <br>
+
+                You can log in after your registration
+                has been approved.
+
+            </div>
+
+
+            <button
+                id="goToStudentLogin"
+                style="
+                    width:100%;
+                    max-width:450px;
+                    padding:15px;
+                    border:none;
+                    border-radius:10px;
+                    background:#2563EB;
+                    color:white;
+                    font-size:17px;
+                    font-weight:bold;
+                    cursor:pointer;
+                    margin-top:10px;
+                "
+            >
+                🎓 Go To Student Login
+            </button>
+
+
+            <p style="
+                margin-top:15px;
+                color:#777;
+                font-size:13px;
+            ">
+                Your Student ID will automatically
+                appear on the login page.
+            </p>
+
+        </div>
+    `;
+
+
+    // --------------------------------------------
+    // GO TO LOGIN
+    // --------------------------------------------
+
+    const loginButton =
+        document.getElementById(
+            "goToStudentLogin"
+        );
+
+
+    if (loginButton) {
+
+        loginButton.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "login.html?studentId=" +
+                    encodeURIComponent(
+                        studentID
+                    );
+
+            }
+        );
     }
 }
 
 
 // ============================================================
-// MAIN REGISTRATION
+// HTML ESCAPE
+// ============================================================
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replace(
+            /[&<>"']/g,
+            character => {
+
+                const map = {
+
+                    "&":"&amp;",
+                    "<":"&lt;",
+                    ">":"&gt;",
+                    '"':"&quot;",
+                    "'":"&#039;"
+
+                };
+
+                return map[
+                    character
+                ];
+            }
+        );
+}
+
+
+// ============================================================
+// REGISTER STUDENT
 // ============================================================
 
 async function registerStudent() {
 
-    // --------------------------------------------------------
-    // Prevent double click
-    // --------------------------------------------------------
+    // --------------------------------------------
+    // VALIDATE
+    // --------------------------------------------
 
-    if (
-        registerBtn &&
-        registerBtn.disabled
-    ) {
+    if (!validateForm()) {
         return;
     }
 
 
+    // --------------------------------------------
+    // GET VALUES
+    // --------------------------------------------
+
+    const name =
+        nameInput.value.trim();
+
+    const email =
+        emailInput.value.trim()
+            .toLowerCase();
+
+    const password =
+        passwordInput.value;
+
+    const phone =
+        phoneInput.value.trim();
+
+    const course =
+        courseInput.value;
+
+
+    // --------------------------------------------
+    // DISABLE BUTTON
+    // --------------------------------------------
+
+    registerBtn.disabled = true;
+
+    registerBtn.textContent =
+        "Creating Registration...";
+
+
+    let createdUser = null;
+
+
     try {
 
-        setRegisterLoading(true);
-
-
         // ====================================================
-        // GET VALUES
+        // 1. CHECK EMAIL BEFORE CREATING ACCOUNT
         // ====================================================
 
-        const name =
-            nameInput.value.trim();
+        registerBtn.textContent =
+            "Checking information...";
 
-        const email =
-            emailInput.value
-                .trim()
-                .toLowerCase();
 
-        const password =
-            passwordInput.value;
-
-        const phone =
-            normalizePhone(
-                phoneInput.value
+        const existingEmailQuery =
+            query(
+                collection(db, "users"),
+                where(
+                    "email",
+                    "==",
+                    email
+                )
             );
 
-        const course =
-            courseInput.value;
 
-
-        // ====================================================
-        // BASIC VALIDATION
-        // ====================================================
-
-        if (!name) {
-
-            showMessage(
-                "Please enter your full name."
+        const existingEmailSnapshot =
+            await getDocs(
+                existingEmailQuery
             );
 
-            setRegisterLoading(false);
-
-            return;
-        }
-
-
-        if (!validateEmail(email)) {
-
-            showMessage(
-                "Please enter a valid email address."
-            );
-
-            setRegisterLoading(false);
-
-            return;
-        }
-
-
-        if (!validatePassword(password)) {
-
-            showMessage(
-                "Password must contain at least 6 characters."
-            );
-
-            setRegisterLoading(false);
-
-            return;
-        }
-
-
-        if (!validatePhone(phone)) {
-
-            showMessage(
-                "Please enter a valid 10-digit Indian mobile number."
-            );
-
-            setRegisterLoading(false);
-
-            return;
-        }
-
-
-        if (!course) {
-
-            showMessage(
-                "Please select your course."
-            );
-
-            setRegisterLoading(false);
-
-            return;
-        }
-
-
-        // ====================================================
-        // PAYMENT SCREENSHOT
-        // ====================================================
 
         if (
-            !paymentScreenshot ||
-            !paymentScreenshot.files ||
-            !paymentScreenshot.files.length
+            !existingEmailSnapshot.empty
         ) {
 
-            showMessage(
-                "Please upload your ₹50 payment screenshot."
+            throw new Error(
+                "This email is already registered. Please use another email or go to Login."
             );
-
-            setRegisterLoading(false);
-
-            return;
-        }
-
-
-        const screenshotFile =
-            paymentScreenshot.files[0];
-
-
-        // ====================================================
-        // LIMIT ORIGINAL FILE
-        // ====================================================
-
-        if (
-            screenshotFile.size >
-            10 * 1024 * 1024
-        ) {
-
-            showMessage(
-                "Payment screenshot is too large. Please select an image below 10 MB."
-            );
-
-            setRegisterLoading(false);
-
-            return;
         }
 
 
         // ====================================================
-        // CREATE UNIQUE STUDENT ID
+        // 2. CREATE UNIQUE STUDENT ID
         // ====================================================
 
-        showMessage(
-            "Creating your Student ID...",
-            "success"
-        );
+        registerBtn.textContent =
+            "Generating Student ID...";
 
 
         const studentID =
@@ -768,137 +903,138 @@ async function registerStudent() {
 
 
         // ====================================================
-        // COMPRESS SCREENSHOT
+        // 3. COMPRESS PAYMENT SCREENSHOT
         // ====================================================
 
-        showMessage(
-            "Preparing payment screenshot...",
-            "success"
-        );
+        registerBtn.textContent =
+            "Processing Payment Screenshot...";
 
 
-        const paymentImage =
+        const paymentFile =
+            paymentScreenshotInput.files[0];
+
+
+        const paymentScreenshot =
             await compressImage(
-                screenshotFile
+                paymentFile,
+                900,
+                900,
+                0.60
             );
 
 
-        // ====================================================
-        // CREATE INTERNAL FIREBASE LOGIN EMAIL
-        // ====================================================
-        //
-        // IMPORTANT:
-        //
-        // The student will NOT see this email.
-        //
-        // They will login using:
-        //
-        // SM12345678
-        // +
-        // Password
-        //
-        // The internal email is only used by Firebase
-        // Authentication.
-        //
-        // ====================================================
+        if (
+            !paymentScreenshot
+        ) {
 
-        const firebaseLoginEmail =
-            studentID.toLowerCase() +
-            "@student.rmdigital.local";
+            throw new Error(
+                "Payment screenshot could not be processed."
+            );
+        }
 
 
-        // ====================================================
-        // CREATE FIREBASE AUTH ACCOUNT
-        // ====================================================
-
-        showMessage(
-            "Creating your account...",
-            "success"
+        console.log(
+            "Payment screenshot processed."
         );
 
 
-        const userCredential =
+        // ====================================================
+        // 4. CREATE FIREBASE AUTH ACCOUNT
+        //
+        // IMPORTANT:
+        // We use the student's REAL EMAIL.
+        //
+        // This allows Forgot Password to send the
+        // reset link to the student's registered email.
+        // ====================================================
+
+        registerBtn.textContent =
+            "Creating Student Account...";
+
+
+        const credential =
             await createUserWithEmailAndPassword(
                 auth,
-                firebaseLoginEmail,
+                email,
                 password
             );
 
 
-        const user =
-            userCredential.user;
+        createdUser =
+            credential.user;
 
 
         const uid =
-            user.uid;
+            createdUser.uid;
 
 
         console.log(
-            "Firebase UID:",
+            "Firebase Auth UID:",
             uid
         );
 
 
         // ====================================================
-        // USERS PROFILE
+        // 5. USER PROFILE
         // ====================================================
+
+        registerBtn.textContent =
+            "Saving Student Profile...";
+
 
         const userData = {
 
             uid: uid,
 
-            studentId:
-                studentID,
+            studentId: studentID,
 
-            name:
-                name,
+            name: name,
 
-            email:
-                email,
+            email: email,
 
-            loginEmail:
-                firebaseLoginEmail,
+            // Used by the login system
+            loginEmail: email,
 
-            phone:
-                phone,
+            phone: phone,
 
-            course:
-                course,
+            course: course,
 
-            role:
-                "student",
+            role: "student",
 
-            status:
-                "pending",
+            // Mentor must approve
+            status: "pending",
 
-            active:
-                false,
+            active: false,
 
-            photoURL:
-                "",
+            photoURL: "",
 
-            assignedFaculty:
-                "",
+            assignedFaculty: "",
 
-            assignedFacultyName:
-                "",
+            assignedFacultyName: "",
 
-            paymentAmount:
-                50,
+            // Payment information
+            paymentAmount: 50,
 
-            paymentStatus:
-                "pending",
+            paymentStatus: "pending",
 
             paymentScreenshot:
-                paymentImage,
+                paymentScreenshot,
+
+            // Registration information
+            registrationType:
+                "Student Registration",
 
             createdAt:
+                serverTimestamp(),
+
+            updatedAt:
                 serverTimestamp()
+
         };
 
 
         // ====================================================
-        // SAVE USERS DOCUMENT
+        // 6. SAVE USERS/{AUTH UID}
         // ====================================================
 
         await setDoc(
@@ -912,60 +1048,10 @@ async function registerStudent() {
 
 
         // ====================================================
-        // STUDENT DOCUMENT
-        // ====================================================
-
-        const studentData = {
-
-            uid:
-                uid,
-
-            studentId:
-                studentID,
-
-            name:
-                name,
-
-            email:
-                email,
-
-            loginEmail:
-                firebaseLoginEmail,
-
-            phone:
-                phone,
-
-            course:
-                course,
-
-            photoURL:
-                "",
-
-            status:
-                "pending",
-
-            assignedFaculty:
-                "",
-
-            assignedFacultyName:
-                "",
-
-            paymentAmount:
-                50,
-
-            paymentStatus:
-                "pending",
-
-            paymentScreenshot:
-                paymentImage,
-
-            createdAt:
-                serverTimestamp()
-        };
-
-
-        // ====================================================
-        // SAVE STUDENT DOCUMENT
+        // 7. SAVE STUDENTS/{AUTH UID}
+        //
+        // Both documents use Firebase Auth UID.
+        // This is important for mentor approval.
         // ====================================================
 
         await setDoc(
@@ -974,168 +1060,64 @@ async function registerStudent() {
                 "students",
                 uid
             ),
-            studentData
+            userData
         );
 
 
         // ====================================================
-        // REGISTRATION COMPLETE
+        // 8. SAVE REGISTRATION LOOKUP
+        //
+        // This gives us an easy way to search by Student ID.
         // ====================================================
 
-        showMessage(
-            "Registration completed successfully!",
-            "success"
+        await setDoc(
+            doc(
+                db,
+                "studentIds",
+                studentID
+            ),
+            {
+
+                studentId:
+                    studentID,
+
+                uid:
+                    uid,
+
+                name:
+                    name,
+
+                email:
+                    email,
+
+                status:
+                    "pending",
+
+                createdAt:
+                    serverTimestamp()
+
+            }
         );
 
 
         // ====================================================
-        // SHOW STUDENT ID
+        // 9. SUCCESS
         // ====================================================
 
-        const successBox =
-            document.createElement("div");
-
-
-        successBox.style.position =
-            "fixed";
-
-        successBox.style.left =
-            "50%";
-
-        successBox.style.top =
-            "50%";
-
-        successBox.style.transform =
-            "translate(-50%, -50%)";
-
-        successBox.style.width =
-            "min(90%, 500px)";
-
-        successBox.style.padding =
-            "30px";
-
-        successBox.style.background =
-            "#ffffff";
-
-        successBox.style.borderRadius =
-            "20px";
-
-        successBox.style.boxShadow =
-            "0 20px 60px rgba(0,0,0,.4)";
-
-        successBox.style.textAlign =
-            "center";
-
-        successBox.style.zIndex =
-            "99999";
-
-
-        successBox.innerHTML = `
-
-            <div style="
-                font-size:50px;
-                margin-bottom:10px;
-            ">
-                ✅
-            </div>
-
-            <h2 style="
-                color:#2563EB;
-                margin-bottom:15px;
-            ">
-                Registration Completed!
-            </h2>
-
-            <p style="
-                color:#444;
-                margin-bottom:10px;
-            ">
-                Your Student ID is:
-            </p>
-
-            <div style="
-                background:#eff6ff;
-                border:2px solid #2563EB;
-                color:#1d4ed8;
-                font-size:28px;
-                font-weight:bold;
-                padding:15px;
-                border-radius:12px;
-                letter-spacing:2px;
-                margin:15px 0;
-            ">
-                ${studentID}
-            </div>
-
-            <p style="
-                color:#555;
-                line-height:1.6;
-            ">
-                Please save this Student ID.
-                <br>
-                You will use this ID and your password
-                to login.
-            </p>
-
-            <p style="
-                color:#d97706;
-                font-weight:bold;
-                margin-top:15px;
-            ">
-                ⏳ Please wait for mentor approval.
-            </p>
-
-            <button
-                id="successLoginButton"
-                style="
-                    margin-top:20px;
-                    width:100%;
-                    padding:14px;
-                    border:none;
-                    border-radius:10px;
-                    background:#2563EB;
-                    color:white;
-                    font-size:16px;
-                    font-weight:bold;
-                    cursor:pointer;
-                "
-            >
-                Go To Login
-            </button>
-
-        `;
-
-
-        document.body.appendChild(
-            successBox
+        console.log(
+            "Student registration saved successfully."
         );
 
 
-        const successLoginButton =
-            document.getElementById(
-                "successLoginButton"
-            );
+        // Firebase account does not need to remain logged in
+        // after registration.
+        await signOut(auth);
 
 
-        successLoginButton.onclick =
-            async function() {
-
-                try {
-
-                    await signOut(auth);
-
-                } catch (e) {
-
-                    console.log(
-                        "Sign out after registration:",
-                        e
-                    );
-                }
-
-
-                window.location.href =
-                    "login.html";
-            };
+        showRegistrationSuccess(
+            studentID,
+            name
+        );
 
 
     } catch (error) {
@@ -1147,104 +1129,89 @@ async function registerStudent() {
 
 
         // ====================================================
-        // FIREBASE ERROR HANDLING
-        // ====================================================
-
-        let message =
-            "Registration failed. Please try again.";
-
-
-        switch (error.code) {
-
-            case "auth/email-already-in-use":
-
-                message =
-                    "This email is already registered. Please use another email.";
-
-                break;
-
-
-            case "auth/weak-password":
-
-                message =
-                    "Password is too weak. Please use at least 6 characters.";
-
-                break;
-
-
-            case "auth/invalid-email":
-
-                message =
-                    "The email address is invalid.";
-
-                break;
-
-
-            case "auth/network-request-failed":
-
-                message =
-                    "Network error. Please check your internet connection.";
-
-                break;
-
-
-            case "permission-denied":
-
-                message =
-                    "Firebase permission denied. Please check Firestore rules.";
-
-                break;
-
-
-            default:
-
-                if (
-                    error.message &&
-                    error.message.includes(
-                        "Missing or insufficient permissions"
-                    )
-                ) {
-
-                    message =
-                        "Firebase Firestore permission denied. Please check your Firestore rules.";
-
-                } else {
-
-                    message =
-                        error.message ||
-                        message;
-                }
-
-                break;
-        }
-
-
-        showMessage(
-            message,
-            "error"
-        );
-
-
-        // ====================================================
-        // IMPORTANT:
-        // If Firestore save fails after Auth account creation,
-        // the Auth account already exists.
+        // IF AUTH ACCOUNT WAS CREATED BUT FIRESTORE FAILED
         // ====================================================
 
         if (
-            error.code ===
-            "permission-denied"
+            createdUser
         ) {
 
-            console.error(
-                "Firestore permission error."
+            console.warn(
+                "Auth account was created. Firestore save may need administrator attention."
             );
         }
 
 
-    } finally {
+        // ====================================================
+        // FIREBASE ERROR MESSAGES
+        // ====================================================
 
-        setRegisterLoading(false);
+        let message =
+            "Registration failed.";
+
+
+        if (
+            error.code ===
+            "auth/email-already-in-use"
+        ) {
+
+            message =
+                "This email is already registered.\n\nPlease use another email or go to Login.";
+
+        } else if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
+
+            message =
+                "The email address is invalid.";
+
+        } else if (
+            error.code ===
+            "auth/weak-password"
+        ) {
+
+            message =
+                "Password is too weak. Please use at least 6 characters.";
+
+        } else if (
+            error.code ===
+            "auth/network-request-failed"
+        ) {
+
+            message =
+                "Network error. Please check your internet connection.";
+
+        } else if (
+            error.code ===
+            "permission-denied"
+        ) {
+
+            message =
+                "Firestore permission denied.\n\nPlease check your Firestore security rules.";
+
+        } else if (
+            error.message
+        ) {
+
+            message =
+                error.message;
+        }
+
+
+        alert(
+            message
+        );
+
+
+        // ====================================================
+        // RESET BUTTON
+        // ====================================================
+
+        registerBtn.disabled = false;
+
+        registerBtn.textContent =
+            "Register";
     }
 }
 
@@ -1266,26 +1233,186 @@ if (registerBtn) {
 // ENTER KEY SUPPORT
 // ============================================================
 
-document.addEventListener(
-    "keydown",
-    function(event) {
+[
+    nameInput,
+    emailInput,
+    passwordInput,
+    phoneInput
+].forEach(input => {
 
-        if (
-            event.key === "Enter" &&
-            document.activeElement !==
-            registerBtn
-        ) {
+    if (!input) return;
 
-            // Don't submit while typing
-            // in textarea-like elements.
+    input.addEventListener(
+        "keydown",
+        event => {
 
             if (
-                document.activeElement.tagName ===
-                "INPUT"
+                event.key === "Enter"
             ) {
+
+                event.preventDefault();
+
+                registerStudent();
+            }
+        }
+    );
+
+});
+
+
+// ============================================================
+// PAYMENT SCREENSHOT PREVIEW / VALIDATION
+// ============================================================
+
+if (
+    paymentScreenshotInput
+) {
+
+    paymentScreenshotInput.addEventListener(
+        "change",
+        () => {
+
+            const file =
+                paymentScreenshotInput.files[0];
+
+            if (!file) {
+                return;
+            }
+
+
+            if (
+                file.size >
+                8 * 1024 * 1024
+            ) {
+
+                alert(
+                    "Payment screenshot must be 8 MB or smaller."
+                );
+
+                paymentScreenshotInput.value =
+                    "";
 
                 return;
             }
+
+
+            const allowedTypes = [
+                "image/png",
+                "image/jpeg",
+                "image/jpg"
+            ];
+
+
+            if (
+                !allowedTypes.includes(
+                    file.type
+                )
+            ) {
+
+                alert(
+                    "Please select a PNG or JPG image."
+                );
+
+                paymentScreenshotInput.value =
+                    "";
+
+                return;
+            }
+
+
+            console.log(
+                "Payment screenshot selected:",
+                file.name
+            );
         }
-    }
+    );
+}
+
+
+// ============================================================
+// PASSWORD SHOW / HIDE
+//
+// Your old register.html already calls:
+//
+// onclick="togglePassword()"
+//
+// Because this file is a module, expose the function
+// through window so the old HTML can call it.
+// ============================================================
+
+window.togglePassword =
+    function() {
+
+        const password =
+            document.getElementById(
+                "password"
+            );
+
+        const button =
+            document.getElementById(
+                "passwordToggle"
+            );
+
+
+        if (
+            !password
+        ) {
+            return;
+        }
+
+
+        if (
+            password.type ===
+            "password"
+        ) {
+
+            password.type =
+                "text";
+
+
+            if (button) {
+
+                button.textContent =
+                    "🙈";
+
+                button.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+            }
+
+        } else {
+
+            password.type =
+                "password";
+
+
+            if (button) {
+
+                button.textContent =
+                    "👁";
+
+                button.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+            }
+        }
+    };
+
+
+// ============================================================
+// PAGE READY
+// ============================================================
+
+console.log(
+    "R Mohan Digital registration system loaded."
+);
+
+console.log(
+    "Student registration uses Student ID + Password."
+);
+
+console.log(
+    "OTP verification is disabled."
 );
