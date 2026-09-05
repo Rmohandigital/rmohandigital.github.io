@@ -7,10 +7,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Login | R Mohan Digital</title>
-
-    <link rel="stylesheet"
-          href="css/style.css">
+    <title>Student Login | R Mohan Digital</title>
 
     <style>
 
@@ -38,13 +35,18 @@
                 );
         }
 
+        /* ==========================
+           CONTAINER
+        ========================== */
+
         .login-container {
+
             width: 450px;
             max-width: 100%;
 
             background: white;
 
-            padding: 38px;
+            padding: 35px;
 
             border-radius: 20px;
 
@@ -55,7 +57,12 @@
             text-align: center;
         }
 
+        /* ==========================
+           LOGO
+        ========================== */
+
         .logo-circle {
+
             width: 65px;
             height: 65px;
 
@@ -83,15 +90,17 @@
                 rgba(37, 99, 235, 0.35);
         }
 
-        .login-container h1 {
+        h1 {
+
             color: #2563eb;
 
-            margin: 0 0 8px;
+            margin: 0 0 6px;
 
             font-size: 27px;
         }
 
         .subtitle {
+
             color: #666;
 
             margin: 0 0 25px;
@@ -99,80 +108,41 @@
             font-size: 14px;
         }
 
-        .role-title {
-            text-align: left;
+        /* ==========================
+           STUDENT BADGE
+        ========================== */
 
-            color: #333;
+        .student-badge {
 
-            font-weight: 600;
+            display: inline-block;
 
-            font-size: 14px;
+            padding: 7px 15px;
 
-            margin-bottom: 10px;
-        }
-
-        .role-selection {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 10px;
-
-            margin-bottom: 25px;
-        }
-
-        .role-btn {
-            min-height: 55px;
-
-            padding: 10px;
-
-            border: 1px solid #d1d5db;
-
-            border-radius: 10px;
-
-            background: #f8fafc;
-
-            color: #334155;
-
-            cursor: pointer;
-
-            font-size: 14px;
-
-            font-weight: 600;
-
-            transition: 0.25s;
-        }
-
-        .role-btn:hover {
-            border-color: #2563eb;
-
-            color: #2563eb;
-
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 5px 15px
-                rgba(37, 99, 235, 0.12);
-        }
-
-        .role-btn.selected {
-            border-color: #2563eb;
+            border-radius: 20px;
 
             background:
                 rgba(37, 99, 235, 0.10);
 
             color: #2563eb;
 
-            box-shadow:
-                0 0 15px
-                rgba(37, 99, 235, 0.25);
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-bottom: 22px;
         }
 
+        /* ==========================
+           FORM
+        ========================== */
+
         .login-form {
+
             text-align: left;
         }
 
         .login-form label {
+
             display: block;
 
             margin-bottom: 7px;
@@ -185,13 +155,15 @@
         }
 
         .login-form input {
+
             width: 100%;
 
             height: 46px;
 
             padding: 12px 14px;
 
-            border: 1px solid #ccc;
+            border:
+                1px solid #ccc;
 
             border-radius: 8px;
 
@@ -200,11 +172,10 @@
             outline: none;
 
             margin-bottom: 18px;
-
-            transition: 0.2s;
         }
 
         .login-form input:focus {
+
             border-color: #2563eb;
 
             box-shadow:
@@ -212,31 +183,50 @@
                 rgba(37, 99, 235, 0.10);
         }
 
+        /* ==========================
+           STUDENT ID
+        ========================== */
+
+        #loginEmail {
+
+            background: #eef4ff;
+
+            font-weight: 600;
+
+            color: #1e3a8a;
+        }
+
+        /* ==========================
+           PASSWORD
+        ========================== */
+
         .password-wrapper {
+
             position: relative;
 
             width: 100%;
         }
 
         .password-wrapper input {
+
             padding-right: 50px;
         }
 
         .toggle-password {
+
             position: absolute;
 
             right: 8px;
 
             top: 50%;
 
-            transform: translateY(-50%);
+            transform:
+                translateY(-50%);
 
             width: 35px;
             height: 35px;
 
             padding: 0;
-
-            margin: 0;
 
             border: none;
 
@@ -245,43 +235,128 @@
             cursor: pointer;
 
             font-size: 18px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
         }
 
-        .forgot-wrapper {
-            text-align: right;
+        /* ==========================
+           PUZZLE
+        ========================== */
 
-            margin-top: -8px;
+        .puzzle-box {
 
-            margin-bottom: 18px;
+            margin-top: 5px;
+
+            margin-bottom: 22px;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #dbe3f0;
         }
 
-        .forgot-btn {
-            border: none;
+        .puzzle-title {
 
-            background: transparent;
+            font-size: 14px;
 
-            color: #2563eb;
+            font-weight: bold;
+
+            color: #334155;
+
+            margin-bottom: 5px;
+        }
+
+        .puzzle-question {
 
             font-size: 13px;
 
-            font-weight: 600;
+            color: #64748b;
+
+            margin-bottom: 12px;
+        }
+
+        .puzzle-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 8px;
+
+            max-width: 180px;
+
+            margin: auto;
+        }
+
+        .puzzle-tile {
+
+            width: 52px;
+            height: 45px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #1e293b;
+
+            font-size: 17px;
+
+            font-weight: bold;
 
             cursor: pointer;
 
-            padding: 0;
+            transition: 0.2s;
         }
 
-        .forgot-btn:hover {
-            text-decoration: underline;
+        .puzzle-tile:hover {
+
+            border-color: #2563eb;
+
+            transform:
+                scale(1.05);
         }
+
+        .puzzle-tile.correct {
+
+            background: #dcfce7;
+
+            border-color: #16a34a;
+
+            color: #15803d;
+        }
+
+        .puzzle-tile.wrong {
+
+            background: #fee2e2;
+
+            border-color: #dc2626;
+
+            color: #dc2626;
+        }
+
+        .puzzle-status {
+
+            margin-top: 10px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            min-height: 17px;
+        }
+
+        /* ==========================
+           LOGIN BUTTON
+        ========================== */
 
         .login-btn-main {
+
             width: 100%;
 
             padding: 14px;
@@ -304,6 +379,7 @@
         }
 
         .login-btn-main:hover {
+
             background: #2563eb;
 
             box-shadow:
@@ -312,15 +388,23 @@
         }
 
         .login-btn-main:disabled {
-            opacity: 0.6;
+
+            opacity: 0.45;
 
             cursor: not-allowed;
+
+            box-shadow: none;
         }
 
+        /* ==========================
+           MESSAGE
+        ========================== */
+
         .message {
+
             min-height: 20px;
 
-            margin-top: 18px;
+            margin-top: 17px;
 
             font-size: 14px;
 
@@ -329,8 +413,13 @@
             line-height: 1.5;
         }
 
+        /* ==========================
+           REGISTER
+        ========================== */
+
         .register-link {
-            margin-top: 25px;
+
+            margin-top: 23px;
 
             color: #555;
 
@@ -338,6 +427,7 @@
         }
 
         .register-link a {
+
             color: #2563eb;
 
             text-decoration: none;
@@ -346,13 +436,19 @@
         }
 
         .register-link a:hover {
+
             text-decoration: underline;
         }
 
+        /* ==========================
+           HOME
+        ========================== */
+
         .back-home {
+
             display: inline-block;
 
-            margin-top: 15px;
+            margin-top: 12px;
 
             color: #2563eb;
 
@@ -361,26 +457,29 @@
             font-size: 14px;
         }
 
-        .back-home:hover {
-            text-decoration: underline;
-        }
+        /* ==========================
+           MOBILE
+        ========================== */
 
         @media (max-width: 500px) {
 
             .login-container {
+
                 padding: 28px 20px;
 
                 border-radius: 15px;
             }
 
-            .login-container h1 {
+            h1 {
+
                 font-size: 23px;
             }
 
-            .role-btn {
-                font-size: 12px;
+            .puzzle-tile {
 
-                min-height: 50px;
+                width: 48px;
+
+                height: 42px;
             }
         }
 
@@ -391,57 +490,29 @@
 
 <body>
 
+
 <div class="login-container">
+
+
+    <!-- LOGO -->
 
     <div class="logo-circle">
         RM
     </div>
 
+
     <h1>
         R Mohan Digital
     </h1>
 
+
     <p class="subtitle">
-        Select your account type to continue
+        Student Login
     </p>
 
 
-    <!-- LOGIN TYPE -->
-
-    <div class="role-title">
-        Select Login Type
-    </div>
-
-    <div class="role-selection">
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="owner">
-            👑 Owner
-        </button>
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="mentor">
-            🧑‍💼 Mentor
-        </button>
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="faculty">
-            👨‍🏫 Faculty
-        </button>
-
-        <button
-            type="button"
-            class="role-btn"
-            data-role="student">
-            🎓 Student
-        </button>
-
+    <div class="student-badge">
+        🎓 Student Account
     </div>
 
 
@@ -451,24 +522,29 @@
         id="loginForm"
         class="login-form">
 
-        <label
-            id="loginIdLabel"
-            for="loginEmail">
-            Email Address
+
+        <!-- STUDENT ID -->
+
+        <label for="loginEmail">
+            Student ID
         </label>
+
 
         <input
             type="text"
             id="loginEmail"
-            placeholder="Enter your email"
+            placeholder="Student ID"
             autocomplete="username"
             required
         >
 
 
+        <!-- PASSWORD -->
+
         <label for="loginPassword">
             Password
         </label>
+
 
         <div class="password-wrapper">
 
@@ -480,49 +556,76 @@
                 required
             >
 
+
             <button
                 type="button"
                 class="toggle-password"
                 id="togglePassword">
+
                 👁
+
             </button>
 
         </div>
 
 
-        <!-- FORGOT PASSWORD -->
+        <!-- ==========================
+             SMALL PUZZLE
+        ========================== -->
 
-        <div
-            class="forgot-wrapper"
-            id="forgotWrapper">
+        <div class="puzzle-box">
 
-            <button
-                type="button"
-                id="forgotPasswordBtn"
-                class="forgot-btn">
-                Forgot Password?
-            </button>
+            <div class="puzzle-title">
+                🧩 Quick Puzzle
+            </div>
+
+            <div class="puzzle-question">
+                Find the number <b id="targetNumber">?</b>
+            </div>
+
+
+            <div
+                class="puzzle-grid"
+                id="puzzleGrid">
+            </div>
+
+
+            <div
+                class="puzzle-status"
+                id="puzzleStatus">
+
+                Complete the puzzle to continue.
+
+            </div>
 
         </div>
 
+
+        <!-- LOGIN -->
 
         <button
             type="submit"
             id="loginButton"
-            class="login-btn-main">
+            class="login-btn-main"
+            disabled>
 
-            Login
+            Complete Puzzle First
 
         </button>
 
+
     </form>
 
+
+    <!-- MESSAGE -->
 
     <div
         id="loginMessage"
         class="message">
     </div>
 
+
+    <!-- REGISTER -->
 
     <p class="register-link">
 
@@ -535,6 +638,8 @@
     </p>
 
 
+    <!-- HOME -->
+
     <a
         href="index.html"
         class="back-home">
@@ -543,6 +648,7 @@
 
     </a>
 
+
 </div>
 
 
@@ -550,6 +656,7 @@
     type="module"
     src="js/auth.js">
 </script>
+
 
 </body>
 
