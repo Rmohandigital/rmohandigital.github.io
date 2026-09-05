@@ -21,11 +21,9 @@
 
         body {
             min-height: 100vh;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
             padding: 20px;
 
             background:
@@ -37,28 +35,18 @@
                 );
 
             color: white;
-
             overflow-x: hidden;
         }
 
-
-        /* =========================
-           BACKGROUND GLOW
-        ========================= */
-
         body::before {
-
             content: "";
-
             position: fixed;
 
             width: 400px;
             height: 400px;
 
             background: #00e5ff;
-
             filter: blur(180px);
-
             opacity: 0.10;
 
             top: -150px;
@@ -67,20 +55,15 @@
             pointer-events: none;
         }
 
-
         body::after {
-
             content: "";
-
             position: fixed;
 
             width: 350px;
             height: 350px;
 
             background: #2563eb;
-
             filter: blur(170px);
-
             opacity: 0.12;
 
             bottom: -150px;
@@ -89,15 +72,12 @@
             pointer-events: none;
         }
 
-
         /* =========================
            LOGIN CARD
         ========================= */
 
         .login-card {
-
             width: 92%;
-
             max-width: 430px;
 
             padding: 35px 28px;
@@ -121,59 +101,44 @@
             backdrop-filter: blur(15px);
 
             position: relative;
-
             z-index: 2;
         }
-
 
         /* =========================
            BRAND
         ========================= */
 
         .brand {
-
             text-align: center;
-
             margin-bottom: 28px;
         }
 
-
         .brand-icon {
-
             width: 72px;
             height: 72px;
 
-            margin:
-                0 auto 15px;
+            margin: 0 auto 15px;
 
             border-radius: 50%;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             font-size: 32px;
-
             font-weight: bold;
 
-            border:
-                2px solid #00e5ff;
+            border: 2px solid #00e5ff;
 
             box-shadow:
-
                 0 0 15px #00e5ff,
 
                 inset 0 0 15px
                 rgba(0, 229, 255, 0.15);
         }
 
-
         .brand h1 {
-
             font-size: 25px;
-
             color: #ffffff;
 
             text-shadow:
@@ -181,9 +146,7 @@
                 rgba(0, 229, 255, 0.6);
         }
 
-
         .brand span {
-
             display: block;
 
             margin-top: 7px;
@@ -195,13 +158,11 @@
             letter-spacing: 2px;
         }
 
-
         /* =========================
            ROLE SELECTION
         ========================= */
 
         .role-title {
-
             text-align: center;
 
             color: #94a3b8;
@@ -211,9 +172,7 @@
             margin-bottom: 15px;
         }
 
-
         .role-buttons {
-
             display: grid;
 
             grid-template-columns:
@@ -221,12 +180,10 @@
 
             gap: 7px;
 
-            margin-bottom: 25px;
+            margin-bottom: 10px;
         }
 
-
         .role-btn {
-
             padding: 12px 4px;
 
             min-height: 68px;
@@ -253,9 +210,7 @@
             user-select: none;
         }
 
-
         .role-btn:hover {
-
             border-color: #00e5ff;
 
             color: #00e5ff;
@@ -268,13 +223,7 @@
                 translateY(-2px);
         }
 
-
-        /* =========================
-           SELECTED ROLE
-        ========================= */
-
         .role-btn.selected {
-
             background:
                 rgba(0, 229, 255, 0.15);
 
@@ -284,7 +233,6 @@
             color: #00e5ff;
 
             box-shadow:
-
                 0 0 15px
                 rgba(0, 229, 255, 0.35),
 
@@ -295,26 +243,52 @@
                 translateY(-2px);
         }
 
-
         .role-btn:active {
-
-            transform:
-                scale(0.96);
+            transform: scale(0.96);
         }
 
+        /* =========================
+           SELECTED ROLE TEXT
+        ========================= */
+
+        .selected-role {
+            min-height: 25px;
+
+            text-align: center;
+
+            margin-bottom: 20px;
+
+            font-size: 13px;
+
+            color: #38bdf8;
+
+            font-weight: bold;
+
+            letter-spacing: 0.3px;
+
+            opacity: 0;
+
+            transition:
+                opacity 0.25s ease;
+        }
+
+        .selected-role.show {
+            opacity: 1;
+        }
+
+        .selected-role span {
+            color: #ffffff;
+        }
 
         /* =========================
-           INPUT GROUP
+           INPUT
         ========================= */
 
         .input-group {
-
             margin-bottom: 17px;
         }
 
-
         .input-group label {
-
             display: block;
 
             margin-bottom: 7px;
@@ -324,17 +298,12 @@
             color: #94a3b8;
         }
 
-
         .input-box {
-
             position: relative;
-
             width: 100%;
         }
 
-
         .input-box input {
-
             width: 100%;
 
             padding:
@@ -356,9 +325,7 @@
             transition: 0.25s;
         }
 
-
         .input-box input:focus {
-
             border-color: #00e5ff;
 
             box-shadow:
@@ -366,28 +333,22 @@
                 rgba(0, 229, 255, 0.18);
         }
 
-
         .input-box input::placeholder {
-
             color: #64748b;
         }
 
-
         /* =========================
-           PASSWORD EYE
+           PASSWORD EYE BUTTON
         ========================= */
 
         .toggle-password {
-
             position: absolute;
 
-            right: 7px;
-
+            right: 6px;
             top: 50%;
 
-            width: 38px;
-
-            height: 38px;
+            width: 40px;
+            height: 40px;
 
             transform:
                 translateY(-50%);
@@ -395,7 +356,6 @@
             display: flex;
 
             align-items: center;
-
             justify-content: center;
 
             background: transparent;
@@ -408,21 +368,32 @@
 
             cursor: pointer;
 
-            font-size: 20px;
-
             padding: 0;
 
             z-index: 10;
-
-            line-height: 1;
 
             -webkit-tap-highlight-color:
                 transparent;
         }
 
+        .toggle-password svg {
+            width: 21px;
+            height: 21px;
+
+            stroke: currentColor;
+
+            fill: none;
+
+            stroke-width: 2;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+
+            pointer-events: none;
+        }
 
         .toggle-password:hover {
-
             color: #00e5ff;
 
             background:
@@ -433,30 +404,24 @@
                 rgba(0, 229, 255, 0.15);
         }
 
-
         .toggle-password:active {
-
             transform:
                 translateY(-50%)
                 scale(0.90);
         }
 
-
         .toggle-password:focus {
-
             outline:
                 1px solid #00e5ff;
 
             outline-offset: 1px;
         }
 
-
         /* =========================
            LOGIN BUTTON
         ========================= */
 
         .login-btn {
-
             width: 100%;
 
             padding: 14px;
@@ -489,9 +454,7 @@
             transition: 0.25s;
         }
 
-
         .login-btn:hover {
-
             transform:
                 translateY(-2px);
 
@@ -500,16 +463,11 @@
                 rgba(0, 229, 255, 0.40);
         }
 
-
         .login-btn:active {
-
-            transform:
-                scale(0.98);
+            transform: scale(0.98);
         }
 
-
         .login-btn:disabled {
-
             opacity: 0.6;
 
             cursor: not-allowed;
@@ -517,13 +475,11 @@
             transform: none;
         }
 
-
         /* =========================
            MESSAGE
         ========================= */
 
         #loginMessage {
-
             min-height: 22px;
 
             text-align: center;
@@ -533,13 +489,11 @@
             font-size: 13px;
         }
 
-
         /* =========================
            FOOTER
         ========================= */
 
         .footer {
-
             text-align: center;
 
             margin-top: 25px;
@@ -549,7 +503,6 @@
             font-size: 11px;
         }
 
-
         /* =========================
            MOBILE
         ========================= */
@@ -557,29 +510,22 @@
         @media (max-width: 500px) {
 
             .login-card {
-
                 padding:
                     28px 20px;
             }
 
-
             .role-buttons {
-
                 grid-template-columns:
                     repeat(2, 1fr);
 
                 gap: 8px;
             }
 
-
             .role-btn {
-
                 font-size: 12px;
             }
 
-
             .brand h1 {
-
                 font-size: 22px;
             }
         }
@@ -617,7 +563,7 @@
 
 
     <!-- =========================
-         ROLE SELECTION
+         ROLE TITLE
     ========================= -->
 
     <div class="role-title">
@@ -626,6 +572,10 @@
 
     </div>
 
+
+    <!-- =========================
+         ROLE BUTTONS
+    ========================= -->
 
     <div class="role-buttons">
 
@@ -677,6 +627,20 @@
 
         </button>
 
+
+    </div>
+
+
+    <!-- =========================
+         SELECTED ROLE DISPLAY
+    ========================= -->
+
+    <div
+        class="selected-role"
+        id="selectedRoleDisplay">
+
+        Selected:
+        <span id="selectedRoleName"></span>
 
     </div>
 
@@ -737,6 +701,8 @@
                     required>
 
 
+                <!-- EYE BUTTON -->
+
                 <button
                     type="button"
                     class="toggle-password"
@@ -744,7 +710,25 @@
                     aria-label="Show password"
                     title="Show password">
 
-                    👁
+                    <!-- CLOSED EYE -->
+
+                    <svg
+                        id="eyeIcon"
+                        viewBox="0 0 24 24">
+
+                        <path
+                            d="M2 12s3.5-7 10-7
+                               10 7 10 7-3.5 7-10 7
+                               S2 12 2 12Z">
+                        </path>
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="3">
+                        </circle>
+
+                    </svg>
 
                 </button>
 
@@ -753,7 +737,7 @@
         </div>
 
 
-        <!-- LOGIN BUTTON -->
+        <!-- LOGIN -->
 
         <button
             type="submit"
@@ -786,7 +770,7 @@
 
 
 <!-- =====================================================
-     ROLE SELECTION
+     TEAM LOGIN UI
      ===================================================== -->
 
 <script>
@@ -796,13 +780,25 @@ document.addEventListener(
     function () {
 
 
-        /* =========================
+        /* =================================================
            ROLE SELECTION
-        ========================= */
+        ================================================= */
 
         const roleButtons =
             document.querySelectorAll(
                 ".role-btn"
+            );
+
+
+        const selectedRoleDisplay =
+            document.getElementById(
+                "selectedRoleDisplay"
+            );
+
+
+        const selectedRoleName =
+            document.getElementById(
+                "selectedRoleName"
             );
 
 
@@ -815,7 +811,7 @@ document.addEventListener(
                     function () {
 
 
-                        /* Remove old selection */
+                        /* Remove selected class */
 
                         roleButtons.forEach(
                             function (btn) {
@@ -835,13 +831,66 @@ document.addEventListener(
                         );
 
 
-                        /* Store role */
+                        /* Get role */
 
                         const role =
                             button.getAttribute(
                                 "data-role"
                             );
 
+
+                        /* Display role */
+
+                        let displayName = role;
+
+
+                        if (
+                            role === "admin"
+                        ) {
+
+                            displayName =
+                                "Owner";
+
+                        }
+
+                        else if (
+                            role === "mentor"
+                        ) {
+
+                            displayName =
+                                "Mentor";
+
+                        }
+
+                        else if (
+                            role === "faculty"
+                        ) {
+
+                            displayName =
+                                "Faculty";
+
+                        }
+
+                        else if (
+                            role === "editor"
+                        ) {
+
+                            displayName =
+                                "Editor";
+
+                        }
+
+
+                        selectedRoleName.textContent =
+                            displayName;
+
+
+                        selectedRoleDisplay.classList.add(
+                            "show"
+                        );
+
+
+                        /* Make role available */
 
                         window.selectedLoginRole =
                             role;
@@ -859,9 +908,9 @@ document.addEventListener(
         );
 
 
-        /* =========================
+        /* =================================================
            PASSWORD SHOW / HIDE
-        ========================= */
+        ================================================= */
 
         const passwordInput =
             document.getElementById(
@@ -875,9 +924,16 @@ document.addEventListener(
             );
 
 
+        const eyeIcon =
+            document.getElementById(
+                "eyeIcon"
+            );
+
+
         if (
             passwordInput &&
-            toggleButton
+            toggleButton &&
+            eyeIcon
         ) {
 
 
@@ -897,14 +953,12 @@ document.addEventListener(
                     ) {
 
 
-                        /* SHOW PASSWORD */
+                        /* =========================
+                           SHOW PASSWORD
+                        ========================= */
 
                         passwordInput.type =
                             "text";
-
-
-                        toggleButton.textContent =
-                            "🙈";
 
 
                         toggleButton.setAttribute(
@@ -917,20 +971,44 @@ document.addEventListener(
                             "title",
                             "Hide password"
                         );
+
+
+                        /* Open eye */
+
+                        eyeIcon.innerHTML = `
+
+                            <path
+                                d="M2 12s3.5-7 10-7
+                                   10 7 10 7-3.5 7-10 7
+                                   S2 12 2 12Z">
+                            </path>
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="3">
+                            </circle>
+
+                            <line
+                                x1="3"
+                                y1="3"
+                                x2="21"
+                                y2="21">
+                            </line>
+
+                        `;
 
                     }
 
                     else {
 
 
-                        /* HIDE PASSWORD */
+                        /* =========================
+                           HIDE PASSWORD
+                        ========================= */
 
                         passwordInput.type =
                             "password";
-
-
-                        toggleButton.textContent =
-                            "👁";
 
 
                         toggleButton.setAttribute(
@@ -943,6 +1021,25 @@ document.addEventListener(
                             "title",
                             "Show password"
                         );
+
+
+                        /* Closed eye */
+
+                        eyeIcon.innerHTML = `
+
+                            <path
+                                d="M2 12s3.5-7 10-7
+                                   10 7 10 7-3.5 7-10 7
+                                   S2 12 2 12Z">
+                            </path>
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="3">
+                            </circle>
+
+                        `;
 
                     }
 
@@ -959,7 +1056,8 @@ document.addEventListener(
 
 <!-- =====================================================
      IMPORTANT
-     TEAM LOGIN USES ONLY admin-auth.js
+     
+     TEAM LOGIN ONLY
      
      DO NOT ADD auth.js HERE
      ===================================================== -->
