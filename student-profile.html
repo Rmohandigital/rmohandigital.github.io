@@ -5,18 +5,27 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Student Profile | R Mohan Digital</title>
 
 
     <style>
 
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
         }
 
 
@@ -25,383 +34,433 @@
             min-height: 100vh;
 
             background:
-                radial-gradient(
-                    circle at top left,
-                    #102a43 0%,
-                    #07111f 35%,
-                    #020617 75%
-                );
+                #e5e7eb;
 
-            color: white;
+            color:
+                #1e3a8a;
 
-            padding: 25px;
-
+            padding:
+                25px;
         }
 
 
         .container {
 
-            max-width: 1150px;
+            width: 100%;
 
-            margin: auto;
+            max-width:
+                1150px;
 
+            margin:
+                auto;
         }
 
 
-        /* ==========================================
-           TOPBAR
-        ========================================== */
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
 
         .topbar {
 
             display: flex;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 15px;
+            gap:
+                15px;
 
-            margin-bottom: 22px;
+            margin-bottom:
+                22px;
 
-            padding: 18px 22px;
-
-            border-radius: 15px;
+            padding:
+                18px 22px;
 
             background:
-                rgba(7, 17, 31, 0.9);
+                #ffffff;
 
             border:
-                1px solid rgba(0, 229, 255, 0.18);
+                1px solid #cbd5e1;
 
-            backdrop-filter: blur(12px);
+            border-radius:
+                14px;
 
+            box-shadow:
+                0 5px 20px
+                rgba(15, 23, 42, 0.08);
         }
 
 
         .topbar h1 {
 
-            font-size: 21px;
+            font-size:
+                22px;
 
+            color:
+                #1e40af;
         }
 
 
         .topbar h1 span {
 
-            color: #00e5ff;
-
-            text-shadow:
-                0 0 10px rgba(0, 229, 255, 0.4);
-
+            color:
+                #2563eb;
         }
 
 
         .back-btn {
 
-            padding: 10px 15px;
+            padding:
+                10px 16px;
 
             border:
-                1px solid #00e5ff;
+                1px solid #2563eb;
 
-            border-radius: 8px;
+            border-radius:
+                8px;
 
             background:
-                rgba(0, 229, 255, 0.08);
+                #eff6ff;
 
-            color: #00e5ff;
+            color:
+                #1d4ed8;
 
-            cursor: pointer;
+            cursor:
+                pointer;
 
-            font-weight: bold;
+            font-weight:
+                bold;
 
-            transition: 0.2s;
-
+            transition:
+                0.2s;
         }
 
 
         .back-btn:hover {
 
-            background: #00e5ff;
+            background:
+                #2563eb;
 
-            color: #020617;
-
-            box-shadow:
-                0 0 15px rgba(0, 229, 255, 0.3);
-
+            color:
+                white;
         }
 
 
-        /* ==========================================
-           STUDENT HEADER
-        ========================================== */
+        /* =====================================================
+           PROFILE HEADER
+        ===================================================== */
 
         .profile-header {
 
-            display: flex;
+            display:
+                flex;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 20px;
+            gap:
+                20px;
 
-            padding: 25px;
+            padding:
+                28px;
 
-            margin-bottom: 20px;
-
-            border-radius: 16px;
+            margin-bottom:
+                20px;
 
             background:
-                rgba(7, 17, 31, 0.88);
+                #ffffff;
 
             border:
-                1px solid rgba(0, 229, 255, 0.18);
+                1px solid #cbd5e1;
 
+            border-radius:
+                16px;
+
+            box-shadow:
+                0 6px 25px
+                rgba(15, 23, 42, 0.08);
         }
 
 
         .profile-left {
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 20px;
-
+            gap:
+                22px;
         }
 
 
+        /* =====================================================
+           AVATAR
+        ===================================================== */
+
         .avatar {
 
-            width: 90px;
+            width:
+                105px;
 
-            height: 90px;
+            height:
+                105px;
 
-            border-radius: 50%;
+            flex-shrink:
+                0;
 
-            flex-shrink: 0;
+            border-radius:
+                50%;
 
-            display: flex;
+            overflow:
+                hidden;
 
-            justify-content: center;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            overflow: hidden;
+            justify-content:
+                center;
 
             background:
-                rgba(0, 229, 255, 0.08);
+                #eff6ff;
 
             border:
-                2px solid #00e5ff;
+                4px solid #2563eb;
 
-            color: #00e5ff;
+            color:
+                #2563eb;
 
-            font-size: 35px;
+            font-size:
+                42px;
 
             box-shadow:
-                0 0 20px rgba(0, 229, 255, 0.18);
-
+                0 5px 18px
+                rgba(37, 99, 235, 0.20);
         }
 
 
         .avatar img {
 
-            width: 100%;
+            width:
+                100%;
 
-            height: 100%;
+            height:
+                100%;
 
-            object-fit: cover;
-
+            object-fit:
+                cover;
         }
 
 
         .profile-info h2 {
 
-            color: #00e5ff;
+            color:
+                #1e40af;
 
-            font-size: 25px;
+            font-size:
+                27px;
 
-            margin-bottom: 8px;
-
+            margin-bottom:
+                8px;
         }
 
 
         .profile-info p {
 
-            color: #94a3b8;
+            color:
+                #475569;
 
-            font-size: 12px;
+            font-size:
+                13px;
 
-            margin: 5px 0;
-
+            margin:
+                5px 0;
         }
 
 
         .active-badge {
 
-            display: inline-block;
+            display:
+                inline-block;
 
-            margin-top: 6px;
+            margin-top:
+                7px;
 
-            padding: 5px 10px;
+            padding:
+                5px 11px;
 
-            border-radius: 20px;
+            border-radius:
+                20px;
 
-            color: #22c55e;
-
-            background:
-                rgba(34, 197, 94, 0.08);
-
-            border:
-                1px solid rgba(34, 197, 94, 0.25);
-
-            font-size: 9px;
-
-            font-weight: bold;
-
-        }
-
-
-        /* ==========================================
-           MANAGE BUTTON
-        ========================================== */
-
-        .manage-btn {
-
-            padding: 13px 18px;
-
-            border:
-                1px solid #00e5ff;
-
-            border-radius: 9px;
+            color:
+                #15803d;
 
             background:
-                linear-gradient(
-                    135deg,
-                    rgba(0, 229, 255, 0.15),
-                    rgba(37, 99, 235, 0.15)
-                );
+                #f0fdf4;
 
-            color: #00e5ff;
+            border:
+                1px solid #bbf7d0;
 
-            cursor: pointer;
+            font-size:
+                10px;
 
-            font-weight: bold;
-
-            font-size: 12px;
-
-            transition: 0.2s;
-
-            white-space: nowrap;
-
+            font-weight:
+                bold;
         }
 
 
-        .manage-btn:hover {
+        /* =====================================================
+           STUDENT ID BADGE
+        ===================================================== */
 
-            background: #00e5ff;
+        .student-id-box {
 
-            color: #020617;
+            margin-top:
+                10px;
 
-            box-shadow:
-                0 0 20px rgba(0, 229, 255, 0.3);
+            display:
+                inline-block;
 
-            transform: translateY(-2px);
+            padding:
+                7px 12px;
 
+            border-radius:
+                7px;
+
+            background:
+                #eff6ff;
+
+            border:
+                1px solid #bfdbfe;
+
+            color:
+                #1d4ed8;
+
+            font-size:
+                12px;
+
+            font-weight:
+                bold;
         }
 
 
-        /* ==========================================
+        /* =====================================================
            STATS
-        ========================================== */
+        ===================================================== */
 
         .stats-grid {
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
                 repeat(4, 1fr);
 
-            gap: 15px;
+            gap:
+                15px;
 
-            margin-bottom: 20px;
-
+            margin-bottom:
+                20px;
         }
 
 
         .stat-card {
 
-            padding: 20px;
-
-            border-radius: 14px;
+            padding:
+                20px;
 
             background:
-                rgba(7, 17, 31, 0.85);
+                #ffffff;
 
             border:
-                1px solid rgba(0, 229, 255, 0.14);
+                1px solid #cbd5e1;
 
+            border-radius:
+                13px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(15, 23, 42, 0.06);
         }
 
 
         .stat-icon {
 
-            font-size: 25px;
+            font-size:
+                25px;
 
-            margin-bottom: 10px;
-
+            margin-bottom:
+                9px;
         }
 
 
         .stat-card h3 {
 
-            color: #00e5ff;
+            color:
+                #2563eb;
 
-            font-size: 24px;
-
+            font-size:
+                25px;
         }
 
 
         .stat-card p {
 
-            color: #64748b;
+            color:
+                #64748b;
 
-            font-size: 10px;
+            font-size:
+                11px;
 
-            margin-top: 5px;
-
+            margin-top:
+                5px;
         }
 
 
-        /* ==========================================
-           CONTENT GRID
-        ========================================== */
+        /* =====================================================
+           CONTENT
+        ===================================================== */
 
         .content-grid {
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
                 repeat(2, 1fr);
 
-            gap: 20px;
-
+            gap:
+                20px;
         }
 
 
         .card {
 
-            padding: 22px;
-
-            border-radius: 15px;
+            padding:
+                22px;
 
             background:
-                rgba(7, 17, 31, 0.86);
+                #ffffff;
 
             border:
-                1px solid rgba(0, 229, 255, 0.14);
+                1px solid #cbd5e1;
 
+            border-radius:
+                15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15, 23, 42, 0.06);
         }
 
 
@@ -409,311 +468,328 @@
 
             grid-column:
                 1 / -1;
-
         }
 
 
         .card h2 {
 
-            color: #00e5ff;
+            color:
+                #1e40af;
 
-            font-size: 17px;
+            font-size:
+                18px;
 
-            margin-bottom: 18px;
+            margin-bottom:
+                18px;
 
+            padding-bottom:
+                10px;
+
+            border-bottom:
+                1px solid #e2e8f0;
         }
 
 
-        /* ==========================================
+        /* =====================================================
            DETAILS
-        ========================================== */
+        ===================================================== */
 
         .details-grid {
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
                 repeat(2, 1fr);
 
-            gap: 12px;
-
+            gap:
+                12px;
         }
 
 
         .detail {
 
-            padding: 13px;
+            padding:
+                14px;
 
-            border-radius: 9px;
+            border-radius:
+                9px;
 
             background:
-                rgba(15, 23, 42, 0.7);
+                #f8fafc;
 
             border:
-                1px solid rgba(148, 163, 184, 0.07);
-
+                1px solid #e2e8f0;
         }
 
 
         .detail label {
 
-            display: block;
+            display:
+                block;
 
-            color: #64748b;
+            color:
+                #64748b;
 
-            font-size: 9px;
+            font-size:
+                10px;
 
-            margin-bottom: 6px;
+            margin-bottom:
+                6px;
 
-            text-transform: uppercase;
+            text-transform:
+                uppercase;
 
+            font-weight:
+                bold;
         }
 
 
         .detail span {
 
-            color: #e2e8f0;
+            color:
+                #1e3a8a;
 
-            font-size: 12px;
+            font-size:
+                13px;
 
-            word-break: break-word;
+            word-break:
+                break-word;
 
+            font-weight:
+                500;
         }
 
 
-        /* ==========================================
+        /* =====================================================
            FACULTY
-        ========================================== */
+        ===================================================== */
 
         .faculty-box {
 
-            padding: 18px;
+            padding:
+                18px;
 
-            border-radius: 12px;
+            border-radius:
+                12px;
 
             background:
-                rgba(15, 23, 42, 0.7);
+                #eff6ff;
 
             border:
-                1px solid rgba(0, 229, 255, 0.1);
-
+                1px solid #bfdbfe;
         }
 
 
         .faculty-box h3 {
 
-            color: #e2e8f0;
+            color:
+                #1e40af;
 
-            font-size: 15px;
+            font-size:
+                16px;
 
-            margin-bottom: 8px;
-
+            margin-bottom:
+                8px;
         }
 
 
         .faculty-box p {
 
-            color: #94a3b8;
+            color:
+                #475569;
 
-            font-size: 11px;
+            font-size:
+                12px;
 
-            margin: 5px 0;
-
+            margin:
+                6px 0;
         }
 
 
-        /* ==========================================
-           BIOGRAPHY
-        ========================================== */
+        /* =====================================================
+           BIO
+        ===================================================== */
 
         .bio {
 
-            color: #94a3b8;
+            color:
+                #475569;
 
-            font-size: 12px;
+            font-size:
+                13px;
 
-            line-height: 1.7;
+            line-height:
+                1.8;
 
-            white-space: pre-wrap;
-
+            white-space:
+                pre-wrap;
         }
 
 
-        /* ==========================================
+        /* =====================================================
            RECORDS
-        ========================================== */
+        ===================================================== */
 
         .record {
 
-            padding: 14px;
+            padding:
+                14px;
 
-            margin-bottom: 10px;
+            margin-bottom:
+                10px;
 
-            border-radius: 10px;
+            border-radius:
+                10px;
 
             background:
-                rgba(15, 23, 42, 0.7);
+                #f8fafc;
 
             border:
-                1px solid rgba(148, 163, 184, 0.08);
-
+                1px solid #e2e8f0;
         }
 
 
         .record-title {
 
-            color: #e2e8f0;
+            color:
+                #1e40af;
 
-            font-weight: bold;
+            font-weight:
+                bold;
 
-            font-size: 12px;
-
+            font-size:
+                13px;
         }
 
 
         .record-subtitle {
 
-            color: #64748b;
+            color:
+                #64748b;
 
-            font-size: 10px;
+            font-size:
+                11px;
 
-            margin-top: 5px;
-
+            margin-top:
+                6px;
         }
 
 
         .present {
 
-            color: #22c55e;
+            color:
+                #16a34a;
 
+            font-weight:
+                bold;
         }
 
 
         .absent {
 
-            color: #ef4444;
+            color:
+                #dc2626;
 
+            font-weight:
+                bold;
         }
 
 
         .marks {
 
-            color: #00e5ff;
+            color:
+                #2563eb;
 
-            font-size: 18px;
+            font-size:
+                19px;
 
-            font-weight: bold;
-
+            font-weight:
+                bold;
         }
 
 
-        /* ==========================================
+        /* =====================================================
            EMPTY
-        ========================================== */
+        ===================================================== */
 
         .empty {
 
-            padding: 25px;
+            padding:
+                30px;
 
-            text-align: center;
+            text-align:
+                center;
 
-            color: #64748b;
+            color:
+                #64748b;
 
-            font-size: 11px;
-
+            font-size:
+                12px;
         }
 
 
-        /* ==========================================
-           LOADING / ERROR
-        ========================================== */
+        /* =====================================================
+           LOADING
+        ===================================================== */
 
         .loading {
 
-            min-height: 70vh;
+            min-height:
+                70vh;
 
-            display: flex;
+            display:
+                flex;
 
-            justify-content: center;
+            justify-content:
+                center;
 
-            align-items: center;
+            align-items:
+                center;
 
-            color: #00e5ff;
+            color:
+                #2563eb;
 
-            text-align: center;
+            font-weight:
+                bold;
 
+            text-align:
+                center;
         }
 
+
+        /* =====================================================
+           ERROR
+        ===================================================== */
 
         .error {
 
-            min-height: 70vh;
+            min-height:
+                60vh;
 
-            display: flex;
+            display:
+                flex;
 
-            justify-content: center;
+            justify-content:
+                center;
 
-            align-items: center;
+            align-items:
+                center;
 
-            color: #f87171;
+            color:
+                #dc2626;
 
-            text-align: center;
+            text-align:
+                center;
 
+            font-weight:
+                bold;
         }
 
 
-        /* ==========================================
-           TOAST
-        ========================================== */
-
-        #toast {
-
-            position: fixed;
-
-            right: 20px;
-
-            bottom: 20px;
-
-            padding: 13px 17px;
-
-            min-width: 250px;
-
-            background: #07111f;
-
-            border:
-                1px solid #00e5ff;
-
-            border-radius: 9px;
-
-            color: #e2e8f0;
-
-            opacity: 0;
-
-            transform:
-                translateY(80px);
-
-            pointer-events: none;
-
-            transition: 0.3s;
-
-            z-index: 1000;
-
-        }
-
-
-        #toast.show {
-
-            opacity: 1;
-
-            transform:
-                translateY(0);
-
-        }
-
-
-        /* ==========================================
+        /* =====================================================
            RESPONSIVE
-        ========================================== */
+        ===================================================== */
 
         @media (max-width: 900px) {
 
@@ -721,9 +797,7 @@
 
                 grid-template-columns:
                     repeat(2, 1fr);
-
             }
-
         }
 
 
@@ -731,10 +805,11 @@
 
             .profile-header {
 
-                flex-direction: column;
+                flex-direction:
+                    column;
 
-                align-items: flex-start;
-
+                align-items:
+                    flex-start;
             }
 
 
@@ -742,16 +817,14 @@
 
                 grid-template-columns:
                     1fr;
-
             }
 
 
             .card.full {
 
-                grid-column: auto;
-
+                grid-column:
+                    auto;
             }
-
         }
 
 
@@ -759,26 +832,48 @@
 
             body {
 
-                padding: 12px;
-
+                padding:
+                    12px;
             }
 
 
             .topbar {
 
-                flex-direction: column;
+                flex-direction:
+                    column;
 
-                align-items: flex-start;
+                align-items:
+                    flex-start;
+            }
 
+
+            .back-btn {
+
+                width:
+                    100%;
             }
 
 
             .profile-left {
 
-                flex-direction: column;
+                flex-direction:
+                    column;
 
-                align-items: flex-start;
+                align-items:
+                    center;
 
+                width:
+                    100%;
+
+                text-align:
+                    center;
+            }
+
+
+            .profile-header {
+
+                align-items:
+                    center;
             }
 
 
@@ -786,7 +881,6 @@
 
                 grid-template-columns:
                     1fr;
-
             }
 
 
@@ -794,16 +888,24 @@
 
                 grid-template-columns:
                     1fr;
-
             }
 
 
-            .manage-btn {
+            .avatar {
 
-                width: 100%;
+                width:
+                    90px;
 
+                height:
+                    90px;
             }
 
+
+            .profile-info h2 {
+
+                font-size:
+                    23px;
+            }
         }
 
     </style>
@@ -817,17 +919,14 @@
 <div class="container">
 
 
-    <!-- ==========================================
-         TOPBAR
-    ========================================== -->
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
 
     <div class="topbar">
 
         <h1>
-
-            Student
-            <span>Profile</span>
-
+            Student <span>Profile</span>
         </h1>
 
 
@@ -835,16 +934,16 @@
             class="back-btn"
             id="backBtn">
 
-            ← Back to Students
+            ← Back
 
         </button>
 
     </div>
 
 
-    <!-- ==========================================
+    <!-- =====================================================
          CONTENT
-    ========================================== -->
+    ====================================================== -->
 
     <div id="pageContent">
 
@@ -860,11 +959,11 @@
 </div>
 
 
-<div id="toast"></div>
-
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
 
 <script type="module">
-
 
 import {
     auth,
@@ -887,25 +986,23 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-// ======================================================
-// ELEMENTS
-// ======================================================
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
 const pageContent =
-    document.getElementById(
-        "pageContent"
-    );
+    document.getElementById("pageContent");
 
 
 const backBtn =
-    document.getElementById(
-        "backBtn"
-    );
+    document.getElementById("backBtn");
 
 
-// ======================================================
-// STUDENT ID
-// ======================================================
+
+/* =========================================================
+   URL
+========================================================= */
 
 const params =
     new URLSearchParams(
@@ -913,41 +1010,61 @@ const params =
     );
 
 
-const studentId =
+const requestedStudentId =
     params.get("id");
 
 
-// ======================================================
-// DATA
-// ======================================================
 
-let currentFaculty = null;
+/* =========================================================
+   DATA
+========================================================= */
+
+let studentId = null;
 
 let studentData = null;
+
+let currentUserData = null;
+
+let currentUserRole = null;
+
+let currentFaculty = null;
 
 let attendanceRecords = [];
 
 let marksRecords = [];
 
 
-// ======================================================
-// BACK BUTTON
-// ======================================================
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
 
 backBtn.addEventListener(
     "click",
     () => {
 
-        window.location.href =
-            "faculty-dashboard.html#studentsSection";
+        if (
+            currentUserRole === "faculty"
+        ) {
+
+            window.location.href =
+                "faculty-dashboard.html";
+
+        } else {
+
+            window.location.href =
+                "student-dashboard.html";
+
+        }
 
     }
 );
 
 
-// ======================================================
-// AUTH
-// ======================================================
+
+/* =========================================================
+   AUTH
+========================================================= */
 
 onAuthStateChanged(
     auth,
@@ -959,28 +1076,16 @@ onAuthStateChanged(
                 "login.html";
 
             return;
-
-        }
-
-
-        if (!studentId) {
-
-            showError(
-                "Student ID is missing."
-            );
-
-            return;
-
         }
 
 
         try {
 
-            // ==========================================
-            // LOAD FACULTY
-            // ==========================================
+            /* =============================================
+               LOAD CURRENT USER
+            ============================================= */
 
-            const facultyRef =
+            const currentUserRef =
                 doc(
                     db,
                     "users",
@@ -988,86 +1093,115 @@ onAuthStateChanged(
                 );
 
 
-            const facultySnapshot =
+            const currentUserSnapshot =
                 await getDoc(
-                    facultyRef
+                    currentUserRef
                 );
 
 
             if (
-                !facultySnapshot.exists()
+                !currentUserSnapshot.exists()
             ) {
 
                 showError(
-                    "Faculty profile not found."
+                    "Your user profile was not found."
                 );
 
                 return;
-
             }
 
 
-            const faculty =
-                facultySnapshot.data();
+            currentUserData =
+                currentUserSnapshot.data();
 
 
-            const facultyRole =
+            currentUserRole =
                 String(
-                    faculty.role || ""
+                    currentUserData.role || ""
                 )
                 .trim()
                 .toLowerCase();
 
 
-            const facultyStatus =
-                String(
-                    faculty.status || ""
-                )
-                .trim()
-                .toLowerCase();
 
+            /* =============================================
+               DETERMINE STUDENT
+            ============================================= */
 
             if (
-                facultyRole !==
-                    "faculty"
+                currentUserRole === "student"
             ) {
 
-                showError(
-                    "Only faculty members can view student profiles."
-                );
+                /*
+                 Student can only open
+                 their own profile.
+                */
 
-                return;
+                studentId =
+                    user.uid;
+
+
+                /*
+                 If an ID was supplied in URL,
+                 make sure it belongs to this student.
+                */
+
+                if (
+                    requestedStudentId &&
+                    requestedStudentId !== user.uid
+                ) {
+
+                    showError(
+                        "You can only view your own student profile."
+                    );
+
+                    return;
+                }
 
             }
 
 
-            if (
-                facultyStatus !==
-                    "active"
+            else if (
+                currentUserRole === "faculty"
             ) {
 
-                showError(
-                    "Your faculty account is not active."
-                );
+                /*
+                 Faculty must provide
+                 ?id=STUDENT_UID
+                */
 
-                return;
+                if (
+                    !requestedStudentId
+                ) {
+
+                    showError(
+                        "Student ID is missing."
+                    );
+
+                    return;
+                }
+
+
+                studentId =
+                    requestedStudentId;
 
             }
 
 
-            currentFaculty = {
+            else {
 
-                uid:
-                    user.uid,
+                showError(
+                    "You do not have permission to view student profiles."
+                );
 
-                ...faculty
+                return;
+            }
 
-            };
 
 
-            // ==========================================
-            // LOAD STUDENT
-            // ==========================================
+            /* =============================================
+               LOAD STUDENT
+            ============================================= */
 
             const studentRef =
                 doc(
@@ -1092,13 +1226,17 @@ onAuthStateChanged(
                 );
 
                 return;
-
             }
 
 
             studentData =
                 studentSnapshot.data();
 
+
+
+            /* =============================================
+               CHECK STUDENT ROLE
+            ============================================= */
 
             const studentRole =
                 String(
@@ -1109,8 +1247,7 @@ onAuthStateChanged(
 
 
             if (
-                studentRole !==
-                    "student"
+                studentRole !== "student"
             ) {
 
                 showError(
@@ -1118,47 +1255,78 @@ onAuthStateChanged(
                 );
 
                 return;
-
             }
 
 
-            // ==========================================
-            // ASSIGNMENT CHECK
-            // ==========================================
+
+            /* =============================================
+               FACULTY ACCESS CHECK
+            ============================================= */
 
             if (
-                studentData.facultyId !==
-                currentFaculty.uid
+                currentUserRole === "faculty"
             ) {
 
-                showError(
-                    "This student is not assigned to you."
-                );
+                const assignedFaculty =
+                    studentData.facultyId ||
+                    studentData.assignedFaculty ||
+                    studentData.assignedFacultyId;
 
-                return;
+
+                if (
+                    assignedFaculty &&
+                    assignedFaculty !== user.uid
+                ) {
+
+                    showError(
+                        "This student is not assigned to you."
+                    );
+
+                    return;
+                }
+
+
+                await loadAssignedFaculty();
 
             }
 
 
-            // ==========================================
-            // LOAD EVERYTHING
-            // ==========================================
+            /* =============================================
+               STUDENT LOADS ASSIGNED FACULTY
+            ============================================= */
 
-            await Promise.all([
+            else {
 
-                loadAttendance(),
+                await loadAssignedFaculty();
 
-                loadMarks(),
+            }
 
-                loadAssignedFaculty()
 
-            ]);
 
+            /* =============================================
+               ATTENDANCE
+            ============================================= */
+
+            await loadAttendance();
+
+
+
+            /* =============================================
+               MARKS
+            ============================================= */
+
+            await loadMarks();
+
+
+
+            /* =============================================
+               RENDER
+            ============================================= */
 
             renderPage();
 
-
         }
+
 
         catch (error) {
 
@@ -1178,145 +1346,24 @@ onAuthStateChanged(
 );
 
 
-// ======================================================
-// LOAD ATTENDANCE
-// ======================================================
 
-async function loadAttendance() {
-
-    const attendanceQuery =
-        query(
-            collection(
-                db,
-                "attendance"
-            ),
-
-            where(
-                "studentId",
-                "==",
-                studentId
-            ),
-
-            where(
-                "facultyId",
-                "==",
-                currentFaculty.uid
-            )
-        );
-
-
-    const snapshot =
-        await getDocs(
-            attendanceQuery
-        );
-
-
-    attendanceRecords = [];
-
-
-    snapshot.forEach(
-        item => {
-
-            attendanceRecords.push({
-
-                id:
-                    item.id,
-
-                ...item.data()
-
-            });
-
-        }
-    );
-
-
-    attendanceRecords.sort(
-        (a, b) => {
-
-            return String(
-                b.date || ""
-            )
-            .localeCompare(
-                String(
-                    a.date || ""
-                )
-            );
-
-        }
-    );
-
-}
-
-
-// ======================================================
-// LOAD MARKS
-// ======================================================
-
-async function loadMarks() {
-
-    const marksQuery =
-        query(
-            collection(
-                db,
-                "marks"
-            ),
-
-            where(
-                "studentId",
-                "==",
-                studentId
-            ),
-
-            where(
-                "facultyId",
-                "==",
-                currentFaculty.uid
-            )
-        );
-
-
-    const snapshot =
-        await getDocs(
-            marksQuery
-        );
-
-
-    marksRecords = [];
-
-
-    snapshot.forEach(
-        item => {
-
-            marksRecords.push({
-
-                id:
-                    item.id,
-
-                ...item.data()
-
-            });
-
-        }
-    );
-
-
-}
-
-
-// ======================================================
-// ASSIGNED FACULTY
-// ======================================================
+/* =========================================================
+   LOAD ASSIGNED FACULTY
+========================================================= */
 
 async function loadAssignedFaculty() {
 
     const facultyId =
-        studentData.facultyId;
+        studentData.facultyId ||
+        studentData.assignedFaculty ||
+        studentData.assignedFacultyId;
 
 
     if (!facultyId) {
 
-        return;
+        currentFaculty = null;
 
+        return;
     }
 
 
@@ -1340,7 +1387,7 @@ async function loadAssignedFaculty() {
             snapshot.exists()
         ) {
 
-            studentData.assignedFaculty =
+            currentFaculty =
                 snapshot.data();
 
         }
@@ -1359,9 +1406,192 @@ async function loadAssignedFaculty() {
 }
 
 
-// ======================================================
-// RENDER PAGE
-// ======================================================
+
+/* =========================================================
+   LOAD ATTENDANCE
+========================================================= */
+
+async function loadAttendance() {
+
+    attendanceRecords = [];
+
+
+    /*
+     Only query if we know the faculty.
+     This keeps the student profile usable
+     even before a faculty is assigned.
+    */
+
+    const facultyId =
+        studentData.facultyId ||
+        studentData.assignedFaculty ||
+        studentData.assignedFacultyId;
+
+
+    if (!facultyId) {
+
+        return;
+    }
+
+
+    try {
+
+        const attendanceQuery =
+            query(
+                collection(
+                    db,
+                    "attendance"
+                ),
+
+                where(
+                    "studentId",
+                    "==",
+                    studentId
+                ),
+
+                where(
+                    "facultyId",
+                    "==",
+                    facultyId
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(
+                attendanceQuery
+            );
+
+
+        snapshot.forEach(
+            item => {
+
+                attendanceRecords.push({
+
+                    id:
+                        item.id,
+
+                    ...item.data()
+
+                });
+
+            }
+        );
+
+
+        attendanceRecords.sort(
+            (a, b) => {
+
+                return String(
+                    b.date || ""
+                )
+                .localeCompare(
+                    String(
+                        a.date || ""
+                    )
+                );
+
+            }
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Attendance error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   LOAD MARKS
+========================================================= */
+
+async function loadMarks() {
+
+    marksRecords = [];
+
+
+    const facultyId =
+        studentData.facultyId ||
+        studentData.assignedFaculty ||
+        studentData.assignedFacultyId;
+
+
+    if (!facultyId) {
+
+        return;
+    }
+
+
+    try {
+
+        const marksQuery =
+            query(
+                collection(
+                    db,
+                    "marks"
+                ),
+
+                where(
+                    "studentId",
+                    "==",
+                    studentId
+                ),
+
+                where(
+                    "facultyId",
+                    "==",
+                    facultyId
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(
+                marksQuery
+            );
+
+
+        snapshot.forEach(
+            item => {
+
+                marksRecords.push({
+
+                    id:
+                        item.id,
+
+                    ...item.data()
+
+                });
+
+            }
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Marks error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   RENDER PAGE
+========================================================= */
 
 function renderPage() {
 
@@ -1412,6 +1642,7 @@ function renderPage() {
         : "🎓";
 
 
+
     const attendanceStats =
         calculateAttendance();
 
@@ -1420,15 +1651,17 @@ function renderPage() {
         calculateMarks();
 
 
-    const faculty =
-        studentData.assignedFaculty;
 
+    /* =====================================================
+       PAGE
+    ===================================================== */
 
     pageContent.innerHTML = `
 
-        <!-- ==========================================
+
+        <!-- =================================================
              PROFILE HEADER
-        =========================================== -->
+        ================================================== -->
 
         <div class="profile-header">
 
@@ -1468,6 +1701,21 @@ function renderPage() {
                     </p>
 
 
+                    <div class="student-id-box">
+
+                        Student ID:
+                        ${escapeHTML(
+                            studentData.studentId ||
+                            studentData.id ||
+                            studentId
+                        )}
+
+                    </div>
+
+
+                    <br>
+
+
                     <span class="active-badge">
 
                         ✓
@@ -1479,29 +1727,15 @@ function renderPage() {
 
                 </div>
 
-
             </div>
-
-
-            <!-- ======================================
-                 MANAGE BUTTON
-            ======================================= -->
-
-            <button
-                class="manage-btn"
-                id="manageAcademicBtn">
-
-                📊 Manage Attendance & Marks
-
-            </button>
-
 
         </div>
 
 
-        <!-- ==========================================
+
+        <!-- =================================================
              STATS
-        =========================================== -->
+        ================================================== -->
 
         <div class="stats-grid">
 
@@ -1525,6 +1759,7 @@ function renderPage() {
             </div>
 
 
+
             <div class="stat-card">
 
                 <div class="stat-icon">
@@ -1544,6 +1779,7 @@ function renderPage() {
             </div>
 
 
+
             <div class="stat-card">
 
                 <div class="stat-icon">
@@ -1561,6 +1797,7 @@ function renderPage() {
                 </p>
 
             </div>
+
 
 
             <div class="stat-card">
@@ -1585,16 +1822,18 @@ function renderPage() {
         </div>
 
 
-        <!-- ==========================================
+
+        <!-- =================================================
              CONTENT
-        =========================================== -->
+        ================================================== -->
 
         <div class="content-grid">
 
 
-            <!-- ======================================
+
+            <!-- =============================================
                  PERSONAL INFORMATION
-            ======================================= -->
+            ============================================== -->
 
             <div class="card">
 
@@ -1619,6 +1858,7 @@ function renderPage() {
                     </div>
 
 
+
                     <div class="detail">
 
                         <label>
@@ -1630,6 +1870,7 @@ function renderPage() {
                         </span>
 
                     </div>
+
 
 
                     <div class="detail">
@@ -1645,6 +1886,7 @@ function renderPage() {
                     </div>
 
 
+
                     <div class="detail">
 
                         <label>
@@ -1652,14 +1894,17 @@ function renderPage() {
                         </label>
 
                         <span>
+
                             ${escapeHTML(
                                 studentData.dob ||
                                 studentData.dateOfBirth ||
                                 "Not provided"
                             )}
+
                         </span>
 
                     </div>
+
 
 
                     <div class="detail">
@@ -1669,23 +1914,31 @@ function renderPage() {
                         </label>
 
                         <span>
+
                             ${escapeHTML(
                                 studentData.gender ||
                                 "Not provided"
                             )}
+
                         </span>
 
                     </div>
 
 
+
                     <div class="detail">
 
                         <label>
-                            Student UID
+                            Student ID
                         </label>
 
                         <span>
-                            ${escapeHTML(studentId)}
+
+                            ${escapeHTML(
+                                studentData.studentId ||
+                                studentId
+                            )}
+
                         </span>
 
                     </div>
@@ -1696,9 +1949,10 @@ function renderPage() {
             </div>
 
 
-            <!-- ======================================
+
+            <!-- =============================================
                  ACADEMIC INFORMATION
-            ======================================= -->
+            ============================================== -->
 
             <div class="card">
 
@@ -1717,10 +1971,13 @@ function renderPage() {
                         </label>
 
                         <span>
+
                             ${escapeHTML(course)}
+
                         </span>
 
                     </div>
+
 
 
                     <div class="detail">
@@ -1730,13 +1987,16 @@ function renderPage() {
                         </label>
 
                         <span>
+
                             ${escapeHTML(
                                 studentData.role ||
                                 "Student"
                             )}
+
                         </span>
 
                     </div>
+
 
 
                     <div class="detail">
@@ -1746,10 +2006,13 @@ function renderPage() {
                         </label>
 
                         <span>
+
                             ${escapeHTML(status)}
+
                         </span>
 
                     </div>
+
 
 
                     <div class="detail">
@@ -1759,10 +2022,12 @@ function renderPage() {
                         </label>
 
                         <span>
+
                             ${escapeHTML(
                                 studentData.facultyId ||
                                 "Not assigned"
                             )}
+
                         </span>
 
                     </div>
@@ -1773,9 +2038,10 @@ function renderPage() {
             </div>
 
 
-            <!-- ======================================
+
+            <!-- =============================================
                  ASSIGNED FACULTY
-            ======================================= -->
+            ============================================== -->
 
             <div class="card full">
 
@@ -1785,78 +2051,83 @@ function renderPage() {
 
 
                 ${
-                    faculty
+                    currentFaculty
 
                     ? `
 
-                    <div class="faculty-box">
+                        <div class="faculty-box">
 
-                        <h3>
+                            <h3>
 
-                            ${escapeHTML(
-                                faculty.name ||
-                                faculty.displayName ||
-                                "Faculty"
-                            )}
+                                ${escapeHTML(
+                                    currentFaculty.name ||
+                                    currentFaculty.displayName ||
+                                    "Faculty"
+                                )}
 
-                        </h3>
-
-
-                        <p>
-
-                            📧
-                            ${escapeHTML(
-                                faculty.email ||
-                                "No email"
-                            )}
-
-                        </p>
+                            </h3>
 
 
-                        <p>
+                            <p>
 
-                            📱
-                            ${escapeHTML(
-                                faculty.phone ||
-                                faculty.mobile ||
-                                "No phone"
-                            )}
+                                📧
+                                ${escapeHTML(
+                                    currentFaculty.email ||
+                                    "No email"
+                                )}
 
-                        </p>
+                            </p>
 
 
-                        <p>
+                            <p>
 
-                            📚
-                            ${escapeHTML(
-                                faculty.course ||
-                                "Not specified"
-                            )}
+                                📱
+                                ${escapeHTML(
+                                    currentFaculty.phone ||
+                                    currentFaculty.mobile ||
+                                    "No phone"
+                                )}
 
-                        </p>
+                            </p>
 
-                    </div>
+
+                            <p>
+
+                                📚
+                                ${escapeHTML(
+                                    currentFaculty.course ||
+                                    "Faculty"
+                                )}
+
+                            </p>
+
+                        </div>
 
                     `
 
                     : `
 
-                    <div class="empty">
+                        <div class="empty">
 
-                        No faculty information available.
+                            👨‍🏫
 
-                    </div>
+                            <br><br>
+
+                            No faculty has been assigned yet.
+
+                        </div>
 
                     `
-
                 }
+
 
             </div>
 
 
-            <!-- ======================================
+
+            <!-- =============================================
                  ATTENDANCE
-            ======================================= -->
+            ============================================== -->
 
             <div class="card">
 
@@ -1865,7 +2136,7 @@ function renderPage() {
                 </h2>
 
 
-                <div id="attendanceList">
+                <div>
 
                     ${renderAttendanceHTML()}
 
@@ -1874,9 +2145,10 @@ function renderPage() {
             </div>
 
 
-            <!-- ======================================
+
+            <!-- =============================================
                  MARKS
-            ======================================= -->
+            ============================================== -->
 
             <div class="card">
 
@@ -1885,7 +2157,7 @@ function renderPage() {
                 </h2>
 
 
-                <div id="marksList">
+                <div>
 
                     ${renderMarksHTML()}
 
@@ -1894,9 +2166,10 @@ function renderPage() {
             </div>
 
 
-            <!-- ======================================
+
+            <!-- =============================================
                  BIOGRAPHY
-            ======================================= -->
+            ============================================== -->
 
             <div class="card full">
 
@@ -1922,31 +2195,13 @@ function renderPage() {
 
     `;
 
-
-    // ==================================================
-    // MANAGE ACADEMIC BUTTON
-    // ==================================================
-
-    document
-        .getElementById(
-            "manageAcademicBtn"
-        )
-        .addEventListener(
-            "click",
-            () => {
-
-                window.location.href =
-                    `student-academic.html?id=${encodeURIComponent(studentId)}`;
-
-            }
-        );
-
 }
 
 
-// ======================================================
-// ATTENDANCE CALCULATION
-// ======================================================
+
+/* =========================================================
+   ATTENDANCE CALCULATION
+========================================================= */
 
 function calculateAttendance() {
 
@@ -1975,6 +2230,7 @@ function calculateAttendance() {
 
             }
 
+
             else if (
                 status === "absent" ||
                 status === "a"
@@ -1996,9 +2252,8 @@ function calculateAttendance() {
         total > 0
 
         ? (
-            (present / total) *
-            100
-          ).toFixed(1)
+            (present / total) * 100
+        ).toFixed(1)
 
         : "0";
 
@@ -2018,9 +2273,10 @@ function calculateAttendance() {
 }
 
 
-// ======================================================
-// MARKS CALCULATION
-// ======================================================
+
+/* =========================================================
+   MARKS CALCULATION
+========================================================= */
 
 function calculateMarks() {
 
@@ -2054,6 +2310,7 @@ function calculateMarks() {
                         maxMarks
                     ) * 100;
 
+
                 count++;
 
             }
@@ -2068,7 +2325,7 @@ function calculateMarks() {
         ? (
             totalPercentage /
             count
-          ).toFixed(1)
+        ).toFixed(1)
 
         : "0";
 
@@ -2084,9 +2341,10 @@ function calculateMarks() {
 }
 
 
-// ======================================================
-// ATTENDANCE HTML
-// ======================================================
+
+/* =========================================================
+   ATTENDANCE HTML
+========================================================= */
 
 function renderAttendanceHTML() {
 
@@ -2130,8 +2388,8 @@ function renderAttendanceHTML() {
 
 
             const isPresent =
-                status ===
-                "present";
+                status === "present" ||
+                status === "p";
 
 
             return `
@@ -2151,6 +2409,7 @@ function renderAttendanceHTML() {
                     <div class="record-subtitle">
 
                         📅
+
                         ${escapeHTML(
                             record.date ||
                             "No date"
@@ -2184,9 +2443,10 @@ function renderAttendanceHTML() {
 }
 
 
-// ======================================================
-// MARKS HTML
-// ======================================================
+
+/* =========================================================
+   MARKS HTML
+========================================================= */
 
 function renderMarksHTML() {
 
@@ -2237,9 +2497,8 @@ function renderMarksHTML() {
                 maxMarks > 0
 
                 ? (
-                    (marks / maxMarks) *
-                    100
-                  ).toFixed(1)
+                    (marks / maxMarks) * 100
+                ).toFixed(1)
 
                 : "0";
 
@@ -2261,6 +2520,7 @@ function renderMarksHTML() {
                     <div class="record-subtitle">
 
                         📝
+
                         ${escapeHTML(
                             record.exam ||
                             "Exam"
@@ -2270,7 +2530,7 @@ function renderMarksHTML() {
 
 
                     <div style="
-                        margin-top:9px;
+                        margin-top:10px;
                     ">
 
                         <span class="marks">
@@ -2284,8 +2544,8 @@ function renderMarksHTML() {
 
                         <span style="
                             color:#64748b;
-                            font-size:10px;
-                            margin-left:7px;
+                            font-size:11px;
+                            margin-left:8px;
                         ">
 
                             ${escapeHTML(
@@ -2306,13 +2566,12 @@ function renderMarksHTML() {
 }
 
 
-// ======================================================
-// ERROR
-// ======================================================
 
-function showError(
-    message
-) {
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(message) {
 
     pageContent.innerHTML = `
 
@@ -2321,7 +2580,7 @@ function showError(
             <div>
 
                 <div style="
-                    font-size:40px;
+                    font-size:45px;
                     margin-bottom:15px;
                 ">
 
@@ -2340,10 +2599,10 @@ function showError(
                     class="back-btn"
                     onclick="
                         window.location.href =
-                        'faculty-dashboard.html'
+                        'student-dashboard.html'
                     ">
 
-                    ← Back to Faculty Dashboard
+                    ← Back to Dashboard
 
                 </button>
 
@@ -2356,13 +2615,12 @@ function showError(
 }
 
 
-// ======================================================
-// ESCAPE HTML
-// ======================================================
 
-function escapeHTML(
-    value
-) {
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
 
     return String(value)
 
@@ -2392,6 +2650,11 @@ function escapeHTML(
         );
 
 }
+
+
+console.log(
+    "Student Profile loaded successfully."
+);
 
 </script>
 
