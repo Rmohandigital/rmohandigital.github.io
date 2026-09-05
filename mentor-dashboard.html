@@ -2,15 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Mentor Dashboard | R Mohan Digital</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -24,26 +20,20 @@ html{
 
 body{
     min-height:100vh;
-    background:
-        radial-gradient(
-            circle at top left,
-            #102a43 0%,
-            #07111f 35%,
-            #020617 75%
-        );
+    background:radial-gradient(circle at top left,#102a43 0%,#07111f 35%,#020617 75%);
     color:#fff;
-    overflow-x:hidden;
+    overflow-x:hidden
 }
 
 button,
 input,
 textarea,
 select{
-    font:inherit;
+    font:inherit
 }
 
 button{
-    cursor:pointer;
+    cursor:pointer
 }
 
 .sidebar{
@@ -57,13 +47,13 @@ button{
     border-right:1px solid rgba(0,229,255,.2);
     z-index:100;
     overflow-y:auto;
-    transition:.3s;
+    transition:.3s
 }
 
 .logo{
     text-align:center;
     padding-bottom:25px;
-    border-bottom:1px solid rgba(148,163,184,.12);
+    border-bottom:1px solid rgba(148,163,184,.12)
 }
 
 .logo-circle{
@@ -78,23 +68,23 @@ button{
     color:#00e5ff;
     font-size:22px;
     font-weight:bold;
-    box-shadow:0 0 18px rgba(0,229,255,.35);
+    box-shadow:0 0 18px rgba(0,229,255,.35)
 }
 
 .logo h2{
     margin-top:12px;
-    font-size:18px;
+    font-size:18px
 }
 
 .logo p{
     margin-top:5px;
     font-size:10px;
     letter-spacing:2px;
-    color:#38bdf8;
+    color:#38bdf8
 }
 
 .menu{
-    margin-top:25px;
+    margin-top:25px
 }
 
 .menu button{
@@ -107,14 +97,14 @@ button{
     background:transparent;
     color:#94a3b8;
     text-align:left;
-    transition:.2s;
+    transition:.2s
 }
 
 .menu button:hover,
 .menu button.active{
     color:#00e5ff;
     background:rgba(0,229,255,.08);
-    border-color:rgba(0,229,255,.25);
+    border-color:rgba(0,229,255,.25)
 }
 
 .menu-count{
@@ -125,13 +115,13 @@ button{
     background:#ef4444;
     color:#fff;
     font-size:10px;
-    text-align:center;
+    text-align:center
 }
 
 .main{
     margin-left:250px;
     min-height:100vh;
-    padding:25px;
+    padding:25px
 }
 
 .topbar{
@@ -140,33 +130,33 @@ button{
     align-items:center;
     gap:15px;
     padding-bottom:20px;
-    border-bottom:1px solid rgba(148,163,184,.12);
+    border-bottom:1px solid rgba(148,163,184,.12)
 }
 
 .topbar h1{
-    font-size:25px;
+    font-size:25px
 }
 
 .topbar h1 span{
-    color:#00e5ff;
+    color:#00e5ff
 }
 
 .profile-area{
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:15px
 }
 
 .mentor-info{
-    text-align:right;
+    text-align:right
 }
 
 .mentor-info strong{
-    display:block;
+    display:block
 }
 
 .mentor-info small{
-    color:#94a3b8;
+    color:#94a3b8
 }
 
 .profile-mini{
@@ -176,7 +166,7 @@ button{
     object-fit:cover;
     border:2px solid #00e5ff;
     background:#07111f;
-    display:none;
+    display:none
 }
 
 .logout,
@@ -187,24 +177,24 @@ button{
     border:0;
     border-radius:8px;
     padding:10px 15px;
-    color:#fff;
+    color:#fff
 }
 
 .logout,
 .secondary{
-    background:#172033;
+    background:#172033
 }
 
 .primary{
-    background:#00a8cc;
+    background:#00a8cc
 }
 
 .success{
-    background:#16a34a;
+    background:#16a34a
 }
 
 .danger{
-    background:#dc2626;
+    background:#dc2626
 }
 
 .welcome,
@@ -214,53 +204,53 @@ button{
     border:1px solid rgba(0,229,255,.16);
     border-radius:14px;
     background:rgba(7,17,31,.72);
-    box-shadow:0 0 25px rgba(0,0,0,.18);
+    box-shadow:0 0 25px rgba(0,0,0,.18)
 }
 
 .welcome h2{
     font-size:24px;
-    margin-bottom:8px;
+    margin-bottom:8px
 }
 
 .welcome p{
-    color:#94a3b8;
+    color:#94a3b8
 }
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:15px;
-    margin-top:20px;
+    margin-top:20px
 }
 
 .stat-card{
     padding:20px;
     border:1px solid rgba(0,229,255,.15);
     border-radius:12px;
-    background:rgba(7,17,31,.7);
+    background:rgba(7,17,31,.7)
 }
 
 .stat-icon{
     font-size:25px;
-    margin-bottom:10px;
+    margin-bottom:10px
 }
 
 .stat-card h3{
     font-size:28px;
-    color:#00e5ff;
+    color:#00e5ff
 }
 
 .stat-card p{
     color:#94a3b8;
-    margin-top:5px;
+    margin-top:5px
 }
 
 .section{
-    display:none;
+    display:none
 }
 
 .section.active{
-    display:block;
+    display:block
 }
 
 .section-title{
@@ -268,20 +258,20 @@ button{
     justify-content:space-between;
     align-items:center;
     gap:10px;
-    margin-bottom:15px;
+    margin-bottom:15px
 }
 
 .section-title h2{
-    font-size:20px;
+    font-size:20px
 }
 
 .muted{
-    color:#94a3b8;
+    color:#94a3b8
 }
 
 .card-list{
     display:grid;
-    gap:12px;
+    gap:12px
 }
 
 .item-card{
@@ -292,14 +282,14 @@ button{
     padding:16px;
     border:1px solid rgba(148,163,184,.12);
     border-radius:11px;
-    background:rgba(2,6,23,.55);
+    background:rgba(2,6,23,.55)
 }
 
 .item-left{
     display:flex;
     align-items:center;
     gap:12px;
-    min-width:0;
+    min-width:0
 }
 
 .avatar{
@@ -312,34 +302,34 @@ button{
     background:#102a43;
     border:1px solid rgba(0,229,255,.3);
     overflow:hidden;
-    flex:none;
+    flex:none
 }
 
 .avatar img{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:cover
 }
 
 .item-text{
-    min-width:0;
+    min-width:0
 }
 
 .item-text h3{
-    font-size:15px;
+    font-size:15px
 }
 
 .item-text p{
     font-size:12px;
     color:#94a3b8;
     margin-top:4px;
-    word-break:break-word;
+    word-break:break-word
 }
 
 .actions{
     display:flex;
     gap:8px;
-    flex-wrap:wrap;
+    flex-wrap:wrap
 }
 
 .badge{
@@ -349,113 +339,156 @@ button{
     background:rgba(0,229,255,.1);
     color:#67e8f9;
     font-size:11px;
-    margin-top:5px;
+    margin-top:5px
+}
+
+select,
+input,
+textarea{
+    width:100%;
+    padding:11px;
+    border-radius:8px;
+    border:1px solid rgba(148,163,184,.2);
+    background:#07111f;
+    color:#fff;
+    outline:none
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#00e5ff;
+    box-shadow:0 0 10px rgba(0,229,255,.12)
+}
+
+textarea{
+    resize:vertical;
+    min-height:100px
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px
+}
+
+.form-group{
+    margin-bottom:12px
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    color:#cbd5e1;
+    font-size:13px
+}
+
+.full{
+    grid-column:1/-1
 }
 
 .empty{
     text-align:center;
     padding:30px;
-    color:#64748b;
+    color:#64748b
 }
 
-/* =====================================================
-   CHAT
-===================================================== */
+/* CHAT */
 
 .chat-wrapper{
     height:calc(100vh - 170px);
     min-height:560px;
     display:grid;
-    grid-template-columns:310px 1fr;
+    grid-template-columns:300px 1fr;
     overflow:hidden;
     border:1px solid rgba(0,229,255,.16);
     border-radius:14px;
     background:#06101c;
+    position:relative
 }
 
 .chat-list{
     border-right:1px solid rgba(148,163,184,.12);
     overflow-y:auto;
-    background:#050e19;
+    min-width:0
 }
 
 .chat-list-head{
     padding:15px;
-    border-bottom:1px solid rgba(148,163,184,.12);
+    border-bottom:1px solid rgba(148,163,184,.12)
 }
 
 .chat-list-head h3{
-    margin-bottom:8px;
+    margin-bottom:10px
 }
 
-.chat-category{
-    padding:10px 14px 6px;
-    color:#38bdf8;
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:1px;
+.chat-filter{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:5px;
+    margin-bottom:10px
+}
+
+.chat-filter button{
+    border:1px solid rgba(148,163,184,.18);
+    background:#07111f;
+    color:#94a3b8;
+    border-radius:6px;
+    padding:7px 5px;
+    font-size:11px
+}
+
+.chat-filter button.active{
+    color:#00e5ff;
+    border-color:#00e5ff;
+    background:rgba(0,229,255,.08)
 }
 
 .chat-item{
     padding:13px;
     border-bottom:1px solid rgba(148,163,184,.08);
     cursor:pointer;
-    transition:.2s;
+    transition:.2s
 }
 
 .chat-item:hover,
 .chat-item.active{
-    background:rgba(0,229,255,.08);
-}
-
-.chat-item p{
-    color:#64748b;
-    font-size:11px;
-    margin-top:4px;
+    background:rgba(0,229,255,.08)
 }
 
 .chat-window{
     display:flex;
     flex-direction:column;
     min-width:0;
-    min-height:0;
-    position:relative;
+    min-height:0
 }
 
 .chat-header{
-    min-height:70px;
     padding:14px 16px;
     border-bottom:1px solid rgba(148,163,184,.12);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:10px;
-    flex:none;
+    gap:10px
 }
 
 .chat-header h3{
-    font-size:16px;
+    font-size:16px
 }
 
 .chat-header small{
-    color:#94a3b8;
+    color:#94a3b8
 }
 
 .messages{
     flex:1;
-    min-height:0;
     overflow-y:auto;
     padding:18px;
     display:flex;
     flex-direction:column;
     gap:8px;
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(16,42,67,.3),
-            transparent 70%
-        );
-    -webkit-overflow-scrolling:touch;
+    background:radial-gradient(circle at center,rgba(16,42,67,.3),transparent 70%);
+    min-height:0
 }
 
 .message{
@@ -464,19 +497,19 @@ button{
     border-radius:10px;
     background:#172033;
     align-self:flex-start;
-    word-break:break-word;
+    word-break:break-word
 }
 
 .message.mine{
     background:#075985;
-    align-self:flex-end;
+    align-self:flex-end
 }
 
 .message small{
     display:block;
     color:#cbd5e1;
     font-size:9px;
-    margin-top:4px;
+    margin-top:4px
 }
 
 .message-input-area{
@@ -484,98 +517,66 @@ button{
     gap:8px;
     padding:10px;
     border-top:1px solid rgba(148,163,184,.12);
-    background:#06101c;
-    flex:none;
+    background:#06101c
 }
 
 .message-input{
     flex:1;
-    width:auto;
     min-width:0;
-    height:45px;
-    padding:10px 13px;
-    border-radius:10px;
-    border:1px solid rgba(0,229,255,.2);
-    background:#07111f;
-    color:#fff;
-    outline:none;
     font-size:16px;
-}
-
-.message-input:focus{
-    border-color:#00e5ff;
-    box-shadow:0 0 10px rgba(0,229,255,.15);
-}
-
-.message-input:disabled{
-    opacity:.5;
-    cursor:not-allowed;
+    -webkit-appearance:none
 }
 
 .send-btn{
-    width:50px;
-    min-width:50px;
-    height:45px;
+    width:48px;
+    min-width:48px;
     background:#00a8cc;
     color:#fff;
     border:0;
-    border-radius:9px;
-    font-size:18px;
+    border-radius:8px
 }
 
-.send-btn:disabled{
-    opacity:.45;
-    cursor:not-allowed;
-}
-
-.chat-search{
-    margin-bottom:10px;
-}
-
-.chat-search input{
-    width:100%;
-}
-
-.chat-empty{
-    padding:30px 15px;
-    text-align:center;
+.chat-empty-info{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:10px;
     color:#64748b;
+    text-align:center
 }
 
-/* =====================================================
-   ANNOUNCEMENTS
-===================================================== */
+/* ANNOUNCEMENTS */
 
 .announcement-list{
     display:grid;
     gap:10px;
-    margin-top:15px;
+    margin-top:15px
 }
 
 .announcement{
     padding:15px;
     border-radius:10px;
     border:1px solid rgba(148,163,184,.12);
-    background:#07111f;
+    background:#07111f
 }
 
 .announcement h3{
-    margin-bottom:6px;
+    margin-bottom:6px
 }
 
 .announcement p{
     color:#cbd5e1;
-    white-space:pre-wrap;
+    white-space:pre-wrap
 }
 
-/* =====================================================
-   THEME
-===================================================== */
+/* THEME */
 
 .theme-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:12px;
+    gap:12px
 }
 
 .theme-btn{
@@ -583,26 +584,24 @@ button{
     border:1px solid rgba(148,163,184,.2);
     border-radius:10px;
     background:#07111f;
-    color:#fff;
+    color:#fff
 }
 
 .theme-btn:hover{
-    border-color:#00e5ff;
+    border-color:#00e5ff
 }
 
-/* =====================================================
-   PROFILE
-===================================================== */
+/* PROFILE */
 
 .profile-card{
     display:flex;
     gap:25px;
-    align-items:flex-start;
+    align-items:flex-start
 }
 
 .profile-photo-wrap{
     text-align:center;
-    min-width:160px;
+    min-width:160px
 }
 
 .profile-photo{
@@ -612,12 +611,14 @@ button{
     object-fit:cover;
     background:#07111f;
     border:2px solid #00e5ff;
-    box-shadow:0 0 20px rgba(0,229,255,.2);
+    box-shadow:0 0 20px rgba(0,229,255,.2)
 }
 
 .profile-photo-wrap input{
-    margin-top:12px;
+    margin-top:12px
 }
+
+/* MODAL */
 
 .modal{
     display:none;
@@ -627,11 +628,11 @@ button{
     z-index:500;
     align-items:center;
     justify-content:center;
-    padding:20px;
+    padding:20px
 }
 
 .modal.show{
-    display:flex;
+    display:flex
 }
 
 .modal-box{
@@ -641,21 +642,21 @@ button{
     border-radius:14px;
     padding:22px;
     max-height:90vh;
-    overflow:auto;
+    overflow:auto
 }
 
 .modal-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:15px;
+    margin-bottom:15px
 }
 
 .close{
     background:transparent;
     color:#94a3b8;
     border:0;
-    font-size:24px;
+    font-size:24px
 }
 
 .toast{
@@ -669,11 +670,11 @@ button{
     border:1px solid #00e5ff;
     color:#fff;
     display:none;
-    max-width:350px;
+    max-width:400px
 }
 
 .toast.show{
-    display:block;
+    display:block
 }
 
 .mobile-menu{
@@ -687,211 +688,146 @@ button{
     color:#00e5ff;
     border-radius:8px;
     padding:8px 12px;
-    font-size:20px;
+    font-size:20px
 }
 
-/* =====================================================
-   FULL SCREEN
-===================================================== */
+/* FULL SCREEN */
 
 .fullscreen-chat{
     position:fixed!important;
     inset:0!important;
     width:100vw!important;
-    height:100dvh!important;
+    height:100vh!important;
     min-height:0!important;
     border-radius:0!important;
-    z-index:450!important;
+    z-index:450!important
 }
 
-.fullscreen-chat .messages{
-    padding-bottom:20px;
+.fullscreen-chat .chat-list{
+    display:block
 }
 
-/* =====================================================
-   FORMS
-===================================================== */
-
-select,
-input,
-textarea{
-    width:100%;
-    padding:11px;
-    border-radius:8px;
-    border:1px solid rgba(148,163,184,.2);
-    background:#07111f;
-    color:#fff;
-    outline:none;
-}
-
-textarea{
-    resize:vertical;
-    min-height:100px;
-}
-
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.form-group{
-    margin-bottom:12px;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:6px;
-    color:#cbd5e1;
-    font-size:13px;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-/* =====================================================
-   MOBILE
-===================================================== */
+/* MOBILE */
 
 @media(max-width:900px){
 
     .sidebar{
-        transform:translateX(-100%);
+        transform:translateX(-100%)
     }
 
     .sidebar.open{
-        transform:translateX(0);
+        transform:translateX(0)
     }
 
     .mobile-menu{
-        display:block;
+        display:block
     }
 
     .main{
         margin-left:0;
-        padding:70px 15px 15px;
+        padding:70px 15px 15px
     }
 
     .stats{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr)
     }
 
     .chat-wrapper{
-        height:calc(100dvh - 155px);
-        min-height:500px;
         grid-template-columns:1fr;
-        position:relative;
+        height:calc(100vh - 160px);
+        min-height:500px
     }
 
     .chat-list{
-        display:none;
+        display:none
     }
 
     .chat-list.mobile-show{
         display:block;
         position:absolute;
         inset:0;
-        z-index:20;
-    }
-
-    .chat-window{
-        min-height:0;
-        height:100%;
+        z-index:10;
+        background:#06101c
     }
 
     .form-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr
     }
 
     .full{
-        grid-column:auto;
+        grid-column:auto
     }
 
     .profile-card{
         flex-direction:column;
-        align-items:center;
-    }
-
-    .message{
-        max-width:88%;
+        align-items:center
     }
 
     .chat-header{
-        min-height:62px;
+        padding-left:55px
     }
-
-    .message-input-area{
-        padding:
-            8px
-            8px
-            max(8px, env(safe-area-inset-bottom));
-    }
-
 }
 
 @media(max-width:500px){
 
     .stats{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr
     }
 
     .item-card{
         align-items:flex-start;
-        flex-direction:column;
+        flex-direction:column
     }
 
     .actions{
-        width:100%;
+        width:100%
     }
 
     .actions button,
     .actions select{
-        width:100%;
+        width:100%
     }
 
     .topbar{
         align-items:flex-start;
-        flex-direction:column;
+        flex-direction:column
     }
 
     .profile-area{
         width:100%;
-        justify-content:space-between;
+        justify-content:space-between
     }
 
     .mentor-info{
-        text-align:left;
+        text-align:left
+    }
+
+    .message{
+        max-width:88%
     }
 
     .theme-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr
     }
 
-    .chat-wrapper{
-        height:calc(100dvh - 145px);
+    .chat-filter{
+        grid-template-columns:repeat(4,1fr)
     }
 
-    .chat-header{
-        padding:10px;
+    .chat-filter button{
+        font-size:9px
     }
 
-    .message-input{
-        font-size:16px;
+    .message-input-area{
+        padding-bottom:calc(10px + env(safe-area-inset-bottom))
     }
-
 }
-
 </style>
 </head>
 
 <body>
 
 <button class="mobile-menu" id="mobileMenu">☰</button>
-
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
 
 <aside class="sidebar" id="sidebar">
 
@@ -909,19 +845,13 @@ textarea{
 
     <div class="menu">
 
-        <button class="active"
-                data-section="dashboardSection">
+        <button class="active" data-section="dashboardSection">
             📊 &nbsp; Dashboard
         </button>
 
         <button data-section="studentRequestsSection">
             🎓 &nbsp; Student Requests
-            <span
-                class="menu-count"
-                id="studentRequestCount"
-                style="display:none">
-                0
-            </span>
+            <span class="menu-count" id="studentRequestCount" style="display:none">0</span>
         </button>
 
         <button data-section="pendingSection">
@@ -956,625 +886,623 @@ textarea{
 
 </aside>
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
 
 <main class="main">
 
-<div class="topbar">
+    <div class="topbar">
 
-    <h1>
-        Mentor <span>Dashboard</span>
-    </h1>
+        <h1>
+            Mentor <span>Dashboard</span>
+        </h1>
 
-    <div class="profile-area">
-
-        <img
-            class="profile-mini"
-            id="profileMini"
-            alt="Mentor profile">
-
-        <div class="mentor-info">
-
-            <strong id="mentorName">
-                Geethika
-            </strong>
-
-            <small id="mentorEmail">
-                Loading...
-            </small>
-
-        </div>
-
-        <button
-            class="logout"
-            id="logoutBtn">
-            Logout
-        </button>
-
-    </div>
-
-</div>
-
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
-
-<section
-    class="welcome"
-    id="dashboardSection"
-    style="display:block">
-
-    <h2 id="welcomeTitle">
-        Welcome, Geethika 👩‍💼
-    </h2>
-
-    <p>
-        Manage students, faculty, groups, messages and
-        announcements from one place.
-    </p>
-
-    <div class="stats">
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                🎓
-            </div>
-
-            <h3 id="totalStudents">
-                0
-            </h3>
-
-            <p>
-                Total Students
-            </p>
-
-        </div>
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                ⏳
-            </div>
-
-            <h3 id="pendingStudents">
-                0
-            </h3>
-
-            <p>
-                Pending Students
-            </p>
-
-        </div>
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                👨‍🏫
-            </div>
-
-            <h3 id="totalFaculty">
-                0
-            </h3>
-
-            <p>
-                Faculty
-            </p>
-
-        </div>
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                💬
-            </div>
-
-            <h3 id="totalChats">
-                0
-            </h3>
-
-            <p>
-                Chats / Groups
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     STUDENT REQUESTS
-===================================================== -->
-
-<section
-    class="section panel"
-    id="studentRequestsSection">
-
-    <div class="section-title">
-
-        <h2>
-            🎓 Student Approval Requests
-        </h2>
-
-        <span class="muted">
-            Approve, reject and assign faculty
-        </span>
-
-    </div>
-
-    <div
-        class="card-list"
-        id="pendingStudentsList">
-
-        <div class="empty">
-            Loading student requests...
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     FACULTY REQUESTS
-===================================================== -->
-
-<section
-    class="section panel"
-    id="pendingSection">
-
-    <div class="section-title">
-
-        <h2>
-            ⏳ Faculty Requests
-        </h2>
-
-        <span class="muted">
-            Pending faculty accounts
-        </span>
-
-    </div>
-
-    <div
-        class="card-list"
-        id="pendingFaculty">
-
-        <div class="empty">
-            Loading...
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     ACTIVE FACULTY
-===================================================== -->
-
-<section
-    class="section panel"
-    id="activeSection">
-
-    <div class="section-title">
-
-        <h2>
-            👨‍🏫 Active Faculty
-        </h2>
-
-        <span class="muted">
-            Harsha, Jaswanth and Jyoshna
-        </span>
-
-    </div>
-
-    <div
-        class="card-list"
-        id="activeFacultyList">
-
-        <div class="empty">
-            Loading...
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     FACULTY MANAGEMENT
-===================================================== -->
-
-<section
-    class="section panel"
-    id="facultyManagement">
-
-    <div class="section-title">
-
-        <h2>
-            📚 Faculty Management
-        </h2>
-
-        <button
-            class="primary"
-            id="refreshFaculty">
-            Refresh
-        </button>
-
-    </div>
-
-    <div
-        class="card-list"
-        id="facultyManagementList">
-
-        <div class="empty">
-            Loading...
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     CHAT SECTION
-===================================================== -->
-
-<section
-    class="section"
-    id="chatSection">
-
-    <div class="section-title">
-
-        <h2>
-            💬 Chat Center
-        </h2>
-
-        <span class="muted">
-            Owner / Faculty / Students / Groups
-        </span>
-
-    </div>
-
-    <div
-        class="chat-wrapper"
-        id="chatWrapper">
-
-        <!-- CHAT LIST -->
-
-        <div
-            class="chat-list"
-            id="chatList">
-
-            <div class="chat-list-head">
-
-                <h3>
-                    Chats
-                </h3>
-
-                <div class="chat-search">
-
-                    <input
-                        id="chatSearch"
-                        placeholder="Search chats...">
-
-                </div>
-
-                <button
-                    class="primary"
-                    id="createGroupBtn">
-                    ＋ Create Group
-                </button>
-
-            </div>
-
-            <div id="chatItems">
-
-                <div class="chat-empty">
-                    Loading chats...
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- CHAT WINDOW -->
-
-        <div class="chat-window">
-
-            <div class="chat-header">
-
-                <div>
-
-                    <h3 id="chatTitle">
-                        Select a chat
-                    </h3>
-
-                    <small id="chatStatus">
-                        No conversation selected
-                    </small>
-
-                </div>
-
-                <div style="display:flex;gap:7px">
-
-                    <button
-                        class="secondary"
-                        id="backToChatList"
-                        style="display:none">
-                        ← Chats
-                    </button>
-
-                    <button
-                        class="secondary"
-                        id="fullScreenBtn"
-                        style="display:none">
-                        ⛶ Full Screen
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div
-                class="messages"
-                id="messages">
-
-                <div class="empty">
-                    Select a chat to start messaging.
-                </div>
-
-            </div>
-
-            <div class="message-input-area">
-
-                <input
-                    class="message-input"
-                    id="messageInput"
-                    type="text"
-                    autocomplete="off"
-                    autocorrect="on"
-                    placeholder="Select a chat first..."
-                    disabled>
-
-                <button
-                    class="send-btn"
-                    id="sendBtn"
-                    disabled>
-                    ➤
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     ANNOUNCEMENTS
-===================================================== -->
-
-<section
-    class="section panel"
-    id="announcementSection">
-
-    <div class="section-title">
-
-        <h2>
-            📢 Student Announcements
-        </h2>
-
-        <span class="muted">
-            Messages sent to approved students
-        </span>
-
-    </div>
-
-    <div class="form-grid">
-
-        <div class="form-group">
-
-            <label>
-                Announcement Title
-            </label>
-
-            <input
-                id="announcementTitle"
-                placeholder="Enter announcement title">
-
-        </div>
-
-        <div class="form-group full">
-
-            <label>
-                Message
-            </label>
-
-            <textarea
-                id="announcementMessage"
-                placeholder="Write your announcement..."></textarea>
-
-        </div>
-
-    </div>
-
-    <button
-        class="primary"
-        id="publishAnnouncement">
-        📢 Send to Students
-    </button>
-
-    <div
-        class="announcement-list"
-        id="announcementList">
-    </div>
-
-</section>
-
-<!-- =====================================================
-     THEME
-===================================================== -->
-
-<section
-    class="section panel"
-    id="themeSection">
-
-    <div class="section-title">
-
-        <h2>
-            🎨 Chat Theme
-        </h2>
-
-    </div>
-
-    <div class="theme-grid">
-
-        <button
-            class="theme-btn"
-            data-theme="default">
-            🌌 Default Neon
-        </button>
-
-        <button
-            class="theme-btn"
-            data-theme="blue">
-            🔵 Blue
-        </button>
-
-        <button
-            class="theme-btn"
-            data-theme="dark">
-            ⚫ Deep Dark
-        </button>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     PROFILE
-===================================================== -->
-
-<section
-    class="section panel"
-    id="profileSection">
-
-    <div class="section-title">
-
-        <h2>
-            👤 My Profile
-        </h2>
-
-        <span class="muted">
-            Edit your mentor profile
-        </span>
-
-    </div>
-
-    <div class="profile-card">
-
-        <div class="profile-photo-wrap">
+        <div class="profile-area">
 
             <img
-                class="profile-photo"
-                id="profilePhoto"
-                alt="Mentor profile photo">
+                class="profile-mini"
+                id="profileMini"
+                alt="Mentor profile"
+            >
 
-            <input
-                type="file"
-                id="profilePhotoInput"
-                accept="image/*">
+            <div class="mentor-info">
 
-        </div>
+                <strong id="mentorName">
+                    Geethika
+                </strong>
 
-        <div style="width:100%">
-
-            <div class="form-grid">
-
-                <div class="form-group">
-
-                    <label>
-                        Full Name
-                    </label>
-
-                    <input
-                        id="profileName"
-                        value="Geethika">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Email
-                    </label>
-
-                    <input
-                        id="profileEmail"
-                        readonly>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Phone
-                    </label>
-
-                    <input
-                        id="profilePhone"
-                        placeholder="Phone number">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Designation
-                    </label>
-
-                    <input
-                        id="profileDesignation"
-                        value="Mentor">
-
-                </div>
-
-                <div class="form-group full">
-
-                    <label>
-                        About
-                    </label>
-
-                    <textarea
-                        id="profileAbout"
-                        placeholder="Write something about yourself..."></textarea>
-
-                </div>
+                <small id="mentorEmail">
+                    Loading...
+                </small>
 
             </div>
 
-            <button
-                class="success"
-                id="saveProfileBtn">
-                💾 Save Profile
+            <button class="logout" id="logoutBtn">
+                Logout
             </button>
 
         </div>
 
     </div>
 
-</section>
+
+    <!-- DASHBOARD -->
+
+    <section class="welcome" id="dashboardSection" style="display:block">
+
+        <h2 id="welcomeTitle">
+            Welcome, Geethika 👩‍💼
+        </h2>
+
+        <p>
+            Manage students, faculty, groups, messages and announcements from one place.
+        </p>
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎓
+                </div>
+
+                <h3 id="totalStudents">
+                    0
+                </h3>
+
+                <p>
+                    Total Students
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
+                <h3 id="pendingStudents">
+                    0
+                </h3>
+
+                <p>
+                    Pending Students
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍🏫
+                </div>
+
+                <h3 id="totalFaculty">
+                    0
+                </h3>
+
+                <p>
+                    Faculty
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💬
+                </div>
+
+                <h3 id="totalChats">
+                    0
+                </h3>
+
+                <p>
+                    Chats / Groups
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDENT REQUESTS -->
+
+    <section class="section panel" id="studentRequestsSection">
+
+        <div class="section-title">
+
+            <h2>
+                🎓 Student Approval Requests
+            </h2>
+
+            <span class="muted">
+                Approve, reject and assign faculty
+            </span>
+
+        </div>
+
+        <div class="card-list" id="pendingStudentsList">
+
+            <div class="empty">
+                Loading student requests...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FACULTY REQUESTS -->
+
+    <section class="section panel" id="pendingSection">
+
+        <div class="section-title">
+
+            <h2>
+                ⏳ Faculty Requests
+            </h2>
+
+            <span class="muted">
+                Pending faculty accounts
+            </span>
+
+        </div>
+
+        <div class="card-list" id="pendingFaculty">
+
+            <div class="empty">
+                Loading...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIVE FACULTY -->
+
+    <section class="section panel" id="activeSection">
+
+        <div class="section-title">
+
+            <h2>
+                👨‍🏫 Active Faculty
+            </h2>
+
+            <span class="muted">
+                Harsha, Jaswanth and Jyoshna
+            </span>
+
+        </div>
+
+        <div class="card-list" id="activeFacultyList">
+
+            <div class="empty">
+                Loading...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FACULTY MANAGEMENT -->
+
+    <section class="section panel" id="facultyManagement">
+
+        <div class="section-title">
+
+            <h2>
+                📚 Faculty Management
+            </h2>
+
+            <button class="primary" id="refreshFaculty">
+                Refresh
+            </button>
+
+        </div>
+
+        <div class="card-list" id="facultyManagementList">
+
+            <div class="empty">
+                Loading...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CHAT -->
+
+    <section class="section" id="chatSection">
+
+        <div class="section-title">
+
+            <h2>
+                💬 Chat Center
+            </h2>
+
+            <span class="muted">
+                Mentor ↔ Owner / Faculty / Students / Groups
+            </span>
+
+        </div>
+
+
+        <div class="chat-wrapper" id="chatWrapper">
+
+            <!-- CHAT LIST -->
+
+            <div class="chat-list" id="chatList">
+
+                <div class="chat-list-head">
+
+                    <h3>
+                        Chats
+                    </h3>
+
+
+                    <div class="chat-filter">
+
+                        <button
+                            class="active"
+                            data-chat-filter="all">
+                            All
+                        </button>
+
+                        <button
+                            data-chat-filter="owner">
+                            Owner
+                        </button>
+
+                        <button
+                            data-chat-filter="faculty">
+                            Faculty
+                        </button>
+
+                        <button
+                            data-chat-filter="student">
+                            Students
+                        </button>
+
+                        <button
+                            data-chat-filter="group">
+                            Groups
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        class="primary"
+                        id="createGroupBtn"
+                        style="width:100%">
+                        ＋ Create Student Group
+                    </button>
+
+                </div>
+
+
+                <div id="chatItems">
+
+                </div>
+
+            </div>
+
+
+            <!-- CHAT WINDOW -->
+
+            <div class="chat-window">
+
+                <div class="chat-header">
+
+                    <div>
+
+                        <h3 id="chatTitle">
+                            Select a chat
+                        </h3>
+
+                        <small id="chatStatus">
+                            No conversation selected
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        class="secondary"
+                        id="fullScreenBtn"
+                        style="display:none">
+
+                        ⛶ Full Screen
+
+                    </button>
+
+                </div>
+
+
+                <div class="messages" id="messages">
+
+                    <div class="chat-empty-info">
+
+                        <div style="font-size:45px">
+                            💬
+                        </div>
+
+                        <div>
+                            Select a chat to start messaging.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="message-input-area">
+
+                    <input
+                        type="text"
+                        class="message-input"
+                        id="messageInput"
+                        placeholder="Select a chat first..."
+                        autocomplete="off"
+                        autocorrect="on"
+                        autocapitalize="sentences"
+                        spellcheck="true"
+                        inputmode="text"
+                        disabled
+                    >
+
+                    <button
+                        class="send-btn"
+                        id="sendBtn"
+                        disabled>
+                        ➤
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ANNOUNCEMENTS -->
+
+    <section class="section panel" id="announcementSection">
+
+        <div class="section-title">
+
+            <h2>
+                📢 Student Announcements
+            </h2>
+
+            <span class="muted">
+                Messages sent to all approved students
+            </span>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Announcement Title
+                </label>
+
+                <input
+                    id="announcementTitle"
+                    placeholder="Enter announcement title">
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Message
+                </label>
+
+                <textarea
+                    id="announcementMessage"
+                    placeholder="Write your announcement..."></textarea>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary"
+            id="publishAnnouncement">
+
+            📢 Send to Students
+
+        </button>
+
+
+        <div
+            class="announcement-list"
+            id="announcementList">
+
+        </div>
+
+    </section>
+
+
+    <!-- THEME -->
+
+    <section class="section panel" id="themeSection">
+
+        <div class="section-title">
+
+            <h2>
+                🎨 Chat Theme
+            </h2>
+
+        </div>
+
+
+        <div class="theme-grid">
+
+            <button
+                class="theme-btn"
+                data-theme="default">
+                🌌 Default Neon
+            </button>
+
+            <button
+                class="theme-btn"
+                data-theme="blue">
+                🔵 Blue
+            </button>
+
+            <button
+                class="theme-btn"
+                data-theme="dark">
+                ⚫ Deep Dark
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+
+    <section class="section panel" id="profileSection">
+
+        <div class="section-title">
+
+            <h2>
+                👤 Geethika's Profile
+            </h2>
+
+            <span class="muted">
+                You can edit your mentor profile
+            </span>
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-photo-wrap">
+
+                <img
+                    class="profile-photo"
+                    id="profilePhoto"
+                    alt="Mentor profile photo">
+
+                <input
+                    type="file"
+                    id="profilePhotoInput"
+                    accept="image/*">
+
+            </div>
+
+
+            <div style="width:100%">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <input
+                            id="profileName"
+                            value="Geethika">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            id="profileEmail"
+                            readonly>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone
+                        </label>
+
+                        <input
+                            id="profilePhone"
+                            placeholder="Phone number">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Designation
+                        </label>
+
+                        <input
+                            id="profileDesignation"
+                            value="Mentor">
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            About
+                        </label>
+
+                        <textarea
+                            id="profileAbout"
+                            placeholder="Write something about yourself..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="success"
+                    id="saveProfileBtn">
+
+                    💾 Save Profile
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
-<!-- =====================================================
-     GROUP MODAL
-===================================================== -->
 
-<div
-    class="modal"
-    id="groupModal">
+<!-- GROUP MODAL -->
+
+<div class="modal" id="groupModal">
 
     <div class="modal-box">
 
@@ -1592,6 +1520,7 @@ textarea{
 
         </div>
 
+
         <div class="form-group">
 
             <label>
@@ -1603,6 +1532,7 @@ textarea{
                 placeholder="Example: Web Development Batch">
 
         </div>
+
 
         <div class="form-group">
 
@@ -1616,11 +1546,14 @@ textarea{
 
         </div>
 
+
         <div
             id="memberList"
             class="card-list"
             style="max-height:300px;overflow:auto">
+
         </div>
+
 
         <div
             style="display:flex;gap:8px;margin-top:15px">
@@ -1643,21 +1576,20 @@ textarea{
 
 </div>
 
+
 <div
     class="toast"
     id="toast">
 </div>
 
-<!-- =====================================================
-     FIREBASE SCRIPT
-===================================================== -->
 
 <script type="module">
 
-import {
-    auth,
-    db
-} from "./firebase.js";
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import { auth, db } from "./firebase.js";
 
 import {
     onAuthStateChanged,
@@ -1681,9 +1613,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-/* =====================================================
+/* =========================================================
    GLOBAL VARIABLES
-===================================================== */
+========================================================= */
 
 let currentUser = null;
 let currentUserData = null;
@@ -1691,7 +1623,6 @@ let currentUserData = null;
 let allUsers = [];
 let allStudents = [];
 let allFaculty = [];
-let allOwners = [];
 
 let currentChat = null;
 
@@ -1699,37 +1630,48 @@ let unsubscribeMessages = null;
 let unsubscribeDirectChats = null;
 let unsubscribeGroups = null;
 
+let currentChatFilter = "all";
 
-/* =====================================================
+
+/* =========================================================
    SHORTCUT
-===================================================== */
+========================================================= */
 
 const $ = id => document.getElementById(id);
 
 
-/* =====================================================
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 function toast(message){
 
-    const box = $("toast");
+    $("toast").textContent = message;
 
-    box.textContent = message;
-
-    box.classList.add("show");
+    $("toast").classList.add("show");
 
     setTimeout(() => {
 
-        box.classList.remove("show");
+        $("toast").classList.remove("show");
 
-    },3000);
+    },4000);
 }
 
 
-/* =====================================================
-   ROLE HELPERS
-===================================================== */
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function isActive(data){
+
+    return (
+        data?.status === "active" ||
+        data?.status === "Active" ||
+        data?.active === true
+    );
+
+}
+
 
 function roleIs(data,role){
 
@@ -1740,41 +1682,30 @@ function roleIs(data,role){
 }
 
 
-function isActive(data){
+function statusIs(data,status){
 
-    const status =
-        String(data?.status || "").toLowerCase();
-
-    return (
-        status === "active" ||
-        status === "approved" ||
-        data?.active === true
-    );
+    return String(
+        data?.status || ""
+    ).toLowerCase() === status.toLowerCase();
 
 }
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
 function esc(value){
 
-    return String(value ?? "")
-        .replace(/[&<>"']/g,c => ({
+    return String(value ?? "").replace(
+        /[&<>"']/g,
+        c => ({
             "&":"&amp;",
             "<":"&lt;",
             ">":"&gt;",
             '"':"&quot;",
             "'":"&#039;"
-        }[c]));
+        }[c])
+    );
 
 }
 
-
-/* =====================================================
-   INITIALS
-===================================================== */
 
 function initials(name){
 
@@ -1788,10 +1719,6 @@ function initials(name){
 
 }
 
-
-/* =====================================================
-   AVATAR
-===================================================== */
 
 function avatarHTML(user){
 
@@ -1814,13 +1741,13 @@ function avatarHTML(user){
 }
 
 
-/* =====================================================
+/* =========================================================
    NAVIGATION
-===================================================== */
+========================================================= */
 
-document
-.querySelectorAll(".menu button[data-section]")
-.forEach(btn => {
+document.querySelectorAll(
+    ".menu button[data-section]"
+).forEach(btn => {
 
     btn.addEventListener("click",() => {
 
@@ -1829,9 +1756,7 @@ document
             btn
         );
 
-        $("sidebar")
-            .classList
-            .remove("open");
+        $("sidebar").classList.remove("open");
 
     });
 
@@ -1841,14 +1766,14 @@ document
 function showSection(sectionId,button){
 
     document
-    .querySelectorAll(".section,.welcome")
-    .forEach(el => {
+        .querySelectorAll(".section,.welcome")
+        .forEach(el => {
 
-        el.style.display = "none";
+            el.style.display = "none";
+            el.classList.remove("active");
 
-        el.classList.remove("active");
+        });
 
-    });
 
     const target = $(sectionId);
 
@@ -1860,11 +1785,11 @@ function showSection(sectionId,button){
 
     }
 
+
     document
-    .querySelectorAll(".menu button")
-    .forEach(b =>
-        b.classList.remove("active")
-    );
+        .querySelectorAll(".menu button")
+        .forEach(b => b.classList.remove("active"));
+
 
     if(button){
 
@@ -1875,29 +1800,43 @@ function showSection(sectionId,button){
 }
 
 
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-$("mobileMenu")
-.addEventListener("click",() => {
-
-    $("sidebar")
-        .classList
-        .toggle("open");
-
-});
+$("mobileMenu").addEventListener(
+    "click",
+    () => $("sidebar").classList.toggle("open")
+);
 
 
-/* =====================================================
-   AUTH
-===================================================== */
+/* =========================================================
+   AUTHENTICATION
+========================================================= */
 
-onAuthStateChanged(
-    auth,
-    async user => {
+onAuthStateChanged(auth,async user => {
 
-        if(!user){
+    if(!user){
+
+        location.href = "admin.html";
+        return;
+
+    }
+
+
+    currentUser = user;
+
+
+    try{
+
+        const snap = await getDoc(
+            doc(db,"users",user.uid)
+        );
+
+
+        if(!snap.exists()){
+
+            alert(
+                "Mentor profile was not found in Firestore."
+            );
+
+            await signOut(auth);
 
             location.href = "admin.html";
 
@@ -1905,175 +1844,139 @@ onAuthStateChanged(
 
         }
 
-        currentUser = user;
 
-        try{
+        currentUserData = snap.data();
 
-            const snap =
-                await getDoc(
-                    doc(db,"users",user.uid)
-                );
 
-            if(!snap.exists()){
+        if(!roleIs(currentUserData,"mentor")){
 
-                alert(
-                    "Mentor profile was not found."
-                );
-
-                await signOut(auth);
-
-                location.href = "admin.html";
-
-                return;
-
-            }
-
-            currentUserData =
-                snap.data();
-
-            if(
-                !roleIs(
-                    currentUserData,
-                    "mentor"
-                )
-            ){
-
-                alert(
-                    "This account is not a mentor account."
-                );
-
-                await signOut(auth);
-
-                location.href = "admin.html";
-
-                return;
-
-            }
-
-            if(!isActive(currentUserData)){
-
-                alert(
-                    "Your mentor account is not active."
-                );
-
-                await signOut(auth);
-
-                location.href = "admin.html";
-
-                return;
-
-            }
-
-            const name =
-                currentUserData.name ||
-                "Geethika";
-
-            $("mentorName")
-                .textContent = name;
-
-            $("mentorEmail")
-                .textContent =
-                    user.email ||
-                    currentUserData.email ||
-                    "";
-
-            $("welcomeTitle")
-                .textContent =
-                    `Welcome, ${name} 👩‍💼`;
-
-            loadProfile(
-                currentUserData,
-                user
+            alert(
+                "This account is not a mentor account."
             );
 
-            await loadPeople();
+            await signOut(auth);
 
-            await loadPendingFaculty();
+            location.href = "admin.html";
 
-            await loadActiveFaculty();
-
-            await loadAnnouncements();
-
-            startChatListeners();
-
-            loadTheme();
-
-        }catch(error){
-
-            console.error(error);
-
-            toast(
-                "Unable to load mentor dashboard."
-            );
+            return;
 
         }
 
+
+        if(!isActive(currentUserData)){
+
+            alert(
+                "Your mentor account is not active."
+            );
+
+            await signOut(auth);
+
+            location.href = "admin.html";
+
+            return;
+
+        }
+
+
+        const name =
+            currentUserData.name ||
+            "Geethika";
+
+
+        $("mentorName").textContent =
+            name;
+
+
+        $("mentorEmail").textContent =
+            user.email ||
+            currentUserData.email ||
+            "";
+
+
+        $("welcomeTitle").textContent =
+            `Welcome, ${name} 👩‍💼`;
+
+
+        loadProfile(
+            currentUserData,
+            user
+        );
+
+
+        await loadPeople();
+
+        await loadPendingFaculty();
+
+        await loadActiveFaculty();
+
+        await loadAnnouncements();
+
+        startChatListeners();
+
+        loadTheme();
+
+
+    }catch(error){
+
+        console.error(
+            "MENTOR DASHBOARD ERROR:",
+            error
+        );
+
+        toast(
+            "Unable to load mentor dashboard: " +
+            error.message
+        );
+
     }
-);
+
+});
 
 
-/* =====================================================
+/* =========================================================
    LOAD PEOPLE
-===================================================== */
+========================================================= */
 
 async function loadPeople(){
 
     allUsers = [];
     allStudents = [];
     allFaculty = [];
-    allOwners = [];
 
-    try{
 
-        const usersSnap =
-            await getDocs(
-                collection(db,"users")
-            );
-
-        usersSnap.forEach(s => {
-
-            allUsers.push({
-                uid:s.id,
-                ...s.data()
-            });
-
-        });
-
-    }catch(error){
-
-        console.error(
-            "Users loading:",
-            error
+    const usersSnap =
+        await getDocs(
+            collection(db,"users")
         );
 
-    }
 
+    usersSnap.forEach(s => {
 
-    try{
-
-        const studentsSnap =
-            await getDocs(
-                collection(db,"students")
-            );
-
-        studentsSnap.forEach(s => {
-
-            allStudents.push({
-                uid:s.id,
-                ...s.data()
-            });
-
+        allUsers.push({
+            uid:s.id,
+            ...s.data()
         });
 
-    }catch(error){
+    });
 
-        console.error(
-            "Students loading:",
-            error
+
+    const studentsSnap =
+        await getDocs(
+            collection(db,"students")
         );
 
-    }
 
+    studentsSnap.forEach(s => {
+
+        allStudents.push({
+            uid:s.id,
+            ...s.data()
+        });
+
+    });
+
+
+    /* MERGE STUDENTS */
 
     const studentMap =
         new Map(
@@ -2085,19 +1988,18 @@ async function loadPeople(){
 
     const userStudents =
         allUsers
-        .filter(
-            u => roleIs(u,"student")
-        )
-        .map(u => ({
-            ...studentMap.get(u.uid),
-            ...u,
-            uid:u.uid
-        }));
+            .filter(
+                u => roleIs(u,"student")
+            )
+            .map(u => ({
+                ...studentMap.get(u.uid),
+                ...u,
+                uid:u.uid
+            }));
 
 
-    const oldStudents =
-        allStudents
-        .filter(
+    const extraStudents =
+        allStudents.filter(
             s =>
                 !allUsers.some(
                     u => u.uid === s.uid
@@ -2107,7 +2009,7 @@ async function loadPeople(){
 
     allStudents = [
         ...userStudents,
-        ...oldStudents
+        ...extraStudents
     ];
 
 
@@ -2117,73 +2019,60 @@ async function loadPeople(){
         );
 
 
-    allOwners =
-        allUsers.filter(
-            u =>
-                roleIs(u,"owner") ||
-                roleIs(u,"admin")
-        );
-
-
     updateStats();
 
     renderStudentRequests();
 
     renderFacultyManagement();
 
-    renderActiveFaculty();
+    loadActiveFaculty();
 
     renderGroupMembers();
 
 }
 
 
-/* =====================================================
-   STATS
-===================================================== */
+/* =========================================================
+   STATISTICS
+========================================================= */
 
 function updateStats(){
 
     const students =
         allStudents.filter(
-            s =>
-                String(s.status || "")
-                .toLowerCase() !== "rejected"
+            s => !statusIs(s,"rejected")
         );
+
 
     const pending =
         allStudents.filter(
-            s =>
-                String(s.status || "")
-                .toLowerCase() === "pending"
+            s => statusIs(s,"pending")
         );
 
-    $("totalStudents")
-        .textContent =
+
+    $("totalStudents").textContent =
         students.length;
 
-    $("pendingStudents")
-        .textContent =
+
+    $("pendingStudents").textContent =
         pending.length;
 
-    $("totalFaculty")
-        .textContent =
+
+    $("totalFaculty").textContent =
         allFaculty.length;
+
 
     if(pending.length){
 
-        $("studentRequestCount")
-            .style.display =
+        $("studentRequestCount").style.display =
             "inline-block";
 
-        $("studentRequestCount")
-            .textContent =
+        $("studentRequestCount").textContent =
             pending.length;
 
     }else{
 
-        $("studentRequestCount")
-            .style.display =
+        $("studentRequestCount").style.display =
             "none";
 
     }
@@ -2191,30 +2080,28 @@ function updateStats(){
 }
 
 
-/* =====================================================
+/* =========================================================
    STUDENT REQUESTS
-===================================================== */
+========================================================= */
 
 function renderStudentRequests(){
 
     const list =
         $("pendingStudentsList");
 
+
     const pending =
         allStudents.filter(
-            s =>
-                String(s.status || "")
-                .toLowerCase() === "pending"
+            s => statusIs(s,"pending")
         );
 
 
     if(!pending.length){
 
-        list.innerHTML = `
-            <div class="empty">
+        list.innerHTML =
+            `<div class="empty">
                 No pending student requests.
-            </div>
-        `;
+            </div>`;
 
         return;
 
@@ -2226,95 +2113,105 @@ function renderStudentRequests(){
 
             const facultyOptions =
                 allFaculty
-                .filter(f => isActive(f))
-                .sort(
-                    (a,b) =>
-                        String(a.name || "")
-                        .localeCompare(
-                            String(b.name || "")
-                        )
-                )
-                .map(f => `
-                    <option value="${esc(f.uid)}">
-                        ${esc(f.name || "Faculty")}
-                    </option>
-                `)
-                .join("");
+                    .filter(f => isActive(f))
+                    .sort(
+                        (a,b) =>
+                            String(a.name || "")
+                            .localeCompare(
+                                String(b.name || "")
+                            )
+                    )
+                    .map(f => `
+                        <option
+                            value="${esc(f.uid)}">
+                            ${esc(f.name || "Faculty")}
+                        </option>
+                    `)
+                    .join("");
 
 
             return `
 
-                <div class="item-card">
+            <div class="item-card">
 
-                    <div class="item-left">
+                <div class="item-left">
 
-                        <div class="avatar">
-                            ${avatarHTML(student)}
-                        </div>
-
-                        <div class="item-text">
-
-                            <h3>
-                                ${esc(
-                                    student.name ||
-                                    "Student"
-                                )}
-                            </h3>
-
-                            <p>
-                                ${esc(
-                                    student.email || ""
-                                )}
-                            </p>
-
-                            <p>
-                                Course:
-                                ${esc(
-                                    student.course ||
-                                    "Not specified"
-                                )}
-
-                                •
-
-                                Phone:
-                                ${esc(
-                                    student.phone ||
-                                    "Not specified"
-                                )}
-                            </p>
-
-                        </div>
-
+                    <div class="avatar">
+                        ${avatarHTML(student)}
                     </div>
 
-                    <div class="actions">
+                    <div class="item-text">
 
-                        <select
-                            id="faculty_${esc(student.uid)}">
+                        <h3>
+                            ${esc(
+                                student.name ||
+                                "Student"
+                            )}
+                        </h3>
 
-                            <option value="">
-                                Select Faculty
-                            </option>
+                        <p>
+                            ${esc(
+                                student.email ||
+                                ""
+                            )}
+                        </p>
 
-                            ${facultyOptions}
+                        <p>
+                            Course:
+                            ${esc(
+                                student.course ||
+                                "Not specified"
+                            )}
+                            • Phone:
+                            ${esc(
+                                student.phone ||
+                                "Not specified"
+                            )}
+                        </p>
 
-                        </select>
-
-                        <button
-                            class="success"
-                            data-approve="${esc(student.uid)}">
-                            ✓ Accept
-                        </button>
-
-                        <button
-                            class="danger"
-                            data-reject="${esc(student.uid)}">
-                            ✕ Reject
-                        </button>
+                        <span class="badge">
+                            Pending Approval
+                        </span>
 
                     </div>
 
                 </div>
+
+
+                <div class="actions">
+
+                    <select
+                        id="faculty_${esc(student.uid)}">
+
+                        <option value="">
+                            Select Faculty
+                        </option>
+
+                        ${facultyOptions}
+
+                    </select>
+
+
+                    <button
+                        class="success"
+                        data-approve="${esc(student.uid)}">
+
+                        ✓ Accept
+
+                    </button>
+
+
+                    <button
+                        class="danger"
+                        data-reject="${esc(student.uid)}">
+
+                        ✕ Reject
+
+                    </button>
+
+                </div>
+
+            </div>
 
             `;
 
@@ -2322,45 +2219,49 @@ function renderStudentRequests(){
 
 
     list
-    .querySelectorAll("[data-approve]")
-    .forEach(btn => {
+        .querySelectorAll("[data-approve]")
+        .forEach(btn => {
 
-        btn.addEventListener(
-            "click",
-            () =>
-                approveStudent(
-                    btn.dataset.approve
-                )
-        );
+            btn.addEventListener(
+                "click",
+                () =>
+                    approveStudent(
+                        btn.dataset.approve
+                    )
+            );
 
-    });
+        });
 
 
     list
-    .querySelectorAll("[data-reject]")
-    .forEach(btn => {
+        .querySelectorAll("[data-reject]")
+        .forEach(btn => {
 
-        btn.addEventListener(
-            "click",
-            () =>
-                rejectStudent(
-                    btn.dataset.reject
-                )
-        );
+            btn.addEventListener(
+                "click",
+                () =>
+                    rejectStudent(
+                        btn.dataset.reject
+                    )
+            );
 
-    });
+        });
 
 }
 
 
-/* =====================================================
+/* =========================================================
    APPROVE STUDENT
-===================================================== */
+========================================================= */
 
 async function approveStudent(studentUid){
 
+    const facultySelect =
+        $(`faculty_${studentUid}`);
+
+
     const facultyUid =
-        $(`faculty_${studentUid}`)?.value;
+        facultySelect?.value;
 
 
     if(!facultyUid){
@@ -2386,10 +2287,21 @@ async function approveStudent(studentUid){
         );
 
 
-    if(!faculty || !student){
+    if(!faculty){
 
         toast(
-            "Student or faculty not found."
+            "Selected faculty was not found."
+        );
+
+        return;
+
+    }
+
+
+    if(!student){
+
+        toast(
+            "Student was not found."
         );
 
         return;
@@ -2399,7 +2311,7 @@ async function approveStudent(studentUid){
 
     if(
         !confirm(
-            `Approve ${student.name || "this student"} and assign to ${faculty.name || "faculty"}?`
+            `Approve ${student.name || "this student"} and assign ${faculty.name || "faculty"}?`
         )
     ){
 
@@ -2410,14 +2322,21 @@ async function approveStudent(studentUid){
 
     try{
 
-        const updateData = {
+        console.log(
+            "APPROVING STUDENT:",
+            studentUid
+        );
+
+
+        const studentUpdate = {
+
+            uid:studentUid,
 
             status:"approved",
 
             active:true,
 
-            assignedFaculty:
-                facultyUid,
+            assignedFaculty:facultyUid,
 
             assignedFacultyName:
                 faculty.name ||
@@ -2426,11 +2345,19 @@ async function approveStudent(studentUid){
             approvedBy:
                 currentUser.uid,
 
+            approvedByName:
+                currentUserData?.name ||
+                "Geethika",
+
             approvedAt:
                 serverTimestamp()
 
         };
 
+
+        /* -------------------------------------------------
+           UPDATE STUDENTS
+        ------------------------------------------------- */
 
         await setDoc(
             doc(
@@ -2439,17 +2366,33 @@ async function approveStudent(studentUid){
                 studentUid
             ),
             {
-                uid:studentUid,
-                name:student.name || "",
-                email:student.email || "",
-                phone:student.phone || "",
-                ...updateData
+                ...studentUpdate,
+
+                name:
+                    student.name || "",
+
+                email:
+                    student.email || "",
+
+                phone:
+                    student.phone || "",
+
+                course:
+                    student.course || "",
+
+                photoURL:
+                    student.photoURL || ""
+
             },
             {
                 merge:true
             }
         );
 
+
+        /* -------------------------------------------------
+           UPDATE USERS
+        ------------------------------------------------- */
 
         await setDoc(
             doc(
@@ -2458,20 +2401,36 @@ async function approveStudent(studentUid){
                 studentUid
             ),
             {
-                uid:studentUid,
-                role:"student",
+
                 status:"approved",
+
                 active:true,
-                assignedFaculty:facultyUid,
+
+                role:"student",
+
+                assignedFaculty:
+                    facultyUid,
+
                 assignedFacultyName:
                     faculty.name ||
-                    "Faculty"
+                    "Faculty",
+
+                approvedBy:
+                    currentUser.uid,
+
+                approvedAt:
+                    serverTimestamp()
+
             },
             {
                 merge:true
             }
         );
 
+
+        /* -------------------------------------------------
+           ADD STUDENT TO FACULTY
+        ------------------------------------------------- */
 
         await setDoc(
             doc(
@@ -2480,8 +2439,10 @@ async function approveStudent(studentUid){
                 facultyUid
             ),
             {
+
                 assignedStudents:
                     arrayUnion(studentUid)
+
             },
             {
                 merge:true
@@ -2489,19 +2450,25 @@ async function approveStudent(studentUid){
         );
 
 
+        /* -------------------------------------------------
+           CREATE MENTOR ↔ STUDENT CHAT
+        ------------------------------------------------- */
+
         await createDirectChat(
             currentUser.uid,
             studentUid,
-            student.name ||
-            "Student"
+            student.name || "Student"
         );
 
+
+        /* -------------------------------------------------
+           CREATE FACULTY ↔ STUDENT CHAT
+        ------------------------------------------------- */
 
         await createDirectChat(
             facultyUid,
             studentUid,
-            student.name ||
-            "Student"
+            student.name || "Student"
         );
 
 
@@ -2512,18 +2479,25 @@ async function approveStudent(studentUid){
 
         await loadPeople();
 
+
+        renderStudentRequests();
+
+
     }catch(error){
 
         console.error(
-            "APPROVAL ERROR:",
+            "STUDENT APPROVAL ERROR:",
             error
         );
 
+
         alert(
             "Student approval failed.\n\n" +
-            error.code +
+            "Error code:\n" +
+            (error.code || "undefined") +
             "\n\n" +
-            error.message
+            "Error message:\n" +
+            (error.message || "Unknown error")
         );
 
     }
@@ -2531,9 +2505,9 @@ async function approveStudent(studentUid){
 }
 
 
-/* =====================================================
+/* =========================================================
    REJECT STUDENT
-===================================================== */
+========================================================= */
 
 async function rejectStudent(studentUid){
 
@@ -2542,7 +2516,16 @@ async function rejectStudent(studentUid){
             s => s.uid === studentUid
         );
 
-    if(!student) return;
+
+    if(!student){
+
+        toast(
+            "Student not found."
+        );
+
+        return;
+
+    }
 
 
     if(
@@ -2565,11 +2548,17 @@ async function rejectStudent(studentUid){
                 studentUid
             ),
             {
+
                 status:"rejected",
+
+                active:false,
+
                 rejectedBy:
                     currentUser.uid,
+
                 rejectedAt:
                     serverTimestamp()
+
             },
             {
                 merge:true
@@ -2584,8 +2573,11 @@ async function rejectStudent(studentUid){
                 studentUid
             ),
             {
+
                 status:"rejected",
+
                 active:false
+
             },
             {
                 merge:true
@@ -2600,15 +2592,16 @@ async function rejectStudent(studentUid){
 
         await loadPeople();
 
+
     }catch(error){
 
         console.error(error);
 
         alert(
             "Student rejection failed.\n\n" +
-            error.code +
+            (error.code || "undefined") +
             "\n\n" +
-            error.message
+            (error.message || "")
         );
 
     }
@@ -2616,28 +2609,29 @@ async function rejectStudent(studentUid){
 }
 
 
-/* =====================================================
-   FACULTY
-===================================================== */
+/* =========================================================
+   FACULTY REQUESTS
+========================================================= */
 
 async function loadPendingFaculty(){
 
     const list =
         $("pendingFaculty");
 
+
     const pending =
         allFaculty.filter(
-            f => !isActive(f)
+            f => !isActive(f) &&
+                 !statusIs(f,"rejected")
         );
 
 
     if(!pending.length){
 
-        list.innerHTML = `
-            <div class="empty">
+        list.innerHTML =
+            `<div class="empty">
                 No pending faculty requests.
-            </div>
-        `;
+            </div>`;
 
         return;
 
@@ -2647,96 +2641,109 @@ async function loadPendingFaculty(){
     list.innerHTML =
         pending.map(f => `
 
-            <div class="item-card">
+        <div class="item-card">
 
-                <div class="item-left">
+            <div class="item-left">
 
-                    <div class="avatar">
-                        ${avatarHTML(f)}
-                    </div>
-
-                    <div class="item-text">
-
-                        <h3>
-                            ${esc(
-                                f.name ||
-                                "Faculty"
-                            )}
-                        </h3>
-
-                        <p>
-                            ${esc(
-                                f.email ||
-                                ""
-                            )}
-                        </p>
-
-                    </div>
-
+                <div class="avatar">
+                    ${avatarHTML(f)}
                 </div>
 
-                <div class="actions">
+                <div class="item-text">
 
-                    <button
-                        class="success"
-                        data-fac-approve="${esc(f.uid)}">
-                        ✓ Activate
-                    </button>
+                    <h3>
+                        ${esc(
+                            f.name ||
+                            "Faculty"
+                        )}
+                    </h3>
 
-                    <button
-                        class="danger"
-                        data-fac-reject="${esc(f.uid)}">
-                        ✕ Reject
-                    </button>
+                    <p>
+                        ${esc(
+                            f.email ||
+                            ""
+                        )}
+                    </p>
+
+                    <span class="badge">
+                        ${esc(
+                            f.status ||
+                            "Pending"
+                        )}
+                    </span>
 
                 </div>
 
             </div>
 
+
+            <div class="actions">
+
+                <button
+                    class="success"
+                    data-fac-approve="${esc(f.uid)}">
+
+                    ✓ Activate
+
+                </button>
+
+
+                <button
+                    class="danger"
+                    data-fac-reject="${esc(f.uid)}">
+
+                    ✕ Reject
+
+                </button>
+
+            </div>
+
+        </div>
+
         `).join("");
 
 
     list
-    .querySelectorAll(
-        "[data-fac-approve]"
-    )
-    .forEach(btn => {
+        .querySelectorAll(
+            "[data-fac-approve]"
+        )
+        .forEach(btn => {
 
-        btn.addEventListener(
-            "click",
-            () =>
-                setFacultyStatus(
-                    btn.dataset.facApprove,
-                    "active"
-                )
-        );
+            btn.addEventListener(
+                "click",
+                () =>
+                    setFacultyStatus(
+                        btn.dataset.facApprove,
+                        "active"
+                    )
+            );
 
-    });
+        });
 
 
     list
-    .querySelectorAll(
-        "[data-fac-reject]"
-    )
-    .forEach(btn => {
+        .querySelectorAll(
+            "[data-fac-reject]"
+        )
+        .forEach(btn => {
 
-        btn.addEventListener(
-            "click",
-            () =>
-                setFacultyStatus(
-                    btn.dataset.facReject,
-                    "rejected"
-                )
-        );
+            btn.addEventListener(
+                "click",
+                () =>
+                    setFacultyStatus(
+                        btn.dataset.facReject,
+                        "rejected"
+                    )
+            );
 
-    });
+        });
 
 }
 
 
-/* =====================================================
+/* =========================================================
    FACULTY STATUS
-===================================================== */
+========================================================= */
 
 async function setFacultyStatus(
     uid,
@@ -2748,9 +2755,11 @@ async function setFacultyStatus(
         await setDoc(
             doc(db,"users",uid),
             {
-                status,
+                status:status,
+
                 active:
                     status === "active"
+
             },
             {
                 merge:true
@@ -2761,9 +2770,7 @@ async function setFacultyStatus(
         toast(
             status === "active"
                 ? "Faculty activated."
-                : status === "rejected"
-                    ? "Faculty rejected."
-                    : "Faculty deactivated."
+                : "Faculty rejected."
         );
 
 
@@ -2773,15 +2780,16 @@ async function setFacultyStatus(
 
         await loadActiveFaculty();
 
+
     }catch(error){
 
         console.error(error);
 
         alert(
-            "Faculty update failed.\n\n" +
-            error.code +
+            "Could not update faculty.\n\n" +
+            (error.code || "undefined") +
             "\n\n" +
-            error.message
+            (error.message || "")
         );
 
     }
@@ -2789,14 +2797,15 @@ async function setFacultyStatus(
 }
 
 
-/* =====================================================
+/* =========================================================
    ACTIVE FACULTY
-===================================================== */
+========================================================= */
 
 async function loadActiveFaculty(){
 
     const list =
         $("activeFacultyList");
+
 
     const active =
         allFaculty.filter(
@@ -2806,11 +2815,10 @@ async function loadActiveFaculty(){
 
     if(!active.length){
 
-        list.innerHTML = `
-            <div class="empty">
+        list.innerHTML =
+            `<div class="empty">
                 No active faculty found.
-            </div>
-        `;
+            </div>`;
 
         return;
 
@@ -2820,90 +2828,95 @@ async function loadActiveFaculty(){
     list.innerHTML =
         active.map(f => `
 
-            <div class="item-card">
+        <div class="item-card">
 
-                <div class="item-left">
+            <div class="item-left">
 
-                    <div class="avatar">
-                        ${avatarHTML(f)}
-                    </div>
-
-                    <div class="item-text">
-
-                        <h3>
-                            ${esc(
-                                f.name ||
-                                "Faculty"
-                            )}
-                        </h3>
-
-                        <p>
-                            ${esc(
-                                f.email ||
-                                ""
-                            )}
-                        </p>
-
-                        <span class="badge">
-                            Active
-                        </span>
-
-                    </div>
-
+                <div class="avatar">
+                    ${avatarHTML(f)}
                 </div>
 
-                <div class="actions">
+                <div class="item-text">
 
-                    <button
-                        class="primary"
-                        data-fac-chat="${esc(f.uid)}">
-                        💬 Chat
-                    </button>
+                    <h3>
+                        ${esc(
+                            f.name ||
+                            "Faculty"
+                        )}
+                    </h3>
+
+                    <p>
+                        ${esc(
+                            f.email ||
+                            ""
+                        )}
+                    </p>
+
+                    <span class="badge">
+                        Active
+                    </span>
 
                 </div>
 
             </div>
 
+
+            <div class="actions">
+
+                <button
+                    class="primary"
+                    data-fac-chat="${esc(f.uid)}">
+
+                    💬 Chat
+
+                </button>
+
+            </div>
+
+        </div>
+
         `).join("");
 
 
     list
-    .querySelectorAll(
-        "[data-fac-chat]"
-    )
-    .forEach(btn => {
+        .querySelectorAll(
+            "[data-fac-chat]"
+        )
+        .forEach(btn => {
 
-        btn.addEventListener(
-            "click",
-            async () => {
+            btn.addEventListener(
+                "click",
+                async () => {
 
-                showSection(
-                    "chatSection",
-                    document.querySelector(
-                        '[data-section="chatSection"]'
-                    )
-                );
+                    showSection(
+                        "chatSection",
+                        document.querySelector(
+                            '[data-section="chatSection"]'
+                        )
+                    );
 
-                await openDirectChat(
-                    btn.dataset.facChat
-                );
 
-            }
-        );
+                    await openDirectChat(
+                        btn.dataset.facChat
+                    );
 
-    });
+                }
+            );
+
+        });
 
 }
 
 
-/* =====================================================
+/* =========================================================
    FACULTY MANAGEMENT
-===================================================== */
+========================================================= */
 
 function renderFacultyManagement(){
 
     const list =
         $("facultyManagementList");
+
 
     const faculty =
         allFaculty.filter(
@@ -2913,11 +2926,10 @@ function renderFacultyManagement(){
 
     if(!faculty.length){
 
-        list.innerHTML = `
-            <div class="empty">
+        list.innerHTML =
+            `<div class="empty">
                 No faculty accounts found.
-            </div>
-        `;
+            </div>`;
 
         return;
 
@@ -2927,168 +2939,184 @@ function renderFacultyManagement(){
     list.innerHTML =
         faculty.map(f => `
 
-            <div class="item-card">
+        <div class="item-card">
 
-                <div class="item-left">
+            <div class="item-left">
 
-                    <div class="avatar">
-                        ${avatarHTML(f)}
-                    </div>
+                <div class="avatar">
+                    ${avatarHTML(f)}
+                </div>
 
-                    <div class="item-text">
+                <div class="item-text">
 
-                        <h3>
-                            ${esc(
-                                f.name ||
-                                "Faculty"
-                            )}
-                        </h3>
+                    <h3>
+                        ${esc(
+                            f.name ||
+                            "Faculty"
+                        )}
+                    </h3>
 
-                        <p>
-                            ${esc(
-                                f.email ||
-                                ""
-                            )}
-                        </p>
+                    <p>
+                        ${esc(
+                            f.email ||
+                            ""
+                        )}
+                    </p>
 
-                        <span class="badge">
-                            ${
-                                isActive(f)
+                    <span class="badge">
+
+                        ${
+                            isActive(f)
                                 ? "Active"
                                 : String(
                                     f.status ||
                                     "Pending"
                                 )
-                            }
-                        </span>
+                        }
 
-                    </div>
-
-                </div>
-
-                <div class="actions">
-
-                    <button
-                        class="primary"
-                        data-manage-chat="${esc(f.uid)}">
-                        💬 Chat
-                    </button>
-
-                    ${
-                        isActive(f)
-
-                        ? `
-                            <button
-                                class="danger"
-                                data-deactivate="${esc(f.uid)}">
-                                Deactivate
-                            </button>
-                        `
-
-                        : `
-                            <button
-                                class="success"
-                                data-activate="${esc(f.uid)}">
-                                Activate
-                            </button>
-                        `
-                    }
+                    </span>
 
                 </div>
 
             </div>
 
+
+            <div class="actions">
+
+                <button
+                    class="primary"
+                    data-manage-chat="${esc(f.uid)}">
+
+                    💬 Chat
+
+                </button>
+
+
+                ${
+                    isActive(f)
+
+                    ?
+
+                    `<button
+                        class="danger"
+                        data-deactivate="${esc(f.uid)}">
+
+                        Deactivate
+
+                    </button>`
+
+                    :
+
+                    `<button
+                        class="success"
+                        data-activate="${esc(f.uid)}">
+
+                        Activate
+
+                    </button>`
+                }
+
+            </div>
+
+        </div>
+
         `).join("");
 
 
     list
-    .querySelectorAll(
-        "[data-manage-chat]"
-    )
-    .forEach(btn => {
+        .querySelectorAll(
+            "[data-manage-chat]"
+        )
+        .forEach(btn => {
 
-        btn.addEventListener(
-            "click",
-            async () => {
+            btn.addEventListener(
+                "click",
+                () => {
 
-                showSection(
-                    "chatSection",
-                    document.querySelector(
-                        '[data-section="chatSection"]'
+                    showSection(
+                        "chatSection",
+                        document.querySelector(
+                            '[data-section="chatSection"]'
+                        )
+                    );
+
+
+                    openDirectChat(
+                        btn.dataset.manageChat
+                    );
+
+                }
+            );
+
+        });
+
+
+    list
+        .querySelectorAll(
+            "[data-deactivate]"
+        )
+        .forEach(btn => {
+
+            btn.addEventListener(
+                "click",
+                () =>
+                    setFacultyStatus(
+                        btn.dataset.deactivate,
+                        "inactive"
                     )
-                );
+            );
 
-                await openDirectChat(
-                    btn.dataset.manageChat
-                );
-
-            }
-        );
-
-    });
+        });
 
 
     list
-    .querySelectorAll(
-        "[data-deactivate]"
-    )
-    .forEach(btn => {
+        .querySelectorAll(
+            "[data-activate]"
+        )
+        .forEach(btn => {
 
-        btn.addEventListener(
-            "click",
-            () =>
-                setFacultyStatus(
-                    btn.dataset.deactivate,
-                    "inactive"
-                )
-        );
+            btn.addEventListener(
+                "click",
+                () =>
+                    setFacultyStatus(
+                        btn.dataset.activate,
+                        "active"
+                    )
+            );
 
-    });
-
-
-    list
-    .querySelectorAll(
-        "[data-activate]"
-    )
-    .forEach(btn => {
-
-        btn.addEventListener(
-            "click",
-            () =>
-                setFacultyStatus(
-                    btn.dataset.activate,
-                    "active"
-                )
-        );
-
-    });
+        });
 
 }
 
 
+/* =========================================================
+   REFRESH FACULTY
+========================================================= */
+
 $("refreshFaculty")
-.addEventListener(
-    "click",
-    async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        await loadPeople();
+            await loadPeople();
 
-        await loadPendingFaculty();
+            await loadPendingFaculty();
 
-        await loadActiveFaculty();
+            await loadActiveFaculty();
 
-    }
-);
+            toast(
+                "Faculty list refreshed."
+            );
+
+        }
+    );
 
 
-/* =====================================================
+/* =========================================================
    DIRECT CHAT ID
-===================================================== */
+========================================================= */
 
-function directChatId(
-    uid1,
-    uid2
-){
+function directChatId(uid1,uid2){
 
     return [
         uid1,
@@ -3100,14 +3128,14 @@ function directChatId(
 }
 
 
-/* =====================================================
+/* =========================================================
    CREATE DIRECT CHAT
-===================================================== */
+========================================================= */
 
 async function createDirectChat(
     uid1,
     uid2,
-    otherName = "User"
+    otherName="User"
 ){
 
     const chatId =
@@ -3117,6 +3145,37 @@ async function createDirectChat(
         );
 
 
+    const user1 =
+        allUsers.find(
+            u => u.uid === uid1
+        );
+
+
+    const user2 =
+        allUsers.find(
+            u => u.uid === uid2
+        );
+
+
+    const memberNames = {
+
+        [uid1]:
+            user1?.name ||
+            (
+                uid1 === currentUser?.uid
+                    ? currentUserData?.name
+                    : "User"
+            ) ||
+            "User",
+
+        [uid2]:
+            user2?.name ||
+            otherName ||
+            "User"
+
+    };
+
+
     await setDoc(
         doc(
             db,
@@ -3124,6 +3183,7 @@ async function createDirectChat(
             chatId
         ),
         {
+
             members:[
                 uid1,
                 uid2
@@ -3131,20 +3191,13 @@ async function createDirectChat(
 
             type:"direct",
 
+            memberNames,
+
             updatedAt:
                 serverTimestamp(),
 
             createdAt:
-                serverTimestamp(),
-
-            memberNames:{
-                [uid1]:
-                    currentUserData?.name ||
-                    "Mentor",
-
-                [uid2]:
-                    otherName
-            }
+                serverTimestamp()
 
         },
         {
@@ -3158,46 +3211,27 @@ async function createDirectChat(
 }
 
 
-/* =====================================================
+/* =========================================================
    OPEN DIRECT CHAT
-===================================================== */
+========================================================= */
 
-async function openDirectChat(
-    otherUid
-){
+async function openDirectChat(otherUid){
 
-    let other =
+    const other =
         allUsers.find(
             u => u.uid === otherUid
+        ) ||
+        allStudents.find(
+            u => u.uid === otherUid
         );
-
-
-    if(!other){
-
-        other =
-            allStudents.find(
-                s => s.uid === otherUid
-            );
-
-    }
-
-
-    if(!other){
-
-        toast(
-            "User profile not found."
-        );
-
-        return;
-
-    }
 
 
     const chatId =
         await createDirectChat(
             currentUser.uid,
             otherUid,
-            other.name || "User"
+            other?.name ||
+            "User"
         );
 
 
@@ -3207,20 +3241,43 @@ async function openDirectChat(
 
         id:chatId,
 
-        otherUid:otherUid,
-
         name:
-            other.name ||
+            other?.name ||
             "User",
 
-        email:
-            other.email ||
-            ""
+        otherUid:otherUid
 
     };
 
 
-    setChatHeader();
+    $("chatTitle").textContent =
+        other?.name ||
+        "User";
+
+
+    $("chatStatus").textContent =
+        other?.role
+            ? String(
+                other.role
+            ).toUpperCase()
+            : "Direct Chat";
+
+
+    $("messageInput").disabled =
+        false;
+
+
+    $("sendBtn").disabled =
+        false;
+
+
+    $("messageInput").placeholder =
+        "Type a message...";
+
+
+    $("fullScreenBtn").style.display =
+        "block";
+
 
     listenMessages(
         "chats",
@@ -3228,97 +3285,25 @@ async function openDirectChat(
     );
 
 
-    markChatListActive(
+    highlightCurrentChat(
         chatId
     );
 
 
-    showMobileChatWindow();
-
-}
-
-
-/* =====================================================
-   CHAT HEADER
-===================================================== */
-
-function setChatHeader(){
-
-    if(!currentChat){
-
-        $("chatTitle")
-            .textContent =
-            "Select a chat";
-
-        $("chatStatus")
-            .textContent =
-            "No conversation selected";
-
-        return;
-
-    }
-
-
-    $("chatTitle")
-        .textContent =
-        currentChat.name ||
-        "Chat";
-
-
-    $("chatStatus")
-        .textContent =
-        currentChat.type === "group"
-            ? "Student Group"
-            : (
-                currentChat.email ||
-                "Direct Chat"
-            );
-
-
-    $("messageInput")
-        .disabled = false;
-
-    $("sendBtn")
-        .disabled = false;
-
-    $("messageInput")
-        .placeholder =
-        "Type a message...";
-
-    $("fullScreenBtn")
-        .style.display =
-        "block";
-
-
-    /*
-       IMPORTANT KEYBOARD FIX
-
-       Focus the input after chat opens.
-    */
+    /* IMPORTANT MOBILE KEYBOARD */
 
     setTimeout(() => {
 
-        try{
+        $("messageInput").focus();
 
-            $("messageInput")
-                .focus({
-                    preventScroll:true
-                });
-
-        }catch(error){
-
-            $("messageInput").focus();
-
-        }
-
-    },150);
+    },300);
 
 }
 
 
-/* =====================================================
+/* =========================================================
    LISTEN MESSAGES
-===================================================== */
+========================================================= */
 
 function listenMessages(
     parentCollection,
@@ -3329,7 +3314,8 @@ function listenMessages(
 
         unsubscribeMessages();
 
-        unsubscribeMessages = null;
+        unsubscribeMessages =
+            null;
 
     }
 
@@ -3365,10 +3351,23 @@ function listenMessages(
                 if(snap.empty){
 
                     box.innerHTML = `
-                        <div class="empty">
-                            No messages yet.<br>
-                            Say hello 👋
+
+                        <div class="chat-empty-info">
+
+                            <div style="font-size:40px">
+                                👋
+                            </div>
+
+                            <div>
+                                No messages yet.
+                            </div>
+
+                            <div>
+                                Send the first message.
+                            </div>
+
                         </div>
+
                     `;
 
                     return;
@@ -3379,85 +3378,67 @@ function listenMessages(
                 box.innerHTML = "";
 
 
-                snap.forEach(
-                    s => {
+                snap.forEach(s => {
 
-                        const m =
-                            s.data();
-
-
-                        const mine =
-                            m.senderId ===
-                            currentUser.uid;
+                    const m =
+                        s.data();
 
 
-                        let time = "";
+                    const mine =
+                        m.senderId ===
+                        currentUser.uid;
 
 
-                        if(
-                            m.createdAt &&
-                            m.createdAt.toDate
-                        ){
-
-                            time =
-                                m.createdAt
+                    const time =
+                        m.createdAt?.toDate
+                            ? m.createdAt
                                 .toDate()
-                                .toLocaleString();
-
-                        }
-
-
-                        const div =
-                            document
-                            .createElement(
-                                "div"
-                            );
+                                .toLocaleString()
+                            : "Sending...";
 
 
-                        div.className =
-                            "message" +
-                            (
-                                mine
-                                    ? " mine"
-                                    : ""
-                            );
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
 
 
-                        div.innerHTML = `
-
-                            <div>
-                                ${esc(
-                                    m.message ||
-                                    ""
-                                )}
-                            </div>
-
-                            <small>
-                                ${esc(
-                                    m.senderName ||
-                                    "User"
-                                )}
-
-                                ${esc(time)}
-                            </small>
-
-                        `;
+                    div.className =
+                        "message" +
+                        (
+                            mine
+                                ? " mine"
+                                : ""
+                        );
 
 
-                        box.appendChild(div);
+                    div.innerHTML = `
 
-                    }
-                );
+                        <div>
+                            ${esc(
+                                m.message
+                            )}
+                        </div>
+
+                        <small>
+                            ${esc(
+                                m.senderName ||
+                                "User"
+                            )}
+
+                            ${esc(time)}
+                        </small>
+
+                    `;
 
 
-                requestAnimationFrame(
-                    () => {
+                    box.appendChild(div);
 
-                        box.scrollTop =
-                            box.scrollHeight;
+                });
 
-                    }
-                );
+
+                box.scrollTop =
+                    box.scrollHeight;
 
             },
 
@@ -3469,19 +3450,21 @@ function listenMessages(
                 );
 
 
-                $("messages")
-                    .innerHTML = `
+                $("messages").innerHTML = `
 
-                    <div class="empty">
+                    <div class="chat-empty-info">
 
-                        Unable to load messages.
+                        <div style="font-size:40px">
+                            ⚠️
+                        </div>
 
-                        <br><br>
+                        <div>
+                            Unable to load messages.
+                        </div>
 
                         <small>
                             ${esc(
-                                error.code ||
-                                ""
+                                error.message
                             )}
                         </small>
 
@@ -3496,35 +3479,58 @@ function listenMessages(
 }
 
 
-/* =====================================================
+/* =========================================================
    SEND MESSAGE
-===================================================== */
+========================================================= */
 
 $("sendBtn")
-.addEventListener(
-    "click",
-    sendMessage
-);
+    .addEventListener(
+        "click",
+        sendMessage
+    );
 
 
 $("messageInput")
-.addEventListener(
-    "keydown",
-    e => {
+    .addEventListener(
+        "keydown",
+        e => {
 
-        if(
-            e.key === "Enter" &&
-            !e.shiftKey
-        ){
+            if(
+                e.key === "Enter" &&
+                !e.shiftKey
+            ){
 
-            e.preventDefault();
+                e.preventDefault();
 
-            sendMessage();
+                sendMessage();
+
+            }
 
         }
+    );
 
-    }
-);
+
+/* MOBILE INPUT TOUCH */
+
+$("messageInput")
+    .addEventListener(
+        "touchstart",
+        () => {
+
+            if(
+                !$("messageInput").disabled
+            ){
+
+                setTimeout(
+                    () =>
+                        $("messageInput").focus(),
+                    100
+                );
+
+            }
+
+        }
+    );
 
 
 async function sendMessage(){
@@ -3535,6 +3541,13 @@ async function sendMessage(){
 
     const text =
         input.value.trim();
+
+
+    if(!text){
+
+        return;
+
+    }
 
 
     if(!currentChat){
@@ -3548,14 +3561,12 @@ async function sendMessage(){
     }
 
 
-    if(!text){
-
-        return;
-
-    }
-
-
     try{
+
+        input.disabled = true;
+
+        $("sendBtn").disabled = true;
+
 
         const parent =
             currentChat.type === "group"
@@ -3571,17 +3582,19 @@ async function sendMessage(){
                 "messages"
             ),
             {
+
                 senderId:
                     currentUser.uid,
 
                 senderName:
                     currentUserData?.name ||
-                    "Mentor",
+                    "Geethika",
 
                 message:text,
 
                 createdAt:
                     serverTimestamp()
+
             }
         );
 
@@ -3605,14 +3618,13 @@ async function sendMessage(){
         input.value = "";
 
 
-        /*
-           Keep keyboard open after sending.
-        */
+        /* RETURN FOCUS TO INPUT */
 
-        setTimeout(
-            () => input.focus(),
-            50
-        );
+        input.disabled = false;
+
+        $("sendBtn").disabled = false;
+
+        input.focus();
 
 
     }catch(error){
@@ -3623,11 +3635,17 @@ async function sendMessage(){
         );
 
 
+        input.disabled = false;
+
+        $("sendBtn").disabled =
+            false;
+
+
         alert(
             "Message could not be sent.\n\n" +
-            error.code +
+            (error.code || "undefined") +
             "\n\n" +
-            error.message
+            (error.message || "")
         );
 
     }
@@ -3635,14 +3653,67 @@ async function sendMessage(){
 }
 
 
-/* =====================================================
-   CHAT LIST
-===================================================== */
+/* =========================================================
+   CHAT FILTER
+========================================================= */
 
-async function startChatListeners(){
+document
+    .querySelectorAll(
+        "[data-chat-filter]"
+    )
+    .forEach(btn => {
 
-    $("chatItems")
-        .innerHTML = "";
+        btn.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .querySelectorAll(
+                        "[data-chat-filter]"
+                    )
+                    .forEach(
+                        b =>
+                            b.classList.remove(
+                                "active"
+                            )
+                    );
+
+
+                btn.classList.add(
+                    "active"
+                );
+
+
+                currentChatFilter =
+                    btn.dataset.chatFilter;
+
+
+                renderAllChats();
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   START CHAT LISTENERS
+========================================================= */
+
+function startChatListeners(){
+
+    if(unsubscribeDirectChats){
+
+        unsubscribeDirectChats();
+
+    }
+
+
+    if(unsubscribeGroups){
+
+        unsubscribeGroups();
+
+    }
 
 
     /* DIRECT CHATS */
@@ -3666,7 +3737,7 @@ async function startChatListeners(){
         unsubscribeDirectChats =
             onSnapshot(
                 directQ,
-                snap => {
+                () => {
 
                     renderAllChats();
 
@@ -3674,16 +3745,13 @@ async function startChatListeners(){
                 error => {
 
                     console.error(
-                        "Direct chat listener:",
+                        "DIRECT CHAT LIST ERROR:",
                         error
-                    );
-
-                    toast(
-                        "Unable to load direct chats."
                     );
 
                 }
             );
+
 
     }catch(error){
 
@@ -3692,7 +3760,7 @@ async function startChatListeners(){
     }
 
 
-    /* GROUP CHATS */
+    /* GROUPS */
 
     try{
 
@@ -3713,7 +3781,7 @@ async function startChatListeners(){
         unsubscribeGroups =
             onSnapshot(
                 groupQ,
-                snap => {
+                () => {
 
                     renderAllChats();
 
@@ -3721,12 +3789,13 @@ async function startChatListeners(){
                 error => {
 
                     console.error(
-                        "Group listener:",
+                        "GROUP CHAT LIST ERROR:",
                         error
                     );
 
                 }
             );
+
 
     }catch(error){
 
@@ -3734,12 +3803,15 @@ async function startChatListeners(){
 
     }
 
+
+    renderAllChats();
+
 }
 
 
-/* =====================================================
-   RENDER ALL CHAT CATEGORIES
-===================================================== */
+/* =========================================================
+   RENDER ALL CHATS
+========================================================= */
 
 async function renderAllChats(){
 
@@ -3747,21 +3819,25 @@ async function renderAllChats(){
         $("chatItems");
 
 
-    container.innerHTML = "";
+    container.innerHTML = `
+
+        <div class="empty">
+            Loading chats...
+        </div>
+
+    `;
 
 
-    const directChats = [];
-
-    const groups = [];
+    const chats = [];
 
 
-    /* ---------------------------------------------
-       LOAD DIRECT CHATS
-    --------------------------------------------- */
+    /* -----------------------------------------------------
+       DIRECT CHATS
+    ----------------------------------------------------- */
 
     try{
 
-        const snap =
+        const directSnap =
             await getDocs(
                 query(
                     collection(
@@ -3777,64 +3853,95 @@ async function renderAllChats(){
             );
 
 
-        snap.forEach(
-            s => {
+        directSnap.forEach(s => {
 
-                const data =
-                    s.data();
-
-
-                const otherUid =
-                    (
-                        data.members ||
-                        []
-                    ).find(
-                        uid =>
-                            uid !==
-                            currentUser.uid
-                    );
+            const data =
+                s.data();
 
 
-                const other =
-                    allUsers.find(
-                        u =>
-                            u.uid ===
-                            otherUid
-                    ) ||
-                    allStudents.find(
-                        u =>
-                            u.uid ===
-                            otherUid
-                    );
+            const otherUid =
+                (
+                    data.members ||
+                    []
+                ).find(
+                    uid =>
+                        uid !==
+                        currentUser.uid
+                );
 
 
-                if(otherUid){
+            if(!otherUid){
 
-                    directChats.push({
-
-                        id:s.id,
-
-                        type:"direct",
-
-                        otherUid,
-
-                        name:
-                            other?.name ||
-                            data.memberNames?.[
-                                otherUid
-                            ] ||
-                            "User",
-
-                        email:
-                            other?.email ||
-                            ""
-
-                    });
-
-                }
+                return;
 
             }
-        );
+
+
+            const other =
+                allUsers.find(
+                    u =>
+                        u.uid ===
+                        otherUid
+                ) ||
+                allStudents.find(
+                    u =>
+                        u.uid ===
+                        otherUid
+                );
+
+
+            let chatType =
+                "student";
+
+
+            if(
+                roleIs(other,"owner") ||
+                roleIs(other,"admin")
+            ){
+
+                chatType =
+                    "owner";
+
+            }else if(
+                roleIs(other,"faculty")
+            ){
+
+                chatType =
+                    "faculty";
+
+            }else if(
+                roleIs(other,"student")
+            ){
+
+                chatType =
+                    "student";
+
+            }
+
+
+            chats.push({
+
+                id:s.id,
+
+                type:"direct",
+
+                filterType:chatType,
+
+                name:
+                    other?.name ||
+                    data.memberNames?.[otherUid] ||
+                    "Direct Chat",
+
+                subtitle:
+                    other?.email ||
+                    "Direct Chat",
+
+                otherUid
+
+            });
+
+        });
+
 
     }catch(error){
 
@@ -3846,13 +3953,13 @@ async function renderAllChats(){
     }
 
 
-    /* ---------------------------------------------
-       LOAD GROUPS
-    --------------------------------------------- */
+    /* -----------------------------------------------------
+       GROUP CHATS
+    ----------------------------------------------------- */
 
     try{
 
-        const snap =
+        const groupSnap =
             await getDocs(
                 query(
                     collection(
@@ -3868,266 +3975,139 @@ async function renderAllChats(){
             );
 
 
-        snap.forEach(
-            s => {
+        groupSnap.forEach(s => {
 
-                const data =
-                    s.data();
+            const data =
+                s.data();
 
 
-                groups.push({
+            chats.push({
 
-                    id:s.id,
+                id:s.id,
 
-                    type:"group",
+                type:"group",
 
-                    name:
-                        data.name ||
-                        "Student Group",
+                filterType:"group",
 
-                    email:""
+                name:
+                    data.name ||
+                    "Student Group",
 
-                });
+                subtitle:
+                    "Group Chat",
 
-            }
-        );
+                members:
+                    data.members ||
+                    []
+
+            });
+
+        });
+
 
     }catch(error){
 
         console.error(
-            "Group loading:",
+            "Group chat loading:",
             error
         );
 
     }
 
 
-    /* ---------------------------------------------
-       SEARCH
-    --------------------------------------------- */
-
-    const search =
-        (
-            $("chatSearch")?.value ||
-            ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    function matches(chat){
-
-        return !search ||
-            String(
-                chat.name || ""
-            )
-            .toLowerCase()
-            .includes(search) ||
-
-            String(
-                chat.email || ""
-            )
-            .toLowerCase()
-            .includes(search);
-
-    }
-
-
-    /* ---------------------------------------------
-       OWNER
-    --------------------------------------------- */
-
-    const ownerChats =
-        directChats.filter(
-            chat => {
-
-                const user =
-                    allUsers.find(
-                        u =>
-                            u.uid ===
-                            chat.otherUid
-                    );
-
-                return (
-                    roleIs(user,"owner") ||
-                    roleIs(user,"admin")
-                );
-
-            }
-        )
-        .filter(matches);
-
-
-    if(ownerChats.length){
-
-        addCategoryTitle(
-            "👑 OWNER"
-        );
-
-        ownerChats.forEach(
-            renderChatItem
-        );
-
-    }
-
-
-    /* ---------------------------------------------
-       FACULTY
-    --------------------------------------------- */
-
-    const facultyChats =
-        directChats.filter(
-            chat => {
-
-                const user =
-                    allUsers.find(
-                        u =>
-                            u.uid ===
-                            chat.otherUid
-                    );
-
-                return roleIs(
-                    user,
-                    "faculty"
-                );
-
-            }
-        )
-        .filter(matches);
-
-
-    if(facultyChats.length){
-
-        addCategoryTitle(
-            "👨‍🏫 FACULTY"
-        );
-
-        facultyChats.forEach(
-            renderChatItem
-        );
-
-    }
-
-
-    /* ---------------------------------------------
-       STUDENTS
-    --------------------------------------------- */
-
-    const studentChats =
-        directChats.filter(
-            chat => {
-
-                const user =
-                    allUsers.find(
-                        u =>
-                            u.uid ===
-                            chat.otherUid
-                    );
-
-                return roleIs(
-                    user,
-                    "student"
-                );
-
-            }
-        )
-        .filter(matches);
-
-
-    if(studentChats.length){
-
-        addCategoryTitle(
-            "🎓 STUDENTS"
-        );
-
-        studentChats.forEach(
-            renderChatItem
-        );
-
-    }
-
-
-    /* ---------------------------------------------
-       GROUPS
-    --------------------------------------------- */
-
-    const filteredGroups =
-        groups.filter(matches);
-
-
-    if(filteredGroups.length){
-
-        addCategoryTitle(
-            "👥 GROUPS"
-        );
-
-        filteredGroups.forEach(
-            renderChatItem
-        );
-
-    }
-
-
-    $("totalChats")
-        .textContent =
-        directChats.length +
-        groups.length;
-
+    /* -----------------------------------------------------
+       OWNER / FACULTY / STUDENT DIRECT ACCESS
+    ----------------------------------------------------- */
 
     if(
-        !ownerChats.length &&
-        !facultyChats.length &&
-        !studentChats.length &&
-        !filteredGroups.length
+        currentChatFilter === "owner"
     ){
 
-        container.innerHTML = `
-            <div class="chat-empty">
-
-                No chats yet.
-
-                <br><br>
-
-                Approve a student,
-                activate faculty,
-                or create a group.
-
-            </div>
-        `;
+        /* Owner chats only */
 
     }
 
-}
+
+    const filtered =
+        chats.filter(chat => {
+
+            if(
+                currentChatFilter === "all"
+            ){
+
+                return true;
+
+            }
+
+            return (
+                chat.filterType ===
+                currentChatFilter
+            );
+
+        });
 
 
-/* =====================================================
-   CHAT CATEGORY
-===================================================== */
+    if(!filtered.length){
 
-function addCategoryTitle(title){
+        container.innerHTML = `
 
-    const div =
-        document.createElement(
-            "div"
+            <div class="empty">
+
+                ${
+                    currentChatFilter === "owner"
+                        ? "No owner chat found."
+                        :
+                    currentChatFilter === "faculty"
+                        ? "No faculty chats found."
+                        :
+                    currentChatFilter === "student"
+                        ? "No student chats found."
+                        :
+                    currentChatFilter === "group"
+                        ? "No groups found."
+                        :
+                        "No chats found."
+                }
+
+            </div>
+
+        `;
+
+        $("totalChats").textContent =
+            "0";
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    filtered.forEach(chat => {
+
+        renderChatItem(
+            chat,
+            container
         );
 
-    div.className =
-        "chat-category";
+    });
 
-    div.textContent =
-        title;
 
-    $("chatItems")
-        .appendChild(div);
+    $("totalChats").textContent =
+        chats.length;
 
 }
 
 
-/* =====================================================
-   CHAT ITEM
-===================================================== */
+/* =========================================================
+   RENDER CHAT ITEM
+========================================================= */
 
-function renderChatItem(chat){
+function renderChatItem(
+    chat,
+    container
+){
 
     const div =
         document.createElement(
@@ -4143,14 +4123,47 @@ function renderChatItem(chat){
         chat.id;
 
 
-    div.dataset.type =
+    div.dataset.chatType =
         chat.type;
 
 
-    const icon =
-        chat.type === "group"
-            ? "👥"
-            : "💬";
+    let icon =
+        "💬";
+
+
+    if(
+        chat.filterType ===
+        "owner"
+    ){
+
+        icon =
+            "👑";
+
+    }else if(
+        chat.filterType ===
+        "faculty"
+    ){
+
+        icon =
+            "👨‍🏫";
+
+    }else if(
+        chat.filterType ===
+        "student"
+    ){
+
+        icon =
+            "🎓";
+
+    }else if(
+        chat.type ===
+        "group"
+    ){
+
+        icon =
+            "👥";
+
+    }
 
 
     div.innerHTML = `
@@ -4158,29 +4171,21 @@ function renderChatItem(chat){
         <div class="item-left">
 
             <div class="avatar">
-
                 ${icon}
-
             </div>
 
             <div class="item-text">
 
                 <h3>
                     ${esc(
-                        chat.name ||
-                        "Chat"
+                        chat.name
                     )}
                 </h3>
 
                 <p>
-                    ${
-                        chat.type === "group"
-                            ? "Student Group"
-                            : (
-                                chat.email ||
-                                "Direct Chat"
-                            )
-                    }
+                    ${esc(
+                        chat.subtitle
+                    )}
                 </p>
 
             </div>
@@ -4193,212 +4198,179 @@ function renderChatItem(chat){
     div.addEventListener(
         "click",
         () =>
-            openChatFromList(chat)
+            openChatFromList(
+                chat
+            )
     );
 
 
-    $("chatItems")
-        .appendChild(div);
+    container.appendChild(
+        div
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    OPEN CHAT FROM LIST
-===================================================== */
+========================================================= */
 
 function openChatFromList(chat){
 
-    if(chat.type === "group"){
-
-        openGroupChat(chat);
-
-    }else{
-
-        openDirectChat(
-            chat.otherUid
-        );
-
-    }
-
-}
+    currentChat =
+        chat;
 
 
-/* =====================================================
-   OPEN GROUP
-===================================================== */
-
-function openGroupChat(chat){
-
-    currentChat = {
-
-        type:"group",
-
-        id:chat.id,
-
-        name:
-            chat.name ||
-            "Student Group"
-
-    };
+    $("chatTitle").textContent =
+        chat.name ||
+        "Chat";
 
 
-    setChatHeader();
+    $("chatStatus").textContent =
+        chat.type === "group"
+            ? "Student Group"
+            : "Direct Chat";
+
+
+    $("messageInput").disabled =
+        false;
+
+
+    $("sendBtn").disabled =
+        false;
+
+
+    $("messageInput").placeholder =
+        "Type a message...";
+
+
+    $("fullScreenBtn").style.display =
+        "block";
 
 
     listenMessages(
-        "chatGroups",
+        chat.type === "group"
+            ? "chatGroups"
+            : "chats",
         chat.id
     );
 
 
-    markChatListActive(
+    highlightCurrentChat(
         chat.id
     );
 
 
-    showMobileChatWindow();
+    /* CLOSE MOBILE CHAT LIST */
+
+    $("chatList")
+        .classList.remove(
+            "mobile-show"
+        );
+
+
+    /* MOBILE KEYBOARD */
+
+    setTimeout(() => {
+
+        $("messageInput").focus();
+
+    },300);
 
 }
 
 
-/* =====================================================
-   MARK ACTIVE CHAT
-===================================================== */
+/* =========================================================
+   HIGHLIGHT CHAT
+========================================================= */
 
-function markChatListActive(
+function highlightCurrentChat(
     chatId
 ){
 
     document
-    .querySelectorAll(
-        ".chat-item"
-    )
-    .forEach(item => {
+        .querySelectorAll(
+            ".chat-item"
+        )
+        .forEach(item => {
 
-        item.classList.remove(
-            "active"
+            item.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const matches =
+        document.querySelectorAll(
+            `[data-chat-id="${CSS.escape(chatId)}"]`
         );
 
-    });
 
-
-    const active =
-        document.querySelector(
-            `.chat-item[data-chat-id="${CSS.escape(chatId)}"]`
-        );
-
-
-    if(active){
-
-        active.classList.add(
-            "active"
-        );
-
-    }
+    matches.forEach(
+        item =>
+            item.classList.add(
+                "active"
+            )
+    );
 
 }
 
 
-/* =====================================================
-   MOBILE CHAT WINDOW
-===================================================== */
-
-function showMobileChatWindow(){
-
-    if(window.innerWidth <= 900){
-
-        $("chatList")
-            .classList
-            .remove("mobile-show");
-
-        $("backToChatList")
-            .style.display =
-            "block";
-
-    }
-
-}
-
-
-/* =====================================================
-   MOBILE BACK
-===================================================== */
-
-$("backToChatList")
-.addEventListener(
-    "click",
-    () => {
-
-        if(window.innerWidth <= 900){
-
-            $("chatList")
-                .classList
-                .add("mobile-show");
-
-            $("backToChatList")
-                .style.display =
-                "none";
-
-        }
-
-    }
-);
-
-
-/* =====================================================
+/* =========================================================
    CREATE GROUP
-===================================================== */
+========================================================= */
 
 $("createGroupBtn")
-.addEventListener(
-    "click",
-    () => {
+    .addEventListener(
+        "click",
+        () => {
 
-        renderGroupMembers();
+            $("groupSearch").value = "";
 
-        $("groupModal")
-            .classList
-            .add("show");
+            renderGroupMembers();
 
-    }
-);
+            $("groupModal")
+                .classList.add(
+                    "show"
+                );
+
+        }
+    );
 
 
 $("closeGroupModal")
-.addEventListener(
-    "click",
-    () =>
-        $("groupModal")
-        .classList
-        .remove("show")
-);
+    .addEventListener(
+        "click",
+        () =>
+            $("groupModal")
+                .classList.remove(
+                    "show"
+                )
+    );
 
 
 $("cancelGroup")
-.addEventListener(
-    "click",
-    () =>
-        $("groupModal")
-        .classList
-        .remove("show")
-);
+    .addEventListener(
+        "click",
+        () =>
+            $("groupModal")
+                .classList.remove(
+                    "show"
+                )
+    );
 
-
-/* =====================================================
-   GROUP SEARCH
-===================================================== */
 
 $("groupSearch")
-.addEventListener(
-    "input",
-    renderGroupMembers
-);
+    .addEventListener(
+        "input",
+        renderGroupMembers
+    );
 
 
-/* =====================================================
+/* =========================================================
    GROUP MEMBERS
-===================================================== */
+========================================================= */
 
 function renderGroupMembers(){
 
@@ -4406,25 +4378,18 @@ function renderGroupMembers(){
         (
             $("groupSearch")?.value ||
             ""
-        )
-        .toLowerCase();
+        ).toLowerCase();
 
 
     const students =
         allStudents.filter(
             s => {
 
-                const status =
-                    String(
-                        s.status ||
-                        ""
-                    )
-                    .toLowerCase();
-
-
                 const approved =
-                    status === "approved" ||
-                    s.active === true;
+                    statusIs(
+                        s,
+                        "approved"
+                    );
 
 
                 if(!approved){
@@ -4434,19 +4399,31 @@ function renderGroupMembers(){
                 }
 
 
+                if(!search){
+
+                    return true;
+
+                }
+
+
                 return (
-                    !search ||
-                    String(
-                        s.name || ""
-                    )
-                    .toLowerCase()
-                    .includes(search) ||
 
                     String(
-                        s.email || ""
+                        s.name ||
+                        ""
                     )
                     .toLowerCase()
                     .includes(search)
+
+                    ||
+
+                    String(
+                        s.email ||
+                        ""
+                    )
+                    .toLowerCase()
+                    .includes(search)
+
                 );
 
             }
@@ -4456,7 +4433,9 @@ function renderGroupMembers(){
     $("memberList").innerHTML =
         students.length
 
-        ? students.map(s => `
+        ?
+
+        students.map(s => `
 
             <label
                 class="item-card"
@@ -4465,7 +4444,9 @@ function renderGroupMembers(){
                 <div class="item-left">
 
                     <div class="avatar">
+
                         ${avatarHTML(s)}
+
                     </div>
 
                     <div class="item-text">
@@ -4488,6 +4469,7 @@ function renderGroupMembers(){
 
                 </div>
 
+
                 <input
                     type="checkbox"
                     class="group-member"
@@ -4498,232 +4480,203 @@ function renderGroupMembers(){
 
         `).join("")
 
-        : `
+        :
 
-            <div class="empty">
-                No approved students found.
-            </div>
-
-        `;
+        `<div class="empty">
+            No approved students found.
+        </div>`;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    CREATE GROUP
-===================================================== */
+========================================================= */
 
 $("createGroup")
-.addEventListener(
-    "click",
-    async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        const name =
-            $("groupName")
-            .value
-            .trim();
-
-
-        const members =
-            [
-                ...document
-                .querySelectorAll(
-                    ".group-member:checked"
-                )
-            ]
-            .map(
-                x => x.value
-            );
+            const name =
+                $("groupName")
+                    .value
+                    .trim();
 
 
-        if(!name){
-
-            toast(
-                "Enter a group name."
-            );
-
-            return;
-
-        }
-
-
-        if(!members.length){
-
-            toast(
-                "Select at least one student."
-            );
-
-            return;
-
-        }
-
-
-        try{
-
-            const uniqueMembers =
+            const members =
                 [
-                    ...new Set(
-                        [
-                            currentUser.uid,
-                            ...members
-                        ]
+                    ...document.querySelectorAll(
+                        ".group-member:checked"
                     )
-                ];
+                ]
+                .map(
+                    x => x.value
+                );
 
 
-            await addDoc(
-                collection(
-                    db,
-                    "chatGroups"
-                ),
-                {
+            if(!name){
 
-                    name,
+                toast(
+                    "Enter a group name."
+                );
 
-                    members:
-                        uniqueMembers,
+                return;
 
-                    createdBy:
-                        currentUser.uid,
-
-                    createdByName:
-                        currentUserData?.name ||
-                        "Mentor",
-
-                    type:"group",
-
-                    createdAt:
-                        serverTimestamp(),
-
-                    updatedAt:
-                        serverTimestamp()
-
-                }
-            );
+            }
 
 
-            $("groupModal")
-                .classList
-                .remove("show");
+            if(!members.length){
+
+                toast(
+                    "Select at least one student."
+                );
+
+                return;
+
+            }
 
 
-            $("groupName")
-                .value = "";
+            try{
+
+                const uniqueMembers =
+                    [
+                        ...new Set(
+                            [
+                                currentUser.uid,
+                                ...members
+                            ]
+                        )
+                    ];
 
 
-            $("groupSearch")
-                .value = "";
+                await addDoc(
+                    collection(
+                        db,
+                        "chatGroups"
+                    ),
+                    {
+
+                        name:name,
+
+                        members:
+                            uniqueMembers,
+
+                        createdBy:
+                            currentUser.uid,
+
+                        createdByName:
+                            currentUserData?.name ||
+                            "Geethika",
+
+                        type:"group",
+
+                        createdAt:
+                            serverTimestamp(),
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
 
 
-            toast(
-                "Student group created successfully."
-            );
+                $("groupModal")
+                    .classList.remove(
+                        "show"
+                    );
 
 
-        }catch(error){
-
-            console.error(
-                "GROUP ERROR:",
-                error
-            );
+                $("groupName").value =
+                    "";
 
 
-            alert(
-                "Group creation failed.\n\n" +
-                error.code +
-                "\n\n" +
-                error.message
-            );
+                toast(
+                    "Student group created successfully."
+                );
+
+
+                await renderAllChats();
+
+
+            }catch(error){
+
+                console.error(
+                    "CREATE GROUP ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Could not create group.\n\n" +
+                    (error.code || "undefined") +
+                    "\n\n" +
+                    (error.message || "")
+                );
+
+            }
 
         }
-
-    }
-);
+    );
 
 
-/* =====================================================
-   CHAT SEARCH
-===================================================== */
-
-$("chatSearch")
-.addEventListener(
-    "input",
-    () => {
-
-        renderAllChats();
-
-    }
-);
-
-
-/* =====================================================
-   FULL SCREEN
-===================================================== */
+/* =========================================================
+   FULL SCREEN CHAT
+========================================================= */
 
 $("fullScreenBtn")
-.addEventListener(
-    "click",
-    () => {
-
-        $("chatWrapper")
-            .classList
-            .add("fullscreen-chat");
+    .addEventListener(
+        "click",
+        toggleFullscreenChat
+    );
 
 
-        $("fullScreenBtn")
-            .textContent =
+function toggleFullscreenChat(){
+
+    const wrapper =
+        $("chatWrapper");
+
+
+    if(
+        wrapper.classList.contains(
+            "fullscreen-chat"
+        )
+    ){
+
+        exitFullscreenChat();
+
+    }else{
+
+        wrapper.classList.add(
+            "fullscreen-chat"
+        );
+
+
+        $("fullScreenBtn").textContent =
             "✕ Exit Full Screen";
 
-
-        $("fullScreenBtn")
-            .onclick =
-            exitFullscreenChat;
-
     }
-);
+
+}
 
 
 function exitFullscreenChat(){
 
     $("chatWrapper")
-        .classList
-        .remove(
+        .classList.remove(
             "fullscreen-chat"
         );
 
 
-    $("fullScreenBtn")
-        .textContent =
+    $("fullScreenBtn").textContent =
         "⛶ Full Screen";
-
-
-    $("fullScreenBtn")
-        .onclick = () => {
-
-            $("chatWrapper")
-                .classList
-                .add(
-                    "fullscreen-chat"
-                );
-
-
-            $("fullScreenBtn")
-                .textContent =
-                "✕ Exit Full Screen";
-
-
-            $("fullScreenBtn")
-                .onclick =
-                exitFullscreenChat;
-
-        };
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ANNOUNCEMENTS
-===================================================== */
+========================================================= */
 
 async function loadAnnouncements(){
 
@@ -4744,262 +4697,184 @@ async function loadAnnouncements(){
             );
 
 
-        $("announcementList")
-            .innerHTML =
+        $("announcementList").innerHTML =
             snap.empty
 
-                ? `
-                    <div class="empty">
-                        No announcements yet.
-                    </div>
-                `
+            ?
 
-                : snap.docs
-                .map(
-                    d => {
+            `<div class="empty">
+                No announcements yet.
+            </div>`
 
-                        const a =
-                            d.data();
+            :
 
+            snap.docs.map(
+                d => {
 
-                        const date =
-                            a.createdAt?.toDate
-                                ? a.createdAt
-                                    .toDate()
-                                    .toLocaleString()
-                                : "";
+                    const a =
+                        d.data();
 
 
-                        return `
+                    const date =
+                        a.createdAt?.toDate
+                            ? a.createdAt
+                                .toDate()
+                                .toLocaleString()
+                            : "";
 
-                            <div
-                                class="announcement">
 
-                                <h3>
-                                    ${esc(
-                                        a.title ||
-                                        "Announcement"
-                                    )}
-                                </h3>
+                    return `
 
-                                <p>
-                                    ${esc(
-                                        a.message ||
-                                        ""
-                                    )}
-                                </p>
+                        <div class="announcement">
 
-                                <small
-                                    class="muted">
-                                    ${esc(date)}
-                                </small>
+                            <h3>
+                                ${esc(
+                                    a.title ||
+                                    "Announcement"
+                                )}
+                            </h3>
 
-                            </div>
+                            <p>
+                                ${esc(
+                                    a.message ||
+                                    ""
+                                )}
+                            </p>
 
-                        `;
+                            <small class="muted">
+                                ${esc(date)}
+                            </small>
 
-                    }
-                )
-                .join("");
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
 
 
     }catch(error){
 
         console.error(
-            "Announcement loading:",
+            "ANNOUNCEMENT ERROR:",
             error
         );
 
 
-        $("announcementList")
-            .innerHTML = `
-
-            <div class="empty">
+        $("announcementList").innerHTML =
+            `<div class="empty">
                 No announcements yet.
-            </div>
-
-        `;
+            </div>`;
 
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SEND ANNOUNCEMENT
-===================================================== */
+========================================================= */
 
 $("publishAnnouncement")
-.addEventListener(
-    "click",
-    async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        const title =
-            $("announcementTitle")
-            .value
-            .trim();
-
-
-        const message =
-            $("announcementMessage")
-            .value
-            .trim();
+            const title =
+                $("announcementTitle")
+                    .value
+                    .trim();
 
 
-        if(!title || !message){
+            const message =
+                $("announcementMessage")
+                    .value
+                    .trim();
 
-            toast(
-                "Enter both title and message."
-            );
 
-            return;
+            if(!title || !message){
+
+                toast(
+                    "Enter both title and message."
+                );
+
+                return;
+
+            }
+
+
+            try{
+
+                await addDoc(
+                    collection(
+                        db,
+                        "announcements"
+                    ),
+                    {
+
+                        title:title,
+
+                        message:message,
+
+                        target:"students",
+
+                        senderId:
+                            currentUser.uid,
+
+                        senderName:
+                            currentUserData?.name ||
+                            "Geethika",
+
+                        createdAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                $("announcementTitle")
+                    .value = "";
+
+
+                $("announcementMessage")
+                    .value = "";
+
+
+                toast(
+                    "Announcement sent to students."
+                );
+
+
+                await loadAnnouncements();
+
+
+            }catch(error){
+
+                console.error(error);
+
+
+                alert(
+                    "Announcement could not be sent.\n\n" +
+                    (error.code || "undefined") +
+                    "\n\n" +
+                    (error.message || "")
+                );
+
+            }
 
         }
+    );
 
 
-        try{
-
-            await addDoc(
-                collection(
-                    db,
-                    "announcements"
-                ),
-                {
-
-                    title,
-
-                    message,
-
-                    target:"students",
-
-                    senderId:
-                        currentUser.uid,
-
-                    senderName:
-                        currentUserData?.name ||
-                        "Mentor",
-
-                    createdAt:
-                        serverTimestamp()
-
-                }
-            );
-
-
-            $("announcementTitle")
-                .value = "";
-
-
-            $("announcementMessage")
-                .value = "";
-
-
-            toast(
-                "Announcement sent to students."
-            );
-
-
-            await loadAnnouncements();
-
-
-        }catch(error){
-
-            console.error(error);
-
-
-            alert(
-                "Announcement failed.\n\n" +
-                error.code +
-                "\n\n" +
-                error.message
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function loadProfile(
-    data,
-    user
-){
-
-    $("profileName")
-        .value =
-        data.name ||
-        "Geethika";
-
-
-    $("profileEmail")
-        .value =
-        user.email ||
-        data.email ||
-        "";
-
-
-    $("profilePhone")
-        .value =
-        data.phone ||
-        "";
-
-
-    $("profileDesignation")
-        .value =
-        data.designation ||
-        "Mentor";
-
-
-    $("profileAbout")
-        .value =
-        data.about ||
-        "";
-
-
-    const photo =
-        data.photoURL ||
-        "";
-
-
-    if(photo){
-
-        $("profilePhoto")
-            .src = photo;
-
-        $("profileMini")
-            .src = photo;
-
-        $("profileMini")
-            .style.display =
-            "block";
-
-    }else{
-
-        $("profilePhoto")
-            .removeAttribute(
-                "src"
-            );
-
-        $("profileMini")
-            .style.display =
-            "none";
-
-    }
-
-}
-
-
-/* =====================================================
-   COMPRESS PROFILE IMAGE
-   NO FIREBASE STORAGE REQUIRED
-===================================================== */
+/* =========================================================
+   IMAGE COMPRESSOR
+   FIRESTORE PHOTO - NO STORAGE REQUIRED
+========================================================= */
 
 function compressImage(
-    file
+    file,
+    maxWidth = 400,
+    quality = 0.75
 ){
 
     return new Promise(
@@ -5009,109 +4884,89 @@ function compressImage(
                 new FileReader();
 
 
-            reader.onload = event => {
+            reader.onload =
+                event => {
 
-                const img =
-                    new Image();
-
-
-                img.onload = () => {
-
-                    const canvas =
-                        document
-                        .createElement(
-                            "canvas"
-                        );
+                    const img =
+                        new Image();
 
 
-                    const maxSize =
-                        500;
+                    img.onload =
+                        () => {
+
+                            let width =
+                                img.width;
 
 
-                    let width =
-                        img.width;
+                            let height =
+                                img.height;
 
 
-                    let height =
-                        img.height;
+                            if(
+                                width >
+                                maxWidth
+                            ){
+
+                                height =
+                                    Math.round(
+                                        height *
+                                        maxWidth /
+                                        width
+                                    );
+
+                                width =
+                                    maxWidth;
+
+                            }
 
 
-                    if(width > height){
-
-                        if(width > maxSize){
-
-                            height =
-                                Math.round(
-                                    height *
-                                    maxSize /
-                                    width
+                            const canvas =
+                                document.createElement(
+                                    "canvas"
                                 );
 
-                            width =
-                                maxSize;
 
-                        }
+                            canvas.width =
+                                width;
 
-                    }else{
 
-                        if(height > maxSize){
+                            canvas.height =
+                                height;
 
-                            width =
-                                Math.round(
-                                    width *
-                                    maxSize /
-                                    height
+
+                            const ctx =
+                                canvas.getContext(
+                                    "2d"
                                 );
 
-                            height =
-                                maxSize;
 
-                        }
-
-                    }
-
-
-                    canvas.width =
-                        width;
-
-                    canvas.height =
-                        height;
+                            ctx.drawImage(
+                                img,
+                                0,
+                                0,
+                                width,
+                                height
+                            );
 
 
-                    const ctx =
-                        canvas
-                        .getContext(
-                            "2d"
-                        );
+                            resolve(
+                                canvas.toDataURL(
+                                    "image/jpeg",
+                                    quality
+                                )
+                            );
+
+                        };
 
 
-                    ctx.drawImage(
-                        img,
-                        0,
-                        0,
-                        width,
-                        height
-                    );
+                    img.onerror =
+                        reject;
 
 
-                    resolve(
-                        canvas.toDataURL(
-                            "image/jpeg",
-                            .75
-                        )
-                    );
+                    img.src =
+                        event.target.result;
 
                 };
-
-
-                img.onerror =
-                    reject;
-
-
-                img.src =
-                    event.target.result;
-
-            };
 
 
             reader.onerror =
@@ -5126,176 +4981,261 @@ function compressImage(
 }
 
 
-/* =====================================================
-   SAVE PROFILE
-===================================================== */
+/* =========================================================
+   LOAD PROFILE
+========================================================= */
 
-$("saveProfileBtn")
-.addEventListener(
-    "click",
-    async () => {
+function loadProfile(
+    data,
+    user
+){
 
-        if(!currentUser) return;
-
-
-        try{
-
-            let photoURL =
-                currentUserData.photoURL ||
-                "";
+    $("profileName").value =
+        data.name ||
+        "Geethika";
 
 
-            const file =
-                $("profilePhotoInput")
-                .files[0];
+    $("profileEmail").value =
+        user.email ||
+        data.email ||
+        "";
 
 
-            if(file){
-
-                if(
-                    file.size >
-                    10 * 1024 * 1024
-                ){
-
-                    toast(
-                        "Please choose an image smaller than 10 MB."
-                    );
-
-                    return;
-
-                }
+    $("profilePhone").value =
+        data.phone ||
+        "";
 
 
-                photoURL =
-                    await compressImage(
-                        file
-                    );
-
-            }
+    $("profileDesignation").value =
+        data.designation ||
+        "Mentor";
 
 
-            const updateData = {
-
-                name:
-                    $("profileName")
-                    .value
-                    .trim() ||
-                    "Geethika",
-
-                email:
-                    currentUser.email ||
-                    "",
-
-                phone:
-                    $("profilePhone")
-                    .value
-                    .trim(),
-
-                designation:
-                    $("profileDesignation")
-                    .value
-                    .trim() ||
-                    "Mentor",
-
-                about:
-                    $("profileAbout")
-                    .value
-                    .trim(),
-
-                photoURL,
-
-                profileUpdatedAt:
-                    serverTimestamp()
-
-            };
+    $("profileAbout").value =
+        data.about ||
+        "";
 
 
-            await setDoc(
-                doc(
-                    db,
-                    "users",
-                    currentUser.uid
-                ),
-                updateData,
-                {
-                    merge:true
-                }
-            );
+    const photo =
+        data.photoURL ||
+        "";
 
 
-            currentUserData = {
+    if(photo){
 
-                ...currentUserData,
-
-                ...updateData
-
-            };
+        $("profilePhoto").src =
+            photo;
 
 
-            $("mentorName")
-                .textContent =
-                updateData.name;
+        $("profileMini").src =
+            photo;
 
 
-            $("welcomeTitle")
-                .textContent =
-                `Welcome, ${updateData.name} 👩‍💼`;
+        $("profileMini").style.display =
+            "block";
+
+    }else{
+
+        $("profilePhoto").removeAttribute(
+            "src"
+        );
 
 
-            if(photoURL){
-
-                $("profilePhoto")
-                    .src =
-                    photoURL;
-
-
-                $("profileMini")
-                    .src =
-                    photoURL;
-
-
-                $("profileMini")
-                    .style.display =
-                    "block";
-
-            }
-
-
-            toast(
-                "Mentor profile updated successfully."
-            );
-
-
-        }catch(error){
-
-            console.error(
-                "PROFILE ERROR:",
-                error
-            );
-
-
-            alert(
-                "Profile update failed.\n\n" +
-                error.code +
-                "\n\n" +
-                error.message
-            );
-
-        }
+        $("profileMini").style.display =
+            "none";
 
     }
-);
+
+}
 
 
-/* =====================================================
+/* =========================================================
+   SAVE PROFILE
+========================================================= */
+
+$("saveProfileBtn")
+    .addEventListener(
+        "click",
+        async () => {
+
+            if(!currentUser){
+
+                return;
+
+            }
+
+
+            try{
+
+                let photoURL =
+                    currentUserData?.photoURL ||
+                    "";
+
+
+                const file =
+                    $("profilePhotoInput")
+                        .files[0];
+
+
+                if(file){
+
+                    if(
+                        file.size >
+                        10 * 1024 * 1024
+                    ){
+
+                        toast(
+                            "Please select an image smaller than 10 MB."
+                        );
+
+                        return;
+
+                    }
+
+
+                    photoURL =
+                        await compressImage(
+                            file,
+                            400,
+                            0.70
+                        );
+
+
+                    /* FIRESTORE DOCUMENT SAFETY */
+
+                    if(
+                        photoURL.length >
+                        900000
+                    ){
+
+                        photoURL =
+                            await compressImage(
+                                file,
+                                300,
+                                0.55
+                            );
+
+                    }
+
+                }
+
+
+                const update = {
+
+                    name:
+                        $("profileName")
+                            .value
+                            .trim() ||
+                        "Geethika",
+
+                    email:
+                        currentUser.email ||
+                        "",
+
+                    phone:
+                        $("profilePhone")
+                            .value
+                            .trim(),
+
+                    designation:
+                        $("profileDesignation")
+                            .value
+                            .trim() ||
+                        "Mentor",
+
+                    about:
+                        $("profileAbout")
+                            .value
+                            .trim(),
+
+                    photoURL:photoURL,
+
+                    profileUpdatedAt:
+                        serverTimestamp()
+
+                };
+
+
+                await setDoc(
+                    doc(
+                        db,
+                        "users",
+                        currentUser.uid
+                    ),
+                    update,
+                    {
+                        merge:true
+                    }
+                );
+
+
+                currentUserData = {
+
+                    ...currentUserData,
+
+                    ...update
+
+                };
+
+
+                $("mentorName").textContent =
+                    update.name;
+
+
+                $("welcomeTitle").textContent =
+                    `Welcome, ${update.name} 👩‍💼`;
+
+
+                if(photoURL){
+
+                    $("profilePhoto").src =
+                        photoURL;
+
+
+                    $("profileMini").src =
+                        photoURL;
+
+
+                    $("profileMini").style.display =
+                        "block";
+
+                }
+
+
+                toast(
+                    "Mentor profile updated successfully."
+                );
+
+
+            }catch(error){
+
+                console.error(
+                    "PROFILE ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Profile could not be updated.\n\n" +
+                    (error.code || "undefined") +
+                    "\n\n" +
+                    (error.message || "")
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
    THEME
-===================================================== */
+========================================================= */
 
 function loadTheme(){
 
     const theme =
-        localStorage
-        .getItem(
+        localStorage.getItem(
             "mentorChatTheme"
         ) ||
         "default";
@@ -5335,127 +5275,87 @@ function applyTheme(theme){
 
 
 document
-.querySelectorAll(".theme-btn")
-.forEach(btn => {
+    .querySelectorAll(
+        ".theme-btn"
+    )
+    .forEach(btn => {
 
-    btn.addEventListener(
-        "click",
-        () => {
+        btn.addEventListener(
+            "click",
+            () => {
 
-            applyTheme(
-                btn.dataset.theme
-            );
-
-            toast(
-                "Chat theme changed."
-            );
-
-        }
-    );
-
-});
+                applyTheme(
+                    btn.dataset.theme
+                );
 
 
-/* =====================================================
+                toast(
+                    "Chat theme changed."
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
    LOGOUT
-===================================================== */
+========================================================= */
 
 $("logoutBtn")
-.addEventListener(
-    "click",
-    async () => {
-
-        if(
-            !confirm(
-                "Logout from Mentor Dashboard?"
-            )
-        ){
-
-            return;
-
-        }
-
-
-        try{
-
-            if(unsubscribeMessages){
-
-                unsubscribeMessages();
-
-            }
-
-
-            if(unsubscribeDirectChats){
-
-                unsubscribeDirectChats();
-
-            }
-
-
-            if(unsubscribeGroups){
-
-                unsubscribeGroups();
-
-            }
-
-
-            await signOut(auth);
-
-
-            location.href =
-                "admin.html";
-
-
-        }catch(error){
-
-            console.error(error);
-
-            toast(
-                "Logout failed."
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   FIX MOBILE KEYBOARD / VISUAL VIEWPORT
-===================================================== */
-
-/*
-   Android keyboard can resize the visual viewport.
-   Keep the message area visible.
-*/
-
-if(window.visualViewport){
-
-    window.visualViewport
     .addEventListener(
-        "resize",
-        () => {
+        "click",
+        async () => {
 
             if(
-                currentChat &&
-                window.innerWidth <= 900
+                !confirm(
+                    "Logout from Mentor Dashboard?"
+                )
             ){
 
-                setTimeout(
-                    () => {
+                return;
 
-                        const box =
-                            $("messages");
+            }
 
-                        if(box){
 
-                            box.scrollTop =
-                                box.scrollHeight;
+            try{
 
-                        }
+                if(unsubscribeMessages){
 
-                    },
-                    100
+                    unsubscribeMessages();
+
+                }
+
+
+                if(unsubscribeDirectChats){
+
+                    unsubscribeDirectChats();
+
+                }
+
+
+                if(unsubscribeGroups){
+
+                    unsubscribeGroups();
+
+                }
+
+
+                await signOut(auth);
+
+
+                location.href =
+                    "admin.html";
+
+
+            }catch(error){
+
+                console.error(error);
+
+
+                toast(
+                    "Logout failed."
                 );
 
             }
@@ -5463,39 +5363,62 @@ if(window.visualViewport){
         }
     );
 
-}
+
+/* =========================================================
+   MOBILE CHAT LIST
+========================================================= */
+
+$("chatWrapper")
+    .addEventListener(
+        "click",
+        event => {
+
+            const item =
+                event.target.closest(
+                    ".chat-item"
+                );
 
 
-/* =====================================================
-   INITIAL CHAT INPUT BEHAVIOR
-===================================================== */
+            if(
+                window.innerWidth <= 900 &&
+                item
+            ){
 
-$("messageInput")
-.addEventListener(
-    "focus",
-    () => {
+                $("chatList")
+                    .classList.remove(
+                        "mobile-show"
+                    );
 
-        if(
-            currentChat &&
-            window.innerWidth <= 900
-        ){
-
-            setTimeout(
-                () => {
-
-                    $("messages")
-                        .scrollTop =
-                        $("messages")
-                        .scrollHeight;
-
-                },
-                250
-            );
+            }
 
         }
+    );
 
-    }
-);
+
+/* =========================================================
+   SHOW CHAT LIST ON MOBILE
+   DOUBLE TAP CHAT HEADER
+========================================================= */
+
+$("chatTitle")
+    .addEventListener(
+        "dblclick",
+        () => {
+
+            if(
+                window.innerWidth <= 900
+            ){
+
+                $("chatList")
+                    .classList.add(
+                        "mobile-show"
+                    );
+
+            }
+
+        }
+    );
+
 
 </script>
 
