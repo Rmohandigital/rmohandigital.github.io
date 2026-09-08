@@ -2,11 +2,8 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Faculty Dashboard | R Mohan Digital</title>
 
@@ -19,21 +16,20 @@
     font-family:Arial,Helvetica,sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     min-height:100vh;
     background:
-    radial-gradient(
-        circle at top left,
-        #102a43 0%,
-        #07111f 35%,
-        #020617 75%
-    );
+        radial-gradient(circle at top left,#102a43 0%,#07111f 35%,#020617 75%);
     color:white;
 }
 
-/* =========================
+/* =========================================
    SIDEBAR
-========================= */
+========================================= */
 
 .sidebar{
     position:fixed;
@@ -45,6 +41,7 @@ body{
     background:rgba(3,12,24,.97);
     border-right:1px solid rgba(0,229,255,.2);
     z-index:100;
+    overflow-y:auto;
 }
 
 .logo{
@@ -63,7 +60,7 @@ body{
     border:2px solid #00e5ff;
     border-radius:50%;
     color:#00e5ff;
-    font-size:22px;
+    font-size:20px;
     font-weight:bold;
     box-shadow:0 0 18px rgba(0,229,255,.35);
 }
@@ -71,7 +68,6 @@ body{
 .logo h2{
     margin-top:12px;
     font-size:18px;
-    text-shadow:0 0 10px rgba(0,229,255,.5);
 }
 
 .logo p{
@@ -106,9 +102,9 @@ body{
     border-color:rgba(0,229,255,.25);
 }
 
-/* =========================
+/* =========================================
    MAIN
-========================= */
+========================================= */
 
 .main{
     margin-left:250px;
@@ -116,9 +112,9 @@ body{
     padding:25px;
 }
 
-/* =========================
+/* =========================================
    TOPBAR
-========================= */
+========================================= */
 
 .topbar{
     display:flex;
@@ -165,6 +161,15 @@ body{
     color:#64748b;
 }
 
+.top-profile-photo{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #00e5ff;
+    display:none;
+}
+
 .logout{
     padding:9px 15px;
     border:1px solid #ef4444;
@@ -180,16 +185,20 @@ body{
     color:white;
 }
 
-/* =========================
+.logout:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* =========================================
    WELCOME
-========================= */
+========================================= */
 
 .welcome{
     padding:25px;
     margin-bottom:25px;
     border-radius:15px;
-    background:
-    linear-gradient(
+    background:linear-gradient(
         135deg,
         rgba(0,229,255,.08),
         rgba(37,99,235,.05)
@@ -207,13 +216,13 @@ body{
     font-size:14px;
 }
 
-/* =========================
+/* =========================================
    PROFILE
-========================= */
+========================================= */
 
 .profile-card{
     display:grid;
-    grid-template-columns:100px 1fr auto;
+    grid-template-columns:110px 1fr;
     gap:25px;
     align-items:center;
     padding:25px;
@@ -221,6 +230,10 @@ body{
     border-radius:15px;
     background:rgba(7,17,31,.82);
     border:1px solid rgba(0,229,255,.15);
+}
+
+.avatar-wrap{
+    text-align:center;
 }
 
 .avatar{
@@ -233,14 +246,38 @@ body{
     background:rgba(0,229,255,.08);
     border:2px solid #00e5ff;
     color:#00e5ff;
-    font-size:32px;
+    font-size:34px;
     overflow:hidden;
+    margin:auto;
 }
 
 .avatar img{
     width:100%;
     height:100%;
     object-fit:cover;
+    display:none;
+}
+
+.change-photo{
+    margin-top:10px;
+    padding:7px 11px;
+    border-radius:7px;
+    border:1px solid #00e5ff;
+    background:rgba(0,229,255,.08);
+    color:#00e5ff;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.change-photo:hover{
+    background:rgba(0,229,255,.18);
+}
+
+.photo-help{
+    display:block;
+    margin-top:6px;
+    color:#64748b;
+    font-size:9px;
 }
 
 .profile-details h2{
@@ -265,24 +302,9 @@ body{
     font-weight:bold;
 }
 
-.edit-profile-btn{
-    padding:11px 17px;
-    border:1px solid #00e5ff;
-    border-radius:8px;
-    background:rgba(0,229,255,.08);
-    color:#00e5ff;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.edit-profile-btn:hover{
-    background:#00e5ff;
-    color:#020617;
-}
-
-/* =========================
+/* =========================================
    STATS
-========================= */
+========================================= */
 
 .stats{
     display:grid;
@@ -296,6 +318,10 @@ body{
     border-radius:15px;
     background:rgba(7,17,31,.82);
     border:1px solid rgba(0,229,255,.15);
+}
+
+.stat-card:hover{
+    transform:translateY(-3px);
 }
 
 .stat-icon{
@@ -314,9 +340,9 @@ body{
     font-size:13px;
 }
 
-/* =========================
-   PANEL
-========================= */
+/* =========================================
+   PANELS
+========================================= */
 
 .panel{
     background:rgba(7,17,31,.82);
@@ -342,9 +368,9 @@ body{
     font-size:11px;
 }
 
-/* =========================
-   COURSE
-========================= */
+/* =========================================
+   COURSES
+========================================= */
 
 .course-card{
     padding:18px;
@@ -377,9 +403,9 @@ body{
     font-size:9px;
 }
 
-/* =========================
-   STUDENT
-========================= */
+/* =========================================
+   STUDENTS
+========================================= */
 
 .student-card{
     display:flex;
@@ -390,6 +416,21 @@ body{
     border-radius:10px;
     background:rgba(15,23,42,.7);
     border:1px solid rgba(148,163,184,.08);
+}
+
+.student-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.student-photo{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    object-fit:cover;
+    border:1px solid #00e5ff;
+    background:rgba(0,229,255,.08);
 }
 
 .student-card strong{
@@ -409,106 +450,275 @@ body{
     font-size:10px;
 }
 
-.student-buttons{
-    display:flex;
-    gap:7px;
-    align-items:center;
-    flex-wrap:wrap;
+/* =========================================
+   CHAT
+========================================= */
+
+.chat-panel{
+    min-height:600px;
 }
 
-.view-student-btn,
-.academic-btn,
-.chat-student-btn{
-    padding:7px 11px;
-    border-radius:7px;
-    cursor:pointer;
-    font-size:10px;
+.chat-layout{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:15px;
+    min-height:500px;
 }
 
-.view-student-btn{
-    border:1px solid #00e5ff;
-    background:rgba(0,229,255,.08);
-    color:#00e5ff;
-}
-
-.academic-btn{
-    border:1px solid #22c55e;
-    background:rgba(34,197,94,.08);
-    color:#22c55e;
-}
-
-.chat-student-btn{
-    border:1px solid #a855f7;
-    background:rgba(168,85,247,.08);
-    color:#c084fc;
-}
-
-/* =========================
-   ANNOUNCEMENTS
-========================= */
-
-.announcement-card{
-    padding:17px;
-    margin-bottom:12px;
+.chat-contacts{
+    border:1px solid rgba(0,229,255,.12);
     border-radius:12px;
-    background:rgba(15,23,42,.75);
-    border:1px solid rgba(148,163,184,.1);
+    background:rgba(2,6,23,.65);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
 }
 
-.announcement-card h3{
+.contacts-title{
+    padding:15px;
+    border-bottom:1px solid rgba(148,163,184,.1);
+}
+
+.contacts-title strong{
     color:#00e5ff;
-    font-size:15px;
-    margin-bottom:8px;
 }
 
-.announcement-card p{
-    color:#94a3b8;
-    font-size:12px;
-    line-height:1.6;
+.contacts-list{
+    overflow-y:auto;
+    flex:1;
 }
 
-.announcement-meta{
-    margin-top:10px;
+.contact-group-title{
+    padding:10px 14px 6px;
     color:#64748b;
     font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
-.announcement-manage{
-    padding:8px 12px;
-    border:1px solid #00e5ff;
-    border-radius:7px;
+.contact{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 12px;
+    cursor:pointer;
+    border-left:3px solid transparent;
+    transition:.2s;
+}
+
+.contact:hover{
+    background:rgba(0,229,255,.06);
+}
+
+.contact.selected{
+    background:rgba(0,229,255,.1);
+    border-left-color:#00e5ff;
+}
+
+.contact-avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     background:rgba(0,229,255,.08);
+    border:1px solid rgba(0,229,255,.35);
+    color:#00e5ff;
+    flex-shrink:0;
+    overflow:hidden;
+    font-size:18px;
+}
+
+.contact-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.contact-info{
+    min-width:0;
+}
+
+.contact-info strong{
+    display:block;
+    font-size:12px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.contact-info small{
+    display:block;
+    margin-top:3px;
+    color:#64748b;
+    font-size:9px;
+}
+
+.chat-window{
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+    border:1px solid rgba(0,229,255,.12);
+    border-radius:12px;
+    background:rgba(2,6,23,.7);
+    overflow:hidden;
+}
+
+.chat-header{
+    min-height:70px;
+    padding:12px 16px;
+    border-bottom:1px solid rgba(148,163,184,.1);
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.chat-header-avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:rgba(0,229,255,.08);
+    border:1px solid #00e5ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.chat-header-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.chat-header-info strong{
+    display:block;
+    font-size:14px;
+    color:#00e5ff;
+}
+
+.chat-header-info small{
+    display:block;
+    color:#64748b;
+    margin-top:3px;
+    font-size:9px;
+}
+
+.messages{
+    flex:1;
+    min-height:360px;
+    max-height:430px;
+    overflow-y:auto;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.message{
+    max-width:75%;
+    padding:10px 13px;
+    border-radius:13px;
+    font-size:12px;
+    line-height:1.5;
+    word-break:break-word;
+}
+
+.message.mine{
+    align-self:flex-end;
+    background:rgba(0,229,255,.12);
+    border:1px solid rgba(0,229,255,.25);
+}
+
+.message.theirs{
+    align-self:flex-start;
+    background:rgba(30,41,59,.8);
+    border:1px solid rgba(148,163,184,.12);
+}
+
+.message-name{
+    font-size:9px;
+    color:#38bdf8;
+    margin-bottom:3px;
+}
+
+.message-time{
+    margin-top:4px;
+    font-size:8px;
+    color:#64748b;
+    text-align:right;
+}
+
+.chat-input-area{
+    padding:12px;
+    border-top:1px solid rgba(148,163,184,.1);
+    display:flex;
+    gap:8px;
+}
+
+.chat-input{
+    flex:1;
+    min-width:0;
+    padding:12px;
+    border-radius:9px;
+    border:1px solid rgba(0,229,255,.2);
+    background:#020617;
+    color:white;
+    outline:none;
+}
+
+.chat-input:focus{
+    border-color:#00e5ff;
+}
+
+.send-btn{
+    padding:0 18px;
+    border:1px solid #00e5ff;
+    border-radius:9px;
+    background:rgba(0,229,255,.1);
     color:#00e5ff;
     cursor:pointer;
-    font-size:10px;
+    font-weight:bold;
 }
 
-/* =========================
-   NOTIFICATIONS
-========================= */
+.send-btn:hover{
+    background:#00e5ff;
+    color:#020617;
+}
 
-.notification-card{
-    padding:15px;
+.send-btn:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.chat-empty{
+    flex:1;
+    min-height:360px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#64748b;
+    text-align:center;
+    padding:20px;
+}
+
+.chat-empty-icon{
+    font-size:45px;
     margin-bottom:10px;
-    border-radius:10px;
-    background:rgba(15,23,42,.7);
-    border-left:3px solid #00e5ff;
 }
 
-.notification-card h3{
-    color:#e2e8f0;
-    font-size:13px;
-    margin-bottom:6px;
-}
-
-.notification-card p{
-    color:#94a3b8;
+.no-contacts{
+    padding:25px 15px;
+    text-align:center;
+    color:#64748b;
     font-size:11px;
 }
 
-/* =========================
-   EMPTY
-========================= */
+/* =========================================
+   ANNOUNCEMENTS / NOTIFICATIONS
+========================================= */
 
 .empty{
     padding:35px 10px;
@@ -522,270 +732,32 @@ body{
     margin-bottom:10px;
 }
 
-/* =========================
-   EDIT PROFILE MODAL
-========================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.78);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:1000;
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:480px;
-    max-height:90vh;
-    overflow:auto;
-    padding:25px;
-    border-radius:16px;
-    background:#07111f;
-    border:1px solid #00e5ff;
-    box-shadow:0 0 35px rgba(0,229,255,.2);
-}
-
-.modal-box h2{
-    color:#00e5ff;
-    margin-bottom:20px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-    color:#94a3b8;
-    font-size:12px;
-    margin-bottom:7px;
-}
-
-.form-group input{
-    width:100%;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid rgba(148,163,184,.2);
-    background:#020617;
-    color:white;
-    outline:none;
-}
-
-.form-group input:focus{
-    border-color:#00e5ff;
-}
-
-.photo-preview{
-    width:100px;
-    height:100px;
-    margin:0 auto 15px;
-    border-radius:50%;
-    border:2px solid #00e5ff;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:35px;
-}
-
-.photo-preview img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.modal-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
-}
-
-.save-profile{
-    flex:1;
-    padding:12px;
-    border:1px solid #22c55e;
-    background:rgba(34,197,94,.1);
-    color:#22c55e;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.cancel-profile{
-    flex:1;
-    padding:12px;
-    border:1px solid #ef4444;
-    background:rgba(239,68,68,.08);
-    color:#f87171;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-/* =========================
-   CHAT
-========================= */
-
-.chat-overlay{
-    position:fixed;
-    inset:0;
-    background:#020617;
-    display:none;
-    flex-direction:column;
-    z-index:2000;
-}
-
-.chat-overlay.show{
-    display:flex;
-}
-
-.chat-top{
-    height:70px;
-    flex-shrink:0;
-    padding:12px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:#07111f;
-    border-bottom:1px solid rgba(0,229,255,.2);
-}
-
-.chat-person{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.chat-avatar{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    border:2px solid #00e5ff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.chat-person h3{
-    color:#00e5ff;
-}
-
-.chat-person small{
-    color:#64748b;
-}
-
-.close-chat{
-    width:42px;
-    height:42px;
-    border:1px solid #ef4444;
-    border-radius:8px;
-    background:transparent;
-    color:#f87171;
-    cursor:pointer;
-    font-size:20px;
-}
-
-.messages{
-    flex:1;
-    overflow-y:auto;
-    padding:25px;
-}
-
-.message{
-    max-width:70%;
-    margin-bottom:12px;
-    padding:11px 14px;
-    border-radius:12px;
-    background:#0f172a;
-    border:1px solid rgba(148,163,184,.1);
-}
-
-.message.mine{
-    margin-left:auto;
-    background:rgba(0,229,255,.08);
-    border-color:rgba(0,229,255,.25);
-}
-
-.message-name{
-    color:#00e5ff;
-    font-size:10px;
-    margin-bottom:5px;
-}
-
-.message-text{
-    color:#e2e8f0;
-    font-size:13px;
-    white-space:pre-wrap;
-}
-
-.message-time{
-    margin-top:5px;
-    color:#64748b;
-    font-size:9px;
-    text-align:right;
-}
-
-.chat-input{
-    padding:15px;
-    display:flex;
-    gap:10px;
-    background:#07111f;
-    border-top:1px solid rgba(0,229,255,.15);
-}
-
-.chat-input textarea{
-    flex:1;
-    resize:none;
-    height:45px;
-    padding:12px;
-    border-radius:9px;
-    background:#020617;
-    color:white;
-    border:1px solid rgba(148,163,184,.2);
-    outline:none;
-}
-
-.send-message{
-    width:90px;
-    border:1px solid #00e5ff;
-    border-radius:9px;
-    background:rgba(0,229,255,.08);
-    color:#00e5ff;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-/* =========================
+/* =========================================
    TOAST
-========================= */
+========================================= */
 
 #toast{
     position:fixed;
     right:25px;
     bottom:25px;
     min-width:250px;
+    max-width:90%;
     padding:14px 18px;
     border-radius:10px;
     background:#07111f;
     border:1px solid #00e5ff;
     color:#e2e8f0;
-    opacity:0;
+    box-shadow:0 0 25px rgba(0,229,255,.18);
     transform:translateY(100px);
+    opacity:0;
     pointer-events:none;
     transition:.3s;
-    z-index:3000;
+    z-index:500;
 }
 
 #toast.show{
-    opacity:1;
     transform:translateY(0);
+    opacity:1;
 }
 
 #toast.error{
@@ -796,9 +768,9 @@ body{
     border-color:#22c55e;
 }
 
-/* =========================
+/* =========================================
    MOBILE
-========================= */
+========================================= */
 
 .mobile-menu{
     display:none;
@@ -807,7 +779,7 @@ body{
     left:15px;
     width:42px;
     height:42px;
-    z-index:500;
+    z-index:200;
     border:1px solid #00e5ff;
     border-radius:8px;
     background:#07111f;
@@ -820,6 +792,18 @@ body{
 
     .stats{
         grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:850px){
+
+    .chat-layout{
+        grid-template-columns:1fr;
+    }
+
+    .chat-contacts{
+        max-height:280px;
     }
 
 }
@@ -856,27 +840,13 @@ body{
         justify-content:space-between;
     }
 
+    .faculty-info-top{
+        text-align:left;
+    }
+
     .profile-card{
         grid-template-columns:1fr;
         text-align:center;
-    }
-
-    .avatar{
-        margin:auto;
-    }
-
-    .student-card{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:12px;
-    }
-
-    .student-buttons{
-        width:100%;
-    }
-
-    .message{
-        max-width:90%;
     }
 
 }
@@ -887,785 +857,1013 @@ body{
         grid-template-columns:1fr;
     }
 
-    .chat-input{
-        padding:10px;
+    .chat-input-area{
+        flex-direction:column;
     }
 
-    .send-message{
-        width:70px;
+    .send-btn{
+        min-height:42px;
+    }
+
+    .message{
+        max-width:88%;
     }
 
 }
 
 </style>
-
 </head>
+
 
 <body>
 
-<button class="mobile-menu" id="mobileMenu">☰</button>
+<!-- MOBILE MENU -->
+
+<button class="mobile-menu" id="mobileMenu">
+☰
+</button>
+
+
+<!-- SIDEBAR -->
 
 <aside class="sidebar" id="sidebar">
 
-<div class="logo">
+    <div class="logo">
 
-<div class="logo-circle">RM</div>
+        <div class="logo-circle">
+            RM
+        </div>
 
-<h2>R Mohan Digital</h2>
+        <h2>R Mohan Digital</h2>
 
-<p>FACULTY CENTER</p>
+        <p>FACULTY CENTER</p>
 
-</div>
+    </div>
 
-<div class="menu">
 
-<button class="active"
-onclick="scrollToSection('dashboardSection')">
-📊 &nbsp; Dashboard
-</button>
+    <div class="menu">
 
-<button
-onclick="scrollToSection('coursesSection')">
-📚 &nbsp; My Courses
-</button>
+        <button
+            class="active"
+            onclick="scrollToSection('dashboardSection')">
+            📊 &nbsp; Dashboard
+        </button>
 
-<button
-onclick="scrollToSection('studentsSection')">
-👨‍🎓 &nbsp; My Students
-</button>
+        <button
+            onclick="scrollToSection('coursesSection')">
+            📚 &nbsp; My Courses
+        </button>
 
-<button
-onclick="scrollToSection('announcementsSection')">
-📢 &nbsp; Announcements
-</button>
+        <button
+            onclick="scrollToSection('studentsSection')">
+            👨‍🎓 &nbsp; My Students
+        </button>
 
-<button
-onclick="scrollToSection('chatSection')">
-💬 &nbsp; Messages
-</button>
+        <button
+            onclick="scrollToSection('chatSection')">
+            💬 &nbsp; Chat
+        </button>
 
-<button
-onclick="scrollToSection('notificationsSection')">
-🔔 &nbsp; Notifications
-</button>
+        <button
+            onclick="scrollToSection('announcementsSection')">
+            📢 &nbsp; Announcements
+        </button>
 
-</div>
+        <button
+            onclick="scrollToSection('notificationsSection')">
+            🔔 &nbsp; Notifications
+        </button>
+
+    </div>
 
 </aside>
 
+
+<!-- MAIN -->
+
 <main class="main">
+
+
+<!-- TOPBAR -->
 
 <div class="topbar">
 
-<h1>
-Faculty <span>Dashboard</span>
-</h1>
+    <h1>
+        Faculty <span>Dashboard</span>
+    </h1>
 
-<div class="profile-area">
 
-<div class="faculty-info-top">
+    <div class="profile-area">
 
-<span id="facultyName">Loading...</span>
+        <div class="faculty-info-top">
 
-<span id="facultyEmail">Loading...</span>
+            <span id="facultyName">
+                Loading...
+            </span>
+
+            <span id="facultyEmail">
+                Loading...
+            </span>
+
+        </div>
+
+
+        <img
+            id="topProfilePhoto"
+            class="top-profile-photo"
+            alt="Faculty Photo">
+
+
+        <button
+            class="logout"
+            id="logoutBtn">
+
+            Logout
+
+        </button>
+
+    </div>
 
 </div>
 
-<button class="logout" id="logoutBtn">
-Logout
-</button>
 
-</div>
-
-</div>
+<!-- DASHBOARD -->
 
 <section id="dashboardSection">
 
-<div class="welcome">
+    <div class="welcome">
 
-<h2>
-Welcome, <span id="welcomeName">Faculty</span> 👨‍🏫
-</h2>
+        <h2>
+            Welcome,
+            <span id="welcomeName">
+                Faculty
+            </span>
+            <span id="welcomeEmoji">👩‍🏫</span>
+        </h2>
 
-<p>
-Manage your courses, students,
-announcements and teaching activities.
-</p>
+        <p>
+            Manage your courses, students,
+            announcements, notifications and
+            communicate with your students and team.
+        </p>
 
-</div>
+    </div>
 
-<div class="profile-card">
 
-<div class="avatar" id="profileAvatar">
-👨‍🏫
-</div>
+    <!-- PROFILE -->
 
-<div class="profile-details">
+    <div class="profile-card">
 
-<h2 id="profileName">Loading...</h2>
+        <div class="avatar-wrap">
 
-<p>
-📧 <span id="profileEmail">Loading...</span>
-</p>
+            <div class="avatar">
 
-<p>
-👤 Role:
-<span id="profileRole">Faculty</span>
-</p>
+                <span id="avatarFallback">
+                    👩‍🏫
+                </span>
 
-<p>
-📚 Course:
-<span id="profileCourse">Not assigned</span>
-</p>
+                <img
+                    id="profilePhoto"
+                    alt="Faculty Profile Photo">
 
-<span class="status-badge">
-✓ ACTIVE FACULTY
-</span>
+            </div>
 
-</div>
 
-<button class="edit-profile-btn"
-id="editProfileBtn">
-✏️ Edit Profile
-</button>
+            <input
+                type="file"
+                id="profilePhotoInput"
+                accept="image/*"
+                hidden>
 
-</div>
 
-<div class="stats">
+            <button
+                class="change-photo"
+                id="changePhotoBtn">
 
-<div class="stat-card">
+                📷 Change Photo
 
-<div class="stat-icon">📚</div>
+            </button>
 
-<h3 id="courseCount">0</h3>
+            <span class="photo-help">
+                Choose photo from Gallery
+            </span>
 
-<p>My Courses</p>
+        </div>
 
-</div>
 
-<div class="stat-card">
+        <div class="profile-details">
 
-<div class="stat-icon">👨‍🎓</div>
+            <h2 id="profileName">
+                Loading...
+            </h2>
 
-<h3 id="studentCount">0</h3>
+            <p>
+                📧
+                <span id="profileEmail">
+                    Loading...
+                </span>
+            </p>
 
-<p>My Students</p>
+            <p>
+                👤 Role:
+                <span id="profileRole">
+                    Faculty
+                </span>
+            </p>
 
-</div>
+            <p>
+                📚 Course:
+                <span id="profileCourse">
+                    Not assigned
+                </span>
+            </p>
 
-<div class="stat-card">
+            <span class="status-badge">
+                ✓ ACTIVE FACULTY
+            </span>
 
-<div class="stat-icon">📢</div>
+        </div>
 
-<h3 id="announcementCount">0</h3>
+    </div>
 
-<p>Announcements</p>
 
-</div>
+    <!-- STATS -->
 
-<div class="stat-card">
+    <div class="stats">
 
-<div class="stat-icon">🔔</div>
+        <div class="stat-card">
 
-<h3 id="notificationCount">0</h3>
+            <div class="stat-icon">
+                📚
+            </div>
 
-<p>Notifications</p>
+            <h3 id="courseCount">
+                0
+            </h3>
 
-</div>
+            <p>
+                My Courses
+            </p>
 
-</div>
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👨‍🎓
+            </div>
+
+            <h3 id="studentCount">
+                0
+            </h3>
+
+            <p>
+                My Students
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📢
+            </div>
+
+            <h3 id="announcementCount">
+                0
+            </h3>
+
+            <p>
+                Announcements
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔔
+            </div>
+
+            <h3 id="notificationCount">
+                0
+            </h3>
+
+            <p>
+                Notifications
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
-<section class="panel" id="coursesSection">
 
-<div class="panel-header">
+<!-- COURSES -->
 
-<h2>📚 My Courses</h2>
+<section
+    class="panel"
+    id="coursesSection">
 
-<span id="courseLabel">Loading...</span>
+    <div class="panel-header">
 
-</div>
+        <h2>
+            📚 My Courses
+        </h2>
 
-<div id="coursesList">
+        <span id="courseLabel">
+            Loading...
+        </span>
 
-<div class="empty">
-📚 Loading courses...
-</div>
+    </div>
 
-</div>
 
-</section>
+    <div id="coursesList">
 
-<section class="panel" id="studentsSection">
+        <div class="empty">
 
-<div class="panel-header">
+            <div class="empty-icon">
+                📚
+            </div>
 
-<h2>👨‍🎓 My Students</h2>
+            Loading courses...
 
-<span id="studentLabel">Loading...</span>
+        </div>
 
-</div>
-
-<div id="studentsList">
-
-<div class="empty">
-👨‍🎓 Loading students...
-</div>
-
-</div>
+    </div>
 
 </section>
 
-<!-- CHAT CONTACTS -->
 
-<section class="panel" id="chatSection">
+<!-- STUDENTS -->
 
-<div class="panel-header">
+<section
+    class="panel"
+    id="studentsSection">
 
-<h2>💬 My Chats</h2>
+    <div class="panel-header">
 
-<span id="chatLabel">Students assigned to you</span>
+        <h2>
+            👨‍🎓 My Students
+        </h2>
 
-</div>
+        <span id="studentLabel">
+            Loading...
+        </span>
 
-<div id="chatList">
+    </div>
 
-<div class="empty">
-💬 Loading chats...
-</div>
 
-</div>
+    <div id="studentsList">
 
-</section>
+        <div class="empty">
 
-<section class="panel" id="announcementsSection">
+            <div class="empty-icon">
+                👨‍🎓
+            </div>
 
-<div class="panel-header">
+            Loading students...
 
-<h2>📢 Announcements</h2>
+        </div>
 
-<button class="announcement-manage"
-onclick="window.location.href='faculty-announcements.html'">
-+ Manage
-</button>
-
-</div>
-
-<div id="announcementsList">
-
-<div class="empty">
-📢 Loading announcements...
-</div>
-
-</div>
+    </div>
 
 </section>
 
-<section class="panel" id="notificationsSection">
 
-<div class="panel-header">
+<!-- =========================================
+     PERMANENT CHAT
+========================================= -->
 
-<h2>🔔 Notifications</h2>
+<section
+    class="panel chat-panel"
+    id="chatSection">
 
-<span>Latest</span>
+    <div class="panel-header">
 
-</div>
+        <h2>
+            💬 Permanent Chat
+        </h2>
 
-<div id="notificationsList">
+        <span>
+            Real-time
+        </span>
 
-<div class="empty">
-🔔 Loading notifications...
-</div>
+    </div>
 
-</div>
+
+    <div class="chat-layout">
+
+
+        <!-- CONTACTS -->
+
+        <div class="chat-contacts">
+
+            <div class="contacts-title">
+
+                <strong>
+                    Conversations
+                </strong>
+
+            </div>
+
+
+            <div
+                class="contacts-list"
+                id="contactsList">
+
+                <div class="no-contacts">
+                    Loading contacts...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CHAT WINDOW -->
+
+        <div class="chat-window">
+
+
+            <div
+                class="chat-header"
+                id="chatHeader"
+                style="display:none;">
+
+                <div
+                    class="chat-header-avatar"
+                    id="chatHeaderAvatar">
+
+                    💬
+
+                </div>
+
+
+                <div class="chat-header-info">
+
+                    <strong id="chatHeaderName">
+                        Chat
+                    </strong>
+
+                    <small id="chatHeaderType">
+                        Direct conversation
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="chat-empty"
+                id="chatEmpty">
+
+                <div class="chat-empty-icon">
+                    💬
+                </div>
+
+                <strong>
+                    Select a conversation
+                </strong>
+
+                <p style="margin-top:7px;font-size:11px;">
+                    Your messages will remain permanently
+                    stored in the R Mohan Digital chat system.
+                </p>
+
+            </div>
+
+
+            <div
+                class="messages"
+                id="messages"
+                style="display:none;">
+            </div>
+
+
+            <div
+                class="chat-input-area"
+                id="chatInputArea"
+                style="display:none;">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    class="chat-input"
+                    placeholder="Type your message...">
+
+                <button
+                    id="sendMessageBtn"
+                    class="send-btn">
+
+                    Send
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
+
+
+<!-- ANNOUNCEMENTS -->
+
+<section
+    class="panel"
+    id="announcementsSection">
+
+    <div class="panel-header">
+
+        <h2>
+            📢 Announcements
+        </h2>
+
+        <span>
+            Latest
+        </span>
+
+    </div>
+
+
+    <div id="announcementsList">
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📢
+            </div>
+
+            No announcements yet.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
+
+<section
+    class="panel"
+    id="notificationsSection">
+
+    <div class="panel-header">
+
+        <h2>
+            🔔 Notifications
+        </h2>
+
+        <span>
+            Latest
+        </span>
+
+    </div>
+
+
+    <div id="notificationsList">
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                🔔
+            </div>
+
+            No notifications yet.
+
+        </div>
+
+    </div>
+
+</section>
+
 
 </main>
 
-<!-- EDIT PROFILE MODAL -->
 
-<div class="modal" id="profileModal">
-
-<div class="modal-box">
-
-<h2>✏️ Edit Faculty Profile</h2>
-
-<div class="photo-preview" id="photoPreview">
-👨‍🏫
-</div>
-
-<div class="form-group">
-
-<label>Faculty Photo</label>
-
-<input
-type="file"
-id="photoInput"
-accept="image/*">
-
-</div>
-
-<div class="form-group">
-
-<label>Faculty Name</label>
-
-<input
-type="text"
-id="editName"
-placeholder="Faculty name">
-
-</div>
-
-<div class="form-group">
-
-<label>Email</label>
-
-<input
-type="email"
-id="editEmail"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Course</label>
-
-<input
-type="text"
-id="editCourse"
-placeholder="Course">
-
-</div>
-
-<div class="modal-buttons">
-
-<button
-class="cancel-profile"
-id="cancelProfile">
-Cancel
-</button>
-
-<button
-class="save-profile"
-id="saveProfile">
-Save Profile
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- FULL SCREEN CHAT -->
-
-<div class="chat-overlay" id="chatOverlay">
-
-<div class="chat-top">
-
-<div class="chat-person">
-
-<div class="chat-avatar" id="chatAvatar">
-👤
-</div>
-
-<div>
-
-<h3 id="chatTitle">
-Chat
-</h3>
-
-<small id="chatSubtitle">
-Online
-</small>
-
-</div>
-
-</div>
-
-<button class="close-chat" id="closeChat">
-×
-</button>
-
-</div>
-
-<div class="messages" id="messages">
-
-<div class="empty">
-💬 Start the conversation
-</div>
-
-</div>
-
-<div class="chat-input">
-
-<textarea
-id="messageInput"
-placeholder="Type your message..."
-></textarea>
-
-<button
-class="send-message"
-id="sendMessage">
-Send
-</button>
-
-</div>
-
-</div>
+<!-- TOAST -->
 
 <div id="toast"></div>
+
+
+<!-- =========================================
+     FIREBASE
+========================================= -->
 
 <script type="module">
 
 import {
     auth,
     db
-} from "./firebase.js";
+} from "./js/firebase.js";
+
 
 import {
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
+
 import {
     doc,
     getDoc,
     setDoc,
-    updateDoc,
     collection,
     getDocs,
     addDoc,
     query,
     where,
-    onSnapshot,
     orderBy,
+    onSnapshot,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-/* ==========================================
+/* =========================================
    ELEMENTS
-========================================== */
+========================================= */
 
 const facultyName =
-document.getElementById("facultyName");
+    document.getElementById("facultyName");
 
 const facultyEmail =
-document.getElementById("facultyEmail");
+    document.getElementById("facultyEmail");
 
 const welcomeName =
-document.getElementById("welcomeName");
+    document.getElementById("welcomeName");
+
+const welcomeEmoji =
+    document.getElementById("welcomeEmoji");
 
 const profileName =
-document.getElementById("profileName");
+    document.getElementById("profileName");
 
 const profileEmail =
-document.getElementById("profileEmail");
+    document.getElementById("profileEmail");
 
 const profileRole =
-document.getElementById("profileRole");
+    document.getElementById("profileRole");
 
 const profileCourse =
-document.getElementById("profileCourse");
+    document.getElementById("profileCourse");
 
-const profileAvatar =
-document.getElementById("profileAvatar");
+const profilePhoto =
+    document.getElementById("profilePhoto");
+
+const avatarFallback =
+    document.getElementById("avatarFallback");
+
+const topProfilePhoto =
+    document.getElementById("topProfilePhoto");
+
+const profilePhotoInput =
+    document.getElementById("profilePhotoInput");
+
+const changePhotoBtn =
+    document.getElementById("changePhotoBtn");
 
 const courseCount =
-document.getElementById("courseCount");
+    document.getElementById("courseCount");
 
 const studentCount =
-document.getElementById("studentCount");
+    document.getElementById("studentCount");
 
 const announcementCount =
-document.getElementById("announcementCount");
+    document.getElementById("announcementCount");
 
 const notificationCount =
-document.getElementById("notificationCount");
+    document.getElementById("notificationCount");
+
+const courseLabel =
+    document.getElementById("courseLabel");
+
+const studentLabel =
+    document.getElementById("studentLabel");
 
 const coursesList =
-document.getElementById("coursesList");
+    document.getElementById("coursesList");
 
 const studentsList =
-document.getElementById("studentsList");
-
-const chatList =
-document.getElementById("chatList");
+    document.getElementById("studentsList");
 
 const announcementsList =
-document.getElementById("announcementsList");
+    document.getElementById("announcementsList");
 
 const notificationsList =
-document.getElementById("notificationsList");
+    document.getElementById("notificationsList");
 
-const profileModal =
-document.getElementById("profileModal");
-
-const editProfileBtn =
-document.getElementById("editProfileBtn");
-
-const cancelProfile =
-document.getElementById("cancelProfile");
-
-const saveProfile =
-document.getElementById("saveProfile");
-
-const editName =
-document.getElementById("editName");
-
-const editEmail =
-document.getElementById("editEmail");
-
-const editCourse =
-document.getElementById("editCourse");
-
-const photoInput =
-document.getElementById("photoInput");
-
-const photoPreview =
-document.getElementById("photoPreview");
-
-const chatOverlay =
-document.getElementById("chatOverlay");
-
-const closeChat =
-document.getElementById("closeChat");
-
-const messages =
-document.getElementById("messages");
-
-const messageInput =
-document.getElementById("messageInput");
-
-const sendMessage =
-document.getElementById("sendMessage");
-
-const chatTitle =
-document.getElementById("chatTitle");
-
-const chatSubtitle =
-document.getElementById("chatSubtitle");
-
-const chatAvatar =
-document.getElementById("chatAvatar");
+const logoutBtn =
+    document.getElementById("logoutBtn");
 
 const toast =
-document.getElementById("toast");
+    document.getElementById("toast");
 
+const contactsList =
+    document.getElementById("contactsList");
+
+const chatHeader =
+    document.getElementById("chatHeader");
+
+const chatHeaderName =
+    document.getElementById("chatHeaderName");
+
+const chatHeaderType =
+    document.getElementById("chatHeaderType");
+
+const chatHeaderAvatar =
+    document.getElementById("chatHeaderAvatar");
+
+const chatEmpty =
+    document.getElementById("chatEmpty");
+
+const messages =
+    document.getElementById("messages");
+
+const chatInputArea =
+    document.getElementById("chatInputArea");
+
+const chatInput =
+    document.getElementById("chatInput");
+
+const sendMessageBtn =
+    document.getElementById("sendMessageBtn");
+
+
+/* =========================================
+   GLOBAL STATE
+========================================= */
 
 let currentFaculty = null;
-let currentChatId = null;
-let currentChatUser = null;
+
+let currentUser = null;
+
+let currentChat = null;
+
 let unsubscribeMessages = null;
 
+let allContacts = [];
 
-/* ==========================================
-   FACULTY NAMES
-========================================== */
-
-const FACULTY_NAMES = [
-    "Harsha",
-    "Jaswanth",
-    "Jyoshna"
-];
+let selectedContactId =
+    localStorage.getItem("facultySelectedChat") || "";
 
 
-/* ==========================================
-   AUTH
-========================================== */
+/* =========================================
+   AUTHENTICATION
+========================================= */
 
 onAuthStateChanged(
-auth,
-async user => {
+    auth,
+    async (user) => {
 
-    if(!user){
+        if (!user) {
 
-        window.location.href =
-        "login.html";
+            window.location.replace("admin.html");
 
-        return;
+            return;
+        }
+
+
+        currentUser = user;
+
+
+        try {
+
+            console.log(
+                "Faculty UID:",
+                user.uid
+            );
+
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const userSnapshot =
+                await getDoc(userRef);
+
+
+            if (!userSnapshot.exists()) {
+
+                showToast(
+                    "Faculty profile not found.",
+                    "error"
+                );
+
+                await forceLogout();
+
+                return;
+            }
+
+
+            const userData =
+                userSnapshot.data();
+
+
+            const role =
+                String(
+                    userData.role || ""
+                ).toLowerCase();
+
+
+            if (role !== "faculty") {
+
+                showToast(
+                    "This is not a faculty account.",
+                    "error"
+                );
+
+                await forceLogout();
+
+                return;
+            }
+
+
+            const status =
+                String(
+                    userData.status || ""
+                ).toLowerCase();
+
+
+            if (
+                status !== "active" &&
+                status !== "approved" &&
+                userData.active !== true
+            ) {
+
+                showToast(
+                    "Your faculty account is not active.",
+                    "error"
+                );
+
+                await forceLogout();
+
+                return;
+            }
+
+
+            currentFaculty = {
+                uid:user.uid,
+                ...userData
+            };
+
+
+            displayProfile(
+                user,
+                userData
+            );
+
+
+            await loadCourses();
+
+            await loadStudents();
+
+            await loadAnnouncements();
+
+            await loadNotifications();
+
+            await loadChatContacts();
+
+
+            console.log(
+                "Faculty Dashboard loaded successfully."
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "Faculty dashboard error:",
+                error
+            );
+
+            showToast(
+                "Unable to load dashboard.",
+                "error"
+            );
+
+        }
+
     }
+);
+
+
+/* =========================================
+   FORCE LOGOUT
+========================================= */
+
+async function forceLogout(){
 
     try{
-
-        const ref =
-        doc(db,"users",user.uid);
-
-        const snap =
-        await getDoc(ref);
-
-        if(!snap.exists()){
-
-            showToast(
-                "Faculty profile not found.",
-                "error"
-            );
-
-            await signOut(auth);
-
-            setTimeout(
-                () =>
-                window.location.href =
-                "login.html",
-                1000
-            );
-
-            return;
-        }
-
-        const data =
-        snap.data();
-
-        const role =
-        String(data.role || "")
-        .trim()
-        .toLowerCase();
-
-        const status =
-        String(data.status || "")
-        .trim()
-        .toLowerCase();
-
-        if(role !== "faculty"){
-
-            showToast(
-                "This account is not a faculty account.",
-                "error"
-            );
-
-            await signOut(auth);
-
-            setTimeout(
-                () =>
-                window.location.href =
-                "login.html",
-                1000
-            );
-
-            return;
-        }
-
-        if(status !== "active"){
-
-            showToast(
-                "Your faculty account is not active.",
-                "error"
-            );
-
-            await signOut(auth);
-
-            setTimeout(
-                () =>
-                window.location.href =
-                "login.html",
-                1000
-            );
-
-            return;
-        }
-
-        currentFaculty = {
-            uid:user.uid,
-            ...data
-        };
-
-        displayProfile(
-            user,
-            data
-        );
-
-        await Promise.all([
-            loadCourses(),
-            loadStudents(),
-            loadAnnouncements(),
-            loadNotifications()
-        ]);
-
-        loadChats();
-
+        await signOut(auth);
     }
-
     catch(error){
-
         console.error(error);
-
-        showToast(
-            "Unable to load faculty dashboard.",
-            "error"
-        );
-
     }
 
-});
+    sessionStorage.removeItem("teamRole");
+    sessionStorage.removeItem("teamName");
+    sessionStorage.removeItem("teamEmail");
+
+    window.location.replace("admin.html");
+}
 
 
-/* ==========================================
-   PROFILE DISPLAY
-========================================== */
+/* =========================================
+   DISPLAY PROFILE
+========================================= */
 
-function displayProfile(user,data){
+function displayProfile(
+    user,
+    data
+){
 
     const name =
-    data.name ||
-    data.displayName ||
-    getKnownFacultyName(
-        data.email || user.email
-    ) ||
-    "Faculty";
+        data.name ||
+        data.displayName ||
+        "Faculty";
+
 
     const email =
-    data.email ||
-    user.email ||
-    "";
+        data.email ||
+        user.email ||
+        "";
 
-    const course =
-    data.course ||
-    data.courseName ||
-    "Not assigned";
 
     facultyName.textContent =
-    name;
+        name;
 
     facultyEmail.textContent =
-    email;
+        email;
 
     welcomeName.textContent =
-    name;
+        name;
 
     profileName.textContent =
-    name;
+        name;
 
     profileEmail.textContent =
-    email;
+        email;
 
     profileRole.textContent =
-    "Faculty";
+        "Faculty";
 
     profileCourse.textContent =
-    course;
+        data.course ||
+        data.courseName ||
+        "Not assigned";
 
-    editName.value =
-    name;
 
-    editEmail.value =
-    email;
+    /*
+       Harsha is a female faculty member.
+       Jyoshna is also displayed with a female
+       default avatar.
 
-    editCourse.value =
-    course;
+       A real uploaded photo always replaces
+       the default avatar.
+    */
+
+    const lowerName =
+        name.toLowerCase();
+
+
+    if(
+        lowerName.includes("harsha") ||
+        lowerName.includes("jyoshna")
+    ){
+
+        welcomeEmoji.textContent =
+            "👩‍🏫";
+
+        avatarFallback.textContent =
+            "👩‍🏫";
+
+    }
+    else{
+
+        welcomeEmoji.textContent =
+            "👨‍🏫";
+
+        avatarFallback.textContent =
+            "👨‍🏫";
+
+    }
+
 
     if(data.photoURL){
 
-        setProfileImage(
-            profileAvatar,
-            data.photoURL
-        );
-
-        setProfileImage(
-            photoPreview,
+        showProfilePhoto(
             data.photoURL
         );
 
@@ -1674,408 +1872,346 @@ function displayProfile(user,data){
 }
 
 
-/* ==========================================
-   KNOWN FACULTY
-========================================== */
-
-function getKnownFacultyName(email){
-
-    if(!email) return "";
-
-    const e =
-    email.toLowerCase();
-
-    if(e.includes("udiyana.harsha"))
-        return "Harsha";
-
-    if(e.includes("jashwanthkandula"))
-        return "Jaswanth";
-
-    if(e.includes("jyoshnasarrikonda"))
-        return "Jyoshna";
-
-    return "";
-}
-
-
-/* ==========================================
+/* =========================================
    PROFILE PHOTO
-========================================== */
+========================================= */
 
-function setProfileImage(element,url){
+changePhotoBtn.addEventListener(
+    "click",
+    () => {
 
-    element.innerHTML = "";
+        profilePhotoInput.click();
 
-    const img =
-    document.createElement("img");
+    }
+);
 
-    img.src = url;
 
-    element.appendChild(img);
+profilePhotoInput.addEventListener(
+    "change",
+    async (event) => {
 
-}
+        const file =
+            event.target.files[0];
+
+
+        if(!file){
+            return;
+        }
+
+
+        if(!file.type.startsWith("image/")){
+
+            showToast(
+                "Please select an image.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(file.size > 10 * 1024 * 1024){
+
+            showToast(
+                "Photo must be smaller than 10 MB.",
+                "error"
+            );
+
+            profilePhotoInput.value = "";
+
+            return;
+        }
+
+
+        changePhotoBtn.disabled = true;
+
+        changePhotoBtn.textContent =
+            "Uploading...";
+
+
+        try{
+
+            const compressed =
+                await compressImage(
+                    file
+                );
+
+
+            await setDoc(
+                doc(
+                    db,
+                    "users",
+                    currentFaculty.uid
+                ),
+                {
+                    photoURL:compressed,
+                    updatedAt:serverTimestamp()
+                },
+                {
+                    merge:true
+                }
+            );
+
+
+            currentFaculty.photoURL =
+                compressed;
+
+
+            showProfilePhoto(
+                compressed
+            );
+
+
+            showToast(
+                "Profile photo updated successfully.",
+                "success"
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "Photo upload error:",
+                error
+            );
+
+            showToast(
+                "Unable to save profile photo.",
+                "error"
+            );
+
+        }
+        finally{
+
+            changePhotoBtn.disabled =
+                false;
+
+            changePhotoBtn.textContent =
+                "📷 Change Photo";
+
+            profilePhotoInput.value =
+                "";
+
+        }
+
+    }
+);
 
 
 /*
- * The photo is compressed and saved directly
- * inside Firestore as a data URL.
- *
- * Therefore Firebase Storage is NOT required.
- */
+   Compress image using browser canvas.
 
-photoInput.addEventListener(
-"change",
-async event => {
-
-    const file =
-    event.target.files[0];
-
-    if(!file)
-        return;
-
-    if(file.size > 5 * 1024 * 1024){
-
-        showToast(
-            "Please choose an image below 5 MB.",
-            "error"
-        );
-
-        photoInput.value = "";
-
-        return;
-    }
-
-    try{
-
-        const dataURL =
-        await compressImage(file);
-
-        setProfileImage(
-            photoPreview,
-            dataURL
-        );
-
-        photoPreview.dataset.photo =
-        dataURL;
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        showToast(
-            "Unable to process photo.",
-            "error"
-        );
-
-    }
-
-});
-
+   This avoids Firebase Storage and keeps the
+   Firestore document small.
+*/
 
 function compressImage(file){
 
     return new Promise(
-    (resolve,reject)=>{
+        (resolve,reject) => {
 
-        const reader =
-        new FileReader();
+            const reader =
+                new FileReader();
 
-        reader.onload =
-        event => {
 
-            const img =
-            new Image();
+            reader.onload = () => {
 
-            img.onload =
-            () => {
+                const image =
+                    new Image();
 
-                const max =
-                500;
 
-                let width =
-                img.width;
+                image.onload = () => {
 
-                let height =
-                img.height;
+                    const maxSize =
+                        300;
 
-                if(width > height){
 
-                    if(width > max){
+                    let width =
+                        image.width;
 
-                        height =
-                        Math.round(
-                            height * max / width
-                        );
+                    let height =
+                        image.height;
 
-                        width = max;
+
+                    if(width > height){
+
+                        if(width > maxSize){
+
+                            height =
+                                Math.round(
+                                    height *
+                                    maxSize /
+                                    width
+                                );
+
+                            width =
+                                maxSize;
+                        }
+
+                    }
+                    else{
+
+                        if(height > maxSize){
+
+                            width =
+                                Math.round(
+                                    width *
+                                    maxSize /
+                                    height
+                                );
+
+                            height =
+                                maxSize;
+                        }
 
                     }
 
-                }
-                else{
 
-                    if(height > max){
-
-                        width =
-                        Math.round(
-                            width * max / height
+                    const canvas =
+                        document.createElement(
+                            "canvas"
                         );
 
-                        height = max;
 
-                    }
+                    canvas.width =
+                        width;
 
-                }
+                    canvas.height =
+                        height;
 
-                const canvas =
-                document.createElement("canvas");
 
-                canvas.width =
-                width;
+                    const ctx =
+                        canvas.getContext(
+                            "2d"
+                        );
 
-                canvas.height =
-                height;
 
-                const ctx =
-                canvas.getContext("2d");
+                    ctx.drawImage(
+                        image,
+                        0,
+                        0,
+                        width,
+                        height
+                    );
 
-                ctx.drawImage(
-                    img,
-                    0,
-                    0,
-                    width,
-                    height
-                );
 
-                resolve(
-                    canvas.toDataURL(
-                        "image/jpeg",
-                        .75
-                    )
-                );
+                    const result =
+                        canvas.toDataURL(
+                            "image/jpeg",
+                            0.72
+                        );
+
+
+                    resolve(result);
+
+                };
+
+
+                image.onerror =
+                    reject;
+
+
+                image.src =
+                    reader.result;
 
             };
 
-            img.onerror =
-            reject;
 
-            img.src =
-            event.target.result;
+            reader.onerror =
+                reject;
 
-        };
 
-        reader.onerror =
-        reject;
+            reader.readAsDataURL(file);
 
-        reader.readAsDataURL(file);
-
-    });
+        }
+    );
 
 }
 
 
-/* ==========================================
-   EDIT PROFILE
-========================================== */
+function showProfilePhoto(url){
 
-editProfileBtn.addEventListener(
-"click",
-()=>{
-
-    editName.value =
-    currentFaculty.name ||
-    "";
-
-    editCourse.value =
-    currentFaculty.course ||
-    "";
-
-    editEmail.value =
-    currentFaculty.email ||
-    auth.currentUser.email ||
-    "";
-
-    if(currentFaculty.photoURL){
-
-        setProfileImage(
-            photoPreview,
-            currentFaculty.photoURL
-        );
-
-        photoPreview.dataset.photo =
-        currentFaculty.photoURL;
-
-    }
-
-    profileModal.classList.add("show");
-
-});
-
-
-cancelProfile.addEventListener(
-"click",
-()=>{
-
-    profileModal.classList.remove(
-        "show"
-    );
-
-});
-
-
-profileModal.addEventListener(
-"click",
-event=>{
-
-    if(event.target === profileModal){
-
-        profileModal.classList.remove(
-            "show"
-        );
-
-    }
-
-});
-
-
-/* ==========================================
-   SAVE PROFILE
-========================================== */
-
-saveProfile.addEventListener(
-"click",
-async ()=>{
-
-    const name =
-    editName.value.trim();
-
-    const course =
-    editCourse.value.trim();
-
-    if(!name){
-
-        showToast(
-            "Enter faculty name.",
-            "error"
-        );
-
+    if(!url){
         return;
     }
 
-    saveProfile.disabled =
-    true;
 
-    saveProfile.textContent =
-    "Saving...";
+    profilePhoto.src =
+        url;
 
-    try{
+    profilePhoto.style.display =
+        "block";
 
-        const photo =
-        photoPreview.dataset.photo ||
-        currentFaculty.photoURL ||
-        "";
-
-        await updateDoc(
-            doc(
-                db,
-                "users",
-                currentFaculty.uid
-            ),
-            {
-                name:name,
-                displayName:name,
-                course:course,
-                photoURL:photo
-            }
-        );
-
-        currentFaculty.name =
-        name;
-
-        currentFaculty.displayName =
-        name;
-
-        currentFaculty.course =
-        course;
-
-        currentFaculty.photoURL =
-        photo;
-
-        displayProfile(
-            auth.currentUser,
-            currentFaculty
-        );
-
-        profileModal.classList.remove(
-            "show"
-        );
-
-        showToast(
-            "Profile updated successfully.",
-            "success"
-        );
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        showToast(
-            "Profile update failed: " +
-            error.message,
-            "error"
-        );
-
-    }
-
-    finally{
-
-        saveProfile.disabled =
-        false;
-
-        saveProfile.textContent =
-        "Save Profile";
-
-    }
-
-});
+    avatarFallback.style.display =
+        "none";
 
 
-/* ==========================================
+    topProfilePhoto.src =
+        url;
+
+    topProfilePhoto.style.display =
+        "block";
+
+}
+
+
+/* =========================================
    COURSES
-========================================== */
+========================================= */
 
 async function loadCourses(){
 
+    coursesList.innerHTML = `
+        <div class="empty">
+            Loading courses...
+        </div>
+    `;
+
+
     try{
 
-        const q =
-        query(
-            collection(db,"courses"),
-            where(
-                "facultyId",
-                "==",
-                currentFaculty.uid
-            )
-        );
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "courses"
+                )
+            );
 
-        const snap =
-        await getDocs(q);
 
         const courses = [];
 
-        snap.forEach(
-        item=>{
 
-            courses.push({
-                id:item.id,
-                ...item.data()
-            });
+        snapshot.forEach(
+            documentSnapshot => {
 
-        });
+                const data =
+                    documentSnapshot.data();
+
+
+                const facultyIds = [
+                    data.facultyId,
+                    data.facultyUid,
+                    data.assignedFaculty
+                ];
+
+
+                if(
+                    facultyIds.includes(
+                        currentFaculty.uid
+                    )
+                ){
+
+                    courses.push({
+                        id:documentSnapshot.id,
+                        ...data
+                    });
+
+                }
+
+            }
+        );
+
 
         if(
             courses.length === 0 &&
@@ -2086,32 +2222,44 @@ async function loadCourses(){
                 id:"profile-course",
                 name:currentFaculty.course,
                 description:
-                "Course assigned to you."
+                    "Course assigned to you."
             });
 
         }
 
+
         courseCount.textContent =
-        courses.length;
+            courses.length;
 
-        document.getElementById(
-            "courseLabel"
-        ).textContent =
-        `${courses.length} course(s)`;
+        courseLabel.textContent =
+            courses.length +
+            " course(s)";
 
-        renderCourses(courses);
+
+        renderCourses(
+            courses
+        );
 
     }
-
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Courses error:",
+            error
+        );
 
-        coursesList.innerHTML =
-        `
-        <div class="empty">
-        ⚠️ Unable to load courses.
-        </div>
+
+        courseCount.textContent =
+            "0";
+
+        courseLabel.textContent =
+            "Unable to load";
+
+
+        coursesList.innerHTML = `
+            <div class="empty">
+                ❌ Unable to load courses.
+            </div>
         `;
 
     }
@@ -2119,200 +2267,188 @@ async function loadCourses(){
 }
 
 
-function renderCourses(courses){
+function renderCourses(
+    courses
+){
 
-    coursesList.innerHTML = "";
+    coursesList.innerHTML =
+        "";
 
-    if(!courses.length){
 
-        coursesList.innerHTML =
-        `
-        <div class="empty">
-        <div class="empty-icon">📚</div>
-        No courses assigned yet.
-        </div>
+    if(courses.length === 0){
+
+        coursesList.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">
+                    📚
+                </div>
+                No courses assigned yet.
+            </div>
         `;
 
         return;
     }
 
+
     courses.forEach(
-    course=>{
+        course => {
 
-        const card =
-        document.createElement("div");
+            const card =
+                document.createElement(
+                    "div"
+                );
 
-        card.className =
-        "course-card";
 
-        card.innerHTML =
-        `
-        <h3>
-        ${escapeHTML(
-            course.name ||
-            course.title ||
-            "Course"
-        )}
-        </h3>
+            card.className =
+                "course-card";
 
-        <p>
-        ${escapeHTML(
-            course.description ||
-            "No description available."
-        )}
-        </p>
 
-        <span class="course-badge">
-        FACULTY COURSE
-        </span>
-        `;
+            card.innerHTML = `
+                <h3>
+                    ${escapeHTML(
+                        course.name ||
+                        course.title ||
+                        "Course"
+                    )}
+                </h3>
 
-        coursesList.appendChild(card);
+                <p>
+                    ${escapeHTML(
+                        course.description ||
+                        "No course description available."
+                    )}
+                </p>
 
-    });
+                <span class="course-badge">
+                    FACULTY COURSE
+                </span>
+            `;
+
+
+            coursesList.appendChild(
+                card
+            );
+
+        }
+    );
 
 }
 
 
-/* ==========================================
+/* =========================================
    STUDENTS
-========================================== */
+========================================= */
 
 async function loadStudents(){
 
-    studentsList.innerHTML =
-    `
-    <div class="empty">
-    👨‍🎓 Loading students...
-    </div>
+    studentsList.innerHTML = `
+        <div class="empty">
+            Loading students...
+        </div>
     `;
+
 
     try{
 
-        /*
-         * Mentor assignment uses assignedFaculty.
-         * Some earlier records may use facultyId.
-         */
-
-        let students = [];
-
-        const q1 =
-        query(
-            collection(db,"users"),
-            where(
-                "assignedFaculty",
-                "==",
-                currentFaculty.uid
-            )
-        );
-
-        const snap1 =
-        await getDocs(q1);
-
-        snap1.forEach(
-        item=>{
-
-            const data =
-            item.data();
-
-            if(
-                String(data.role || "")
-                .toLowerCase() ===
-                "student"
-            ){
-
-                students.push({
-                    id:item.id,
-                    ...data
-                });
-
-            }
-
-        });
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "students"
+                )
+            );
 
 
-        /*
-         * Also support facultyId records.
-         */
+        const students = [];
 
-        const q2 =
-        query(
-            collection(db,"users"),
-            where(
-                "facultyId",
-                "==",
-                currentFaculty.uid
-            )
-        );
 
-        const snap2 =
-        await getDocs(q2);
+        snapshot.forEach(
+            documentSnapshot => {
 
-        snap2.forEach(
-        item=>{
+                const data =
+                    documentSnapshot.data();
 
-            const data =
-            item.data();
 
-            if(
-                String(data.role || "")
-                .toLowerCase() ===
-                "student"
-            ){
+                const assignments = [
+                    data.facultyId,
+                    data.facultyUid,
+                    data.assignedFaculty,
+                    data.assignedFacultyId,
+                    data.assignedFacultyEmail,
+                    data.assignedFacultyName
+                ];
+
+
+                const assigned =
+                    assignments.some(
+                        value =>
+                            value ===
+                            currentFaculty.uid ||
+                            value ===
+                            currentFaculty.email ||
+                            value ===
+                            currentFaculty.name
+                    );
+
+
+                const status =
+                    String(
+                        data.status || ""
+                    ).toLowerCase();
+
 
                 if(
-                    !students.some(
-                        s => s.id === item.id
+                    assigned &&
+                    (
+                        status === "active" ||
+                        status === "approved" ||
+                        status === "pending"
                     )
                 ){
 
                     students.push({
-                        id:item.id,
+                        id:documentSnapshot.id,
                         ...data
                     });
 
                 }
 
             }
-
-        });
-
-
-        students.sort(
-        (a,b)=>
-        String(a.name || "")
-        .localeCompare(
-            String(b.name || "")
-        )
         );
 
 
         studentCount.textContent =
-        students.length;
+            students.length;
 
-        document.getElementById(
-            "studentLabel"
-        ).textContent =
-        `${students.length} student(s)`;
+        studentLabel.textContent =
+            students.length +
+            " student(s)";
 
-        renderStudents(students);
+
+        renderStudents(
+            students
+        );
 
     }
-
     catch(error){
 
         console.error(
-            "Student error:",
+            "Students error:",
             error
         );
 
-        studentsList.innerHTML =
-        `
-        <div class="empty">
-        ⚠️ Unable to load students.
-        <br><br>
-        Check Firestore rules.
-        </div>
+
+        studentCount.textContent =
+            "0";
+
+        studentLabel.textContent =
+            "Unable to load";
+
+
+        studentsList.innerHTML = `
+            <div class="empty">
+                ❌ Unable to load students.
+            </div>
         `;
 
     }
@@ -2320,345 +2456,710 @@ async function loadStudents(){
 }
 
 
-function renderStudents(students){
+function renderStudents(
+    students
+){
 
-    studentsList.innerHTML = "";
+    studentsList.innerHTML =
+        "";
 
-    if(!students.length){
 
-        studentsList.innerHTML =
-        `
-        <div class="empty">
-        <div class="empty-icon">
-        👨‍🎓
-        </div>
-        No students assigned yet.
-        </div>
+    if(students.length === 0){
+
+        studentsList.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">
+                    👨‍🎓
+                </div>
+                No students assigned yet.
+            </div>
         `;
 
         return;
     }
 
+
     students.forEach(
-    student=>{
+        student => {
 
-        const card =
-        document.createElement("div");
-
-        card.className =
-        "student-card";
-
-        const name =
-        student.name ||
-        student.displayName ||
-        "Student";
-
-        const email =
-        student.email ||
-        "";
-
-        const status =
-        String(
-            student.status ||
-            "approved"
-        ).toUpperCase();
-
-        card.innerHTML =
-        `
-        <div>
-
-        <strong>
-        ${escapeHTML(name)}
-        </strong>
-
-        <small>
-        ${escapeHTML(email)}
-        </small>
-
-        </div>
-
-        <div class="student-buttons">
-
-        <span class="student-status">
-        ${escapeHTML(status)}
-        </span>
-
-        <button
-        class="view-student-btn">
-        View
-        </button>
-
-        <button
-        class="academic-btn">
-        Attendance / Marks
-        </button>
-
-        <button
-        class="chat-student-btn">
-        💬 Chat
-        </button>
-
-        </div>
-        `;
-
-        card.querySelector(
-            ".view-student-btn"
-        ).onclick =
-        () => {
-
-            window.location.href =
-            `student-profile.html?id=${
-                encodeURIComponent(student.id)
-            }`;
-
-        };
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-        card.querySelector(
-            ".academic-btn"
-        ).onclick =
-        () => {
-
-            window.location.href =
-            `student-academic.html?id=${
-                encodeURIComponent(student.id)
-            }`;
-
-        };
+            card.className =
+                "student-card";
 
 
-        card.querySelector(
-            ".chat-student-btn"
-        ).onclick =
-        () => {
+            const photo =
+                student.photoURL ||
+                "";
 
-            openDirectChat(
-                student.id,
-                name,
-                email
+
+            const fallback =
+                photo
+                    ? `<img class="student-photo"
+                        src="${escapeAttribute(photo)}"
+                        alt="Student">`
+                    : `<div class="student-photo"
+                        style="display:flex;align-items:center;justify-content:center;font-size:20px;">
+                        👨‍🎓
+                       </div>`;
+
+
+            card.innerHTML = `
+
+                <div class="student-left">
+
+                    ${fallback}
+
+                    <div>
+
+                        <strong>
+                            ${escapeHTML(
+                                student.name ||
+                                "Student"
+                            )}
+                        </strong>
+
+                        <small>
+                            ${escapeHTML(
+                                student.email ||
+                                student.studentId ||
+                                ""
+                            )}
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <span class="student-status">
+                    ACTIVE
+                </span>
+
+            `;
+
+
+            /*
+               Clicking a student opens the
+               permanent direct chat.
+            */
+
+            card.addEventListener(
+                "click",
+                () => {
+
+                    openDirectChat({
+                        uid:
+                            student.uid ||
+                            student.id,
+
+                        name:
+                            student.name ||
+                            "Student",
+
+                        email:
+                            student.email ||
+                            "",
+
+                        photoURL:
+                            student.photoURL ||
+                            "",
+
+                        role:
+                            "student"
+                    });
+
+                    scrollToSection(
+                        "chatSection"
+                    );
+
+                }
             );
 
-        };
 
+            studentsList.appendChild(
+                card
+            );
 
-        studentsList.appendChild(card);
-
-    });
-
-}
-
-
-/* ==========================================
-   DIRECT CHAT
-========================================== */
-
-async function createDirectChat(
-    otherUid,
-    otherName,
-    otherEmail
-){
-
-    const ids =
-    [
-        currentFaculty.uid,
-        otherUid
-    ].sort();
-
-    const chatId =
-    ids.join("_");
-
-    await setDoc(
-        doc(db,"chats",chatId),
-        {
-            members:ids,
-            type:"direct",
-            user1:ids[0],
-            user2:ids[1],
-            updatedAt:serverTimestamp()
-        },
-        {
-            merge:true
         }
     );
 
-    return chatId;
-
 }
 
 
-async function openDirectChat(
-    uid,
-    name,
-    email
-){
+/* =========================================
+   ANNOUNCEMENTS
+========================================= */
+
+async function loadAnnouncements(){
 
     try{
 
-        const chatId =
-        await createDirectChat(
-            uid,
-            name,
-            email
-        );
-
-        currentChatId =
-        chatId;
-
-        currentChatUser =
-        {
-            uid,
-            name,
-            email
-        };
-
-        chatTitle.textContent =
-        name;
-
-        chatSubtitle.textContent =
-        email || "Student";
-
-        chatOverlay.classList.add(
-            "show"
-        );
-
-        document.body.style.overflow =
-        "hidden";
-
-        listenMessages(chatId);
-
-        messageInput.focus();
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        showToast(
-            "Unable to open chat: " +
-            error.message,
-            "error"
-        );
-
-    }
-
-}
-
-
-/* ==========================================
-   LOAD CHAT CONTACTS
-========================================== */
-
-async function loadChats(){
-
-    try{
-
-        const q =
-        query(
-            collection(db,"users"),
-            where(
-                "assignedFaculty",
-                "==",
-                currentFaculty.uid
-            )
-        );
-
-        const snap =
-        await getDocs(q);
-
-        const students = [];
-
-        snap.forEach(
-        item=>{
-
-            const data =
-            item.data();
-
-            if(
-                String(data.role || "")
-                .toLowerCase() ===
-                "student"
-            ){
-
-                students.push({
-                    id:item.id,
-                    ...data
-                });
-
-            }
-
-        });
-
-
-        chatList.innerHTML = "";
-
-        if(!students.length){
-
-            chatList.innerHTML =
-            `
-            <div class="empty">
-            💬 No student chats yet.
-            </div>
-            `;
-
-            return;
-        }
-
-        students.forEach(
-        student=>{
-
-            const card =
-            document.createElement("div");
-
-            card.className =
-            "student-card";
-
-            const name =
-            student.name ||
-            "Student";
-
-            card.innerHTML =
-            `
-            <div>
-
-            <strong>
-            💬 ${escapeHTML(name)}
-            </strong>
-
-            <small>
-            ${escapeHTML(
-                student.email || ""
-            )}
-            </small>
-
-            </div>
-
-            <div class="student-buttons">
-
-            <button
-            class="chat-student-btn">
-            Open Chat
-            </button>
-
-            </div>
-            `;
-
-            card.querySelector(
-                ".chat-student-btn"
-            ).onclick =
-            () =>
-            openDirectChat(
-                student.id,
-                name,
-                student.email || ""
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "announcements"
+                )
             );
 
-            chatList.appendChild(card);
 
-        });
+        const announcements = [];
+
+
+        snapshot.forEach(
+            documentSnapshot => {
+
+                const data =
+                    documentSnapshot.data();
+
+
+                if(
+                    !data.targetUserId ||
+                    data.targetUserId ===
+                        currentFaculty.uid ||
+                    String(
+                        data.targetRole || ""
+                    ).toLowerCase() ===
+                        "faculty" ||
+                    String(
+                        data.targetRole || ""
+                    ).toLowerCase() ===
+                        "all"
+                ){
+
+                    announcements.push({
+                        id:documentSnapshot.id,
+                        ...data
+                    });
+
+                }
+
+            }
+        );
+
+
+        announcementCount.textContent =
+            announcements.length;
+
+
+        renderAnnouncements(
+            announcements
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Announcements error:",
+            error
+        );
+
+        announcementCount.textContent =
+            "0";
 
     }
 
+}
+
+
+function renderAnnouncements(
+    announcements
+){
+
+    announcementsList.innerHTML =
+        "";
+
+
+    if(announcements.length === 0){
+
+        announcementsList.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">
+                    📢
+                </div>
+                No announcements yet.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    announcements.forEach(
+        announcement => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "course-card";
+
+
+            card.innerHTML = `
+
+                <h3>
+                    ${escapeHTML(
+                        announcement.title ||
+                        "Announcement"
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        announcement.message ||
+                        announcement.description ||
+                        ""
+                    )}
+                </p>
+
+            `;
+
+
+            announcementsList.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   NOTIFICATIONS
+========================================= */
+
+async function loadNotifications(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "notifications"
+                )
+            );
+
+
+        const notifications = [];
+
+
+        snapshot.forEach(
+            documentSnapshot => {
+
+                const data =
+                    documentSnapshot.data();
+
+
+                if(
+                    data.userId ===
+                    currentFaculty.uid
+                ){
+
+                    notifications.push({
+                        id:documentSnapshot.id,
+                        ...data
+                    });
+
+                }
+
+            }
+        );
+
+
+        notificationCount.textContent =
+            notifications.length;
+
+
+        renderNotifications(
+            notifications
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Notifications error:",
+            error
+        );
+
+        notificationCount.textContent =
+            "0";
+
+    }
+
+}
+
+
+function renderNotifications(
+    notifications
+){
+
+    notificationsList.innerHTML =
+        "";
+
+
+    if(notifications.length === 0){
+
+        notificationsList.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">
+                    🔔
+                </div>
+                No notifications yet.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    notifications.forEach(
+        notification => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "course-card";
+
+
+            card.innerHTML = `
+
+                <h3>
+                    🔔
+                    ${escapeHTML(
+                        notification.title ||
+                        "Notification"
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        notification.message ||
+                        ""
+                    )}
+                </p>
+
+            `;
+
+
+            notificationsList.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   CHAT CONTACTS
+========================================= */
+
+async function loadChatContacts(){
+
+    contactsList.innerHTML = `
+        <div class="no-contacts">
+            Loading contacts...
+        </div>
+    `;
+
+
+    try{
+
+        const usersSnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users"
+                )
+            );
+
+
+        const studentsSnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "students"
+                )
+            );
+
+
+        const contacts = [];
+
+
+        /*
+           =====================================
+           USERS
+           =====================================
+        */
+
+        usersSnapshot.forEach(
+            documentSnapshot => {
+
+                const data =
+                    documentSnapshot.data();
+
+
+                const uid =
+                    documentSnapshot.id;
+
+
+                if(
+                    uid ===
+                    currentFaculty.uid
+                ){
+                    return;
+                }
+
+
+                const role =
+                    String(
+                        data.role || ""
+                    ).toLowerCase();
+
+
+                const status =
+                    String(
+                        data.status || ""
+                    ).toLowerCase();
+
+
+                /*
+                   Faculty
+                */
+
+                if(
+                    role === "faculty" &&
+                    (
+                        status === "active" ||
+                        status === "approved" ||
+                        data.active === true
+                    )
+                ){
+
+                    contacts.push({
+
+                        uid,
+
+                        name:
+                            data.name ||
+                            data.displayName ||
+                            "Faculty",
+
+                        email:
+                            data.email ||
+                            "",
+
+                        photoURL:
+                            data.photoURL ||
+                            "",
+
+                        role:"faculty",
+
+                        label:"Faculty"
+
+                    });
+
+                }
+
+
+                /*
+                   Mentor
+                */
+
+                if(
+                    role === "mentor" &&
+                    (
+                        status === "active" ||
+                        status === "approved" ||
+                        data.active === true
+                    )
+                ){
+
+                    contacts.push({
+
+                        uid,
+
+                        name:
+                            data.name ||
+                            "Mentor",
+
+                        email:
+                            data.email ||
+                            "",
+
+                        photoURL:
+                            data.photoURL ||
+                            "",
+
+                        role:"mentor",
+
+                        label:"Mentor"
+
+                    });
+
+                }
+
+            }
+        );
+
+
+        /*
+           =====================================
+           ASSIGNED STUDENTS
+           =====================================
+        */
+
+        const studentMap =
+            new Map();
+
+
+        studentsSnapshot.forEach(
+            documentSnapshot => {
+
+                const data =
+                    documentSnapshot.data();
+
+
+                const uid =
+                    data.uid ||
+                    documentSnapshot.id;
+
+
+                const assignments = [
+                    data.facultyId,
+                    data.facultyUid,
+                    data.assignedFaculty,
+                    data.assignedFacultyId,
+                    data.assignedFacultyEmail,
+                    data.assignedFacultyName
+                ];
+
+
+                const assigned =
+                    assignments.some(
+                        value =>
+                            value ===
+                            currentFaculty.uid ||
+                            value ===
+                            currentFaculty.email ||
+                            value ===
+                            currentFaculty.name
+                    );
+
+
+                const status =
+                    String(
+                        data.status || ""
+                    ).toLowerCase();
+
+
+                if(
+                    assigned &&
+                    (
+                        status === "active" ||
+                        status === "approved" ||
+                        status === "pending"
+                    )
+                ){
+
+                    studentMap.set(
+                        uid,
+                        {
+
+                            uid,
+
+                            name:
+                                data.name ||
+                                "Student",
+
+                            email:
+                                data.email ||
+                                "",
+
+                            photoURL:
+                                data.photoURL ||
+                                "",
+
+                            role:"student",
+
+                            label:"Student"
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+
+        studentMap.forEach(
+            student => {
+
+                contacts.push(
+                    student
+                );
+
+            }
+        );
+
+
+        /*
+           Remove duplicates
+        */
+
+        const unique =
+            new Map();
+
+
+        contacts.forEach(
+            contact => {
+
+                if(
+                    contact.uid &&
+                    contact.uid !==
+                        currentFaculty.uid
+                ){
+
+                    unique.set(
+                        contact.uid,
+                        contact
+                    );
+
+                }
+
+            }
+        );
+
+
+        allContacts =
+            Array.from(
+                unique.values()
+            );
+
+
+        await loadGroupChats();
+
+
+        renderContacts();
+
+
+    }
     catch(error){
 
         console.error(
@@ -2666,741 +3167,1272 @@ async function loadChats(){
             error
         );
 
-        chatList.innerHTML =
-        `
-        <div class="empty">
-        ⚠️ Unable to load chat contacts.
-        </div>
-        `;
 
-    }
-
-}
-
-
-/* ==========================================
-   REAL-TIME MESSAGES
-========================================== */
-
-function listenMessages(chatId){
-
-    if(unsubscribeMessages){
-
-        unsubscribeMessages();
-
-        unsubscribeMessages = null;
-
-    }
-
-    messages.innerHTML =
-    `
-    <div class="empty">
-    💬 Loading messages...
-    </div>
-    `;
-
-    const q =
-    query(
-        collection(
-            db,
-            "chats",
-            chatId,
-            "messages"
-        ),
-        orderBy(
-            "createdAt",
-            "asc"
-        )
-    );
-
-    unsubscribeMessages =
-    onSnapshot(
-    q,
-    snapshot=>{
-
-        messages.innerHTML = "";
-
-        if(snapshot.empty){
-
-            messages.innerHTML =
-            `
-            <div class="empty">
-            💬 No messages yet.<br>
-            Start the conversation.
+        contactsList.innerHTML = `
+            <div class="no-contacts">
+                ❌ Unable to load chat contacts.
             </div>
-            `;
-
-            return;
-        }
-
-        snapshot.forEach(
-        item=>{
-
-            const data =
-            item.data();
-
-            renderMessage(
-                data
-            );
-
-        });
-
-        messages.scrollTop =
-        messages.scrollHeight;
-
-    },
-    error=>{
-
-        console.error(
-            "Message listener:",
-            error
-        );
-
-        messages.innerHTML =
-        `
-        <div class="empty">
-        ⚠️ Unable to load messages.
-        </div>
         `;
 
-    });
+    }
 
 }
 
 
-/* ==========================================
-   RENDER MESSAGE
-========================================== */
+/* =========================================
+   GROUP CHATS
+========================================= */
 
-function renderMessage(data){
-
-    const box =
-    document.createElement("div");
-
-    const mine =
-    data.senderId ===
-    currentFaculty.uid;
-
-    box.className =
-    "message" +
-    (mine ? " mine" : "");
-
-    const time =
-    timestampValue(
-        data.createdAt
-    );
-
-    box.innerHTML =
-    `
-    <div class="message-name">
-    ${escapeHTML(
-        data.senderName ||
-        "User"
-    )}
-    </div>
-
-    <div class="message-text">
-    ${escapeHTML(
-        data.message ||
-        ""
-    )}
-    </div>
-
-    <div class="message-time">
-    ${
-        time
-        ? new Date(time)
-        .toLocaleTimeString(
-            "en-IN",
-            {
-                hour:"2-digit",
-                minute:"2-digit"
-            }
-        )
-        : "Sending..."
-    }
-    </div>
-    `;
-
-    messages.appendChild(box);
-
-}
-
-
-/* ==========================================
-   SEND MESSAGE
-========================================== */
-
-sendMessage.addEventListener(
-"click",
-sendCurrentMessage
-);
-
-messageInput.addEventListener(
-"keydown",
-event=>{
-
-    if(
-        event.key === "Enter" &&
-        !event.shiftKey
-    ){
-
-        event.preventDefault();
-
-        sendCurrentMessage();
-
-    }
-
-});
-
-
-async function sendCurrentMessage(){
-
-    const text =
-    messageInput.value.trim();
-
-    if(!text)
-        return;
-
-    if(!currentChatId)
-        return;
-
-    sendMessage.disabled =
-    true;
+async function loadGroupChats(){
 
     try{
 
-        await addDoc(
-            collection(
-                db,
-                "chats",
-                currentChatId,
-                "messages"
-            ),
-            {
-                senderId:
-                currentFaculty.uid,
+        const groupsQuery =
+            query(
+                collection(
+                    db,
+                    "chatGroups"
+                ),
+                where(
+                    "members",
+                    "array-contains",
+                    currentFaculty.uid
+                )
+            );
 
-                senderName:
-                currentFaculty.name ||
-                "Faculty",
 
-                senderEmail:
-                currentFaculty.email ||
-                auth.currentUser.email ||
-                "",
+        const snapshot =
+            await getDocs(
+                groupsQuery
+            );
 
-                message:text,
 
-                createdAt:
-                serverTimestamp()
+        snapshot.forEach(
+            documentSnapshot => {
+
+                const data =
+                    documentSnapshot.data();
+
+
+                allContacts.push({
+
+                    uid:
+                        "group:" +
+                        documentSnapshot.id,
+
+                    groupId:
+                        documentSnapshot.id,
+
+                    name:
+                        data.name ||
+                        "Group Chat",
+
+                    email:
+                        "",
+
+                    photoURL:
+                        "",
+
+                    role:"group",
+
+                    label:"Group"
+
+                });
+
             }
         );
 
-        await updateDoc(
-            doc(
-                db,
-                "chats",
-                currentChatId
-            ),
-            {
-                updatedAt:
-                serverTimestamp()
-            }
-        );
+    }
+    catch(error){
 
-        messageInput.value = "";
+        console.error(
+            "Group chat error:",
+            error
+        );
 
     }
 
+}
+
+
+/* =========================================
+   RENDER CONTACTS
+========================================= */
+
+function renderContacts(){
+
+    contactsList.innerHTML =
+        "";
+
+
+    if(allContacts.length === 0){
+
+        contactsList.innerHTML = `
+            <div class="no-contacts">
+                No chat contacts available.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const groups = {
+        group:[],
+        faculty:[],
+        mentor:[],
+        student:[]
+    };
+
+
+    allContacts.forEach(
+        contact => {
+
+            if(
+                groups[contact.role]
+            ){
+
+                groups[contact.role].push(
+                    contact
+                );
+
+            }
+
+        }
+    );
+
+
+    addContactGroup(
+        "GROUPS",
+        groups.group
+    );
+
+    addContactGroup(
+        "FACULTY",
+        groups.faculty
+    );
+
+    addContactGroup(
+        "MENTORS",
+        groups.mentor
+    );
+
+    addContactGroup(
+        "MY STUDENTS",
+        groups.student
+    );
+
+}
+
+
+function addContactGroup(
+    title,
+    contacts
+){
+
+    if(!contacts.length){
+        return;
+    }
+
+
+    const titleElement =
+        document.createElement(
+            "div"
+        );
+
+
+    titleElement.className =
+        "contact-group-title";
+
+
+    titleElement.textContent =
+        title;
+
+
+    contactsList.appendChild(
+        titleElement
+    );
+
+
+    contacts.forEach(
+        contact => {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "contact";
+
+
+            const contactId =
+                contact.role === "group"
+                    ? contact.uid
+                    : contact.uid;
+
+
+            if(
+                selectedContactId ===
+                contactId
+            ){
+
+                element.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            let avatarHTML =
+                "💬";
+
+
+            if(
+                contact.photoURL
+            ){
+
+                avatarHTML = `
+                    <img
+                        src="${escapeAttribute(
+                            contact.photoURL
+                        )}"
+                        alt="Photo">
+                `;
+
+            }
+            else if(
+                contact.role === "student"
+            ){
+
+                avatarHTML =
+                    "👨‍🎓";
+
+            }
+            else if(
+                contact.role === "faculty"
+            ){
+
+                avatarHTML =
+                    "👩‍🏫";
+
+            }
+            else if(
+                contact.role === "mentor"
+            ){
+
+                avatarHTML =
+                    "🧑‍💼";
+
+            }
+            else if(
+                contact.role === "group"
+            ){
+
+                avatarHTML =
+                    "👥";
+
+            }
+
+
+            element.innerHTML = `
+
+                <div class="contact-avatar">
+
+                    ${avatarHTML}
+
+                </div>
+
+
+                <div class="contact-info">
+
+                    <strong>
+                        ${escapeHTML(
+                            contact.name
+                        )}
+                    </strong>
+
+                    <small>
+                        ${escapeHTML(
+                            contact.label ||
+                            ""
+                        )}
+                    </small>
+
+                </div>
+
+            `;
+
+
+            element.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(
+                            ".contact"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList.remove(
+                                    "selected"
+                                )
+                        );
+
+
+                    element.classList.add(
+                        "selected"
+                    );
+
+
+                    selectedContactId =
+                        contactId;
+
+
+                    localStorage.setItem(
+                        "facultySelectedChat",
+                        selectedContactId
+                    );
+
+
+                    if(
+                        contact.role ===
+                        "group"
+                    ){
+
+                        openGroupChat(
+                            contact
+                        );
+
+                    }
+                    else{
+
+                        openDirectChat(
+                            contact
+                        );
+
+                    }
+
+                }
+            );
+
+
+            contactsList.appendChild(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   DIRECT CHAT
+========================================= */
+
+async function openDirectChat(
+    contact
+){
+
+    if(
+        !contact ||
+        !contact.uid
+    ){
+        return;
+    }
+
+
+    const chatId =
+        createChatId(
+            currentFaculty.uid,
+            contact.uid
+        );
+
+
+    currentChat = {
+
+        type:"direct",
+
+        id:chatId,
+
+        name:
+            contact.name ||
+            "Chat",
+
+        photoURL:
+            contact.photoURL ||
+            "",
+
+        members:[
+            currentFaculty.uid,
+            contact.uid
+        ],
+
+        contact
+
+    };
+
+
+    /*
+       Create the chat document if it doesn't
+       exist. This does NOT delete old messages.
+    */
+
+    try{
+
+        await setDoc(
+            doc(
+                db,
+                "chats",
+                chatId
+            ),
+            {
+
+                members:
+                    currentChat.members,
+
+                type:"direct",
+
+                memberNames:{
+                    [currentFaculty.uid]:
+                        currentFaculty.name ||
+                        "Faculty",
+
+                    [contact.uid]:
+                        contact.name ||
+                        "User"
+                },
+
+                createdAt:
+                    serverTimestamp(),
+
+                updatedAt:
+                    serverTimestamp()
+
+            },
+            {
+                merge:true
+            }
+        );
+
+
+        showChatWindow(
+            currentChat
+        );
+
+
+        listenToMessages(
+            "chats",
+            chatId
+        );
+
+    }
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Open direct chat error:",
+            error
+        );
 
         showToast(
-            "Message could not be sent: " +
-            error.message,
+            "Unable to open chat.",
             "error"
         );
 
     }
 
-    finally{
+}
 
-        sendMessage.disabled =
-        false;
 
-        messageInput.focus();
+/* =========================================
+   GROUP CHAT
+========================================= */
 
+async function openGroupChat(
+    group
+){
+
+    if(
+        !group ||
+        !group.groupId
+    ){
+        return;
     }
+
+
+    currentChat = {
+
+        type:"group",
+
+        id:group.groupId,
+
+        name:
+            group.name ||
+            "Group Chat",
+
+        photoURL:"",
+
+        members:[],
+
+        contact:group
+
+    };
+
+
+    showChatWindow(
+        currentChat
+    );
+
+
+    listenToMessages(
+        "chatGroups",
+        group.groupId
+    );
 
 }
 
 
-/* ==========================================
-   CLOSE CHAT
-========================================== */
+/* =========================================
+   SHOW CHAT WINDOW
+========================================= */
 
-closeChat.addEventListener(
-"click",
-()=>{
+function showChatWindow(
+    chat
+){
 
-    chatOverlay.classList.remove(
-        "show"
-    );
+    chatEmpty.style.display =
+        "none";
 
-    document.body.style.overflow =
-    "";
+    chatHeader.style.display =
+        "flex";
+
+    messages.style.display =
+        "flex";
+
+    chatInputArea.style.display =
+        "flex";
+
+
+    chatHeaderName.textContent =
+        chat.name;
+
+
+    chatHeaderType.textContent =
+        chat.type === "group"
+            ? "Group conversation"
+            : "Permanent direct conversation";
+
+
+    chatHeaderAvatar.innerHTML =
+        "";
+
+
+    if(chat.photoURL){
+
+        const img =
+            document.createElement(
+                "img"
+            );
+
+        img.src =
+            chat.photoURL;
+
+        img.alt =
+            "Photo";
+
+        chatHeaderAvatar.appendChild(
+            img
+        );
+
+    }
+    else{
+
+        chatHeaderAvatar.textContent =
+            chat.type === "group"
+                ? "👥"
+                : "💬";
+
+    }
+
+
+    chatInput.focus();
+
+}
+
+
+/* =========================================
+   MESSAGE LISTENER
+========================================= */
+
+function listenToMessages(
+    parentCollection,
+    chatId
+){
 
     if(unsubscribeMessages){
 
         unsubscribeMessages();
 
         unsubscribeMessages =
-        null;
+            null;
 
     }
 
-    currentChatId =
-    null;
 
-});
+    messages.innerHTML = `
+        <div class="empty">
+            Loading messages...
+        </div>
+    `;
 
 
-/* ==========================================
-   ANNOUNCEMENTS
-========================================== */
+    const messagesRef =
+        collection(
+            db,
+            parentCollection,
+            chatId,
+            "messages"
+        );
 
-async function loadAnnouncements(){
 
-    try{
-
-        const q =
+    const messagesQuery =
         query(
-            collection(db,"announcements"),
-            where(
-                "createdBy",
-                "==",
-                currentFaculty.uid
+            messagesRef,
+            orderBy(
+                "createdAt",
+                "asc"
             )
         );
 
-        const snap =
-        await getDocs(q);
 
-        const announcements = [];
+    unsubscribeMessages =
+        onSnapshot(
+            messagesQuery,
+            snapshot => {
 
-        snap.forEach(
-        item=>{
+                messages.innerHTML =
+                    "";
 
-            announcements.push({
-                id:item.id,
-                ...item.data()
-            });
 
-        });
+                if(snapshot.empty){
 
-        announcements.sort(
-        (a,b)=>
-        timestampValue(b.createdAt) -
-        timestampValue(a.createdAt)
+                    messages.innerHTML = `
+                        <div class="empty">
+                            <div class="empty-icon">
+                                💬
+                            </div>
+                            No messages yet.<br>
+                            Start the conversation.
+                        </div>
+                    `;
+
+                    return;
+                }
+
+
+                snapshot.forEach(
+                    documentSnapshot => {
+
+                        const data =
+                            documentSnapshot.data();
+
+
+                        renderMessage(
+                            data
+                        );
+
+                    }
+                );
+
+
+                messages.scrollTop =
+                    messages.scrollHeight;
+
+            },
+            error => {
+
+                console.error(
+                    "Message listener error:",
+                    error
+                );
+
+
+                messages.innerHTML = `
+                    <div class="empty">
+                        ❌ Unable to load messages.
+                    </div>
+                `;
+
+            }
         );
 
-        announcementCount.textContent =
-        announcements.length;
+}
 
-        renderAnnouncements(
-            announcements.slice(0,5)
+
+/* =========================================
+   RENDER MESSAGE
+========================================= */
+
+function renderMessage(
+    data
+){
+
+    const wrapper =
+        document.createElement(
+            "div"
+        );
+
+
+    wrapper.className =
+        "message";
+
+
+    if(
+        data.senderId ===
+        currentFaculty.uid
+    ){
+
+        wrapper.classList.add(
+            "mine"
+        );
+
+    }
+    else{
+
+        wrapper.classList.add(
+            "theirs"
         );
 
     }
 
-    catch(error){
 
-        console.error(error);
-
-        announcementCount.textContent =
-        "0";
-
-        announcementsList.innerHTML =
-        `
-        <div class="empty">
-        📢 Unable to load announcements.
-        </div>
-        `;
-
-    }
-
-}
-
-
-function renderAnnouncements(list){
-
-    announcementsList.innerHTML = "";
-
-    if(!list.length){
-
-        announcementsList.innerHTML =
-        `
-        <div class="empty">
-        📢 No announcements yet.
-        <br><br>
-
-        <button
-        class="announcement-manage"
-        onclick="window.location.href='faculty-announcements.html'">
-        + Create Announcement
-        </button>
-
-        </div>
-        `;
-
-        return;
-    }
-
-    list.forEach(
-    item=>{
-
-        const card =
-        document.createElement("div");
-
-        card.className =
-        "announcement-card";
-
-        card.innerHTML =
-        `
-        <h3>
-        ${escapeHTML(
-            item.title ||
-            "Announcement"
-        )}
-        </h3>
-
-        <p>
-        ${escapeHTML(
-            item.description ||
-            item.message ||
-            ""
-        )}
-        </p>
-
-        <div class="announcement-meta">
-        📚 ${escapeHTML(
-            item.subject ||
-            "General"
-        )}
-        &nbsp; • &nbsp;
-        ${formatDate(
-            item.createdAt
-        )}
-        </div>
-        `;
-
-        announcementsList.appendChild(card);
-
-    });
-
-}
-
-
-/* ==========================================
-   NOTIFICATIONS
-========================================== */
-
-async function loadNotifications(){
-
-    try{
-
-        const q =
-        query(
-            collection(
-                db,
-                "notifications"
-            ),
-            where(
-                "userId",
-                "==",
-                currentFaculty.uid
-            )
+    const name =
+        document.createElement(
+            "div"
         );
 
-        const snap =
-        await getDocs(q);
 
-        const list = [];
-
-        snap.forEach(
-        item=>{
-
-            list.push({
-                id:item.id,
-                ...item.data()
-            });
-
-        });
-
-        notificationCount.textContent =
-        list.length;
-
-        renderNotifications(list);
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        notificationCount.textContent =
-        "0";
-
-        notificationsList.innerHTML =
-        `
-        <div class="empty">
-        🔔 No notifications available.
-        </div>
-        `;
-
-    }
-
-}
+    name.className =
+        "message-name";
 
 
-function renderNotifications(list){
-
-    notificationsList.innerHTML = "";
-
-    if(!list.length){
-
-        notificationsList.innerHTML =
-        `
-        <div class="empty">
-        <div class="empty-icon">🔔</div>
-        No notifications yet.
-        </div>
-        `;
-
-        return;
-    }
-
-    list.forEach(
-    item=>{
-
-        const card =
-        document.createElement("div");
-
-        card.className =
-        "notification-card";
-
-        card.innerHTML =
-        `
-        <h3>
-        🔔 ${escapeHTML(
-            item.title ||
-            "Notification"
-        )}
-        </h3>
-
-        <p>
-        ${escapeHTML(
-            item.message ||
-            item.description ||
-            ""
-        )}
-        </p>
-        `;
-
-        notificationsList.appendChild(card);
-
-    });
-
-}
+    name.textContent =
+        data.senderName ||
+        "User";
 
 
-/* ==========================================
-   UTILITIES
-========================================== */
-
-function timestampValue(value){
-
-    if(!value)
-        return 0;
-
-    try{
-
-        if(value.toDate)
-            return value.toDate().getTime();
-
-        if(typeof value === "string"){
-
-            const d =
-            new Date(value);
-
-            return isNaN(d.getTime())
-            ? 0
-            : d.getTime();
-
-        }
-
-        if(typeof value === "number")
-            return value;
-
-    }
-
-    catch(error){}
-
-    return 0;
-
-}
+    const text =
+        document.createElement(
+            "div"
+        );
 
 
-function formatDate(value){
+    text.textContent =
+        data.message ||
+        "";
 
-    const t =
-    timestampValue(value);
 
-    if(!t)
-        return "Date not available";
+    const time =
+        document.createElement(
+            "div"
+        );
 
-    return new Date(t)
-    .toLocaleDateString(
-        "en-IN",
-        {
-            day:"2-digit",
-            month:"short",
-            year:"numeric"
-        }
+
+    time.className =
+        "message-time";
+
+
+    time.textContent =
+        formatTimestamp(
+            data.createdAt
+        );
+
+
+    wrapper.appendChild(
+        name
+    );
+
+
+    wrapper.appendChild(
+        text
+    );
+
+
+    wrapper.appendChild(
+        time
+    );
+
+
+    messages.appendChild(
+        wrapper
     );
 
 }
 
 
-function escapeHTML(value){
+/* =========================================
+   SEND MESSAGE
+========================================= */
 
-    return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
+sendMessageBtn.addEventListener(
+    "click",
+    sendMessage
+);
 
 
-/* ==========================================
-   LOGOUT
-========================================== */
+chatInput.addEventListener(
+    "keydown",
+    event => {
 
-document.getElementById(
-"logoutBtn"
-).addEventListener(
-"click",
-async()=>{
+        if(
+            event.key === "Enter"
+        ){
+
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+async function sendMessage(){
+
+    const text =
+        chatInput.value.trim();
+
+
+    if(
+        !text ||
+        !currentChat
+    ){
+
+        return;
+    }
+
+
+    sendMessageBtn.disabled =
+        true;
+
 
     try{
 
-        await signOut(auth);
+        const collectionName =
+            currentChat.type ===
+            "group"
+                ? "chatGroups"
+                : "chats";
 
-        window.location.href =
-        "login.html";
+
+        await addDoc(
+            collection(
+                db,
+                collectionName,
+                currentChat.id,
+                "messages"
+            ),
+            {
+
+                senderId:
+                    currentFaculty.uid,
+
+                senderName:
+                    currentFaculty.name ||
+                    "Faculty",
+
+                message:
+                    text,
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        /*
+           Update direct-chat metadata.
+
+           Group metadata is not updated here
+           because faculty should not modify
+           mentor-created groups.
+        */
+
+        if(
+            currentChat.type ===
+            "direct"
+        ){
+
+            await setDoc(
+                doc(
+                    db,
+                    "chats",
+                    currentChat.id
+                ),
+                {
+
+                    members:
+                        currentChat.members,
+
+                    type:"direct",
+
+                    lastMessage:
+                        text,
+
+                    lastSenderId:
+                        currentFaculty.uid,
+
+                    updatedAt:
+                        serverTimestamp()
+
+                },
+                {
+                    merge:true
+                }
+            );
+
+        }
+
+
+        chatInput.value =
+            "";
+
+        chatInput.focus();
 
     }
-
     catch(error){
 
+        console.error(
+            "Send message error:",
+            error
+        );
+
+
         showToast(
-            "Logout failed.",
+            "Message could not be sent.",
             "error"
         );
 
     }
+    finally{
 
-});
+        sendMessageBtn.disabled =
+            false;
+
+    }
+
+}
 
 
-/* ==========================================
+/* =========================================
+   CHAT ID
+========================================= */
+
+function createChatId(
+    uid1,
+    uid2
+){
+
+    return [
+        String(uid1),
+        String(uid2)
+    ]
+    .sort()
+    .join("_");
+
+}
+
+
+/* =========================================
+   TIME
+========================================= */
+
+function formatTimestamp(
+    timestamp
+){
+
+    if(!timestamp){
+        return "";
+    }
+
+
+    try{
+
+        const date =
+            timestamp.toDate
+                ? timestamp.toDate()
+                : new Date(timestamp);
+
+
+        if(
+            Number.isNaN(
+                date.getTime()
+            )
+        ){
+
+            return "";
+
+        }
+
+
+        return date.toLocaleString(
+            [],
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                day:"2-digit",
+                month:"short"
+            }
+        );
+
+    }
+    catch(error){
+
+        return "";
+
+    }
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+logoutBtn.addEventListener(
+    "click",
+    async () => {
+
+        logoutBtn.disabled =
+            true;
+
+        logoutBtn.textContent =
+            "Logging out...";
+
+
+        try{
+
+            await signOut(
+                auth
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+        }
+        finally{
+
+            sessionStorage.removeItem(
+                "teamRole"
+            );
+
+            sessionStorage.removeItem(
+                "teamName"
+            );
+
+            sessionStorage.removeItem(
+                "teamEmail"
+            );
+
+
+            /*
+               IMPORTANT:
+               Faculty uses Team Login,
+               therefore return to admin.html,
+               NOT student login.html.
+            */
+
+            window.location.replace(
+                "admin.html"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================
    TOAST
-========================================== */
+========================================= */
 
 function showToast(
-message,
-type=""
+    message,
+    type=""
 ){
 
     toast.textContent =
-    message;
+        message;
+
 
     toast.className =
-    type;
+        "";
+
+
+    toast.id =
+        "toast";
+
+
+    if(type){
+
+        toast.classList.add(
+            type
+        );
+
+    }
+
 
     setTimeout(
-        () =>
-        toast.classList.add("show"),
+        () => {
+
+            toast.classList.add(
+                "show"
+            );
+
+        },
         10
     );
 
+
     setTimeout(
-        () =>
-        toast.classList.remove("show"),
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
         3500
     );
 
 }
 
 
-/* ==========================================
-   SIDEBAR
-========================================== */
+/* =========================================
+   SECURITY
+========================================= */
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+function escapeAttribute(
+    value
+){
+
+    return escapeHTML(
+        value
+    );
+
+}
+
+
+/* =========================================
+   SIDEBAR SCROLL
+========================================= */
 
 window.scrollToSection =
-function(id){
+    function(id){
 
-    const element =
-    document.getElementById(id);
+        const element =
+            document.getElementById(
+                id
+            );
 
-    if(element){
 
-        element.scrollIntoView({
-            behavior:"smooth"
-        });
+        if(element){
 
-    }
+            element.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
 
-    if(
-        window.innerWidth <= 750
-    ){
+        }
 
-        sidebar.classList.remove(
+    };
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+const mobileMenu =
+    document.getElementById(
+        "mobileMenu"
+    );
+
+
+const sidebar =
+    document.getElementById(
+        "sidebar"
+    );
+
+
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        sidebar.classList.toggle(
             "open"
         );
 
     }
-
-};
-
-
-const mobileMenu =
-document.getElementById(
-"mobileMenu"
 );
 
-const sidebar =
-document.getElementById(
-"sidebar"
+
+console.log(
+    "R Mohan Digital Final Faculty Dashboard loaded successfully."
 );
 
-mobileMenu.addEventListener(
-"click",
-()=>{
+console.log(
+    "Faculty photo gallery upload enabled."
+);
 
-    sidebar.classList.toggle(
-        "open"
-    );
+console.log(
+    "Permanent Firestore chat enabled."
+);
 
-});
-
+console.log(
+    "Faculty logout returns to Team Login."
+);
 
 </script>
 
 </body>
-
 </html>
