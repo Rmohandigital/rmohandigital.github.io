@@ -57,6 +57,308 @@ button{cursor:pointer}
 @media(max-width:800px){.chat-layout{grid-template-columns:1fr}.chat-contacts{max-height:260px}.theme-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.sidebar{transform:translateX(-100%);transition:.25s}.sidebar.open{transform:translateX(0)}.mobile-menu{display:block}.main{margin-left:0;padding:15px;padding-top:68px}.topbar{flex-direction:column;align-items:flex-start;gap:12px}.profile-area{width:100%;justify-content:space-between}.faculty-info-top{text-align:left}.profile-card{grid-template-columns:1fr;text-align:center}}
 @media(max-width:500px){.stats{grid-template-columns:1fr}.chat-input-area{flex-wrap:wrap}.chat-input{min-width:100%}.send-btn,.file-btn{min-height:40px}.theme-grid{grid-template-columns:1fr}}
+
+/* =========================================================
+   R MOHAN DIGITAL - FACULTY DASHBOARD VISUAL REDESIGN
+   Inspired by the supplied pastel + charcoal landing-page image
+   ========================================================= */
+
+:root{
+  --charcoal:#303030;
+  --charcoal-2:#242424;
+  --cream:#f4d77b;
+  --soft-white:#f5f5f5;
+  --muted:#c8c8c8;
+  --pastel-pink:#f4b6c2;
+  --pastel-blue:#b9d8f5;
+  --pastel-yellow:#f6dfb2;
+  --pastel-green:#cfe8c4;
+}
+
+body{
+  background:
+    radial-gradient(circle at 8% 18%, rgba(255,230,170,.95), transparent 27%),
+    radial-gradient(circle at 92% 18%, rgba(247,180,193,.90), transparent 29%),
+    radial-gradient(circle at 78% 90%, rgba(190,222,207,.90), transparent 31%),
+    radial-gradient(circle at 25% 92%, rgba(188,214,244,.90), transparent 30%),
+    linear-gradient(135deg,#dceccf 0%,#f6c8cf 45%,#c9def1 100%);
+  color:var(--soft-white);
+}
+
+/* Main dashboard becomes the charcoal presentation panel */
+.sidebar{
+  background:rgba(48,48,48,.98);
+  border-right:1px solid rgba(244,215,123,.20);
+  box-shadow:8px 0 28px rgba(0,0,0,.18);
+}
+
+.logo{
+  border-bottom-color:rgba(255,255,255,.14);
+}
+
+.logo-circle{
+  border-color:var(--cream);
+  color:var(--cream);
+  box-shadow:0 0 18px rgba(244,215,123,.22);
+}
+
+.logo p,
+.topbar h1 span,
+.welcome h2,
+.panel-header span,
+.contacts-title strong,
+.stat-card h3,
+.course-card h3,
+.announcement-card h3,
+.chat-header-info strong,
+.message-name{
+  color:var(--cream);
+}
+
+.menu button{
+  color:#d6d6d6;
+}
+
+.menu button:hover,
+.menu button.active{
+  color:#222;
+  background:var(--cream);
+  border-color:var(--cream);
+}
+
+.main{
+  background:rgba(38,38,38,.93);
+  min-height:calc(100vh - 30px);
+  margin-top:15px;
+  margin-right:15px;
+  margin-bottom:15px;
+  border-radius:2px;
+  box-shadow:0 14px 30px rgba(0,0,0,.20);
+}
+
+.topbar,
+.welcome,
+.panel,
+.profile-card,
+.stat-card{
+  background:rgba(48,48,48,.96);
+  border-color:rgba(255,255,255,.12);
+  box-shadow:0 7px 18px rgba(0,0,0,.12);
+}
+
+.topbar{
+  border-radius:0;
+}
+
+.welcome,
+.panel,
+.profile-card,
+.stat-card{
+  border-radius:6px;
+}
+
+.topbar h1,
+.profile-details h2,
+.panel-header h2{
+  color:#fff;
+}
+
+.welcome p,
+.profile-details p,
+.stat-card p,
+.course-card p,
+.announcement-card p,
+.chat-header-info small{
+  color:var(--muted);
+}
+
+.logout{
+  border-color:#e98989;
+  background:transparent;
+  color:#f3b0b0;
+}
+
+.logout:hover{
+  background:#d95353;
+  color:#fff;
+}
+
+.avatar{
+  background:#3a3a3a;
+  border-color:var(--cream);
+}
+
+.change-photo,
+.action-btn{
+  border-color:var(--cream);
+  background:transparent;
+  color:var(--cream);
+}
+
+.change-photo:hover,
+.action-btn:hover{
+  background:var(--cream);
+  color:#222;
+}
+
+.status-badge,
+.student-status{
+  color:#a9dfae;
+}
+
+.course-card,
+.student-card,
+.announcement-card,
+.progress-card,
+.notification-card{
+  background:#292929;
+  border-color:rgba(255,255,255,.10);
+}
+
+.student-card:hover{
+  background:#353535;
+}
+
+.student-photo{
+  border-color:var(--cream);
+  background:#333;
+}
+
+.chat-contacts,
+.chat-window{
+  background:#292929;
+  border-color:rgba(255,255,255,.12);
+}
+
+.contact:hover,
+.contact.selected{
+  background:rgba(244,215,123,.10);
+}
+
+.contact.selected{
+  border-left-color:var(--cream);
+}
+
+.contact-avatar,
+.chat-header-avatar{
+  background:#363636;
+  border-color:rgba(244,215,123,.55);
+}
+
+.contact-info strong{
+  color:#fff;
+}
+
+.contact-info small,
+.contact-group-title{
+  color:#999;
+}
+
+.chat-header{
+  background:rgba(48,48,48,.94);
+  border-bottom-color:rgba(255,255,255,.10);
+}
+
+.messages{
+  background:#252525;
+}
+
+.message{
+  background:#343434;
+  border-color:rgba(255,255,255,.10);
+}
+
+.message.mine{
+  background:rgba(244,215,123,.15);
+  border-color:rgba(244,215,123,.38);
+}
+
+.message-time{
+  color:#999;
+}
+
+.chat-input-area{
+  background:#303030;
+  border-top-color:rgba(255,255,255,.10);
+}
+
+.chat-input{
+  background:#222;
+  border-color:rgba(244,215,123,.35);
+  color:#fff;
+}
+
+.send-btn,
+.file-btn{
+  border-color:var(--cream);
+  background:transparent;
+  color:var(--cream);
+}
+
+.send-btn:hover,
+.file-btn:hover{
+  background:var(--cream);
+  color:#222;
+}
+
+.theme-modal,
+.modal{
+  background:rgba(0,0,0,.65);
+}
+
+.theme-box,
+.progress-box,
+.zoom-box{
+  background:#303030;
+  border-color:var(--cream);
+}
+
+.theme-card{
+  background:#292929;
+  border-color:rgba(255,255,255,.15);
+}
+
+.progress-table th{
+  color:var(--cream);
+}
+
+.progress-table td{
+  color:#ddd;
+}
+
+.progress-bar{
+  background:#444;
+}
+
+.progress-bar span{
+  background:var(--cream);
+}
+
+#toast{
+  background:#303030;
+  border-color:var(--cream);
+  color:#fff;
+}
+
+/* Pastel chat themes remain available */
+.theme-flowers{--theme-art:radial-gradient(circle at 15% 20%,rgba(244,114,182,.65),transparent 16%),radial-gradient(circle at 80% 30%,rgba(251,191,36,.5),transparent 14%),linear-gradient(135deg,#4c1d3d,#172554 55%,#064e3b)}
+.theme-birds{--theme-art:radial-gradient(circle at 70% 25%,rgba(255,255,255,.6),transparent 8%),linear-gradient(#38bdf8,#bae6fd 55%,#0f766e)}
+.theme-sky{--theme-art:radial-gradient(circle at 30% 25%,#fff 0 5%,transparent 6%),radial-gradient(circle at 70% 45%,#fff 0 7%,transparent 8%),linear-gradient(#60a5fa,#dbeafe 55%,#38bdf8)}
+.theme-earth{--theme-art:radial-gradient(circle at 50% 50%,#16a34a 0 20%,#1e3a8a 21% 48%,transparent 49%),linear-gradient(135deg,#082f49,#020617)}
+.theme-universe{--theme-art:radial-gradient(circle at 20% 20%,#fff 0 1px,transparent 2px),radial-gradient(circle at 70% 30%,#fff 0 1px,transparent 2px),radial-gradient(circle at 55% 75%,#fff 0 1px,transparent 2px),linear-gradient(135deg,#09003b,#3b0764,#020617)}
+.theme-dogs{--theme-art:radial-gradient(circle at 20% 35%,#f59e0b 0 8%,transparent 9%),radial-gradient(circle at 75% 65%,#92400e 0 9%,transparent 10%),linear-gradient(135deg,#451a03,#78350f,#1f2937)}
+.theme-ocean{--theme-art:radial-gradient(ellipse at 50% 100%,#0ea5e9 0 30%,transparent 31%),linear-gradient(#082f49,#0369a1 55%,#0e7490)}
+.theme-forest{--theme-art:radial-gradient(circle at 15% 80%,#22c55e 0 12%,transparent 13%),radial-gradient(circle at 80% 60%,#16a34a 0 15%,transparent 16%),linear-gradient(135deg,#052e16,#14532d,#0f172a)}
+.theme-sunset{--theme-art:radial-gradient(circle at 50% 65%,#fde047 0 9%,transparent 10%),linear-gradient(#7c2d12,#db2777 55%,#312e81)}
+.theme-garden{--theme-art:radial-gradient(circle at 20% 70%,#f472b6 0 7%,transparent 8%),radial-gradient(circle at 75% 75%,#a3e635 0 8%,transparent 9%),linear-gradient(135deg,#14532d,#4d7c0f,#831843)}
+
+@media(max-width:700px){
+  .main{
+    margin:0;
+    border-radius:0;
+  }
+}
+
 </style>
 </head>
 <body>
