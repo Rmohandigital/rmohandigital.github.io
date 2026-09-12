@@ -1,790 +1,1000 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<title>Owner Dashboard | R Mohan Digital</title>
 
-    <title>Owner Dashboard | R Mohan Digital</title>
+<style>
 
-    <style>
+/* =====================================================
+   RESET
+===================================================== */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-        body {
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at top left,
-                    #102a43 0%,
-                    #07111f 35%,
-                    #020617 75%);
+html,
+body {
+    min-height: 100%;
+}
 
-            color: white;
-        }
+body {
+    color: #111827;
+    overflow-x: hidden;
+}
 
 
-        /* =========================================
-           SIDEBAR
-        ========================================= */
+/* =====================================================
+   BACKGROUND IMAGE
+===================================================== */
 
-        .sidebar {
+.background {
+    position: fixed;
+    inset: 0;
 
-            position: fixed;
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.25),
+            rgba(255,255,255,0.25)
+        ),
+        url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=2000&q=90");
 
-            left: 0;
-            top: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 
-            width: 250px;
-            height: 100vh;
+    z-index: -3;
+}
 
-            background: rgba(3, 12, 24, 0.96);
 
-            border-right: 1px solid
-                rgba(0, 229, 255, 0.2);
+/* =====================================================
+   LIGHT OVERLAY
+===================================================== */
 
-            padding: 25px 15px;
+.background::after {
+    content: "";
 
-            z-index: 100;
+    position: absolute;
+    inset: 0;
 
-            transition: 0.3s;
-        }
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.30),
+            rgba(255,255,255,0.08)
+        );
 
+    z-index: -2;
+}
 
-        .logo {
 
-            text-align: center;
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
-            padding-bottom: 25px;
+.sidebar {
+    position: fixed;
 
-            border-bottom: 1px solid
-                rgba(148, 163, 184, 0.12);
+    left: 0;
+    top: 0;
 
-        }
+    width: 210px;
+    height: 100vh;
 
+    background: rgba(255,255,255,0.25);
 
-        .logo-circle {
+    border-right: 1px solid rgba(0,0,0,0.18);
 
-            width: 58px;
-            height: 58px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
-            margin: auto;
+    padding: 18px 12px;
 
-            display: flex;
+    z-index: 100;
 
-            align-items: center;
-            justify-content: center;
+    transition: transform 0.3s ease;
+}
 
-            border: 2px solid #00e5ff;
 
-            border-radius: 50%;
+/* =====================================================
+   LOGO
+===================================================== */
 
-            color: #00e5ff;
+.logo {
+    text-align: center;
 
-            font-size: 22px;
-            font-weight: bold;
+    padding-bottom: 20px;
 
-            box-shadow:
-                0 0 18px rgba(0,229,255,0.35);
-        }
+    border-bottom:
+        1px solid rgba(0,0,0,0.15);
+}
 
+.logo-circle {
+    width: 52px;
+    height: 52px;
 
-        .logo h2 {
+    margin: auto;
 
-            margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            font-size: 18px;
+    border: 2px solid #111827;
 
-            color: white;
+    border-radius: 50%;
 
-            text-shadow:
-                0 0 10px rgba(0,229,255,0.5);
-        }
+    color: #111827;
 
+    font-size: 19px;
+    font-weight: bold;
 
-        .logo p {
+    overflow: hidden;
 
-            margin-top: 5px;
+    background: rgba(255,255,255,0.35);
+}
 
-            font-size: 10px;
+.logo-circle img {
+    width: 100%;
+    height: 100%;
 
-            letter-spacing: 2px;
+    object-fit: cover;
+}
 
-            color: #38bdf8;
-        }
+.logo h2 {
+    margin-top: 10px;
 
+    font-size: 16px;
 
-        .menu {
+    color: #111827;
+}
 
-            margin-top: 25px;
-        }
+.logo p {
+    margin-top: 4px;
 
+    font-size: 9px;
 
-        .menu button {
+    letter-spacing: 1.5px;
 
-            width: 100%;
+    color: #111827;
+}
 
-            padding: 13px 15px;
 
-            margin-bottom: 8px;
+/* =====================================================
+   MENU
+===================================================== */
 
-            border: 1px solid transparent;
+.menu {
+    margin-top: 18px;
+}
 
-            border-radius: 9px;
+.menu button {
+    width: 100%;
 
-            background: transparent;
+    padding: 11px 12px;
 
-            color: #94a3b8;
+    margin-bottom: 5px;
 
-            text-align: left;
+    border: 1px solid transparent;
 
-            cursor: pointer;
+    border-radius: 8px;
 
-            font-size: 14px;
+    background: transparent;
 
-            transition: 0.25s;
-        }
+    color: #111827;
 
+    text-align: left;
 
-        .menu button:hover,
-        .menu button.active {
+    cursor: pointer;
 
-            color: #00e5ff;
+    font-size: 12px;
 
-            background:
-                rgba(0,229,255,0.08);
+    font-weight: 600;
 
-            border-color:
-                rgba(0,229,255,0.25);
+    transition: 0.2s;
+}
 
-            box-shadow:
-                0 0 12px
-                rgba(0,229,255,0.08);
-        }
+.menu button:hover,
+.menu button.active {
+    background: rgba(255,255,255,0.55);
 
+    border-color:
+        rgba(0,0,0,0.12);
 
-        /* =========================================
-           MAIN
-        ========================================= */
+    box-shadow:
+        0 3px 12px
+        rgba(0,0,0,0.08);
+}
 
-        .main {
 
-            margin-left: 250px;
+/* =====================================================
+   MAIN
+===================================================== */
 
-            min-height: 100vh;
+.main {
+    margin-left: 210px;
 
-            padding: 25px;
-        }
+    min-height: 100vh;
 
+    padding: 15px 18px;
+}
 
-        /* =========================================
-           TOP BAR
-        ========================================= */
 
-        .topbar {
+/* =====================================================
+   TOP BAR
+===================================================== */
 
-            display: flex;
+.topbar {
+    display: flex;
 
-            justify-content: space-between;
+    justify-content: space-between;
+    align-items: center;
 
-            align-items: center;
+    min-height: 82px;
 
-            margin-bottom: 25px;
+    margin-bottom: 14px;
 
-            background:
-                rgba(7,17,31,0.75);
+    padding: 15px 18px;
 
-            border: 1px solid
-                rgba(0,229,255,0.15);
+    border-radius: 15px;
 
-            border-radius: 15px;
+    background: rgba(255,255,255,0.28);
 
-            padding: 18px 22px;
+    border:
+        1px solid rgba(0,0,0,0.15);
 
-            backdrop-filter: blur(12px);
-        }
+    box-shadow:
+        0 4px 18px
+        rgba(0,0,0,0.08);
 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
 
-        .topbar h1 {
+.topbar h1 {
+    font-size: 21px;
 
-            font-size: 22px;
-        }
+    color: #111827;
+}
 
+.topbar h1 span {
+    font-weight: 700;
+}
 
-        .topbar h1 span {
+.top-right {
+    display: flex;
 
-            color: #00e5ff;
+    align-items: center;
 
-            text-shadow:
-                0 0 10px
-                rgba(0,229,255,0.5);
-        }
+    gap: 10px;
+}
 
 
-        .owner-info {
+/* =====================================================
+   PROFILE MINI
+===================================================== */
 
-            text-align: right;
-        }
+.profile-mini {
+    width: 40px;
+    height: 40px;
 
+    border-radius: 50%;
 
-        #ownerName {
+    border: 2px solid #111827;
 
-            color: white;
+    background: rgba(255,255,255,0.45);
 
-            font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            font-weight: bold;
-        }
+    font-size: 13px;
 
+    font-weight: bold;
 
-        #ownerEmail {
+    overflow: hidden;
+}
 
-            color: #64748b;
+.profile-mini img {
+    width: 100%;
+    height: 100%;
 
-            font-size: 11px;
+    object-fit: cover;
+}
 
-            margin-top: 4px;
-        }
 
+/* =====================================================
+   OWNER INFO
+===================================================== */
 
-        .logout {
+.owner-info {
+    text-align: right;
+}
 
-            margin-left: 15px;
+#ownerName {
+    display: block;
 
-            padding: 9px 15px;
+    font-size: 12px;
 
-            border: 1px solid #ef4444;
+    font-weight: bold;
 
-            border-radius: 8px;
+    color: #111827;
+}
 
-            background:
-                rgba(239,68,68,0.08);
+#ownerEmail {
+    display: block;
 
-            color: #f87171;
+    margin-top: 2px;
 
-            cursor: pointer;
+    font-size: 9px;
 
-            font-weight: bold;
+    color: #374151;
+}
 
-            transition: 0.2s;
-        }
 
+/* =====================================================
+   LOGOUT
+===================================================== */
 
-        .logout:hover {
+.logout {
+    padding: 8px 13px;
 
-            background: #ef4444;
+    border: 1px solid #991b1b;
 
-            color: white;
+    border-radius: 8px;
 
-            box-shadow:
-                0 0 15px
-                rgba(239,68,68,0.35);
-        }
+    background: rgba(255,255,255,0.30);
 
+    color: #991b1b;
 
-        /* =========================================
-           WELCOME
-        ========================================= */
+    cursor: pointer;
 
-        .welcome {
+    font-size: 11px;
 
-            padding: 25px;
+    font-weight: bold;
+}
 
-            border-radius: 15px;
+.logout:hover {
+    background: #991b1b;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(0,229,255,0.08),
-                    rgba(37,99,235,0.05)
-                );
+    color: white;
+}
 
-            border: 1px solid
-                rgba(0,229,255,0.18);
 
-            margin-bottom: 25px;
-        }
+/* =====================================================
+   WELCOME
+===================================================== */
 
+.welcome {
+    padding: 20px;
 
-        .welcome h2 {
+    margin-bottom: 14px;
 
-            color: #00e5ff;
+    border-radius: 15px;
 
-            margin-bottom: 8px;
-        }
+    background: rgba(255,255,255,0.28);
 
+    border:
+        1px solid rgba(0,0,0,0.15);
 
-        .welcome p {
+    box-shadow:
+        0 4px 18px
+        rgba(0,0,0,0.07);
 
-            color: #94a3b8;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
 
-            font-size: 14px;
-        }
+.welcome h2 {
+    font-size: 20px;
 
+    margin-bottom: 6px;
+}
 
-        /* =========================================
-           STAT CARDS
-        ========================================= */
+.welcome p {
+    font-size: 12px;
 
-        .stats {
+    color: #1f2937;
+}
 
-            display: grid;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+/* =====================================================
+   STATISTICS
+===================================================== */
 
-            gap: 18px;
+.stats {
+    display: grid;
 
-            margin-bottom: 25px;
-        }
+    grid-template-columns:
+        repeat(4, 1fr);
 
+    gap: 12px;
 
-        .stat-card {
+    margin-bottom: 14px;
+}
 
-            padding: 22px;
+.stat-card {
+    padding: 18px;
 
-            border-radius: 15px;
+    min-height: 125px;
 
-            background:
-                rgba(7,17,31,0.82);
+    border-radius: 14px;
 
-            border: 1px solid
-                rgba(0,229,255,0.15);
+    background: rgba(255,255,255,0.28);
 
-            transition: 0.25s;
-        }
+    border:
+        1px solid rgba(0,0,0,0.15);
 
+    box-shadow:
+        0 4px 16px
+        rgba(0,0,0,0.07);
 
-        .stat-card:hover {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
-            transform: translateY(-3px);
+    transition: 0.2s;
+}
 
-            border-color:
-                rgba(0,229,255,0.45);
+.stat-card:hover {
+    transform: translateY(-2px);
 
-            box-shadow:
-                0 0 20px
-                rgba(0,229,255,0.08);
-        }
+    background: rgba(255,255,255,0.40);
+}
 
+.stat-icon {
+    font-size: 24px;
 
-        .stat-icon {
+    margin-bottom: 8px;
+}
 
-            font-size: 27px;
+.stat-card h3 {
+    font-size: 24px;
 
-            margin-bottom: 12px;
-        }
+    margin-bottom: 4px;
+}
 
+.stat-card p {
+    font-size: 11px;
+}
 
-        .stat-card h3 {
 
-            font-size: 28px;
+/* =====================================================
+   CONTENT GRID
+===================================================== */
 
-            color: #00e5ff;
+.content-grid {
+    display: grid;
 
-            text-shadow:
-                0 0 10px
-                rgba(0,229,255,0.4);
-        }
+    grid-template-columns:
+        1.5fr 1fr;
 
+    gap: 12px;
 
-        .stat-card p {
+    margin-bottom: 14px;
+}
 
-            margin-top: 5px;
 
-            color: #94a3b8;
+/* =====================================================
+   PANELS
+===================================================== */
 
-            font-size: 13px;
-        }
+.panel {
+    padding: 18px;
 
+    min-height: 225px;
 
-        /* =========================================
-           CONTENT GRID
-        ========================================= */
+    border-radius: 15px;
 
-        .content-grid {
+    background: rgba(255,255,255,0.28);
 
-            display: grid;
+    border:
+        1px solid rgba(0,0,0,0.15);
 
-            grid-template-columns:
-                1.5fr 1fr;
+    box-shadow:
+        0 4px 18px
+        rgba(0,0,0,0.07);
 
-            gap: 20px;
-        }
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
 
+.panel-header {
+    display: flex;
 
-        .panel {
+    justify-content: space-between;
+    align-items: center;
 
-            background:
-                rgba(7,17,31,0.82);
+    margin-bottom: 14px;
+}
 
-            border: 1px solid
-                rgba(0,229,255,0.15);
+.panel-header h2 {
+    font-size: 16px;
+}
 
-            border-radius: 15px;
+.panel-header span {
+    font-size: 9px;
+}
 
-            padding: 22px;
 
-            min-height: 250px;
-        }
+/* =====================================================
+   PENDING FACULTY
+===================================================== */
 
+.loading {
+    text-align: center;
 
-        .panel-header {
+    padding: 40px;
 
-            display: flex;
+    font-size: 11px;
+}
 
-            justify-content: space-between;
 
-            align-items: center;
+/* =====================================================
+   QUICK ACTIONS
+===================================================== */
 
-            margin-bottom: 18px;
-        }
+.actions {
+    display: grid;
 
+    grid-template-columns:
+        repeat(2, 1fr);
 
-        .panel-header h2 {
+    gap: 8px;
+}
 
-            font-size: 17px;
+.action-btn {
+    min-height: 78px;
 
-            color: white;
-        }
+    padding: 10px;
 
+    border-radius: 10px;
 
-        .panel-header span {
+    border:
+        1px solid rgba(0,0,0,0.13);
 
-            font-size: 11px;
+    background:
+        rgba(255,255,255,0.20);
 
-            color: #38bdf8;
-        }
+    color: #111827;
 
+    cursor: pointer;
 
-        /* =========================================
-           PENDING FACULTY
-        ========================================= */
+    transition: 0.2s;
+}
 
-        .faculty-item {
+.action-btn:hover {
+    background:
+        rgba(255,255,255,0.50);
 
-            display: flex;
+    transform: translateY(-2px);
+}
 
-            justify-content: space-between;
+.action-btn div {
+    font-size: 21px;
 
-            align-items: center;
+    margin-bottom: 6px;
+}
 
-            padding: 13px;
+.action-btn span {
+    font-size: 10px;
 
-            margin-bottom: 9px;
+    font-weight: 600;
+}
 
-            border-radius: 9px;
 
-            background:
-                rgba(15,23,42,0.7);
+/* =====================================================
+   RECENT USERS
+===================================================== */
 
-            border: 1px solid
-                rgba(148,163,184,0.08);
-        }
+.recent-users {
+    min-height: 125px;
+}
 
+.user-item {
+    display: flex;
 
-        .faculty-details strong {
+    justify-content: space-between;
 
-            display: block;
+    padding: 9px 0;
 
-            font-size: 13px;
+    border-bottom:
+        1px solid rgba(0,0,0,0.10);
+}
 
-            color: white;
-        }
+.user-name {
+    font-size: 11px;
 
+    font-weight: 600;
+}
 
-        .faculty-details small {
+.user-role {
+    margin-top: 2px;
 
-            color: #64748b;
+    font-size: 8px;
+}
 
-            font-size: 11px;
-        }
+.user-status {
+    font-size: 9px;
 
+    font-weight: bold;
+}
 
-        .pending-badge {
 
-            padding: 5px 9px;
+/* =====================================================
+   PROFILE SETTINGS
+===================================================== */
 
-            border-radius: 15px;
+.profile-section {
+    display: none;
+}
 
-            background:
-                rgba(250,204,21,0.1);
+.profile-section.active {
+    display: block;
+}
 
-            border: 1px solid
-                rgba(250,204,21,0.25);
+.dashboard-section.hidden {
+    display: none;
+}
 
-            color: #facc15;
+.profile-card {
+    max-width: 800px;
 
-            font-size: 10px;
-        }
+    margin: auto;
 
+    padding: 25px;
 
-        /* =========================================
-           QUICK ACTIONS
-        ========================================= */
+    border-radius: 18px;
 
-        .actions {
+    background: rgba(255,255,255,0.35);
 
-            display: grid;
+    border:
+        1px solid rgba(0,0,0,0.15);
 
-            grid-template-columns:
-                repeat(2, 1fr);
+    box-shadow:
+        0 5px 25px
+        rgba(0,0,0,0.10);
 
-            gap: 12px;
-        }
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
 
+.profile-title {
+    font-size: 21px;
 
-        .action-btn {
+    margin-bottom: 5px;
+}
 
-            padding: 18px 10px;
+.profile-subtitle {
+    font-size: 11px;
 
-            border-radius: 10px;
+    color: #374151;
 
-            border: 1px solid
-                rgba(0,229,255,0.16);
+    margin-bottom: 22px;
+}
 
-            background:
-                rgba(15,23,42,0.7);
 
-            color: #cbd5e1;
+/* =====================================================
+   PROFILE PHOTO
+===================================================== */
 
-            cursor: pointer;
+.profile-photo-area {
+    text-align: center;
 
-            transition: 0.25s;
-        }
+    margin-bottom: 25px;
+}
 
+.profile-large {
+    width: 120px;
+    height: 120px;
 
-        .action-btn:hover {
+    margin: auto;
 
-            color: #00e5ff;
+    border-radius: 50%;
 
-            border-color: #00e5ff;
+    border: 3px solid #111827;
 
-            box-shadow:
-                0 0 15px
-                rgba(0,229,255,0.12);
+    background:
+        rgba(255,255,255,0.40);
 
-            transform: translateY(-2px);
-        }
+    display: flex;
 
+    align-items: center;
+    justify-content: center;
 
-        .action-btn div {
+    overflow: hidden;
 
-            font-size: 23px;
+    font-size: 30px;
 
-            margin-bottom: 7px;
-        }
+    font-weight: bold;
+}
 
+.profile-large img {
+    width: 100%;
+    height: 100%;
 
-        .action-btn span {
+    object-fit: cover;
+}
 
-            font-size: 11px;
-        }
+.photo-buttons {
+    display: flex;
 
+    justify-content: center;
 
-        /* =========================================
-           RECENT USERS
-        ========================================= */
+    flex-wrap: wrap;
 
-        .user-item {
+    gap: 8px;
 
-            display: flex;
+    margin-top: 12px;
+}
 
-            justify-content: space-between;
+.photo-btn {
+    padding: 9px 13px;
 
-            align-items: center;
+    border-radius: 8px;
 
-            padding: 11px 0;
+    border:
+        1px solid rgba(0,0,0,0.20);
 
-            border-bottom:
-                1px solid
-                rgba(148,163,184,0.08);
-        }
+    background:
+        rgba(255,255,255,0.40);
 
+    color: #111827;
 
-        .user-name {
+    cursor: pointer;
 
-            font-size: 13px;
+    font-size: 10px;
 
-            color: white;
-        }
+    font-weight: bold;
+}
 
+.photo-btn:hover {
+    background:
+        rgba(255,255,255,0.75);
+}
 
-        .user-role {
+.remove-photo {
+    color: #991b1b;
+}
 
-            font-size: 10px;
+#photoInput {
+    display: none;
+}
 
-            color: #38bdf8;
 
-            text-transform: uppercase;
+/* =====================================================
+   FORM
+===================================================== */
 
-            margin-top: 3px;
-        }
+.form-grid {
+    display: grid;
 
+    grid-template-columns:
+        repeat(2, 1fr);
 
-        .user-status {
+    gap: 14px;
+}
 
-            font-size: 10px;
+.form-group {
+    display: flex;
 
-            color: #22c55e;
-        }
+    flex-direction: column;
 
+    gap: 6px;
+}
 
-        /* =========================================
-           LOADING
-        ========================================= */
+.form-group.full {
+    grid-column: 1 / -1;
+}
 
-        .loading {
+.form-group label {
+    font-size: 10px;
 
-            text-align: center;
+    font-weight: bold;
+}
 
-            padding: 30px;
+.form-group input {
+    width: 100%;
 
-            color: #64748b;
+    padding: 11px;
 
-            font-size: 13px;
-        }
+    border-radius: 8px;
 
+    border:
+        1px solid rgba(0,0,0,0.18);
 
-        /* =========================================
-           MOBILE MENU
-        ========================================= */
+    background:
+        rgba(255,255,255,0.45);
 
-        .mobile-menu {
+    color: #111827;
 
-            display: none;
+    outline: none;
 
-            position: fixed;
+    font-size: 12px;
+}
 
-            top: 15px;
+.form-group input:focus {
+    border-color: #111827;
 
-            left: 15px;
+    background:
+        rgba(255,255,255,0.65);
+}
 
-            z-index: 200;
+.form-group input:read-only {
+    background:
+        rgba(255,255,255,0.25);
+}
 
-            width: 42px;
 
-            height: 42px;
+/* =====================================================
+   SAVE BUTTON
+===================================================== */
 
-            border: 1px solid #00e5ff;
+.save-profile {
+    margin-top: 20px;
 
-            background: #07111f;
+    padding: 11px 20px;
 
-            color: #00e5ff;
+    border: 1px solid #111827;
 
-            border-radius: 8px;
+    border-radius: 8px;
 
-            cursor: pointer;
+    background: rgba(255,255,255,0.45);
 
-            font-size: 20px;
-        }
+    color: #111827;
 
+    cursor: pointer;
 
-        /* =========================================
-           RESPONSIVE
-        ========================================= */
+    font-size: 11px;
 
-        @media (max-width: 1000px) {
+    font-weight: bold;
+}
 
-            .stats {
+.save-profile:hover {
+    background: #111827;
 
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+    color: white;
+}
 
-            .content-grid {
 
-                grid-template-columns: 1fr;
-            }
+/* =====================================================
+   MOBILE MENU
+===================================================== */
 
-        }
+.mobile-menu {
+    display: none;
 
+    position: fixed;
 
-        @media (max-width: 700px) {
+    top: 12px;
+    left: 12px;
 
-            .sidebar {
+    z-index: 200;
 
-                transform:
-                    translateX(-100%);
-            }
+    width: 40px;
+    height: 40px;
 
+    border:
+        1px solid #111827;
 
-            .sidebar.open {
+    border-radius: 8px;
 
-                transform:
-                    translateX(0);
-            }
+    background:
+        rgba(255,255,255,0.55);
 
+    color: #111827;
 
-            .mobile-menu {
+    cursor: pointer;
 
-                display: block;
-            }
+    font-size: 19px;
+}
 
 
-            .main {
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-                margin-left: 0;
+@media (max-width: 1000px) {
 
-                padding: 15px;
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 
-                padding-top: 70px;
-            }
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
 
+}
 
-            .topbar {
 
-                align-items: flex-start;
+@media (max-width: 700px) {
 
-                flex-direction: column;
+    .sidebar {
+        transform: translateX(-100%);
+    }
 
-                gap: 15px;
-            }
+    .sidebar.open {
+        transform: translateX(0);
+    }
 
+    .mobile-menu {
+        display: block;
+    }
 
-            .owner-info {
+    .main {
+        margin-left: 0;
 
-                text-align: left;
-            }
+        padding: 65px 12px 15px;
+    }
 
+    .topbar {
+        flex-direction: column;
 
-            .logout {
+        align-items: flex-start;
 
-                margin-left: 0;
+        gap: 12px;
+    }
 
-                margin-top: 8px;
-            }
+    .top-right {
+        width: 100%;
 
-        }
+        flex-wrap: wrap;
+    }
 
+    .owner-info {
+        text-align: left;
+    }
 
-        @media (max-width: 500px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 
-            .stats {
+    .form-group.full {
+        grid-column: auto;
+    }
 
-                grid-template-columns: 1fr;
-            }
+}
 
-        }
 
-    </style>
+@media (max-width: 500px) {
 
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .profile-card {
+        padding: 18px;
+    }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-<!-- =========================================
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background"></div>
+
+
+<!-- =====================================================
      MOBILE MENU
-========================================= -->
+===================================================== -->
 
 <button
     class="mobile-menu"
@@ -795,9 +1005,9 @@
 </button>
 
 
-<!-- =========================================
+<!-- =====================================================
      SIDEBAR
-========================================= -->
+===================================================== -->
 
 <aside
     class="sidebar"
@@ -806,13 +1016,21 @@
 
     <div class="logo">
 
-        <div class="logo-circle">
+        <div
+            class="logo-circle"
+            id="sidebarPhoto">
+
             RM
+
         </div>
 
-        <h2>R Mohan Digital</h2>
+        <h2>
+            R Mohan Digital
+        </h2>
 
-        <p>OWNER CONTROL</p>
+        <p>
+            OWNER CONTROL
+        </p>
 
     </div>
 
@@ -820,9 +1038,11 @@
     <div class="menu">
 
 
-        <button class="active">
+        <button
+            class="active"
+            onclick="showDashboard(this)">
 
-            📊 &nbsp; Dashboard
+            🏠 &nbsp; Dashboard
 
         </button>
 
@@ -884,9 +1104,9 @@
 
 
         <button
-            onclick="showComingSoon('Settings')">
+            onclick="showProfile(this)">
 
-            ⚙️ &nbsp; Settings
+            ⚙️ &nbsp; Profile Settings
 
         </button>
 
@@ -896,42 +1116,56 @@
 </aside>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      MAIN
-========================================= -->
+===================================================== -->
 
 <main class="main">
+
+
+<!-- =====================================================
+     DASHBOARD SECTION
+===================================================== -->
+
+<div
+    id="dashboardSection"
+    class="dashboard-section">
 
 
     <!-- TOP BAR -->
 
     <div class="topbar">
 
-        <div>
 
-            <h1>
-                Owner <span>Dashboard</span>
-            </h1>
-
-        </div>
+        <h1>
+            Owner Dashboard
+        </h1>
 
 
-        <div>
+        <div class="top-right">
 
-            <span
-                class="owner-info">
+
+            <div
+                class="profile-mini"
+                id="topProfile">
+
+                RM
+
+            </div>
+
+
+            <div class="owner-info">
 
                 <span id="ownerName">
-                    Loading...
+                    Owner
                 </span>
-
-                <br>
 
                 <span id="ownerEmail">
-                    Loading...
+                    owner@example.com
                 </span>
 
-            </span>
+            </div>
 
 
             <button
@@ -942,9 +1176,11 @@
 
             </button>
 
+
         </div>
 
     </div>
+
 
 
     <!-- WELCOME -->
@@ -952,22 +1188,19 @@
     <section class="welcome">
 
         <h2>
-            Welcome, Owner 👑
+            Welcome, <span id="welcomeName">Owner</span> 👑
         </h2>
 
         <p>
-            Manage R Mohan Digital,
-            mentors, faculty, students,
-            courses and platform activity
-            from one place.
+            Manage R Mohan Digital, mentors, faculty,
+            students, courses and platform activity from one place.
         </p>
 
     </section>
 
 
-    <!-- =====================================
-         STATISTICS
-    ====================================== -->
+
+    <!-- STATISTICS -->
 
     <section class="stats">
 
@@ -1043,9 +1276,8 @@
     </section>
 
 
-    <!-- =====================================
-         CONTENT
-    ====================================== -->
+
+    <!-- CONTENT GRID -->
 
     <section class="content-grid">
 
@@ -1070,12 +1302,13 @@
             <div id="pendingFaculty">
 
                 <div class="loading">
-                    Loading faculty...
+                    No pending faculty
                 </div>
 
             </div>
 
         </div>
+
 
 
         <!-- QUICK ACTIONS -->
@@ -1100,7 +1333,7 @@
 
                 <button
                     class="action-btn"
-                    onclick="showComingSoon('User Management')">
+                    onclick="showComingSoon('Manage Users')">
 
                     <div>
                         👥
@@ -1115,7 +1348,7 @@
 
                 <button
                     class="action-btn"
-                    onclick="showComingSoon('Courses')">
+                    onclick="showComingSoon('Manage Courses')">
 
                     <div>
                         📚
@@ -1130,7 +1363,7 @@
 
                 <button
                     class="action-btn"
-                    onclick="showComingSoon('Mentors')">
+                    onclick="showComingSoon('Manage Mentors')">
 
                     <div>
                         🧑‍💼
@@ -1166,13 +1399,10 @@
     </section>
 
 
-    <!-- =====================================
-         RECENT USERS
-    ====================================== -->
 
-    <section
-        class="panel"
-        style="margin-top:20px;">
+    <!-- RECENT USERS -->
+
+    <section class="panel recent-users">
 
 
         <div class="panel-header">
@@ -1188,4 +1418,600 @@
         </div>
 
 
-        <
+        <div id="recentUsers">
+
+            <div class="loading">
+                No recent users
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     PROFILE SETTINGS
+===================================================== -->
+
+<div
+    id="profileSection"
+    class="profile-section">
+
+
+    <div class="profile-card">
+
+
+        <h2 class="profile-title">
+            Profile Settings
+        </h2>
+
+
+        <p class="profile-subtitle">
+            Edit your owner profile anytime.
+        </p>
+
+
+
+        <!-- PROFILE PHOTO -->
+
+        <div class="profile-photo-area">
+
+
+            <div
+                class="profile-large"
+                id="largeProfile">
+
+                RM
+
+            </div>
+
+
+            <div class="photo-buttons">
+
+
+                <label
+                    for="photoInput"
+                    class="photo-btn">
+
+                    🖼️ Choose From Gallery
+
+                </label>
+
+
+                <button
+                    class="photo-btn remove-photo"
+                    onclick="removePhoto()">
+
+                    🗑️ Remove Photo
+
+                </button>
+
+
+            </div>
+
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/*">
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="profileName"
+                    placeholder="Enter your name">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="profileEmail"
+                    placeholder="Enter your email">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="profilePhone"
+                    placeholder="Enter phone number">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Role
+                </label>
+
+                <input
+                    type="text"
+                    value="Owner"
+                    readonly>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="profilePassword"
+                    placeholder="Enter new password">
+
+            </div>
+
+
+        </div>
+
+
+
+        <button
+            class="save-profile"
+            onclick="saveProfile()">
+
+            💾 Save Profile
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+</main>
+
+
+
+<script>
+
+/* =====================================================
+   PROFILE DATA
+===================================================== */
+
+let profile;
+
+try {
+
+    profile =
+        JSON.parse(
+            localStorage.getItem("ownerProfile")
+        ) || {
+
+            name: "Owner",
+
+            email: "owner@example.com",
+
+            phone: "",
+
+            photo: ""
+
+        };
+
+} catch (error) {
+
+    profile = {
+
+        name: "Owner",
+
+        email: "owner@example.com",
+
+        phone: "",
+
+        photo: ""
+
+    };
+
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+const sidebar =
+    document.getElementById("sidebar");
+
+mobileMenu.addEventListener("click", function () {
+
+    sidebar.classList.toggle("open");
+
+});
+
+
+/* =====================================================
+   UPDATE PROFILE IMAGES
+===================================================== */
+
+function updateProfileImages() {
+
+    const topProfile =
+        document.getElementById("topProfile");
+
+    const largeProfile =
+        document.getElementById("largeProfile");
+
+    const sidebarPhoto =
+        document.getElementById("sidebarPhoto");
+
+
+    if (profile.photo) {
+
+        topProfile.innerHTML =
+            '<img src="' +
+            profile.photo +
+            '" alt="Profile photo">';
+
+
+        largeProfile.innerHTML =
+            '<img src="' +
+            profile.photo +
+            '" alt="Profile photo">';
+
+
+        sidebarPhoto.innerHTML =
+            '<img src="' +
+            profile.photo +
+            '" alt="Profile photo">';
+
+    } else {
+
+        topProfile.textContent = "RM";
+
+        largeProfile.textContent = "RM";
+
+        sidebarPhoto.textContent = "RM";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD PROFILE
+===================================================== */
+
+function loadProfile() {
+
+    document.getElementById("profileName").value =
+        profile.name;
+
+    document.getElementById("profileEmail").value =
+        profile.email;
+
+    document.getElementById("profilePhone").value =
+        profile.phone;
+
+
+    document.getElementById("ownerName").textContent =
+        profile.name;
+
+    document.getElementById("ownerEmail").textContent =
+        profile.email;
+
+    document.getElementById("welcomeName").textContent =
+        profile.name;
+
+
+    updateProfileImages();
+
+}
+
+
+/* =====================================================
+   SELECT PHOTO FROM GALLERY
+===================================================== */
+
+document
+    .getElementById("photoInput")
+    .addEventListener("change", function (event) {
+
+        const file =
+            event.target.files[0];
+
+        if (!file) {
+            return;
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            alert("Please select an image file.");
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload = function (e) {
+
+            profile.photo =
+                e.target.result;
+
+            updateProfileImages();
+
+        };
+
+
+        reader.onerror = function () {
+
+            alert("Unable to read the selected image.");
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    });
+
+
+/* =====================================================
+   REMOVE PHOTO
+===================================================== */
+
+function removePhoto() {
+
+    profile.photo = "";
+
+    document.getElementById("photoInput").value = "";
+
+    updateProfileImages();
+
+}
+
+
+/* =====================================================
+   SAVE PROFILE
+===================================================== */
+
+function saveProfile() {
+
+    const name =
+        document
+            .getElementById("profileName")
+            .value
+            .trim();
+
+
+    const email =
+        document
+            .getElementById("profileEmail")
+            .value
+            .trim();
+
+
+    const phone =
+        document
+            .getElementById("profilePhone")
+            .value
+            .trim();
+
+
+    if (name === "") {
+
+        alert("Please enter your name.");
+
+        return;
+
+    }
+
+
+    if (email === "") {
+
+        alert("Please enter your email.");
+
+        return;
+
+    }
+
+
+    profile.name = name;
+
+    profile.email = email;
+
+    profile.phone = phone;
+
+
+    try {
+
+        localStorage.setItem(
+            "ownerProfile",
+            JSON.stringify(profile)
+        );
+
+    } catch (error) {
+
+        alert(
+            "Profile could not be saved. The selected image may be too large."
+        );
+
+        return;
+
+    }
+
+
+    loadProfile();
+
+    alert("Profile updated successfully!");
+
+    showDashboard();
+
+}
+
+
+/* =====================================================
+   SHOW DASHBOARD
+===================================================== */
+
+function showDashboard(button) {
+
+    document
+        .getElementById("dashboardSection")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("profileSection")
+        .classList.remove("active");
+
+
+    document
+        .querySelectorAll(".menu button")
+        .forEach(function (btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+
+    sidebar.classList.remove("open");
+
+}
+
+
+/* =====================================================
+   SHOW PROFILE
+===================================================== */
+
+function showProfile(button) {
+
+    document
+        .getElementById("dashboardSection")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("profileSection")
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".menu button")
+        .forEach(function (btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+
+    loadProfile();
+
+    sidebar.classList.remove("open");
+
+}
+
+
+/* =====================================================
+   OTHER MENU ITEMS
+===================================================== */
+
+function showComingSoon(name) {
+
+    alert(
+        name +
+        " section is ready to connect with Firebase."
+    );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener("click", function () {
+
+        const confirmLogout =
+            confirm(
+                "Are you sure you want to logout?"
+            );
+
+
+        if (confirmLogout) {
+
+            alert("Logout successful.");
+
+            /*
+              Add your Firebase logout code here.
+
+              Example:
+
+              signOut(auth);
+            */
+
+        }
+
+    });
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+loadProfile();
+
+</script>
+
+</body>
+</html>
