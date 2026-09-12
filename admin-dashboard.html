@@ -1,2207 +1,1191 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Owner Dashboard | R Mohan Digital</title>
+    <meta charset="UTF-8">
 
-<style>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-/* =========================
-   RESET
-========================= */
+    <title>Owner Dashboard | R Mohan Digital</title>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
+    <style>
 
-html{
-    scroll-behavior:smooth;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-body{
-    min-height:100vh;
-    color:#111827;
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left,
+                    #102a43 0%,
+                    #07111f 35%,
+                    #020617 75%);
 
-    background:
-        linear-gradient(
-            rgba(255,255,255,0.12),
-            rgba(255,255,255,0.12)
-        ),
-        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2000&q=90");
+            color: white;
+        }
 
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
 
-    transition:background-image .5s ease;
-}
+        /* =========================================
+           SIDEBAR
+        ========================================= */
 
+        .sidebar {
 
-/* =========================
-   SIDEBAR
-========================= */
+            position: fixed;
 
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
+            left: 0;
+            top: 0;
 
-    width:250px;
-    height:100vh;
+            width: 250px;
+            height: 100vh;
 
-    padding:25px 18px;
+            background: rgba(3, 12, 24, 0.96);
 
-    background:rgba(255,255,255,.80);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+            border-right: 1px solid
+                rgba(0, 229, 255, 0.2);
 
-    border-right:1px solid rgba(255,255,255,.6);
+            padding: 25px 15px;
 
-    z-index:1000;
+            z-index: 100;
 
-    box-shadow:4px 0 20px rgba(0,0,0,.08);
+            transition: 0.3s;
+        }
 
-    overflow-y:auto;
-}
 
-.logo{
-    text-align:center;
-    margin-bottom:30px;
-}
+        .logo {
 
-.logo h2{
-    font-size:22px;
-    color:#111827;
-}
+            text-align: center;
 
-.logo p{
-    font-size:12px;
-    margin-top:5px;
-    color:#64748b;
-}
+            padding-bottom: 25px;
 
-.menu{
-    list-style:none;
-}
+            border-bottom: 1px solid
+                rgba(148, 163, 184, 0.12);
 
-.menu li{
-    margin:7px 0;
-}
+        }
 
-.menu a{
-    display:flex;
-    align-items:center;
-    gap:12px;
 
-    padding:13px 15px;
+        .logo-circle {
 
-    text-decoration:none;
-    color:#334155;
+            width: 58px;
+            height: 58px;
 
-    border-radius:12px;
+            margin: auto;
 
-    font-size:14px;
-    font-weight:600;
+            display: flex;
 
-    transition:.25s;
-}
+            align-items: center;
+            justify-content: center;
 
-.menu a:hover,
-.menu a.active{
-    background:rgba(255,255,255,.95);
-    color:#2563eb;
+            border: 2px solid #00e5ff;
 
-    transform:translateX(3px);
+            border-radius: 50%;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-}
+            color: #00e5ff;
 
-.menu-icon{
-    font-size:18px;
-}
+            font-size: 22px;
+            font-weight: bold;
 
+            box-shadow:
+                0 0 18px rgba(0,229,255,0.35);
+        }
 
-/* =========================
-   MAIN
-========================= */
 
-.main{
-    margin-left:250px;
-    min-height:100vh;
-    padding:25px;
-}
+        .logo h2 {
 
+            margin-top: 12px;
 
-/* =========================
-   TOP BAR
-========================= */
+            font-size: 18px;
 
-.topbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+            color: white;
 
-    gap:20px;
+            text-shadow:
+                0 0 10px rgba(0,229,255,0.5);
+        }
 
-    margin-bottom:25px;
 
-    padding:18px 22px;
+        .logo p {
 
-    border-radius:20px;
+            margin-top: 5px;
 
-    background:rgba(255,255,255,.72);
+            font-size: 10px;
 
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+            letter-spacing: 2px;
 
-    border:1px solid rgba(255,255,255,.65);
+            color: #38bdf8;
+        }
 
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
 
-.welcome h1{
-    font-size:27px;
-    color:#111827;
-}
+        .menu {
 
-.welcome p{
-    margin-top:6px;
-    color:#475569;
-    font-size:14px;
-}
+            margin-top: 25px;
+        }
 
-.owner{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
 
-.clock-box{
-    text-align:right;
-}
+        .menu button {
 
-.clock{
-    font-size:20px;
-    font-weight:bold;
-    color:#111827;
-}
+            width: 100%;
 
-.date{
-    font-size:12px;
-    color:#64748b;
-    margin-top:4px;
-}
+            padding: 13px 15px;
 
-.profile-container{
-    position:relative;
-}
+            margin-bottom: 8px;
 
-.profile{
-    width:52px;
-    height:52px;
+            border: 1px solid transparent;
 
-    border-radius:50%;
+            border-radius: 9px;
 
-    object-fit:cover;
+            background: transparent;
 
-    border:3px solid white;
+            color: #94a3b8;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
+            text-align: left;
 
-    cursor:pointer;
-}
+            cursor: pointer;
 
-.profile-add{
-    position:absolute;
+            font-size: 14px;
 
-    right:-4px;
-    bottom:-4px;
+            transition: 0.25s;
+        }
 
-    width:21px;
-    height:21px;
 
-    border-radius:50%;
+        .menu button:hover,
+        .menu button.active {
 
-    border:2px solid white;
+            color: #00e5ff;
 
-    background:#2563eb;
-    color:white;
+            background:
+                rgba(0,229,255,0.08);
 
-    font-size:14px;
-    font-weight:bold;
+            border-color:
+                rgba(0,229,255,0.25);
 
-    cursor:pointer;
+            box-shadow:
+                0 0 12px
+                rgba(0,229,255,0.08);
+        }
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
 
+        /* =========================================
+           MAIN
+        ========================================= */
 
-/* =========================
-   GLASS
-========================= */
+        .main {
 
-.glass{
-    background:rgba(255,255,255,.72);
+            margin-left: 250px;
 
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+            min-height: 100vh;
 
-    border:1px solid rgba(255,255,255,.65);
+            padding: 25px;
+        }
 
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
 
-    border-radius:20px;
-}
+        /* =========================================
+           TOP BAR
+        ========================================= */
 
+        .topbar {
 
-/* =========================
-   STATISTICS
-========================= */
+            display: flex;
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
+            justify-content: space-between;
 
-    gap:18px;
+            align-items: center;
 
-    margin-bottom:25px;
-}
+            margin-bottom: 25px;
 
-.stat-card{
-    padding:22px;
+            background:
+                rgba(7,17,31,0.75);
 
-    position:relative;
+            border: 1px solid
+                rgba(0,229,255,0.15);
 
-    overflow:hidden;
+            border-radius: 15px;
 
-    transition:.25s;
-}
+            padding: 18px 22px;
 
-.stat-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
-}
+            backdrop-filter: blur(12px);
+        }
 
-.stat-icon{
-    width:48px;
-    height:48px;
 
-    border-radius:14px;
+        .topbar h1 {
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            font-size: 22px;
+        }
 
-    font-size:23px;
 
-    background:rgba(255,255,255,.8);
+        .topbar h1 span {
 
-    margin-bottom:15px;
-}
+            color: #00e5ff;
 
-.stat-card h3{
-    font-size:28px;
-    color:#111827;
-}
+            text-shadow:
+                0 0 10px
+                rgba(0,229,255,0.5);
+        }
 
-.stat-card p{
-    margin-top:5px;
-    font-size:13px;
-    color:#64748b;
-}
 
+        .owner-info {
 
-/* =========================
-   CONTENT
-========================= */
+            text-align: right;
+        }
 
-.content-grid{
-    display:grid;
 
-    grid-template-columns:1.5fr 1fr;
+        #ownerName {
 
-    gap:20px;
+            color: white;
 
-    margin-bottom:25px;
-}
+            font-size: 14px;
 
-.card{
-    padding:22px;
-}
+            font-weight: bold;
+        }
 
-.card-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
 
-    margin-bottom:18px;
-}
+        #ownerEmail {
 
-.card-header h2{
-    font-size:18px;
-    color:#111827;
-}
+            color: #64748b;
 
-.view-all{
-    border:none;
-    background:none;
+            font-size: 11px;
 
-    color:#2563eb;
+            margin-top: 4px;
+        }
 
-    font-size:13px;
-    font-weight:bold;
 
-    cursor:pointer;
-}
+        .logout {
 
+            margin-left: 15px;
 
-/* =========================
-   TABLE
-========================= */
+            padding: 9px 15px;
 
-.table-wrapper{
-    width:100%;
-    overflow-x:auto;
-}
+            border: 1px solid #ef4444;
 
-table{
-    width:100%;
-    border-collapse:collapse;
-}
+            border-radius: 8px;
 
-th{
-    text-align:left;
+            background:
+                rgba(239,68,68,0.08);
 
-    padding:12px 10px;
+            color: #f87171;
 
-    font-size:12px;
+            cursor: pointer;
 
-    color:#64748b;
+            font-weight: bold;
 
-    border-bottom:1px solid rgba(100,116,139,.15);
-}
+            transition: 0.2s;
+        }
 
-td{
-    padding:14px 10px;
 
-    font-size:13px;
+        .logout:hover {
 
-    border-bottom:1px solid rgba(100,116,139,.10);
-}
+            background: #ef4444;
 
-.user-info{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+            color: white;
 
-.user-avatar{
-    width:38px;
-    height:38px;
+            box-shadow:
+                0 0 15px
+                rgba(239,68,68,0.35);
+        }
 
-    border-radius:50%;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+        /* =========================================
+           WELCOME
+        ========================================= */
 
-    background:#e2e8f0;
+        .welcome {
 
-    font-weight:bold;
-}
+            padding: 25px;
 
-.status{
-    display:inline-block;
+            border-radius: 15px;
 
-    padding:5px 10px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,255,0.08),
+                    rgba(37,99,235,0.05)
+                );
 
-    border-radius:20px;
+            border: 1px solid
+                rgba(0,229,255,0.18);
 
-    font-size:11px;
+            margin-bottom: 25px;
+        }
 
-    font-weight:bold;
-}
 
-.pending{
-    background:#fef3c7;
-    color:#92400e;
-}
+        .welcome h2 {
 
-.approved{
-    background:#dcfce7;
-    color:#166534;
-}
+            color: #00e5ff;
 
-.rejected{
-    background:#fee2e2;
-    color:#991b1b;
-}
+            margin-bottom: 8px;
+        }
 
 
-/* =========================
-   BUTTONS
-========================= */
+        .welcome p {
 
-.btn{
-    border:none;
+            color: #94a3b8;
 
-    padding:9px 14px;
+            font-size: 14px;
+        }
 
-    border-radius:9px;
 
-    cursor:pointer;
+        /* =========================================
+           STAT CARDS
+        ========================================= */
 
-    font-weight:bold;
+        .stats {
 
-    font-size:12px;
+            display: grid;
 
-    transition:.2s;
-}
+            grid-template-columns:
+                repeat(4, 1fr);
 
-.btn:hover{
-    transform:translateY(-2px);
-}
+            gap: 18px;
 
-.approve{
-    background:#dcfce7;
-    color:#166534;
-}
+            margin-bottom: 25px;
+        }
 
-.reject{
-    background:#fee2e2;
-    color:#991b1b;
-}
 
+        .stat-card {
 
-/* =========================
-   QUICK ACTIONS
-========================= */
+            padding: 22px;
 
-.quick-actions{
-    display:grid;
+            border-radius: 15px;
 
-    grid-template-columns:repeat(2,1fr);
+            background:
+                rgba(7,17,31,0.82);
 
-    gap:12px;
-}
+            border: 1px solid
+                rgba(0,229,255,0.15);
 
-.action{
-    padding:18px;
+            transition: 0.25s;
+        }
 
-    border-radius:14px;
 
-    background:rgba(255,255,255,.65);
+        .stat-card:hover {
 
-    border:1px solid rgba(255,255,255,.6);
+            transform: translateY(-3px);
 
-    cursor:pointer;
+            border-color:
+                rgba(0,229,255,0.45);
 
-    transition:.25s;
-}
+            box-shadow:
+                0 0 20px
+                rgba(0,229,255,0.08);
+        }
 
-.action:hover{
-    background:white;
-    transform:translateY(-3px);
-}
 
-.action-icon{
-    font-size:25px;
-    margin-bottom:8px;
-}
+        .stat-icon {
 
-.action h3{
-    font-size:14px;
-}
+            font-size: 27px;
 
-.action p{
-    margin-top:4px;
+            margin-bottom: 12px;
+        }
 
-    color:#64748b;
 
-    font-size:11px;
-}
+        .stat-card h3 {
 
+            font-size: 28px;
 
-/* =========================
-   RECENT USERS
-========================= */
+            color: #00e5ff;
 
-.users-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
+            text-shadow:
+                0 0 10px
+                rgba(0,229,255,0.4);
+        }
 
-.user-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
 
-    padding:12px;
+        .stat-card p {
 
-    background:rgba(255,255,255,.55);
+            margin-top: 5px;
 
-    border-radius:12px;
-}
+            color: #94a3b8;
 
-.user-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+            font-size: 13px;
+        }
 
-.user-name{
-    font-size:13px;
-    font-weight:bold;
-}
 
-.user-email{
-    font-size:11px;
-    color:#64748b;
+        /* =========================================
+           CONTENT GRID
+        ========================================= */
 
-    margin-top:3px;
-}
+        .content-grid {
 
+            display: grid;
 
-/* =========================
-   BACKGROUND BUTTON
-========================= */
+            grid-template-columns:
+                1.5fr 1fr;
 
-.background-control{
-    position:fixed;
+            gap: 20px;
+        }
 
-    right:22px;
-    bottom:22px;
 
-    z-index:1500;
-}
+        .panel {
 
-.background-button{
-    width:58px;
-    height:58px;
+            background:
+                rgba(7,17,31,0.82);
 
-    border:none;
+            border: 1px solid
+                rgba(0,229,255,0.15);
 
-    border-radius:50%;
+            border-radius: 15px;
 
-    background:rgba(255,255,255,.92);
+            padding: 22px;
 
-    color:#111827;
+            min-height: 250px;
+        }
 
-    font-size:30px;
 
-    cursor:pointer;
+        .panel-header {
 
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
+            display: flex;
 
-    transition:.25s;
-}
+            justify-content: space-between;
 
-.background-button:hover{
-    transform:rotate(90deg) scale(1.08);
-}
+            align-items: center;
 
+            margin-bottom: 18px;
+        }
 
-/* =========================
-   MOBILE
-========================= */
 
-.mobile-menu{
-    display:none;
+        .panel-header h2 {
 
-    position:fixed;
+            font-size: 17px;
 
-    left:15px;
-    top:15px;
+            color: white;
+        }
 
-    width:45px;
-    height:45px;
 
-    border:none;
+        .panel-header span {
 
-    border-radius:12px;
+            font-size: 11px;
 
-    background:rgba(255,255,255,.92);
+            color: #38bdf8;
+        }
 
-    font-size:22px;
 
-    z-index:2000;
+        /* =========================================
+           PENDING FACULTY
+        ========================================= */
 
-    cursor:pointer;
-}
+        .faculty-item {
 
-.overlay{
-    display:none;
+            display: flex;
 
-    position:fixed;
+            justify-content: space-between;
 
-    inset:0;
+            align-items: center;
 
-    background:rgba(0,0,0,.3);
+            padding: 13px;
 
-    z-index:900;
-}
+            margin-bottom: 9px;
 
+            border-radius: 9px;
 
-/* =========================
-   FOOTER
-========================= */
+            background:
+                rgba(15,23,42,0.7);
 
-.footer{
-    text-align:center;
+            border: 1px solid
+                rgba(148,163,184,0.08);
+        }
 
-    padding:20px;
 
-    font-size:12px;
+        .faculty-details strong {
 
-    color:#475569;
-}
+            display: block;
 
+            font-size: 13px;
 
-/* =========================
-   HIDDEN INPUT
-========================= */
+            color: white;
+        }
 
-.hidden-input{
-    display:none;
-}
 
+        .faculty-details small {
 
-/* =========================
-   RESPONSIVE
-========================= */
+            color: #64748b;
 
-@media(max-width:1100px){
+            font-size: 11px;
+        }
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
 
-    .content-grid{
-        grid-template-columns:1fr;
-    }
-}
+        .pending-badge {
 
+            padding: 5px 9px;
 
-@media(max-width:768px){
+            border-radius: 15px;
 
-    .sidebar{
-        left:-270px;
-        transition:.3s;
-    }
+            background:
+                rgba(250,204,21,0.1);
 
-    .sidebar.open{
-        left:0;
-    }
+            border: 1px solid
+                rgba(250,204,21,0.25);
 
-    .overlay.show{
-        display:block;
-    }
+            color: #facc15;
 
-    .mobile-menu{
-        display:block;
-    }
+            font-size: 10px;
+        }
 
-    .main{
-        margin-left:0;
-        padding:15px;
-        padding-top:75px;
-    }
 
-    .topbar{
-        flex-direction:column;
-        align-items:flex-start;
-    }
+        /* =========================================
+           QUICK ACTIONS
+        ========================================= */
 
-    .owner{
-        width:100%;
-        justify-content:space-between;
-    }
+        .actions {
 
-    .clock-box{
-        text-align:left;
-    }
-}
+            display: grid;
 
+            grid-template-columns:
+                repeat(2, 1fr);
 
-@media(max-width:500px){
+            gap: 12px;
+        }
 
-    .stats{
-        grid-template-columns:1fr;
-    }
 
-    .quick-actions{
-        grid-template-columns:1fr;
-    }
+        .action-btn {
 
-    .welcome h1{
-        font-size:22px;
-    }
+            padding: 18px 10px;
 
-    .card{
-        padding:16px;
-    }
+            border-radius: 10px;
 
-    .background-control{
-        right:15px;
-        bottom:15px;
-    }
-}
+            border: 1px solid
+                rgba(0,229,255,0.16);
 
-</style>
+            background:
+                rgba(15,23,42,0.7);
+
+            color: #cbd5e1;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+
+        .action-btn:hover {
+
+            color: #00e5ff;
+
+            border-color: #00e5ff;
+
+            box-shadow:
+                0 0 15px
+                rgba(0,229,255,0.12);
+
+            transform: translateY(-2px);
+        }
+
+
+        .action-btn div {
+
+            font-size: 23px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .action-btn span {
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================
+           RECENT USERS
+        ========================================= */
+
+        .user-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 11px 0;
+
+            border-bottom:
+                1px solid
+                rgba(148,163,184,0.08);
+        }
+
+
+        .user-name {
+
+            font-size: 13px;
+
+            color: white;
+        }
+
+
+        .user-role {
+
+            font-size: 10px;
+
+            color: #38bdf8;
+
+            text-transform: uppercase;
+
+            margin-top: 3px;
+        }
+
+
+        .user-status {
+
+            font-size: 10px;
+
+            color: #22c55e;
+        }
+
+
+        /* =========================================
+           LOADING
+        ========================================= */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           MOBILE MENU
+        ========================================= */
+
+        .mobile-menu {
+
+            display: none;
+
+            position: fixed;
+
+            top: 15px;
+
+            left: 15px;
+
+            z-index: 200;
+
+            width: 42px;
+
+            height: 42px;
+
+            border: 1px solid #00e5ff;
+
+            background: #07111f;
+
+            color: #00e5ff;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 20px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .content-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+
+                transform:
+                    translateX(-100%);
+            }
+
+
+            .sidebar.open {
+
+                transform:
+                    translateX(0);
+            }
+
+
+            .mobile-menu {
+
+                display: block;
+            }
+
+
+            .main {
+
+                margin-left: 0;
+
+                padding: 15px;
+
+                padding-top: 70px;
+            }
+
+
+            .topbar {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .owner-info {
+
+                text-align: left;
+            }
+
+
+            .logout {
+
+                margin-left: 0;
+
+                margin-top: 8px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .stats {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================
+<!-- =========================================
      MOBILE MENU
-========================= -->
+========================================= -->
 
 <button
     class="mobile-menu"
-    id="mobileMenu"
->
+    id="mobileMenu">
+
     ☰
+
 </button>
 
-<div
-    class="overlay"
-    id="overlay"
-></div>
 
-
-
-<!-- =========================
+<!-- =========================================
      SIDEBAR
-========================= -->
+========================================= -->
 
 <aside
     class="sidebar"
-    id="sidebar"
->
+    id="sidebar">
+
 
     <div class="logo">
 
-        <h2>
-            R Mohan Digital
-        </h2>
+        <div class="logo-circle">
+            RM
+        </div>
 
-        <p>
-            Owner / Admin Panel
-        </p>
+        <h2>R Mohan Digital</h2>
+
+        <p>OWNER CONTROL</p>
 
     </div>
 
 
-    <ul class="menu">
-
-        <li>
-            <a
-                href="#"
-                class="active"
-            >
-                <span class="menu-icon">🏠</span>
-                Dashboard
-            </a>
-        </li>
+    <div class="menu">
 
 
-        <li>
-            <a href="#facultyRequests">
-                <span class="menu-icon">📩</span>
-                Faculty Requests
-            </a>
-        </li>
+        <button class="active">
+
+            📊 &nbsp; Dashboard
+
+        </button>
 
 
-        <li>
-            <a href="#faculty">
-                <span class="menu-icon">👨‍🏫</span>
-                Faculty Management
-            </a>
-        </li>
+        <button
+            onclick="showComingSoon('Users')">
+
+            👥 &nbsp; Users
+
+        </button>
 
 
-        <li>
-            <a href="#students">
-                <span class="menu-icon">🎓</span>
-                Students
-            </a>
-        </li>
+        <button
+            onclick="showComingSoon('Students')">
+
+            🎓 &nbsp; Students
+
+        </button>
 
 
-        <li>
-            <a href="#users">
-                <span class="menu-icon">👥</span>
-                Users
-            </a>
-        </li>
+        <button
+            onclick="showComingSoon('Faculty')">
+
+            👨‍🏫 &nbsp; Faculty
+
+        </button>
 
 
-        <li>
-            <a href="#chat">
-                <span class="menu-icon">💬</span>
-                Chat
-            </a>
-        </li>
+        <button
+            onclick="showComingSoon('Mentors')">
+
+            🧑‍💼 &nbsp; Mentors
+
+        </button>
 
 
-        <li>
-            <a href="#announcements">
-                <span class="menu-icon">📢</span>
-                Announcements
-            </a>
-        </li>
+        <button
+            onclick="showComingSoon('Courses')">
+
+            📚 &nbsp; Courses
+
+        </button>
 
 
-        <li>
-            <a href="#settings">
-                <span class="menu-icon">⚙️</span>
-                Settings
-            </a>
-        </li>
+        <button
+            onclick="showComingSoon('Payments')">
 
-    </ul>
+            💳 &nbsp; Payments
+
+        </button>
+
+
+        <button
+            onclick="showComingSoon('Announcements')">
+
+            📢 &nbsp; Announcements
+
+        </button>
+
+
+        <button
+            onclick="showComingSoon('Settings')">
+
+            ⚙️ &nbsp; Settings
+
+        </button>
+
+
+    </div>
 
 </aside>
 
 
-
-<!-- =========================
+<!-- =========================================
      MAIN
-========================= -->
+========================================= -->
 
 <main class="main">
 
 
     <!-- TOP BAR -->
 
-    <section class="topbar">
+    <div class="topbar">
 
-        <div class="welcome">
+        <div>
 
             <h1>
-                Owner Dashboard
+                Owner <span>Dashboard</span>
             </h1>
 
-            <p>
-                Welcome back,
-                <strong>R Mohan</strong> 👋
-            </p>
-
         </div>
 
 
-        <div class="owner">
+        <div>
 
-            <div class="clock-box">
+            <span
+                class="owner-info">
 
-                <div
-                    class="clock"
-                    id="clock"
-                >
-                    00:00:00
-                </div>
-
-                <div
-                    class="date"
-                    id="date"
-                >
+                <span id="ownerName">
                     Loading...
-                </div>
+                </span>
 
-            </div>
+                <br>
+
+                <span id="ownerEmail">
+                    Loading...
+                </span>
+
+            </span>
 
 
-            <div class="profile-container">
+            <button
+                class="logout"
+                id="logoutBtn">
 
-                <img
-                    id="profileImage"
-                    class="profile"
-                    src="https://i.pravatar.cc/150?img=12"
-                    alt="Owner Profile"
-                >
+                Logout
 
-                <button
-                    class="profile-add"
-                    id="profileButton"
-                    title="Change profile photo"
-                >
-                    +
-                </button>
-
-            </div>
+            </button>
 
         </div>
+
+    </div>
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <h2>
+            Welcome, Owner 👑
+        </h2>
+
+        <p>
+            Manage R Mohan Digital,
+            mentors, faculty, students,
+            courses and platform activity
+            from one place.
+        </p>
 
     </section>
 
 
-
-    <!-- =========================
+    <!-- =====================================
          STATISTICS
-    ========================= -->
+    ====================================== -->
 
     <section class="stats">
 
 
-        <div class="stat-card glass">
+        <div class="stat-card">
 
             <div class="stat-icon">
-                👨‍🎓
+                👥
             </div>
 
-            <h3 id="studentCount">
-                10
+            <h3 id="totalUsers">
+                0
             </h3>
 
             <p>
-                Total Students
+                Total Users
             </p>
 
         </div>
 
 
+        <div class="stat-card">
 
-        <div class="stat-card glass">
+            <div class="stat-icon">
+                🎓
+            </div>
+
+            <h3 id="totalStudents">
+                0
+            </h3>
+
+            <p>
+                Students
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
 
             <div class="stat-icon">
                 👨‍🏫
             </div>
 
-            <h3 id="facultyCount">
-                3
-            </h3>
-
-            <p>
-                Active Faculty
-            </p>
-
-        </div>
-
-
-
-        <div class="stat-card glass">
-
-            <div class="stat-icon">
-                ⏳
-            </div>
-
-            <h3 id="pendingCount">
-                2
-            </h3>
-
-            <p>
-                Pending Requests
-            </p>
-
-        </div>
-
-
-
-        <div class="stat-card glass">
-
-            <div class="stat-icon">
-                💬
-            </div>
-
-            <h3>
+            <h3 id="totalFaculty">
                 0
             </h3>
 
             <p>
-                Chats / Groups
+                Faculty
             </p>
 
         </div>
 
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🧑‍💼
+            </div>
+
+            <h3 id="totalMentors">
+                0
+            </h3>
+
+            <p>
+                Mentors
+            </p>
+
+        </div>
+
+
     </section>
 
 
-
-    <!-- =========================
-         CONTENT GRID
-    ========================= -->
+    <!-- =====================================
+         CONTENT
+    ====================================== -->
 
     <section class="content-grid">
 
 
-        <!-- FACULTY REQUESTS -->
+        <!-- PENDING FACULTY -->
 
-        <div
-            class="card glass"
-            id="facultyRequests"
-        >
+        <div class="panel">
 
-            <div class="card-header">
+            <div class="panel-header">
 
                 <h2>
-                    Pending Faculty Requests
+                    Pending Faculty
                 </h2>
 
-                <button
-                    class="view-all"
-                    onclick="showMessage('Opening all faculty requests...')"
-                >
-                    View All
-                </button>
+                <span id="pendingCount">
+                    0 pending
+                </span>
 
             </div>
 
 
-            <div class="table-wrapper">
+            <div id="pendingFaculty">
 
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Faculty
-                            </th>
-
-                            <th>
-                                Subject
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                            <th>
-                                Action
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody
-                        id="facultyRequestTable"
-                    >
-
-
-                        <tr>
-
-                            <td>
-
-                                <div class="user-info">
-
-                                    <div class="user-avatar">
-                                        A
-                                    </div>
-
-                                    <div>
-                                        <strong>
-                                            Anitha
-                                        </strong>
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-                                Mathematics
-                            </td>
-
-
-                            <td>
-
-                                <span class="status pending">
-                                    Pending
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <button
-                                    class="btn approve"
-                                    onclick="approveRequest(this)"
-                                >
-                                    Approve
-                                </button>
-
-                                <button
-                                    class="btn reject"
-                                    onclick="rejectRequest(this)"
-                                >
-                                    Reject
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-
-
-                        <tr>
-
-                            <td>
-
-                                <div class="user-info">
-
-                                    <div class="user-avatar">
-                                        S
-                                    </div>
-
-                                    <div>
-                                        <strong>
-                                            Srikanth
-                                        </strong>
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-                                Physics
-                            </td>
-
-
-                            <td>
-
-                                <span class="status pending">
-                                    Pending
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <button
-                                    class="btn approve"
-                                    onclick="approveRequest(this)"
-                                >
-                                    Approve
-                                </button>
-
-                                <button
-                                    class="btn reject"
-                                    onclick="rejectRequest(this)"
-                                >
-                                    Reject
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-
-                    </tbody>
-
-                </table>
+                <div class="loading">
+                    Loading faculty...
+                </div>
 
             </div>
 
         </div>
 
 
-
         <!-- QUICK ACTIONS -->
 
-        <div class="card glass">
+        <div class="panel">
 
-            <div class="card-header">
+            <div class="panel-header">
 
                 <h2>
                     Quick Actions
                 </h2>
 
+                <span>
+                    Owner
+                </span>
+
             </div>
 
 
-            <div class="quick-actions">
+            <div class="actions">
 
 
-                <div
-                    class="action"
-                    onclick="showMessage('Add Faculty selected')"
-                >
+                <button
+                    class="action-btn"
+                    onclick="showComingSoon('User Management')">
 
-                    <div class="action-icon">
-                        👨‍🏫
+                    <div>
+                        👥
                     </div>
 
-                    <h3>
-                        Add Faculty
-                    </h3>
+                    <span>
+                        Manage Users
+                    </span>
 
-                    <p>
-                        Register a new faculty member
-                    </p>
-
-                </div>
+                </button>
 
 
+                <button
+                    class="action-btn"
+                    onclick="showComingSoon('Courses')">
 
-                <div
-                    class="action"
-                    onclick="showMessage('Manage Students selected')"
-                >
-
-                    <div class="action-icon">
-                        🎓
+                    <div>
+                        📚
                     </div>
 
-                    <h3>
-                        Students
-                    </h3>
+                    <span>
+                        Manage Courses
+                    </span>
 
-                    <p>
-                        Manage student accounts
-                    </p>
-
-                </div>
+                </button>
 
 
+                <button
+                    class="action-btn"
+                    onclick="showComingSoon('Mentors')">
 
-                <div
-                    class="action"
-                    onclick="showMessage('Announcement selected')"
-                >
+                    <div>
+                        🧑‍💼
+                    </div>
 
-                    <div class="action-icon">
+                    <span>
+                        Manage Mentors
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="showComingSoon('Announcements')">
+
+                    <div>
                         📢
                     </div>
 
-                    <h3>
+                    <span>
                         Announcement
-                    </h3>
+                    </span>
 
-                    <p>
-                        Send an announcement
-                    </p>
-
-                </div>
-
-
-
-                <div
-                    class="action"
-                    onclick="showMessage('Settings selected')"
-                >
-
-                    <div class="action-icon">
-                        ⚙️
-                    </div>
-
-                    <h3>
-                        Settings
-                    </h3>
-
-                    <p>
-                        Dashboard settings
-                    </p>
-
-                </div>
+                </button>
 
 
             </div>
 
         </div>
 
+
     </section>
 
 
-
-    <!-- =========================
+    <!-- =====================================
          RECENT USERS
-    ========================= -->
+    ====================================== -->
 
     <section
-        class="card glass"
-        id="users"
-    >
+        class="panel"
+        style="margin-top:20px;">
 
-        <div class="card-header">
+
+        <div class="panel-header">
 
             <h2>
                 Recent Users
             </h2>
 
-            <button
-                class="view-all"
-                onclick="showMessage('Opening all users...')"
-            >
-                View All
-            </button>
+            <span>
+                Live Firebase Data
+            </span>
 
         </div>
 
 
-        <div class="users-list">
-
-
-            <div class="user-row">
-
-                <div class="user-left">
-
-                    <div class="user-avatar">
-                        R
-                    </div>
-
-                    <div>
-
-                        <div class="user-name">
-                            Rahul
-                        </div>
-
-                        <div class="user-email">
-                            rahul@example.com
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <span class="status approved">
-                    Active
-                </span>
-
-            </div>
-
-
-
-            <div class="user-row">
-
-                <div class="user-left">
-
-                    <div class="user-avatar">
-                        P
-                    </div>
-
-                    <div>
-
-                        <div class="user-name">
-                            Priya
-                        </div>
-
-                        <div class="user-email">
-                            priya@example.com
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <span class="status approved">
-                    Active
-                </span>
-
-            </div>
-
-
-
-            <div class="user-row">
-
-                <div class="user-left">
-
-                    <div class="user-avatar">
-                        K
-                    </div>
-
-                    <div>
-
-                        <div class="user-name">
-                            Kiran
-                        </div>
-
-                        <div class="user-email">
-                            kiran@example.com
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <span class="status pending">
-                    Pending
-                </span>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- FOOTER -->
-
-    <footer class="footer">
-
-        © 2026 R Mohan Digital.
-        All Rights Reserved.
-
-    </footer>
-
-</main>
-
-
-
-<!-- =========================
-     CHANGE BACKGROUND BUTTON
-========================= -->
-
-<div class="background-control">
-
-    <button
-        class="background-button"
-        id="backgroundButton"
-        title="Change background"
-    >
-        +
-    </button>
-
-</div>
-
-
-
-<!-- =========================
-     HIDDEN FILE INPUTS
-========================= -->
-
-<input
-    type="file"
-    id="backgroundInput"
-    class="hidden-input"
-    accept="image/*"
->
-
-<input
-    type="file"
-    id="profileInput"
-    class="hidden-input"
-    accept="image/*"
->
-
-
-
-<!-- ==================================================
-     FIREBASE
-     
-     NO FIREBASE STORAGE
-================================================== -->
-
-<script type="module">
-
-/* Firebase App */
-
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-
-/* Firebase Authentication */
-
-import {
-    getAuth
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-
-/* Firebase Firestore */
-
-import {
-    getFirestore
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-/* Firebase Configuration */
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyDarA4FEnJ0Sg7cDxf8uPglDmrfZ6lgJ9I",
-
-    authDomain:
-        "r-mohan-digital-e4e4b.firebaseapp.com",
-
-    projectId:
-        "r-mohan-digital-e4e4b",
-
-    storageBucket:
-        "r-mohan-digital-e4e4b.firebasestorage.app",
-
-    messagingSenderId:
-        "56539770062",
-
-    appId:
-        "1:56539770062:web:0c815083264f74a189349f"
-};
-
-
-/* Initialize Firebase */
-
-const app =
-    initializeApp(firebaseConfig);
-
-
-/* Initialize Authentication */
-
-const auth =
-    getAuth(app);
-
-
-/* Initialize Firestore */
-
-const db =
-    getFirestore(app);
-
-
-/*
-   Make Firebase available
-   to other JavaScript if needed.
-*/
-
-window.firebaseApp = app;
-
-window.firebaseAuth = auth;
-
-window.firebaseDB = db;
-
-
-console.log(
-    "Firebase initialized successfully."
-);
-
-console.log(
-    "Firebase Storage is NOT being used."
-);
-
-</script>
-
-
-
-<!-- =========================
-     NORMAL JAVASCRIPT
-========================= -->
-
-<script>
-
-
-/* ==================================================
-   LIVE CLOCK
-================================================== */
-
-function updateClock(){
-
-    const now =
-        new Date();
-
-
-    let hours =
-        now.getHours();
-
-    let minutes =
-        now.getMinutes();
-
-    let seconds =
-        now.getSeconds();
-
-
-    const ampm =
-        hours >= 12
-        ? "PM"
-        : "AM";
-
-
-    hours =
-        hours % 12 || 12;
-
-
-    hours =
-        String(hours)
-        .padStart(2,"0");
-
-
-    minutes =
-        String(minutes)
-        .padStart(2,"0");
-
-
-    seconds =
-        String(seconds)
-        .padStart(2,"0");
-
-
-    document.getElementById(
-        "clock"
-    ).textContent =
-        `${hours}:${minutes}:${seconds} ${ampm}`;
-
-
-    const options = {
-
-        weekday:"long",
-
-        year:"numeric",
-
-        month:"long",
-
-        day:"numeric"
-
-    };
-
-
-    document.getElementById(
-        "date"
-    ).textContent =
-        now.toLocaleDateString(
-            "en-IN",
-            options
-        );
-
-}
-
-
-updateClock();
-
-setInterval(
-    updateClock,
-    1000
-);
-
-
-
-/* ==================================================
-   MOBILE SIDEBAR
-================================================== */
-
-const mobileMenu =
-    document.getElementById(
-        "mobileMenu"
-    );
-
-const sidebar =
-    document.getElementById(
-        "sidebar"
-    );
-
-const overlay =
-    document.getElementById(
-        "overlay"
-    );
-
-
-mobileMenu.addEventListener(
-    "click",
-    function(){
-
-        sidebar.classList.toggle(
-            "open"
-        );
-
-        overlay.classList.toggle(
-            "show"
-        );
-
-    }
-);
-
-
-overlay.addEventListener(
-    "click",
-    function(){
-
-        sidebar.classList.remove(
-            "open"
-        );
-
-        overlay.classList.remove(
-            "show"
-        );
-
-    }
-);
-
-
-
-/* ==================================================
-   CHANGE BACKGROUND
-================================================== */
-
-const backgroundButton =
-    document.getElementById(
-        "backgroundButton"
-    );
-
-const backgroundInput =
-    document.getElementById(
-        "backgroundInput"
-    );
-
-
-backgroundButton.addEventListener(
-    "click",
-    function(){
-
-        backgroundInput.click();
-
-    }
-);
-
-
-backgroundInput.addEventListener(
-    "change",
-    function(event){
-
-        const file =
-            event.target.files[0];
-
-
-        if(!file){
-            return;
-        }
-
-
-        if(
-            !file.type.startsWith(
-                "image/"
-            )
-        ){
-
-            alert(
-                "Please select an image."
-            );
-
-            return;
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(e){
-
-                const image =
-                    e.target.result;
-
-
-                document.body.style.backgroundImage =
-                    `linear-gradient(
-                        rgba(255,255,255,.12),
-                        rgba(255,255,255,.12)
-                    ),
-                    url("${image}")`;
-
-
-                /*
-                   Save locally.
-
-                   This does NOT use
-                   Firebase Storage.
-                */
-
-                try{
-
-                    localStorage.setItem(
-                        "adminBackground",
-                        image
-                    );
-
-                }catch(error){
-
-                    console.log(
-                        "Image is too large for localStorage."
-                    );
-
-                    alert(
-                        "This image is too large to save. Please choose a smaller image."
-                    );
-
-                }
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-
-/* ==================================================
-   LOAD SAVED BACKGROUND
-================================================== */
-
-try{
-
-    const savedBackground =
-        localStorage.getItem(
-            "adminBackground"
-        );
-
-
-    if(savedBackground){
-
-        document.body.style.backgroundImage =
-            `linear-gradient(
-                rgba(255,255,255,.12),
-                rgba(255,255,255,.12)
-            ),
-            url("${savedBackground}")`;
-
-    }
-
-}catch(error){
-
-    console.log(
-        "Could not load saved background."
-    );
-
-}
-
-
-
-/* ==================================================
-   PROFILE IMAGE
-================================================== */
-
-const profileButton =
-    document.getElementById(
-        "profileButton"
-    );
-
-const profileInput =
-    document.getElementById(
-        "profileInput"
-    );
-
-const profileImage =
-    document.getElementById(
-        "profileImage"
-    );
-
-
-profileButton.addEventListener(
-    "click",
-    function(){
-
-        profileInput.click();
-
-    }
-);
-
-
-profileInput.addEventListener(
-    "change",
-    function(event){
-
-        const file =
-            event.target.files[0];
-
-
-        if(!file){
-            return;
-        }
-
-
-        if(
-            !file.type.startsWith(
-                "image/"
-            )
-        ){
-
-            alert(
-                "Please select an image."
-            );
-
-            return;
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(e){
-
-                const image =
-                    e.target.result;
-
-
-                profileImage.src =
-                    image;
-
-
-                /*
-                   Save locally.
-
-                   No Firebase Storage.
-                */
-
-                try{
-
-                    localStorage.setItem(
-                        "adminProfile",
-                        image
-                    );
-
-                }catch(error){
-
-                    console.log(
-                        "Profile image is too large."
-                    );
-
-                    alert(
-                        "This image is too large to save. Please choose a smaller image."
-                    );
-
-                }
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-
-/* ==================================================
-   LOAD SAVED PROFILE
-================================================== */
-
-try{
-
-    const savedProfile =
-        localStorage.getItem(
-            "adminProfile"
-        );
-
-
-    if(savedProfile){
-
-        profileImage.src =
-            savedProfile;
-
-    }
-
-}catch(error){
-
-    console.log(
-        "Could not load saved profile."
-    );
-
-}
-
-
-
-/* ==================================================
-   APPROVE FACULTY
-================================================== */
-
-function approveRequest(button){
-
-    const row =
-        button.closest("tr");
-
-
-    if(!row){
-        return;
-    }
-
-
-    const status =
-        row.querySelector(
-            ".status"
-        );
-
-
-    status.textContent =
-        "Approved";
-
-
-    status.className =
-        "status approved";
-
-
-    const rejectButton =
-        row.querySelector(
-            ".reject"
-        );
-
-
-    if(rejectButton){
-        rejectButton.remove();
-    }
-
-
-    button.remove();
-
-
-    updatePendingCount(-1);
-
-
-    showMessage(
-        "Faculty request approved successfully."
-    );
-
-}
-
-
-
-/* ==================================================
-   REJECT FACULTY
-================================================== */
-
-function rejectRequest(button){
-
-    const row =
-        button.closest("tr");
-
-
-    if(!row){
-        return;
-    }
-
-
-    const status =
-        row.querySelector(
-            ".status"
-        );
-
-
-    status.textContent =
-        "Rejected";
-
-
-    status.className =
-        "status rejected";
-
-
-    const approveButton =
-        row.querySelector(
-            ".approve"
-        );
-
-
-    if(approveButton){
-        approveButton.remove();
-    }
-
-
-    button.remove();
-
-
-    updatePendingCount(-1);
-
-
-    showMessage(
-        "Faculty request rejected."
-    );
-
-}
-
-
-
-/* ==================================================
-   UPDATE PENDING COUNT
-================================================== */
-
-function updatePendingCount(change){
-
-    const element =
-        document.getElementById(
-            "pendingCount"
-        );
-
-
-    let count =
-        parseInt(
-            element.textContent,
-            10
-        );
-
-
-    if(isNaN(count)){
-        count = 0;
-    }
-
-
-    count += change;
-
-
-    if(count < 0){
-        count = 0;
-    }
-
-
-    element.textContent =
-        count;
-
-}
-
-
-
-/* ==================================================
-   MESSAGE
-================================================== */
-
-function showMessage(message){
-
-    alert(message);
-
-}
-
-
-
-/* ==================================================
-   CLOSE MOBILE SIDEBAR
-================================================== */
-
-document.querySelectorAll(
-    ".menu a"
-).forEach(
-    link => {
-
-        link.addEventListener(
-            "click",
-            function(){
-
-                sidebar.classList.remove(
-                    "open"
-                );
-
-                overlay.classList.remove(
-                    "show"
-                );
-
-            }
-        );
-
-    }
-);
-
-
-</script>
-
-</body>
-</html>
+        <
