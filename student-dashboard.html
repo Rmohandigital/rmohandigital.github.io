@@ -25,7 +25,7 @@ body{min-height:100vh;background:#e5e7eb;color:#1e3a8a}
 .welcome-panel{position:relative;z-index:1;width:100%;max-width:620px;background:rgba(255,255,255,.92);border:1px solid #bfdbfe;border-radius:28px;padding:44px 30px;text-align:center;box-shadow:0 25px 70px rgba(30,64,175,.18);backdrop-filter:blur(12px);animation:welcomeIn .65s ease}
 .welcome-logo{width:78px;height:78px;margin:0 auto 20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#0f172a;color:#00e5ff;border:3px solid #2563eb;font-size:22px;font-weight:900;box-shadow:0 12px 30px rgba(37,99,235,.2)}
 .welcome-panel h1{color:#1e3a8a;font-size:36px;line-height:1.15;margin-bottom:10px}.welcome-panel h1 span{color:#2563eb}.welcome-panel p{color:#64748b;font-size:15px;line-height:1.6}.welcome-journey{color:#1e40af!important;font-weight:800;font-size:17px!important;margin:8px 0 26px}.welcome-button{border:0;background:#2563eb;color:#fff;padding:14px 34px;border-radius:12px;cursor:pointer;font-size:14px;font-weight:800;box-shadow:0 12px 25px rgba(37,99,235,.22);transition:.2s}.welcome-button:hover{background:#1d4ed8;transform:translateY(-2px)}
-body.welcome-open{overflow:hidden}@keyframes welcomeIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+body.welcome-open{overflow:hidden}.welcome-screen.hidden{display:none!important}@keyframes welcomeIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
 .profile-photo-wrap{display:flex;flex-direction:column;align-items:center;gap:9px}.photo-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.photo-btn{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:800}.photo-btn:hover{background:#dbeafe}.photo-status{font-size:10px;color:#64748b;min-height:14px;text-align:center}
 .progress-card{display:flex;align-items:center;gap:25px;min-height:215px}.progress-ring{position:relative;width:155px;height:155px;flex:0 0 155px}.progress-ring svg{width:155px;height:155px;transform:rotate(-90deg)}.progress-ring .track{fill:none;stroke:#e2e8f0;stroke-width:12}.progress-ring .value{fill:none;stroke:#2563eb;stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset .7s ease}.progress-number{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#1e3a8a}.progress-number strong{font-size:31px;line-height:1;font-weight:900}.progress-number span{font-size:9px;color:#64748b;margin-top:5px;font-weight:800;letter-spacing:.5px}.progress-info h3{color:#1e40af;font-size:20px;margin-bottom:8px}.progress-info p{color:#64748b;font-size:12px;line-height:1.6}.progress-source{margin-top:10px;color:#94a3b8;font-size:10px}
 @media(max-width:600px){.welcome-panel{padding:36px 20px}.welcome-panel h1{font-size:29px}.welcome-journey{font-size:14px!important}.progress-card{flex-direction:column;text-align:center}.progress-info h3{font-size:18px}}
@@ -66,6 +66,25 @@ body.welcome-open{overflow:hidden}@keyframes welcomeIn{from{opacity:0;transform:
 </div></div></main>
 <div id="toastWrap" class="toast-wrap"></div>
 <div id="chatModal" class="chat-modal"><div class="chat-window"><div class="chat-header"><div id="chatHeaderTitle" class="chat-header-title">Chat</div><button id="closeChat" class="close-chat">×</button></div><div id="messages" class="messages"></div><div class="chat-input-area"><input id="messageInput" class="chat-input" type="text" placeholder="Type your message..." autocomplete="off"><button id="sendMessage" class="send-btn">Send</button></div></div></div>
+<script>
+(function(){
+  function openStudentDashboardFallback(){
+    var ws=document.getElementById("welcomeScreen");
+    var db=document.getElementById("dashboard");
+    var loading=document.getElementById("loading");
+    if(ws){ws.style.display="none";ws.classList.add("hidden");ws.setAttribute("aria-hidden","true");}
+    document.body.classList.remove("welcome-open");
+    document.body.style.overflow="auto";
+    if(db){db.style.display="block";db.hidden=false;}
+    if(loading){loading.style.display="none";}
+  }
+  window.openStudentDashboard= openStudentDashboardFallback;
+  document.addEventListener("DOMContentLoaded",function(){
+    var btn=document.getElementById("welcomeEnterBtn");
+    if(btn){btn.onclick=openStudentDashboardFallback;}
+  });
+})();
+</script>
 <script type="module">
 import {auth,db} from "./js/firebase.js";
 import {onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
@@ -92,11 +111,18 @@ function showToast(title,body){const el=document.createElement("div");el.classNa
 async function requestPhoneNotifications(){try{if(!("Notification" in window)){showToast("Notifications","Your app WebView does not expose the browser Notification API. Native app push setup is required for background phone notifications.");return false}if(Notification.permission==="granted")return true;const result=await Notification.requestPermission();if(result==="granted"){showToast("Notifications enabled","New mentor/faculty announcements, group messages and meeting notices can now alert you while this page is active.");return true}showToast("Notifications blocked","Enable notifications from your browser/app settings.");return false}catch(error){console.warn("Notification permission error",error);return false}}
 function sendPhoneNotification(title,body,tag="rmd-student"){showToast(title,body);try{if(window.AndroidBridge&&typeof window.AndroidBridge.showNotification==="function"){window.AndroidBridge.showNotification(String(title),String(body),String(tag));return true}}catch(error){console.warn("AndroidBridge notification error",error)}try{if("Notification" in window&&Notification.permission==="granted"){new Notification(title,{body,tag}) ;return true}}catch(error){console.warn("Browser notification error",error)}return false}
 
-welcomeEnterBtn.addEventListener("click",()=>{
-welcomeScreen.style.display="none";
-document.body.classList.remove("welcome-open");
-window.scrollTo({top:0,behavior:"smooth"});
-});
+function openStudentDashboard(){
+  welcomeScreen.style.display="none";
+  welcomeScreen.classList.add("hidden");
+  welcomeScreen.setAttribute("aria-hidden","true");
+  document.body.classList.remove("welcome-open");
+  document.body.style.overflow="auto";
+  dashboard.style.display="block";
+  dashboard.hidden=false;
+  loading.style.display="none";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+welcomeEnterBtn.onclick=openStudentDashboard;
 changePhotoBtn.addEventListener("click",()=>profilePhotoInput.click());
 profilePhotoInput.addEventListener("change",handleProfilePhotoChange);
 notificationBtn.addEventListener("click",requestPhoneNotifications);
@@ -104,66 +130,138 @@ logoutBtn.addEventListener("click",async()=>{try{await signOut(auth);window.loca
 profileBtn.addEventListener("click",()=>{window.location.href="student-profile.html"});
 
 onAuthStateChanged(auth,async user=>{
-if(!user){window.location.replace("login.html");return}
-currentUser=user;
-// Always reset the welcome screen for the currently logged-in student.
-welcomeScreen.style.display="flex";
-document.body.classList.add("welcome-open");
-try{
-await loadStudentProfile();
-await loadProgress();
-await loadAssignedFaculty();
-await loadChats();
-await loadGroups();
-await loadAnnouncements();
-await loadNotifications();
-loading.style.display="none";
-dashboard.style.display="block";
-// Keep the personalized welcome screen visible until this student presses Welcome.
-welcomeEnterBtn.disabled=false;
-setTimeout(()=>requestPhoneNotifications().catch(()=>{}),900);
-startRealtimeAnnouncements();
-startRealtimeNotifications();
-startRealtimeGroups();
-}catch(error){console.error("Dashboard error:",error);loading.innerHTML=`<div class="error">Unable to load your dashboard.<br><br>${escapeHTML(error.message||"Unknown error")}</div>`}
+  if(!user){
+    window.location.replace("login.html");
+    return;
+  }
+
+  currentUser=user;
+  welcomeScreen.style.display="flex";
+  welcomeScreen.classList.remove("hidden");
+  welcomeScreen.setAttribute("aria-hidden","false");
+  document.body.classList.add("welcome-open");
+  dashboard.style.display="none";
+  loading.style.display="block";
+
+  try{
+    await loadStudentProfile();
+    welcomeEnterBtn.disabled=false;
+    loading.style.display="none";
+
+    // Load every dashboard section independently.
+    const safeLoad=async(fn,label)=>{try{await fn()}catch(error){console.error(label+" error:",error)}};
+    await Promise.all([
+      safeLoad(loadProgress,"Progress"),
+      safeLoad(loadAssignedFaculty,"Faculty"),
+      safeLoad(loadChats,"Chats"),
+      safeLoad(loadGroups,"Groups"),
+      safeLoad(loadAnnouncements,"Announcements"),
+      safeLoad(loadNotifications,"Notifications")
+    ]);
+
+    try{await requestPhoneNotifications()}catch(error){console.warn(error)}
+    startRealtimeAnnouncements();
+    startRealtimeNotifications();
+    startRealtimeGroups();
+  }catch(error){
+    console.error("Student dashboard setup error:",error);
+    // Never let an error prevent the Welcome button from opening the dashboard.
+    loading.style.display="none";
+    dashboard.style.display="block";
+    welcomeEnterBtn.disabled=false;
+  }
 });
 
 async function loadStudentProfile(){
-const userSnap=await getDoc(doc(db,"users",currentUser.uid));
-if(!userSnap.exists())throw new Error("Student profile not found in Firestore.");
-currentUserData=userSnap.data()||{};
-const role=String(currentUserData.role||"").trim().toLowerCase();
-if(role!=="student")throw new Error("This account is not registered as a student.");
+  let userData={};
+  let studentData={};
 
-// The registration name is read from the authenticated user's Firestore profile.
-// This guarantees: registration name "Max" -> "Welcome, Max".
-const name=String(currentUserData.name||currentUserData.displayName||currentUser?.displayName||"Student").trim()||"Student";
-const studentId=currentUserData.studentId||"Not assigned";
-const email=currentUserData.email||currentUser?.email||"Not available";
-const phone=currentUserData.phone||"Not available";
-const course=currentUserData.course||"Not assigned";
+  // The registration name normally lives in users/{uid}.
+  // Also check students/{uid} as a safe fallback.
+  const [userSnap,studentSnap]=await Promise.allSettled([
+    getDoc(doc(db,"users",currentUser.uid)),
+    getDoc(doc(db,"students",currentUser.uid))
+  ]);
 
-$("headerStudentName").textContent=name;
-$("welcomeLoginName").textContent=name;
-$("welcomeName").textContent=name;
-$("welcomeStudentId").textContent="Student ID: "+studentId;
-$("profileName").textContent=name;
-$("profileRole").textContent="Student • "+course;
-$("studentId").textContent=studentId;
-$("studentEmail").textContent=email;
-$("studentPhone").textContent=phone;
-$("studentCourse").textContent=course;
+  if(userSnap.status==="fulfilled" && userSnap.value.exists()){
+    userData=userSnap.value.data()||{};
+  }
+  if(studentSnap.status==="fulfilled" && studentSnap.value.exists()){
+    studentData=studentSnap.value.data()||{};
+  }
 
-const photo=currentUserData.photoURL||currentUserData.photo||"";
-if(photo){
-  $("profilePhoto").innerHTML=`<img src="${escapeHTML(photo)}" alt="Student Photo">`;
-}else{
-  $("profilePhoto").innerHTML="🎓";
-}
+  if(!Object.keys(userData).length && !Object.keys(studentData).length){
+    throw new Error("Student profile not found in Firestore.");
+  }
+
+  currentUserData={...studentData,...userData};
+
+  const role=String(currentUserData.role||"student").trim().toLowerCase();
+  if(role && role!=="student")throw new Error("This account is not registered as a student.");
+
+  // Registration name -> Welcome, Max
+  const name=String(
+    userData.name ||
+    studentData.name ||
+    userData.displayName ||
+    studentData.displayName ||
+    currentUser.displayName ||
+    "Student"
+  ).trim() || "Student";
+
+  const studentId=currentUserData.studentId||studentData.studentId||"Not assigned";
+  const email=currentUserData.email||currentUser.email||"Not available";
+  const phone=currentUserData.phone||"Not available";
+  const course=currentUserData.course||"Not assigned";
+
+  $("headerStudentName").textContent=name;
+  $("welcomeLoginName").textContent=name;
+  $("welcomeName").textContent=name;
+  $("welcomeStudentId").textContent="Student ID: "+studentId;
+  $("profileName").textContent=name;
+  $("profileRole").textContent="Student • "+course;
+  $("studentId").textContent=studentId;
+  $("studentEmail").textContent=email;
+  $("studentPhone").textContent=phone;
+  $("studentCourse").textContent=course;
+
+  const photo=currentUserData.photoURL||currentUserData.photo||"";
+  if(photo){
+    $("profilePhoto").innerHTML=`<img src="${escapeHTML(photo)}" alt="Student Photo">`;
+  }else{
+    $("profilePhoto").innerHTML="🎓";
+  }
 }
 
 async function handleProfilePhotoChange(event){const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith("image/")){photoStatus.textContent="Please select an image.";return}photoStatus.textContent="Saving photo...";try{const dataUrl=await compressImage(file,700,.72);profilePhoto.innerHTML=`<img src="${escapeHTML(dataUrl)}" alt="Student Photo">`;await setDoc(doc(db,"users",currentUser.uid),{photoURL:dataUrl,photo:dataUrl,profileUpdatedAt:serverTimestamp()},{merge:true});currentUserData.photoURL=dataUrl;currentUserData.photo=dataUrl;photoStatus.textContent="Photo saved";setTimeout(()=>photoStatus.textContent="",2500)}catch(error){console.error("Profile photo error",error);photoStatus.textContent="Unable to save photo.";alert("Profile photo could not be saved.")}}
-function compressImage(file,maxSize=700,quality=.72){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=()=>reject(new Error("Unable to read image."));reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error("Invalid image."));img.onload=()=>{let w=img.width,h=img.height;if(Math.max(w,h)>maxSize){const scale=maxSize/Math.max(w,h);w=Math.round(w*scale);h=Math.round(h*scale)}const canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,w,h);resolve(canvas.toDataURL("image/jpeg",quality))};img.src=reader.result}};reader.readAsDataURL(file)})}
+function compressImage(file,maxSize=700,quality=.72){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onerror=()=>reject(new Error("Unable to read image."));
+    reader.onload=()=>{
+      const img=new Image();
+      img.onerror=()=>reject(new Error("Invalid image."));
+      img.onload=()=>{
+        let w=img.width,h=img.height;
+        if(Math.max(w,h)>maxSize){
+          const scale=maxSize/Math.max(w,h);
+          w=Math.round(w*scale);
+          h=Math.round(h*scale);
+        }
+        const canvas=document.createElement("canvas");
+        canvas.width=w;
+        canvas.height=h;
+        const ctx=canvas.getContext("2d");
+        if(!ctx){reject(new Error("Canvas is not available."));return}
+        ctx.drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL("image/jpeg",quality));
+      };
+      img.src=reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
 async function loadProgress(){let percent=0;let source="Default progress";try{const snap=await getDoc(doc(db,"studentProgress",currentUser.uid));if(snap.exists()){const data=snap.data()||{};percent=extractProgress(data);source="Student progress record"}}catch(error){console.warn("Progress load error",error)}percent=Math.max(0,Math.min(100,Number(percent)||0));const circle=$("progressCircle");const radius=58;const circumference=2*Math.PI*radius;circle.style.strokeDasharray=String(circumference);circle.style.strokeDashoffset=String(circumference-(percent/100)*circumference);$("progressPercent").textContent=Math.round(percent)+"%";$("progressSource").textContent="Progress: "+Math.round(percent)+"% • "+source}
 function extractProgress(data){const keys=["percentage","percent","progress","progressPercentage","completion","completionPercentage","completedPercentage"];for(const key of keys){const value=data[key];if(typeof value==="number"&&!Number.isNaN(value))return value;if(typeof value==="string"&&value.trim()!==""){const n=parseFloat(value);if(!Number.isNaN(n))return n}}if(typeof data.completed==="number"&&typeof data.total==="number"&&data.total>0)return (data.completed/data.total)*100;if(typeof data.completedLessons==="number"&&typeof data.totalLessons==="number"&&data.totalLessons>0)return (data.completedLessons/data.totalLessons)*100;return 0}
 
