@@ -92,7 +92,11 @@ function showToast(title,body){const el=document.createElement("div");el.classNa
 async function requestPhoneNotifications(){try{if(!("Notification" in window)){showToast("Notifications","Your app WebView does not expose the browser Notification API. Native app push setup is required for background phone notifications.");return false}if(Notification.permission==="granted")return true;const result=await Notification.requestPermission();if(result==="granted"){showToast("Notifications enabled","New mentor/faculty announcements, group messages and meeting notices can now alert you while this page is active.");return true}showToast("Notifications blocked","Enable notifications from your browser/app settings.");return false}catch(error){console.warn("Notification permission error",error);return false}}
 function sendPhoneNotification(title,body,tag="rmd-student"){showToast(title,body);try{if(window.AndroidBridge&&typeof window.AndroidBridge.showNotification==="function"){window.AndroidBridge.showNotification(String(title),String(body),String(tag));return true}}catch(error){console.warn("AndroidBridge notification error",error)}try{if("Notification" in window&&Notification.permission==="granted"){new Notification(title,{body,tag}) ;return true}}catch(error){console.warn("Browser notification error",error)}return false}
 
-welcomeEnterBtn.addEventListener("click",()=>{welcomeScreen.style.display="none";document.body.classList.remove("welcome-open");window.scrollTo({top:0,behavior:"smooth"})});
+welcomeEnterBtn.addEventListener("click",()=>{
+welcomeScreen.style.display="none";
+document.body.classList.remove("welcome-open");
+window.scrollTo({top:0,behavior:"smooth"});
+});
 changePhotoBtn.addEventListener("click",()=>profilePhotoInput.click());
 profilePhotoInput.addEventListener("change",handleProfilePhotoChange);
 notificationBtn.addEventListener("click",requestPhoneNotifications);
@@ -100,8 +104,11 @@ logoutBtn.addEventListener("click",async()=>{try{await signOut(auth);window.loca
 profileBtn.addEventListener("click",()=>{window.location.href="student-profile.html"});
 
 onAuthStateChanged(auth,async user=>{
-if(!user){window.location.href="login.html";return}
+if(!user){window.location.replace("login.html");return}
 currentUser=user;
+// Always reset the welcome screen for the currently logged-in student.
+welcomeScreen.style.display="flex";
+document.body.classList.add("welcome-open");
 try{
 await loadStudentProfile();
 await loadProgress();
@@ -110,7 +117,10 @@ await loadChats();
 await loadGroups();
 await loadAnnouncements();
 await loadNotifications();
-loading.style.display="none";dashboard.style.display="block";
+loading.style.display="none";
+dashboard.style.display="block";
+// Keep the personalized welcome screen visible until this student presses Welcome.
+welcomeEnterBtn.disabled=false;
 setTimeout(()=>requestPhoneNotifications().catch(()=>{}),900);
 startRealtimeAnnouncements();
 startRealtimeNotifications();
@@ -118,7 +128,39 @@ startRealtimeGroups();
 }catch(error){console.error("Dashboard error:",error);loading.innerHTML=`<div class="error">Unable to load your dashboard.<br><br>${escapeHTML(error.message||"Unknown error")}</div>`}
 });
 
-async function loadStudentProfile(){const snap=await getDoc(doc(db,"users",currentUser.uid));if(!snap.exists())throw new Error("Student profile not found in Firestore.");currentUserData=snap.data();const role=String(currentUserData.role||"").trim().toLowerCase();if(role!=="student")throw new Error("This account is not registered as a student.");const name=currentUserData.name||currentUserData.displayName||"Student",studentId=currentUserData.studentId||"Not assigned",email=currentUserData.email||"Not available",phone=currentUserData.phone||"Not available",course=currentUserData.course||"Not assigned";$("headerStudentName").textContent=name;$("welcomeLoginName").textContent=name;$("welcomeName").textContent=name;$("welcomeStudentId").textContent="Student ID: "+studentId;$("profileName").textContent=name;$("profileRole").textContent="Student • "+course;$("studentId").textContent=studentId;$("studentEmail").textContent=email;$("studentPhone").textContent=phone;$("studentCourse").textContent=course;const photo=currentUserData.photoURL||currentUserData.photo||"";if(photo)$("profilePhoto").innerHTML=`<img src="${escapeHTML(photo)}" alt="Student Photo">`}
+async function loadStudentProfile(){
+const userSnap=await getDoc(doc(db,"users",currentUser.uid));
+if(!userSnap.exists())throw new Error("Student profile not found in Firestore.");
+currentUserData=userSnap.data()||{};
+const role=String(currentUserData.role||"").trim().toLowerCase();
+if(role!=="student")throw new Error("This account is not registered as a student.");
+
+// The registration name is read from the authenticated user's Firestore profile.
+// This guarantees: registration name "Max" -> "Welcome, Max".
+const name=String(currentUserData.name||currentUserData.displayName||currentUser?.displayName||"Student").trim()||"Student";
+const studentId=currentUserData.studentId||"Not assigned";
+const email=currentUserData.email||currentUser?.email||"Not available";
+const phone=currentUserData.phone||"Not available";
+const course=currentUserData.course||"Not assigned";
+
+$("headerStudentName").textContent=name;
+$("welcomeLoginName").textContent=name;
+$("welcomeName").textContent=name;
+$("welcomeStudentId").textContent="Student ID: "+studentId;
+$("profileName").textContent=name;
+$("profileRole").textContent="Student • "+course;
+$("studentId").textContent=studentId;
+$("studentEmail").textContent=email;
+$("studentPhone").textContent=phone;
+$("studentCourse").textContent=course;
+
+const photo=currentUserData.photoURL||currentUserData.photo||"";
+if(photo){
+  $("profilePhoto").innerHTML=`<img src="${escapeHTML(photo)}" alt="Student Photo">`;
+}else{
+  $("profilePhoto").innerHTML="🎓";
+}
+}
 
 async function handleProfilePhotoChange(event){const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith("image/")){photoStatus.textContent="Please select an image.";return}photoStatus.textContent="Saving photo...";try{const dataUrl=await compressImage(file,700,.72);profilePhoto.innerHTML=`<img src="${escapeHTML(dataUrl)}" alt="Student Photo">`;await setDoc(doc(db,"users",currentUser.uid),{photoURL:dataUrl,photo:dataUrl,profileUpdatedAt:serverTimestamp()},{merge:true});currentUserData.photoURL=dataUrl;currentUserData.photo=dataUrl;photoStatus.textContent="Photo saved";setTimeout(()=>photoStatus.textContent="",2500)}catch(error){console.error("Profile photo error",error);photoStatus.textContent="Unable to save photo.";alert("Profile photo could not be saved.")}}
 function compressImage(file,maxSize=700,quality=.72){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=()=>reject(new Error("Unable to read image."));reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error("Invalid image."));img.onload=()=>{let w=img.width,h=img.height;if(Math.max(w,h)>maxSize){const scale=maxSize/Math.max(w,h);w=Math.round(w*scale);h=Math.round(h*scale)}const canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,w,h);resolve(canvas.toDataURL("image/jpeg",quality))};img.src=reader.result}};reader.readAsDataURL(file)})}
