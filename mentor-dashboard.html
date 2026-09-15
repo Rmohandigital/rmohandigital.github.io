@@ -2,1581 +2,191 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Mentor Dashboard | R Mohan Digital</title>
-
 <style>
-
-/* ==============================
-   RESET
-============================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    min-height:100vh;
-
-    /* CHANGE ONLY BACKGROUND IMAGE HERE */
-    background:
-        linear-gradient(
-            rgba(240,250,240,0.18),
-            rgba(240,250,240,0.10)
-        ),
-        url("background.jpg");
-
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-
-    color:#183d2b;
-}
-
-
-/* ==============================
-   SIDEBAR
-============================== */
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-
-    width:220px;
-    height:100vh;
-
-    padding:20px 10px;
-
-    background:rgba(245,250,242,0.78);
-
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-
-    border-right:1px solid rgba(50,100,60,0.15);
-
-    z-index:1000;
-
-    overflow-y:auto;
-}
-
-
-/* LOGO */
-
-.logo{
-    text-align:center;
-    padding-bottom:20px;
-    border-bottom:1px solid rgba(40,90,50,0.15);
-}
-
-.logo-circle{
-    width:54px;
-    height:54px;
-
-    margin:0 auto 10px;
-
-    border:2px solid #315d43;
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:17px;
-    font-weight:bold;
-
-    color:#183d2b;
-}
-
-.logo h2{
-    font-size:17px;
-    color:#183d2b;
-    margin-bottom:5px;
-}
-
-.logo p{
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:1.5px;
-    color:#476453;
-}
-
-
-/* MENU */
-
-.menu{
-    margin-top:15px;
-}
-
-.menu button{
-    width:100%;
-
-    padding:13px 12px;
-    margin:3px 0;
-
-    border:none;
-    border-radius:10px;
-
-    background:transparent;
-
-    text-align:left;
-
-    font-size:14px;
-
-    color:#183d2b;
-
-    cursor:pointer;
-
-    transition:0.25s;
-}
-
-.menu button:hover{
-    background:rgba(190,220,195,0.65);
-    color:#0d6334;
-}
-
-.menu button.active{
-    background:rgba(190,220,195,0.82);
-    color:#145c34;
-    font-weight:bold;
-}
-
-
-/* ==============================
-   MAIN AREA
-============================== */
-
-.main{
-    margin-left:220px;
-    min-height:100vh;
-    padding:25px;
-}
-
-
-/* ==============================
-   TOP BAR
-============================== */
-
-.topbar{
-    min-height:65px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:20px;
-
-    color:#123d2a;
-}
-
-.topbar h1{
-    font-size:27px;
-    color:#123d2a;
-}
-
-
-/* OWNER */
-
-.owner-area{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.profile-photo{
-    width:42px;
-    height:42px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
-    border:2px solid #ffffff;
-
-    background:#dcebdc;
-
-    cursor:pointer;
-}
-
-.owner-info{
-    display:flex;
-    flex-direction:column;
-    gap:3px;
-}
-
-.owner-info span:first-child{
-    font-weight:bold;
-    color:#183d2b;
-}
-
-.owner-info span:last-child{
-    font-size:11px;
-    color:#496153;
-}
-
-
-/* LOGOUT */
-
-.logout{
-    border:none;
-    padding:10px 17px;
-
-    border-radius:10px;
-
-    background:#287542;
-    color:white;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:0.25s;
-}
-
-.logout:hover{
-    background:#1d5c32;
-}
-
-
-/* ==============================
-   COMMON GLASS EFFECT
-============================== */
-
-.welcome,
-.stat-card,
-.panel,
-.profile-settings{
-    background:rgba(255,255,255,0.82);
-
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-
-    border:1px solid rgba(70,110,75,0.15);
-
-    box-shadow:
-        0 5px 18px rgba(40,70,45,0.12);
-
-    border-radius:15px;
-}
-
-
-/* ==============================
-   WELCOME
-============================== */
-
-.welcome{
-    padding:25px;
-    margin-bottom:18px;
-}
-
-.welcome h2{
-    color:#123d2a;
-    font-size:22px;
-    margin-bottom:8px;
-}
-
-.welcome h2 span{
-    color:#126b3a;
-}
-
-.welcome p{
-    color:#456052;
-    font-size:14px;
-    line-height:1.5;
-}
-
-
-/* ==============================
-   STATISTICS
-============================== */
-
-.stats{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap:15px;
-
-    margin-bottom:20px;
-}
-
-.stat-card{
-    padding:20px;
-
-    min-height:145px;
-}
-
-.stat-icon{
-    font-size:25px;
-    margin-bottom:10px;
-}
-
-.stat-card h3{
-    font-size:26px;
-    color:#126b3a;
-    margin-bottom:5px;
-}
-
-.stat-card p{
-    color:#53645a;
-    font-size:14px;
-}
-
-
-/* ==============================
-   CONTENT GRID
-============================== */
-
-.content-grid{
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:18px;
-
-    margin-bottom:20px;
-}
-
-
-/* ==============================
-   PANELS
-============================== */
-
-.panel{
-    padding:20px;
-}
-
-.panel-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:18px;
-
-    padding-bottom:12px;
-
-    border-bottom:1px solid rgba(50,90,55,0.12);
-}
-
-.panel-header h2{
-    font-size:19px;
-    color:#173f2b;
-}
-
-.panel-header span{
-    font-size:12px;
-    color:#527060;
-}
-
-
-/* ==============================
-   LOADING
-============================== */
-
-.loading{
-    text-align:center;
-    padding:25px;
-
-    color:#617067;
-    font-size:14px;
-}
-
-
-/* ==============================
-   QUICK ACTIONS
-============================== */
-
-.actions{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap:12px;
-}
-
-.action-btn{
-    border:1px solid rgba(60,100,65,0.15);
-
-    border-radius:12px;
-
-    padding:18px 10px;
-
-    background:rgba(247,251,247,0.85);
-
-    color:#174b32;
-
-    cursor:pointer;
-
-    transition:0.25s;
-}
-
-.action-btn:hover{
-    background:rgba(210,235,214,0.9);
-
-    transform:translateY(-2px);
-
-    color:#126b3a;
-}
-
-.action-btn div{
-    font-size:25px;
-    margin-bottom:8px;
-}
-
-.action-btn span{
-    font-size:13px;
-    font-weight:bold;
-    color:#315844;
-}
-
-
-/* ==============================
-   RECENT USERS
-============================== */
-
-.recent-users{
-    margin-bottom:25px;
-}
-
-.user-item{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    padding:14px 5px;
-
-    border-bottom:1px solid rgba(50,90,55,0.12);
-}
-
-.user-item:last-child{
-    border-bottom:none;
-}
-
-.user-name{
-    font-size:14px;
-    font-weight:bold;
-    color:#174b32;
-}
-
-.user-role{
-    margin-top:4px;
-
-    font-size:12px;
-
-    color:#64736a;
-}
-
-.user-status{
-    padding:6px 12px;
-
-    border-radius:20px;
-
-    background:rgba(198,232,203,0.75);
-
-    color:#16733b;
-
-    font-size:11px;
-    font-weight:bold;
-}
-
-
-/* ==============================
-   PROFILE SETTINGS
-============================== */
-
-.profile-settings{
-    display:none;
-
-    padding:22px;
-
-    margin-bottom:20px;
-}
-
-.profile-settings.show{
-    display:block;
-}
-
-.profile-settings h2{
-    color:#173f2b;
-    margin-bottom:15px;
-}
-
-.profile-form{
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:12px;
-
-    margin-bottom:15px;
-}
-
-.profile-form input{
-    width:100%;
-
-    padding:12px 14px;
-
-    border:1px solid rgba(50,90,55,0.20);
-
-    border-radius:9px;
-
-    outline:none;
-
-    background:rgba(255,255,255,0.9);
-
-    color:#183d2b;
-
-    font-size:14px;
-}
-
-.profile-form input:focus{
-    border-color:#579267;
-}
-
-
-/* PROFILE BUTTONS */
-
-.profile-buttons{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.change-photo-btn,
-.save-btn{
-    border:none;
-
-    padding:10px 15px;
-
-    border-radius:9px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:0.25s;
-}
-
-.change-photo-btn{
-    background:#dceedd;
-    color:#245538;
-}
-
-.change-photo-btn:hover{
-    background:#c9e5cc;
-}
-
-.save-btn{
-    background:#287542;
-    color:white;
-}
-
-.save-btn:hover{
-    background:#1e5e34;
-}
-
-
-/* ==============================
-   MOBILE MENU BUTTON
-============================== */
-
-.mobile-menu{
-    display:none;
-
-    position:fixed;
-
-    top:15px;
-    left:15px;
-
-    width:42px;
-    height:42px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,0.85);
-
-    color:#174b32;
-
-    font-size:22px;
-
-    cursor:pointer;
-
-    z-index:2000;
-}
-
-
-/* ==============================
-   MESSAGE
-============================== */
-
-.message-box{
-    position:fixed;
-
-    right:25px;
-    bottom:25px;
-
-    padding:14px 20px;
-
-    background:rgba(255,255,255,0.94);
-
-    color:#174b32;
-
-    border-left:4px solid #287542;
-
-    border-radius:10px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,0.15);
-
-    display:none;
-
-    z-index:5000;
-
-    font-size:14px;
-}
-
-.message-box.show{
-    display:block;
-}
-
-
-/* ==============================
-   RESPONSIVE
-============================== */
-
-@media(max-width:1000px){
-
-    .stats{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .content-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-
-@media(max-width:750px){
-
-    .sidebar{
-        transform:translateX(-100%);
-
-        transition:0.3s;
-    }
-
-    .sidebar.open{
-        transform:translateX(0);
-    }
-
-    .main{
-        margin-left:0;
-        padding:18px;
-    }
-
-    .mobile-menu{
-        display:block;
-    }
-
-    .topbar{
-        padding-left:55px;
-    }
-
-    .topbar h1{
-        font-size:21px;
-    }
-
-    .owner-info{
-        display:none;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .profile-form{
-        grid-template-columns:1fr;
-    }
-}
-
-
-@media(max-width:500px){
-
-    .topbar{
-        flex-wrap:wrap;
-        gap:10px;
-    }
-
-    .owner-area{
-        margin-left:auto;
-    }
-
-    .welcome{
-        padding:18px;
-    }
-
-    .welcome h2{
-        font-size:19px;
-    }
-
-    .actions{
-        grid-template-columns:1fr;
-    }
-
-    .panel{
-        padding:16px;
-    }
-}
-
+:root{--accent:#176b4b;--accent2:#0f4f39;--text:#12251c;--muted:#52665b;--glass:rgba(255,255,255,.70);--glass2:rgba(255,255,255,.52);--border:rgba(255,255,255,.62);--shadow:0 14px 40px rgba(0,0,0,.14);--danger:#a92f35;--page-filter:rgba(255,255,255,.06)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+html,body{min-height:100%;scroll-behavior:smooth}body{min-height:100vh;color:var(--text);background:#dfeee5;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(135deg,#ffd39c 0%,#f49a78 34%,#df6d73 65%,#7b829d 100%)}
+body:after{content:"☀  ·  ·  ·   𓅃  ·   𓅃";position:fixed;inset:auto 0 3% 0;text-align:center;font-size:40px;letter-spacing:25px;color:rgba(30,25,25,.35);z-index:-1;pointer-events:none}
+#wallpaper{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;display:none;filter:brightness(.96) saturate(1.06)}
+#wallpaperShade{position:fixed;inset:0;background:var(--page-filter);z-index:-1;pointer-events:none}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+/* WELCOME */
+#welcomeScreen{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,rgba(255,224,193,.92),rgba(222,169,206,.78),rgba(112,157,170,.72));transition:opacity .55s,visibility .55s}
+#welcomeScreen.hide{opacity:0;visibility:hidden;pointer-events:none}
+.welcome-card{width:min(680px,92vw);padding:55px 35px;text-align:center;border:1px solid rgba(255,255,255,.75);border-radius:30px;background:rgba(255,255,255,.38);backdrop-filter:blur(15px);box-shadow:0 25px 80px rgba(38,20,45,.22);position:relative;z-index:3}
+.welcome-card .mini-logo{width:64px;height:64px;border:2px solid currentColor;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;font-weight:800}
+.welcome-card h1{font-size:42px;margin-bottom:8px}.welcome-card h2{font-size:20px;font-weight:600;margin-bottom:12px}.welcome-card p{color:#3e4b46;margin-bottom:28px}.welcome-btn{border:0;padding:14px 32px;border-radius:999px;background:rgba(10,58,40,.88);color:#fff;font-weight:800;box-shadow:0 10px 25px rgba(0,0,0,.18)}
+.butterfly{position:absolute;font-size:30px;filter:drop-shadow(0 5px 8px rgba(0,0,0,.12));animation:fly 9s linear infinite}.b1{left:4%;top:18%;animation-delay:0s}.b2{left:78%;top:13%;animation-delay:2s}.b3{left:18%;top:72%;animation-delay:4s}.b4{left:86%;top:67%;animation-delay:6s}.b5{left:50%;top:5%;animation-delay:1s}@keyframes fly{0%{transform:translate(0,0) rotate(-8deg)}25%{transform:translate(65px,-45px) rotate(12deg)}50%{transform:translate(5px,-90px) rotate(-8deg)}75%{transform:translate(-70px,-35px) rotate(10deg)}100%{transform:translate(0,0) rotate(-8deg)}}
+/* APP */
+#app{display:none;min-height:100vh}.app-ready #app{display:block}
+.sidebar{position:fixed;left:0;top:0;width:230px;height:100vh;padding:18px 11px;background:rgba(255,255,255,.56);backdrop-filter:blur(16px);border-right:1px solid var(--border);z-index:1000;overflow-y:auto}.logo{text-align:center;padding:5px 0 18px;border-bottom:1px solid rgba(0,0,0,.10)}.logo-circle{width:54px;height:54px;border:2px solid currentColor;border-radius:50%;display:grid;place-items:center;margin:auto auto 9px;font-weight:800}.logo h2{font-size:16px}.logo p{font-size:10px;letter-spacing:1.5px;font-weight:800;color:var(--muted);margin-top:5px}
+.menu{margin-top:12px}.menu button{width:100%;border:0;background:transparent;color:var(--text);padding:12px 11px;margin:2px 0;border-radius:11px;text-align:left;font-size:13px;font-weight:600;transition:.2s}.menu button:hover,.menu button.active{background:rgba(255,255,255,.66);box-shadow:0 5px 15px rgba(0,0,0,.06)}.menu button.active{font-weight:800;color:var(--accent2)}
+.main{margin-left:230px;padding:22px;min-height:100vh}.topbar{height:64px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.topbar h1{font-size:27px}.owner-area{display:flex;align-items:center;gap:10px}.profile-photo{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #fff;background:rgba(255,255,255,.55);cursor:pointer}.owner-info{display:flex;flex-direction:column;gap:2px}.owner-info span:first-child{font-weight:800}.owner-info span:last-child{font-size:11px;color:var(--muted)}.logout{border:1px solid rgba(140,45,45,.25);background:rgba(255,255,255,.55);color:var(--danger);padding:10px 15px;border-radius:10px;font-weight:800}
+.page{display:none;animation:pageIn .25s ease}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.glass{background:var(--glass);backdrop-filter:blur(13px);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:17px}.welcome,.panel,.stat-card,.profile-settings{padding:21px;margin-bottom:17px}.welcome h2{font-size:23px;margin-bottom:7px}.welcome p,.muted{color:var(--muted);font-size:13px;line-height:1.5}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:17px}.stat-card{min-height:125px}.stat-icon{font-size:24px}.stat-card h3{font-size:27px;margin:10px 0 4px;color:var(--accent2)}.stat-card p{font-size:12px;color:var(--muted)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:17px}.panel-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid rgba(0,0,0,.10)}.panel-header h2{font-size:18px}.count{font-size:11px;color:var(--muted)}
+.list{display:grid;gap:9px}.item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-radius:11px;background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.45)}.item-main strong{display:block;font-size:13px}.item-main small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{border:0;border-radius:9px;padding:8px 11px;font-size:11px;font-weight:800;background:rgba(255,255,255,.68);color:var(--text)}.btn.primary{background:var(--accent);color:#fff}.btn.danger{background:rgba(169,47,53,.10);color:var(--danger)}.btn:hover{transform:translateY(-1px)}
+.empty,.loading{padding:25px;text-align:center;color:var(--muted);font-size:13px}.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;min-width:620px}.data-table th,.data-table td{text-align:left;padding:11px 9px;border-bottom:1px solid rgba(0,0,0,.09);font-size:12px}.data-table th{font-size:11px;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:800;color:var(--muted)}.field input,.field textarea,.field select{width:100%;padding:11px 12px;border:1px solid rgba(0,0,0,.14);border-radius:9px;background:rgba(255,255,255,.68);color:var(--text);outline:0}.field textarea{min-height:90px;resize:vertical}.profile-preview{width:86px;height:86px;border-radius:50%;object-fit:cover;border:3px solid #fff;background:rgba(255,255,255,.45);display:block;margin-bottom:10px}
+/* CHAT */
+.chat-layout{display:grid;grid-template-columns:280px 1fr;min-height:560px;overflow:hidden}.chat-list{border-right:1px solid rgba(0,0,0,.10);padding:15px}.chat-list h3{font-size:15px;margin-bottom:10px}.chat-person{width:100%;border:0;background:transparent;text-align:left;padding:11px;border-radius:10px;margin-bottom:3px}.chat-person:hover,.chat-person.selected{background:rgba(255,255,255,.65)}.chat-person strong{font-size:12px}.chat-person small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.chat-window{display:flex;flex-direction:column;min-width:0}.chat-head{padding:16px;border-bottom:1px solid rgba(0,0,0,.10)}.chat-head strong{font-size:14px}.chat-messages{flex:1;overflow:auto;padding:15px;min-height:390px;max-height:440px}.bubble{max-width:75%;padding:9px 12px;border-radius:13px;margin:6px 0;font-size:12px;line-height:1.4;background:rgba(255,255,255,.65)}.bubble.me{margin-left:auto;background:rgba(20,100,70,.16)}.bubble small{display:block;font-size:9px;color:var(--muted);margin-top:4px}.chat-compose{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(0,0,0,.10)}.chat-compose input{flex:1;padding:11px;border:1px solid rgba(0,0,0,.14);border-radius:10px;background:rgba(255,255,255,.7);outline:0}
+/* FLOATING WALLPAPER */
+.wallpaper-btn{position:fixed;right:24px;bottom:24px;width:58px;height:58px;border:0;border-radius:50%;background:rgba(15,79,57,.92);color:#fff;font-size:31px;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:3000}.wallpaper-btn:hover{transform:scale(1.06)}#wallpaperInput{display:none}
+.toast{position:fixed;right:22px;bottom:94px;padding:12px 16px;border-radius:11px;background:rgba(20,30,25,.90);color:#fff;font-size:12px;z-index:5000;display:none;box-shadow:var(--shadow)}.toast.show{display:block}
+.mobile-menu{display:none;position:fixed;top:13px;left:13px;width:42px;height:42px;border:0;border-radius:10px;background:rgba(255,255,255,.72);z-index:2200}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+@media(max-width:760px){.sidebar{transform:translateX(-100%);transition:.25s}.sidebar.open{transform:translateX(0)}.mobile-menu{display:block}.main{margin-left:0;padding:15px}.topbar{padding-left:55px}.topbar h1{font-size:20px}.owner-info{display:none}.stats{grid-template-columns:1fr 1fr}.chat-layout{grid-template-columns:1fr}.chat-list{border-right:0;border-bottom:1px solid rgba(0,0,0,.1);max-height:180px;overflow:auto}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.welcome-card h1{font-size:31px}}
+@media(max-width:480px){.stats{grid-template-columns:1fr}.topbar{height:auto;gap:10px;flex-wrap:wrap}.owner-area{margin-left:auto}.wallpaper-btn{right:15px;bottom:15px}.welcome-card{padding:42px 22px}}
 </style>
 </head>
-
-
 <body>
+<img id="wallpaper" alt="Background wallpaper">
+<div id="wallpaperShade"></div>
 
-
-<!-- ==============================
-     MOBILE MENU
-============================== -->
-
-<button class="mobile-menu" onclick="toggleSidebar()">
-    ☰
-</button>
-
-
-<!-- ==============================
-     SIDEBAR
-============================== -->
-
-<div class="sidebar" id="sidebar">
-
-    <div class="logo">
-
-        <div class="logo-circle">
-            RM
-        </div>
-
-        <h2>
-            R Mohan Digital
-        </h2>
-
-        <p>
-            MENTOR CENTER
-        </p>
-
-    </div>
-
-
-    <div class="menu">
-
-        <button class="active">
-            📊 &nbsp; Dashboard
-        </button>
-
-        <button onclick="showMessage('Student Requests')">
-            🎓 &nbsp; Student Requests
-        </button>
-
-        <button onclick="showMessage('Faculty Requests')">
-            ⏳ &nbsp; Faculty Requests
-        </button>
-
-        <button onclick="showMessage('Active Faculty')">
-            👨‍🏫 &nbsp; Active Faculty
-        </button>
-
-        <button onclick="showMessage('Faculty Management')">
-            📚 &nbsp; Faculty Management
-        </button>
-
-        <button onclick="showMessage('Chat')">
-            💬 &nbsp; Chat
-        </button>
-
-        <button onclick="showMessage('Announcements')">
-            📢 &nbsp; Announcements
-        </button>
-
-        <button onclick="showMessage('Chat Theme')">
-            🎨 &nbsp; Chat Theme
-        </button>
-
-        <button onclick="toggleProfile()">
-            👤 &nbsp; My Profile
-        </button>
-
-    </div>
-
+<div id="welcomeScreen">
+  <span class="butterfly b1">🦋</span><span class="butterfly b2">🦋</span><span class="butterfly b3">🦋</span><span class="butterfly b4">🦋</span><span class="butterfly b5">🦋</span>
+  <div class="welcome-card">
+    <div class="mini-logo">RM</div>
+    <h1>Welcome Geethika</h1>
+    <h2>Your world, your wish ✨</h2>
+    <p>Welcome to the R Mohan Digital Mentor Center.</p>
+    <button class="welcome-btn" id="enterBtn">Welcome</button>
+  </div>
 </div>
 
+<button class="mobile-menu" id="mobileMenu">☰</button>
+<div id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="logo"><div class="logo-circle">RM</div><h2>R Mohan Digital</h2><p>MENTOR CENTER</p></div>
+    <nav class="menu" id="menu">
+      <button class="active" data-page="dashboard">📊 &nbsp; Dashboard</button>
+      <button data-page="students">🎓 &nbsp; Student Requests</button>
+      <button data-page="facultyRequests">⏳ &nbsp; Faculty Requests</button>
+      <button data-page="activeFaculty">👨‍🏫 &nbsp; Active Faculty</button>
+      <button data-page="facultyManagement">📚 &nbsp; Faculty Management</button>
+      <button data-page="chat">💬 &nbsp; Chat</button>
+      <button data-page="announcements">📢 &nbsp; Announcements</button>
+      <button data-page="chatTheme">🎨 &nbsp; Chat Theme</button>
+      <button data-page="profile">👤 &nbsp; My Profile</button>
+    </nav>
+  </aside>
 
-<!-- ==============================
-     MAIN
-============================== -->
+  <main class="main">
+    <header class="topbar">
+      <h1>Mentor Dashboard</h1>
+      <div class="owner-area"><img id="topProfilePhoto" class="profile-photo" alt="Profile"><div class="owner-info"><span id="ownerName">Geethika</span><span id="ownerEmail">geethika3021@gmail.com</span></div><button class="logout" id="logoutBtn">Logout</button></div>
+    </header>
 
-<div class="main">
-
-
-    <!-- ==============================
-         TOP BAR
-    ============================== -->
-
-    <div class="topbar">
-
-        <h1>
-            Mentor Dashboard
-        </h1>
-
-
-        <div class="owner-area">
-
-            <img
-                src=""
-                id="topProfilePhoto"
-                class="profile-photo"
-                alt="Profile"
-                title="Change Profile Photo"
-                onclick="chooseProfilePhoto()"
-            >
-
-
-            <div class="owner-info">
-
-                <span id="ownerName">
-                    geethika
-                </span>
-
-                <span id="ownerEmail">
-                    geethika3021@gmail.com
-                </span>
-
-            </div>
-
-
-            <button
-                class="logout"
-                onclick="logout()"
-            >
-                Logout
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- ==============================
-         PROFILE SETTINGS
-    ============================== -->
-
-    <section
-        class="profile-settings"
-        id="profileSettings"
-    >
-
-        <h2>
-            My Profile
-        </h2>
-
-
-        <div class="profile-form">
-
-            <input
-                type="text"
-                id="profileName"
-                value="geethika"
-                placeholder="Your Name"
-            >
-
-
-            <input
-                type="email"
-                id="profileEmail"
-                value="geethika3021@gmail.com"
-                placeholder="Your Email"
-            >
-
-        </div>
-
-
-        <div class="profile-buttons">
-
-            <button
-                class="change-photo-btn"
-                onclick="chooseProfilePhoto()"
-            >
-                📷 Change Profile Photo
-            </button>
-
-
-            <button
-                class="save-btn"
-                onclick="saveProfile()"
-            >
-                💾 Save Profile
-            </button>
-
-        </div>
-
+    <section class="page active" id="page-dashboard">
+      <div class="welcome glass"><h2>Welcome, <span id="welcomeName">Geethika</span> 👩‍💼</h2><p>Manage students, faculty, groups, messages and announcements from one place.</p></div>
+      <div class="stats">
+        <div class="stat-card glass"><div class="stat-icon">🎓</div><h3 id="totalStudents">0</h3><p>Total Students</p></div>
+        <div class="stat-card glass"><div class="stat-icon">⏳</div><h3 id="pendingStudents">0</h3><p>Pending Students</p></div>
+        <div class="stat-card glass"><div class="stat-icon">👨‍🏫</div><h3 id="totalFaculty">0</h3><p>Faculty</p></div>
+        <div class="stat-card glass"><div class="stat-icon">💬</div><h3 id="totalChats">0</h3><p>Chats / Groups</p></div>
+      </div>
+      <div class="grid2">
+        <div class="panel glass"><div class="panel-header"><h2>Pending Faculty</h2><span class="count" id="pendingFacultyCount">0 pending</span></div><div id="dashboardPendingFaculty" class="list"><div class="loading">Loading...</div></div></div>
+        <div class="panel glass"><div class="panel-header"><h2>Quick Actions</h2><span class="count">Mentor</span></div><div class="actions"><button class="btn primary" data-page-jump="students">👥 Manage Students</button><button class="btn" data-page-jump="facultyManagement">📚 Faculty Management</button><button class="btn" data-page-jump="chat">💬 Open Chat</button><button class="btn" data-page-jump="announcements">📢 Announcement</button></div></div>
+      </div>
+      <div class="panel glass"><div class="panel-header"><h2>Recent Users</h2><span class="count">Live Firebase Data</span></div><div id="recentUsers" class="list"><div class="loading">Loading...</div></div></div>
     </section>
 
+    <section class="page" id="page-students"><div class="panel glass"><div class="panel-header"><h2>Student Requests</h2><span class="count" id="studentRequestCount">0</span></div><div id="studentRequests" class="list"><div class="loading">Loading students...</div></div></div></section>
 
-    <input
-        type="file"
-        id="profileInput"
-        accept="image/*"
-        style="display:none;"
-    >
+    <section class="page" id="page-facultyRequests"><div class="panel glass"><div class="panel-header"><h2>Faculty Requests</h2><span class="count" id="facultyRequestCount">0</span></div><div id="facultyRequests" class="list"><div class="loading">Loading faculty...</div></div></div></section>
 
+    <section class="page" id="page-activeFaculty"><div class="panel glass"><div class="panel-header"><h2>Active Faculty</h2><span class="count" id="activeFacultyCount">0 active</span></div><div id="activeFaculty" class="list"><div class="loading">Loading...</div></div></div></section>
 
+    <section class="page" id="page-facultyManagement"><div class="panel glass"><div class="panel-header"><h2>Faculty Management</h2><span class="count">Mentor access</span></div><div id="facultyManagement" class="list"><div class="loading">Loading...</div></div></div></section>
 
-    <!-- ==============================
-         WELCOME
-    ============================== -->
+    <section class="page" id="page-chat"><div class="chat-layout glass"><div class="chat-list"><h3>People</h3><div id="chatPeople"><div class="loading">Loading...</div></div></div><div class="chat-window"><div class="chat-head"><strong id="chatTitle">Select a person</strong><div class="muted" id="chatSubtitle">Private mentor chat</div></div><div class="chat-messages" id="chatMessages"><div class="empty">Select a faculty or student to start chatting.</div></div><div class="chat-compose"><input id="chatInput" placeholder="Type a message..." autocomplete="off"><button class="btn primary" id="sendChat">Send</button></div></div></div></section>
 
-    <section class="welcome">
+    <section class="page" id="page-announcements"><div class="grid2"><div class="panel glass"><div class="panel-header"><h2>Create Announcement</h2></div><div class="form-grid"><div class="field full"><label>Title</label><input id="announcementTitle" maxlength="100"></div><div class="field full"><label>Message</label><textarea id="announcementBody" maxlength="1000"></textarea></div><div class="field"><label>Audience</label><select id="announcementAudience"><option value="all">Everyone</option><option value="students">Students</option><option value="faculty">Faculty</option></select></div><div class="field" style="justify-content:end"><button class="btn primary" id="postAnnouncement">📢 Publish</button></div></div></div><div class="panel glass"><div class="panel-header"><h2>Announcements</h2></div><div id="announcementList" class="list"><div class="loading">Loading...</div></div></div></div></section>
 
-        <h2>
-            Welcome,
-            <span id="welcomeName">
-                geethika
-            </span>
-            👩‍💼
-        </h2>
+    <section class="page" id="page-chatTheme"><div class="panel glass"><div class="panel-header"><h2>Chat Theme</h2><span class="count">Saved on this device</span></div><p class="muted" style="margin-bottom:14px">Choose the chat bubble style used in your mentor dashboard.</p><div class="actions"><button class="btn" data-theme="green">🌿 Green</button><button class="btn" data-theme="blue">🌊 Blue</button><button class="btn" data-theme="purple">💜 Purple</button><button class="btn" data-theme="dark">🌙 Dark</button></div></div></section>
 
-
-        <p>
-            Manage students, faculty, groups,
-            messages and announcements from one place.
-        </p>
-
-    </section>
-
-
-
-    <!-- ==============================
-         STATISTICS
-    ============================== -->
-
-    <section class="stats">
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                🎓
-            </div>
-
-            <h3 id="totalStudents">
-                10
-            </h3>
-
-            <p>
-                Total Students
-            </p>
-
-        </div>
-
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                ⏳
-            </div>
-
-            <h3 id="pendingStudents">
-                0
-            </h3>
-
-            <p>
-                Pending Students
-            </p>
-
-        </div>
-
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                👨‍🏫
-            </div>
-
-            <h3 id="totalFaculty">
-                3
-            </h3>
-
-            <p>
-                Faculty
-            </p>
-
-        </div>
-
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                💬
-            </div>
-
-            <h3 id="totalChats">
-                0
-            </h3>
-
-            <p>
-                Chats / Groups
-            </p>
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- ==============================
-         CONTENT
-    ============================== -->
-
-    <section class="content-grid">
-
-
-        <!-- PENDING FACULTY -->
-
-        <div class="panel">
-
-            <div class="panel-header">
-
-                <h2>
-                    Pending Faculty
-                </h2>
-
-                <span id="pendingCount">
-                    0 pending
-                </span>
-
-            </div>
-
-
-            <div id="pendingFaculty">
-
-                <div class="loading">
-                    Loading faculty...
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- QUICK ACTIONS -->
-
-        <div class="panel">
-
-            <div class="panel-header">
-
-                <h2>
-                    Quick Actions
-                </h2>
-
-                <span>
-                    Mentor
-                </span>
-
-            </div>
-
-
-            <div class="actions">
-
-
-                <button
-                    class="action-btn"
-                    onclick="showMessage('Manage Students')"
-                >
-
-                    <div>
-                        👥
-                    </div>
-
-                    <span>
-                        Manage Students
-                    </span>
-
-                </button>
-
-
-
-                <button
-                    class="action-btn"
-                    onclick="showMessage('Faculty Management')"
-                >
-
-                    <div>
-                        📚
-                    </div>
-
-                    <span>
-                        Faculty Management
-                    </span>
-
-                </button>
-
-
-
-                <button
-                    class="action-btn"
-                    onclick="showMessage('Chat')"
-                >
-
-                    <div>
-                        💬
-                    </div>
-
-                    <span>
-                        Open Chat
-                    </span>
-
-                </button>
-
-
-
-                <button
-                    class="action-btn"
-                    onclick="showMessage('Announcements')"
-                >
-
-                    <div>
-                        📢
-                    </div>
-
-                    <span>
-                        Announcement
-                    </span>
-
-                </button>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ==============================
-         RECENT USERS
-    ============================== -->
-
-    <section class="panel recent-users">
-
-
-        <div class="panel-header">
-
-            <h2>
-                Recent Users
-            </h2>
-
-            <span>
-                Live Firebase Data
-            </span>
-
-        </div>
-
-
-
-        <div class="user-item">
-
-            <div>
-
-                <div class="user-name">
-                    Student User
-                </div>
-
-                <div class="user-role">
-                    Student
-                </div>
-
-            </div>
-
-            <div class="user-status">
-                Active
-            </div>
-
-        </div>
-
-
-
-        <div class="user-item">
-
-            <div>
-
-                <div class="user-name">
-                    Faculty User
-                </div>
-
-                <div class="user-role">
-                    Faculty
-                </div>
-
-            </div>
-
-            <div class="user-status">
-                Active
-            </div>
-
-        </div>
-
-
-
-        <div class="user-item">
-
-            <div>
-
-                <div class="user-name">
-                    Mentor User
-                </div>
-
-                <div class="user-role">
-                    Mentor
-                </div>
-
-            </div>
-
-            <div class="user-status">
-                Active
-            </div>
-
-        </div>
-
-
-    </section>
-
+    <section class="page" id="page-profile"><div class="profile-settings glass"><div class="panel-header"><h2>My Profile</h2><span class="count">Permanent Firebase profile</span></div><img id="profilePreview" class="profile-preview" alt="Profile"><div class="form-grid"><div class="field"><label>Name</label><input id="profileName" value="Geethika"></div><div class="field"><label>Email</label><input id="profileEmail" type="email" value="geethika3021@gmail.com"></div><div class="field"><label>Phone</label><input id="profilePhone" placeholder="Phone number"></div><div class="field"><label>Designation</label><input id="profileDesignation" value="Mentor"></div><div class="field full"><label>About</label><textarea id="profileAbout" placeholder="About you"></textarea></div></div><div class="actions" style="margin-top:13px"><button class="btn" id="profilePhotoBtn">📷 Change Profile Photo</button><button class="btn danger" id="removeProfileBtn">Remove Photo</button><button class="btn primary" id="saveProfileBtn">💾 Save Profile</button></div></div><input type="file" id="profileInput" accept="image/*" hidden></section>
+  </main>
 </div>
 
-
-
-<!-- ==============================
-     MESSAGE BOX
-============================== -->
-
-<div
-    class="message-box"
-    id="messageBox"
->
-</div>
-
-
-
-<!-- ==============================
-     JAVASCRIPT
-============================== -->
-
-<script>
-
-/* ==============================
-   SIDEBAR
-============================== */
-
-function toggleSidebar(){
-
-    const sidebar =
-        document.getElementById("sidebar");
-
-    sidebar.classList.toggle("open");
-
-}
-
-
-/* ==============================
-   MESSAGE
-============================== */
-
-function showMessage(message){
-
-    const box =
-        document.getElementById("messageBox");
-
-    box.textContent =
-        message + " selected";
-
-    box.classList.add("show");
-
-
-    setTimeout(function(){
-
-        box.classList.remove("show");
-
-    }, 2200);
-
-}
-
-
-/* ==============================
-   PROFILE
-============================== */
-
-function toggleProfile(){
-
-    const profile =
-        document.getElementById("profileSettings");
-
-    profile.classList.toggle("show");
-
-}
-
-
-/* ==============================
-   CHOOSE PROFILE PHOTO
-============================== */
-
-function chooseProfilePhoto(){
-
-    document
-        .getElementById("profileInput")
-        .click();
-
-}
-
-
-/* ==============================
-   PROFILE PHOTO PREVIEW
-============================== */
-
-document
-    .getElementById("profileInput")
-    .addEventListener(
-        "change",
-        function(event){
-
-            const file =
-                event.target.files[0];
-
-            if(!file){
-                return;
-            }
-
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                function(e){
-
-                    document
-                        .getElementById(
-                            "topProfilePhoto"
-                        )
-                        .src = e.target.result;
-
-
-                    localStorage.setItem(
-                        "profilePhoto",
-                        e.target.result
-                    );
-
-                };
-
-
-            reader.readAsDataURL(file);
-
-        }
-    );
-
-
-/* ==============================
-   SAVE PROFILE
-============================== */
-
-function saveProfile(){
-
-    const name =
-        document
-            .getElementById("profileName")
-            .value
-            .trim();
-
-
-    const email =
-        document
-            .getElementById("profileEmail")
-            .value
-            .trim();
-
-
-    if(name !== ""){
-
-        document
-            .getElementById("ownerName")
-            .textContent = name;
-
-
-        document
-            .getElementById("welcomeName")
-            .textContent = name;
-
-
-        localStorage.setItem(
-            "profileName",
-            name
-        );
-
-    }
-
-
-    if(email !== ""){
-
-        document
-            .getElementById("ownerEmail")
-            .textContent = email;
-
-
-        localStorage.setItem(
-            "profileEmail",
-            email
-        );
-
-    }
-
-
-    showMessage("Profile saved");
-
-}
-
-
-/* ==============================
-   LOAD PROFILE
-============================== */
-
-window.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        const savedName =
-            localStorage.getItem(
-                "profileName"
-            );
-
-
-        const savedEmail =
-            localStorage.getItem(
-                "profileEmail"
-            );
-
-
-        const savedPhoto =
-            localStorage.getItem(
-                "profilePhoto"
-            );
-
-
-        if(savedName){
-
-            document
-                .getElementById(
-                    "profileName"
-                )
-                .value = savedName;
-
-
-            document
-                .getElementById(
-                    "ownerName"
-                )
-                .textContent = savedName;
-
-
-            document
-                .getElementById(
-                    "welcomeName"
-                )
-                .textContent = savedName;
-
-        }
-
-
-        if(savedEmail){
-
-            document
-                .getElementById(
-                    "profileEmail"
-                )
-                .value = savedEmail;
-
-
-            document
-                .getElementById(
-                    "ownerEmail"
-                )
-                .textContent = savedEmail;
-
-        }
-
-
-        if(savedPhoto){
-
-            document
-                .getElementById(
-                    "topProfilePhoto"
-                )
-                .src = savedPhoto;
-
-        }
-
-    }
-);
-
-
-/* ==============================
-   LOGOUT
-============================== */
-
-function logout(){
-
-    const confirmLogout =
-        confirm(
-            "Are you sure you want to logout?"
-        );
-
-
-    if(confirmLogout){
-
-        showMessage("Logging out...");
-
-        /*
-          Add your Firebase logout code here
-          if you are using Firebase Authentication.
-
-          Example:
-
-          firebase.auth().signOut();
-        */
-
-    }
-
-}
-
+<button class="wallpaper-btn" id="wallpaperBtn" title="Change wallpaper">+</button>
+<input type="file" id="wallpaperInput" accept="image/*">
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteField, collection, query, where, orderBy, limit, onSnapshot, addDoc, serverTimestamp, getDocs } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+const firebaseConfig={apiKey:"AIzaSyDarA4FEnJ0Sg7cDxf8uPglDmrfZ6lgJ9I",authDomain:"r-mohan-digital-e4e4b.firebaseapp.com",projectId:"r-mohan-digital-e4e4b",storageBucket:"r-mohan-digital-e4e4b.firebasestorage.app",messagingSenderId:"56539770062",appId:"1:56539770062:web:0c815083264f74a189349f"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+let currentUser=null,currentProfile=null,selectedChatUid=null,selectedChatUnsub=null,unsubs=[];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+function toast(m){$("toast").textContent=m;$("toast").classList.add("show");clearTimeout(window.__toast);window.__toast=setTimeout(()=>$("toast").classList.remove("show"),2400)}
+function fmt(ts){if(!ts)return "";try{return new Date(ts.seconds*1000).toLocaleString()}catch{return ""}}
+function roleOf(d){return String(d?.role||"").trim().toLowerCase()}
+function statusOf(d){return String(d?.status||"").trim().toLowerCase()}
+function isActive(d){const s=statusOf(d);return s==="active"||s==="approved"||s===""||d?.active===true}
+
+/* NAVIGATION: only one page can ever be visible */
+function openPage(name){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const page=$("page-"+name);if(page)page.classList.add("active");document.querySelectorAll("#menu button[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));if(innerWidth<=760)$('sidebar').classList.remove('open');if(name==='chat')loadChatPeople();if(name==='announcements')loadAnnouncements();if(name==='activeFaculty')loadActiveFaculty();if(name==='facultyManagement')loadFacultyManagement();if(name==='facultyRequests')loadFacultyRequests();if(name==='students')loadStudentRequests();if(name==='profile')loadProfileFields()}
+document.querySelectorAll("#menu button[data-page]").forEach(b=>b.addEventListener("click",()=>openPage(b.dataset.page)));document.querySelectorAll("[data-page-jump]").forEach(b=>b.addEventListener("click",()=>openPage(b.dataset.pageJump)));$('mobileMenu').onclick=()=>$('sidebar').classList.toggle('open');
+
+/* WALLPAPER */
+function applyWallpaper(data){if(data){$('wallpaper').src=data;$('wallpaper').style.display='block';localStorage.setItem('mentorWallpaper',data)}else{$('wallpaper').style.display='none';localStorage.removeItem('mentorWallpaper')}}
+const savedWallpaper=localStorage.getItem('mentorWallpaper');if(savedWallpaper)applyWallpaper(savedWallpaper);
+function compressImage(file,max=1400,quality=.76){return new Promise((resolve,reject)=>{const r=new FileReader();r.onerror=()=>reject(new Error('Could not read image'));r.onload=e=>{const im=new Image();im.onerror=()=>reject(new Error('Invalid image'));im.onload=()=>{let w=im.width,h=im.height;if(w>max||h>max){const scale=Math.min(max/w,max/h);w=Math.round(w*scale);h=Math.round(h*scale)}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);resolve(c.toDataURL('image/jpeg',quality))};im.src=e.target.result};r.readAsDataURL(file)})}
+$('wallpaperBtn').onclick=()=>$('wallpaperInput').click();$('wallpaperInput').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;if(!f.type.startsWith('image/'))return toast('Please select an image.');try{const data=await compressImage(f,1600,.78);if(data.length>4000000)return toast('Image is too large. Choose another photo.');applyWallpaper(data);toast('Wallpaper changed and saved.')}catch(err){console.error(err);toast('Could not use this wallpaper.')}e.target.value=''};
+
+/* PROFILE */
+function setPhoto(url){const src=url||'';['topProfilePhoto','profilePreview'].forEach(id=>{if($(id))$(id).src=src||'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="#dbe9df"/><text x="50" y="58" text-anchor="middle" font-size="35">👤</text></svg>')})}
+function loadProfileFields(){if(!currentProfile)return;$("profileName").value=currentProfile.name||'Geethika';$("profileEmail").value=currentProfile.email||currentUser?.email||'geethika3021@gmail.com';$("profilePhone").value=currentProfile.phone||'';$("profileDesignation").value=currentProfile.designation||'Mentor';$("profileAbout").value=currentProfile.about||'';setPhoto(currentProfile.photoURL||'')}
+async function chooseProfile(){ $('profileInput').click() }
+$('profilePhotoBtn').onclick=chooseProfile;$('topProfilePhoto').onclick=chooseProfile;$('profileInput').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{const data=await compressImage(f,500,.72);$('profilePreview').src=data;$('profilePreview').dataset.pending=data;$('topProfilePhoto').src=data;toast('Photo selected. Click Save Profile.')}catch(err){console.error(err);toast('Could not read photo.')}e.target.value=''};
+$('removeProfileBtn').onclick=async()=>{if(!currentUser)return;try{await setDoc(doc(db,'users',currentUser.uid),{photoURL:deleteField(),updatedAt:serverTimestamp()},{merge:true});currentProfile.photoURL='';setPhoto('');toast('Profile photo removed.')}catch(e){console.error(e);toast('Could not remove photo.')}};
+$('saveProfileBtn').onclick=async()=>{if(!currentUser)return toast('Profile is still loading.');const updates={name:$('profileName').value.trim()||'Geethika',email:$('profileEmail').value.trim(),phone:$('profilePhone').value.trim(),designation:$('profileDesignation').value.trim()||'Mentor',about:$('profileAbout').value.trim(),updatedAt:serverTimestamp()};const pending=$('profilePreview').dataset.pending;if(pending)updates.photoURL=pending;try{$('saveProfileBtn').disabled=true;$('saveProfileBtn').textContent='Saving...';await setDoc(doc(db,'users',currentUser.uid),updates,{merge:true});currentProfile={...currentProfile,...updates,photoURL:pending||currentProfile.photoURL||''};delete $('profilePreview').dataset.pending;$('ownerName').textContent=updates.name;$('welcomeName').textContent=updates.name;$('ownerEmail').textContent=updates.email;setPhoto(currentProfile.photoURL);toast('Profile saved permanently.')}catch(e){console.error(e);toast('Profile save failed: '+(e.message||'Firestore error'))}finally{$('saveProfileBtn').disabled=false;$('saveProfileBtn').textContent='💾 Save Profile'}};
+
+/* FIRESTORE DATA */
+function listenStudents(){const q=query(collection(db,'students'));const unsub=onSnapshot(q,snap=>{const arr=snap.docs.map(d=>({id:d.id,...d.data()}));window.__students=arr;renderDashboardStats();renderRecentUsers();renderStudentRequests();},e=>{console.error(e);toast('Could not load students. Check Firestore rules.')});unsubs.push(unsub)}
+function listenUsers(){const q=query(collection(db,'users'));const unsub=onSnapshot(q,snap=>{const arr=snap.docs.map(d=>({id:d.id,...d.data()}));window.__users=arr;renderDashboardStats();renderRecentUsers();renderFacultyRequests();renderActiveFaculty();renderFacultyManagement();loadChatPeople();renderDashboardPendingFaculty();},e=>{console.error(e);toast('Could not load users. Check Firestore rules.')});unsubs.push(unsub)}
+function renderDashboardStats(){const students=window.__students||[],users=window.__users||[];const faculty=users.filter(u=>roleOf(u)==='faculty');const pendingStudents=students.filter(s=>statusOf(s)==='pending');$('totalStudents').textContent=students.length;$('pendingStudents').textContent=pendingStudents.length;$('totalFaculty').textContent=faculty.length;$('totalChats').textContent=users.filter(u=>['faculty','student'].includes(roleOf(u))).length}
+function userName(u){return u?.name||u?.displayName||u?.email||u?.id||'User'}
+function renderRecentUsers(){const users=[...(window.__users||[])].sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)).slice(0,8);$('recentUsers').innerHTML=users.length?users.map(u=>`<div class="item"><div class="item-main"><strong>${esc(userName(u))}</strong><small>${esc(u.role||'User')} · ${esc(u.email||'')}</small></div><span class="count">${esc(u.status||'Active')}</span></div>`).join(''):'<div class="empty">No users found.</div>'}
+function renderStudentRequests(){const arr=(window.__students||[]).filter(s=>statusOf(s)==='pending');$('studentRequestCount').textContent=arr.length+' pending';$('studentRequests').innerHTML=arr.length?arr.map(s=>`<div class="item"><div class="item-main"><strong>${esc(userName(s))}</strong><small>${esc(s.email||'')} · ${esc(s.phone||'')} · ${esc(s.course||'')}</small></div><div class="actions"><button class="btn primary" data-student-approve="${esc(s.id)}">Accept</button><button class="btn danger" data-student-reject="${esc(s.id)}">Reject</button></div></div>`).join(''):'<div class="empty">No pending student requests.</div>';bindStudentButtons()}
+function bindStudentButtons(){document.querySelectorAll('[data-student-approve]').forEach(b=>b.onclick=()=>changeStudentStatus(b.dataset.studentApprove,'Active'));document.querySelectorAll('[data-student-reject]').forEach(b=>b.onclick=()=>changeStudentStatus(b.dataset.studentReject,'Rejected'))}
+async function changeStudentStatus(id,status){try{await updateDoc(doc(db,'students',id),{status,reviewedBy:currentUser.uid,reviewedAt:serverTimestamp()});try{await updateDoc(doc(db,'users',id),{status})}catch(_){}toast('Student '+status.toLowerCase()+'.')}catch(e){console.error(e);toast('Could not update student: '+e.message)}}
+function facultyArr(){return (window.__users||[]).filter(u=>roleOf(u)==='faculty')}
+function renderDashboardPendingFaculty(){const arr=facultyArr().filter(u=>!isActive(u));$('pendingFacultyCount').textContent=arr.length+' pending';$('dashboardPendingFaculty').innerHTML=arr.length?arr.slice(0,5).map(f=>`<div class="item"><div class="item-main"><strong>${esc(userName(f))}</strong><small>${esc(f.email||'')}</small></div><div class="actions"><button class="btn primary" data-fac-accept="${esc(f.id)}">Accept</button><button class="btn danger" data-fac-reject="${esc(f.id)}">Reject</button></div></div>`).join(''):'<div class="empty">No pending faculty.</div>';bindFacultyButtons()}
+function renderFacultyRequests(){const arr=facultyArr().filter(u=>!isActive(u));$('facultyRequestCount').textContent=arr.length+' pending';$('facultyRequests').innerHTML=arr.length?arr.map(f=>facultyRow(f,true)).join(''):'<div class="empty">No pending faculty requests.</div>';bindFacultyButtons()}
+function renderActiveFaculty(){const arr=facultyArr().filter(isActive);$('activeFacultyCount').textContent=arr.length+' active';$('activeFaculty').innerHTML=arr.length?arr.map(f=>facultyRow(f,false)).join(''):'<div class="empty">No active faculty.</div>'}
+function renderFacultyManagement(){const arr=facultyArr();$('facultyManagement').innerHTML=arr.length?arr.map(f=>facultyRow(f,!isActive(f))).join(''):'<div class="empty">No faculty users found.</div>';bindFacultyButtons()}
+function facultyRow(f,pending){return `<div class="item"><div class="item-main"><strong>${esc(userName(f))}</strong><small>${esc(f.email||'')} · ${esc(f.phone||'')}</small></div><div class="actions">${pending?`<button class="btn primary" data-fac-accept="${esc(f.id)}">Accept</button>`:`<button class="btn danger" data-fac-disable="${esc(f.id)}">Disable</button>`}<span class="count">${esc(f.status||'Active')}</span></div></div>`}
+function bindFacultyButtons(){document.querySelectorAll('[data-fac-accept]').forEach(b=>b.onclick=()=>changeFacultyStatus(b.dataset.facAccept,'Active'));document.querySelectorAll('[data-fac-reject]').forEach(b=>b.onclick=()=>changeFacultyStatus(b.dataset.facReject,'Rejected'));document.querySelectorAll('[data-fac-disable]').forEach(b=>b.onclick=()=>changeFacultyStatus(b.dataset.facDisable,'Rejected'))}
+async function changeFacultyStatus(id,status){try{await updateDoc(doc(db,'users',id),{status,updatedAt:serverTimestamp()});toast('Faculty status changed to '+status)}catch(e){console.error(e);toast('Could not update faculty: '+e.message)}}
+
+/* CHAT */
+function chatPeople(){return (window.__users||[]).filter(u=>{const r=roleOf(u);return r==='faculty'||r==='student'})}
+function chatId(a,b){return [a,b].sort().join('_')}
+function loadChatPeople(){const arr=chatPeople();$('chatPeople').innerHTML=arr.length?arr.map(u=>`<button class="chat-person ${selectedChatUid===u.id?'selected':''}" data-chat-user="${esc(u.id)}"><strong>${esc(userName(u))}</strong><small>${esc(u.role||'User')}</small></button>`).join(''):'<div class="empty">No faculty or students available.</div>';document.querySelectorAll('[data-chat-user]').forEach(b=>b.onclick=()=>selectChat(b.dataset.chatUser))}
+async function selectChat(uid){selectedChatUid=uid;loadChatPeople();const person=chatPeople().find(x=>x.id===uid);$('chatTitle').textContent=userName(person);$('chatSubtitle').textContent=(person?.role||'User')+' · Private chat';if(selectedChatUnsub)selectedChatUnsub();const id=chatId(currentUser.uid,uid);const q=query(collection(db,'chats',id,'messages'),orderBy('createdAt','asc'),limit(100));selectedChatUnsub=onSnapshot(q,snap=>{const msgs=snap.docs.map(d=>({id:d.id,...d.data()}));$('chatMessages').innerHTML=msgs.length?msgs.map(m=>`<div class="bubble ${m.senderId===currentUser.uid?'me':''}">${esc(m.message)}<small>${esc(m.senderName||'')} · ${fmt(m.createdAt)}</small></div>`).join(''):'<div class="empty">No messages yet.</div>';$('chatMessages').scrollTop=$('chatMessages').scrollHeight},e=>{console.error(e);$('chatMessages').innerHTML='<div class="empty">Chat could not be loaded. Check Firestore rules.</div>'})}
+$('sendChat').onclick=sendChat;$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()});async function sendChat(){const text=$('chatInput').value.trim();if(!text||!selectedChatUid||!currentUser)return;const id=chatId(currentUser.uid,selectedChatUid);try{await setDoc(doc(db,'chats',id),{members:[currentUser.uid,selectedChatUid],type:'direct',updatedAt:serverTimestamp()},{merge:true});await addDoc(collection(db,'chats',id,'messages'),{senderId:currentUser.uid,senderName:$('ownerName').textContent,message:text,createdAt:serverTimestamp()});$('chatInput').value=''}catch(e){console.error(e);toast('Message failed: '+e.message)}}
+
+/* ANNOUNCEMENTS */
+function loadAnnouncements(){const q=query(collection(db,'announcements'),orderBy('createdAt','desc'),limit(30));onSnapshot(q,snap=>{$('announcementList').innerHTML=snap.docs.length?snap.docs.map(d=>{const a=d.data();return `<div class="item"><div class="item-main"><strong>${esc(a.title||'Announcement')}</strong><small>${esc(a.message||'')} · ${esc(a.audience||'all')} · ${fmt(a.createdAt)}</small></div>${a.createdBy===currentUser?.uid?`<button class="btn danger" data-del-ann="${d.id}">Delete</button>`:''}</div>`}).join(''):'<div class="empty">No announcements.</div>';document.querySelectorAll('[data-del-ann]').forEach(b=>b.onclick=()=>deleteAnnouncement(b.dataset.delAnn))},e=>{console.error(e);$('announcementList').innerHTML='<div class="empty">Could not load announcements.</div>'})}
+$('postAnnouncement').onclick=async()=>{const title=$('announcementTitle').value.trim(),message=$('announcementBody').value.trim(),audience=$('announcementAudience').value;if(!title||!message)return toast('Enter a title and message.');try{await addDoc(collection(db,'announcements'),{title,message,audience,createdBy:currentUser.uid,createdByName:$('ownerName').textContent,createdAt:serverTimestamp()});$('announcementTitle').value='';$('announcementBody').value='';toast('Announcement published.')}catch(e){console.error(e);toast('Could not publish: '+e.message)}};
+async function deleteAnnouncement(id){if(!confirm('Delete this announcement?'))return;try{await updateDoc(doc(db,'announcements',id),{deleted:true,deletedAt:serverTimestamp()});toast('Announcement marked deleted.')}catch(e){console.error(e);toast('Could not delete announcement.')}}
+
+/* CHAT THEME */
+const themes={green:['#176b4b','#0f4f39'],blue:['#1d5d88','#143e62'],purple:['#69408d','#4d2d6c'],dark:['#222','#111']};document.querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>{const t=themes[b.dataset.theme];document.documentElement.style.setProperty('--accent',t[0]);document.documentElement.style.setProperty('--accent2',t[1]);localStorage.setItem('mentorChatTheme',b.dataset.theme);toast('Chat theme saved.')});const savedTheme=localStorage.getItem('mentorChatTheme');if(savedTheme&&themes[savedTheme]){document.documentElement.style.setProperty('--accent',themes[savedTheme][0]);document.documentElement.style.setProperty('--accent2',themes[savedTheme][1])}
+
+/* AUTH */
+async function bootUser(user){currentUser=user;const snap=await getDoc(doc(db,'users',user.uid));if(!snap.exists()){toast('Mentor profile not found.');await signOut(auth);location.href='admin.html';return}currentProfile=snap.data();const role=roleOf(currentProfile);if(role!=='mentor'){toast('Mentor access required.');await signOut(auth);location.href='admin.html';return}if(!isActive(currentProfile)){toast('Mentor account is not active.');await signOut(auth);location.href='admin.html';return}const name=currentProfile.name||'Geethika',email=currentProfile.email||user.email||'geethika3021@gmail.com';$('ownerName').textContent=name;$('welcomeName').textContent=name;$('ownerEmail').textContent=email;loadProfileFields();$('welcomeScreen').querySelector('h1').textContent='Welcome '+name;document.body.classList.add('app-ready');listenStudents();listenUsers();$('enterBtn').onclick=()=>$('welcomeScreen').classList.add('hide')}
+onAuthStateChanged(auth,user=>{if(user)bootUser(user).catch(e=>{console.error(e);toast('Could not load mentor dashboard.');});else{location.href='admin.html'}});
+$('logoutBtn').onclick=async()=>{if(confirm('Are you sure you want to logout?')){unsubs.forEach(u=>u());if(selectedChatUnsub)selectedChatUnsub();await signOut(auth);location.href='admin.html'}};
 </script>
-
-
 </body>
 </html>
