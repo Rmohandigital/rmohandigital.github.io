@@ -2638,7 +2638,7 @@ document
             }
 
 
-            await updateDoc(
+            await setDoc(
 
                 doc(
                     db,
@@ -2646,7 +2646,11 @@ document
                     currentUser.uid
                 ),
 
-                updates
+                updates,
+
+                {
+                    merge:true
+                }
 
             );
 
