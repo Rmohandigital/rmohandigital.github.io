@@ -223,9 +223,107 @@ function listenUsers(){const q=query(collection(db,'users'));const unsub=onSnaps
 function renderDashboardStats(){const students=window.__students||[],users=window.__users||[];const faculty=users.filter(u=>roleOf(u)==='faculty');const pendingStudents=students.filter(s=>statusOf(s)==='pending');$('totalStudents').textContent=students.length;$('pendingStudents').textContent=pendingStudents.length;$('totalFaculty').textContent=faculty.length;$('totalChats').textContent=users.filter(u=>['faculty','student'].includes(roleOf(u))).length}
 function userName(u){return u?.name||u?.displayName||u?.email||u?.id||'User'}
 function renderRecentUsers(){const users=[...(window.__users||[])].sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)).slice(0,8);$('recentUsers').innerHTML=users.length?users.map(u=>`<div class="item"><div class="item-main"><strong>${esc(userName(u))}</strong><small>${esc(u.role||'User')} · ${esc(u.email||'')}</small></div><span class="count">${esc(u.status||'Active')}</span></div>`).join(''):'<div class="empty">No users found.</div>'}
-function renderStudentRequests(){const arr=(window.__students||[]).filter(s=>statusOf(s)==='pending');$('studentRequestCount').textContent=arr.length+' pending';$('studentRequests').innerHTML=arr.length?arr.map(s=>`<div class="item"><div class="item-main"><strong>${esc(userName(s))}</strong><small>${esc(s.email||'')} · ${esc(s.phone||'')} · ${esc(s.course||'')}</small></div><div class="actions"><button class="btn primary" data-student-approve="${esc(s.id)}">Accept</button><button class="btn danger" data-student-reject="${esc(s.id)}">Reject</button></div></div>`).join(''):'<div class="empty">No pending student requests.</div>';bindStudentButtons()}
-function bindStudentButtons(){document.querySelectorAll('[data-student-approve]').forEach(b=>b.onclick=()=>changeStudentStatus(b.dataset.studentApprove,'Active'));document.querySelectorAll('[data-student-reject]').forEach(b=>b.onclick=()=>changeStudentStatus(b.dataset.studentReject,'Rejected'))}
-async function changeStudentStatus(id,status){try{await updateDoc(doc(db,'students',id),{status,reviewedBy:currentUser.uid,reviewedAt:serverTimestamp()});try{await updateDoc(doc(db,'users',id),{status})}catch(_){}toast('Student '+status.toLowerCase()+'.')}catch(e){console.error(e);toast('Could not update student: '+e.message)}}
+function renderStudentRequests(){
+  const students=window.__students||[];
+  const pending=students.filter(s=>statusOf(s)==='pending');
+  const rejected=students.filter(s=>statusOf(s)==='rejected');
+  const acceptedUnassigned=students.filter(s=>(statusOf(s)==='active'||statusOf(s)==='approved')&&!getAssignedFacultyId(s));
+  const allVisible=[...pending,...acceptedUnassigned];
+  $('studentRequestCount').textContent=pending.length+' pending · '+acceptedUnassigned.length+' to assign';
+
+  if(!allVisible.length){
+    $('studentRequests').innerHTML='<div class="empty">No pending student requests and no accepted students waiting for faculty assignment.</div>';
+    return;
+  }
+
+  const faculty=facultyArr().filter(isActive);
+  $('studentRequests').innerHTML=allVisible.map(s=>{
+    const status=statusOf(s);
+    const assignedId=getAssignedFacultyId(s);
+    const assignedName=getAssignedFacultyName(s,assignedId);
+    const isPending=status==='pending';
+    const facultyOptions=faculty.length?faculty.map(f=>`<option value="${esc(f.id)}" ${assignedId===f.id?'selected':''}>${esc(userName(f))}</option>`).join(''):'<option value="">No active faculty available</option>';
+    return `<div class="item">
+      <div class="item-main">
+        <strong>${esc(userName(s))}</strong>
+        <small>${esc(s.email||'')} · ${esc(s.phone||'')} · ${esc(s.course||'')}</small>
+        <small>Status: ${esc(s.status||'Pending')}${assignedName?' · Faculty: '+esc(assignedName):''}</small>
+      </div>
+      <div class="actions">
+        ${isPending?`<button class="btn primary" data-student-approve="${esc(s.id)}">Accept</button><button class="btn danger" data-student-reject="${esc(s.id)}">Reject</button>`:''}
+        <select class="btn" data-faculty-select="${esc(s.id)}" ${!faculty.length?'disabled':''} style="min-width:170px">
+          <option value="">${assignedId?'Change Faculty':'Assign Faculty'}</option>
+          ${facultyOptions}
+        </select>
+        <button class="btn primary" data-assign-faculty="${esc(s.id)}" ${!faculty.length?'disabled':''}>${assignedId?'Update Faculty':'Assign'}</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  bindStudentButtons();
+}
+
+function getAssignedFacultyId(student){
+  return String(student?.facultyId||student?.assignedFaculty||student?.assignedFacultyId||'').trim();
+}
+
+function getAssignedFacultyName(student,facultyId){
+  return student?.assignedFacultyName || (window.__users||[]).find(u=>u.id===facultyId)?.name || '';
+}
+
+function bindStudentButtons(){
+  document.querySelectorAll('[data-student-approve]').forEach(b=>b.onclick=()=>changeStudentStatus(b.dataset.studentApprove,'Active'));
+  document.querySelectorAll('[data-student-reject]').forEach(b=>b.onclick=()=>changeStudentStatus(b.dataset.studentReject,'Rejected'));
+  document.querySelectorAll('[data-assign-faculty]').forEach(b=>b.onclick=()=>assignStudentFaculty(b.dataset.assignFaculty));
+}
+
+async function changeStudentStatus(id,status){
+  try{
+    await updateDoc(doc(db,'students',id),{status,reviewedBy:currentUser.uid,reviewedAt:serverTimestamp()});
+    try{await updateDoc(doc(db,'users',id),{status,reviewedBy:currentUser.uid,reviewedAt:serverTimestamp()})}catch(_){}
+    toast('Student '+status.toLowerCase()+'.');
+  }catch(e){
+    console.error(e);
+    toast('Could not update student: '+e.message);
+  }
+}
+
+async function assignStudentFaculty(studentId){
+  const select=document.querySelector(`[data-faculty-select="${CSS.escape(studentId)}"]`);
+  const facultyId=select?.value||'';
+  if(!facultyId){toast('Please select a faculty.');return}
+  const faculty=(window.__users||[]).find(u=>u.id===facultyId && roleOf(u)==='faculty');
+  if(!faculty){toast('Selected faculty was not found.');return}
+  const facultyName=userName(faculty);
+  const updates={
+    assignedFaculty:facultyId,
+    assignedFacultyId:facultyId,
+    facultyId:facultyId,
+    assignedFacultyName:facultyName,
+    facultyName:facultyName,
+    assignedBy:currentUser.uid,
+    assignedAt:serverTimestamp(),
+    status:'Active'
+  };
+  try{
+    await updateDoc(doc(db,'students',studentId),updates);
+    try{await updateDoc(doc(db,'users',studentId),updates)}catch(_){}
+    try{
+      await addDoc(collection(db,'notifications'),{
+        userId:studentId,
+        title:'Faculty Assigned',
+        message:`${facultyName} has been assigned as your faculty.`,
+        type:'faculty_assignment',
+        createdAt:serverTimestamp(),
+        createdBy:currentUser.uid
+      });
+    }catch(notificationError){console.warn('Student notification could not be created:',notificationError)}
+    toast(facultyName+' assigned to student.');
+  }catch(e){
+    console.error(e);
+    toast('Could not assign faculty: '+e.message);
+  }
+}
 function facultyArr(){return (window.__users||[]).filter(u=>roleOf(u)==='faculty')}
 function renderDashboardPendingFaculty(){const arr=facultyArr().filter(u=>!isActive(u));$('pendingFacultyCount').textContent=arr.length+' pending';$('dashboardPendingFaculty').innerHTML=arr.length?arr.slice(0,5).map(f=>`<div class="item"><div class="item-main"><strong>${esc(userName(f))}</strong><small>${esc(f.email||'')}</small></div><div class="actions"><button class="btn primary" data-fac-accept="${esc(f.id)}">Accept</button><button class="btn danger" data-fac-reject="${esc(f.id)}">Reject</button></div></div>`).join(''):'<div class="empty">No pending faculty.</div>';bindFacultyButtons()}
 function renderFacultyRequests(){const arr=facultyArr().filter(u=>!isActive(u));$('facultyRequestCount').textContent=arr.length+' pending';$('facultyRequests').innerHTML=arr.length?arr.map(f=>facultyRow(f,true)).join(''):'<div class="empty">No pending faculty requests.</div>';bindFacultyButtons()}
