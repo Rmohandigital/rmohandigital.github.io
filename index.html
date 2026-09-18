@@ -1063,7 +1063,11 @@ document.addEventListener("DOMContentLoaded", function () {
              */
             if (
                 this.classList.contains("mobile-menu-toggle") ||
-                this.getAttribute("aria-expanded") !== null
+                this.getAttribute("aria-expanded") !== null ||
+                this.id === "alex-launcher" ||
+                this.id === "alex-close" ||
+                this.id === "alex-send" ||
+                this.closest(".alex-quick")
             ) {
                 return;
             }
@@ -1359,13 +1363,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </style>
 
 <button id="alex-launcher" type="button" aria-label="Open Alex AI" title="Alex AI">
-    <img src="images/alex-ai-icon.png" alt="Alex AI">
+    <img src="alex-ai-icon.png" alt="Alex AI">
 </button>
 
 <div id="alex-chat" aria-hidden="true">
     <div class="alex-chat-head">
         <div class="alex-header-icon">
-            <img src="images/alex-ai-icon.png" alt="Alex AI">
+            <img src="alex-ai-icon.png" alt="Alex AI">
         </div>
         <div class="alex-head-text">
             <strong>Alex AI</strong>
