@@ -1157,6 +1157,335 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+
+<!-- ========================= ALEX AI ========================= -->
+<style>
+#alex-launcher{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:66px;
+    height:66px;
+    padding:0;
+    border:2px solid rgba(0,174,255,.85);
+    border-radius:50%;
+    background:#020914;
+    cursor:pointer;
+    z-index:9999;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(0,0,0,.28),0 0 25px rgba(0,174,255,.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+}
+#alex-launcher:hover{
+    transform:scale(1.06);
+    box-shadow:0 10px 35px rgba(0,0,0,.32),0 0 35px rgba(0,174,255,.7);
+}
+#alex-launcher img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+#alex-chat{
+    position:fixed;
+    right:24px;
+    bottom:102px;
+    width:380px;
+    max-width:calc(100vw - 32px);
+    height:540px;
+    background:#fff;
+    border:1px solid rgba(11,42,102,.14);
+    border-radius:20px;
+    overflow:hidden;
+    z-index:9998;
+    display:none;
+    flex-direction:column;
+    box-shadow:0 20px 65px rgba(0,0,0,.28);
+}
+#alex-chat.open{display:flex;}
+
+.alex-chat-head{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:13px 15px;
+    background:#06152d;
+    color:#fff;
+}
+.alex-header-icon{
+    width:44px;
+    height:44px;
+    min-width:44px;
+    border-radius:50%;
+    overflow:hidden;
+    border:1px solid rgba(0,174,255,.85);
+    box-shadow:0 0 18px rgba(0,174,255,.45);
+}
+.alex-header-icon img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+.alex-head-text strong{font-size:16px;}
+.alex-head-text small{
+    display:block;
+    margin-top:2px;
+    font-size:11px;
+    opacity:.75;
+}
+#alex-close{
+    margin-left:auto;
+    border:0;
+    background:transparent;
+    color:#fff;
+    font-size:25px;
+    line-height:1;
+    cursor:pointer;
+}
+
+#alex-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:16px;
+    background:#f5f8fc;
+}
+.alex-msg{
+    max-width:84%;
+    padding:10px 13px;
+    margin:8px 0;
+    border-radius:14px;
+    font-size:14px;
+    line-height:1.5;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+.alex-msg.bot{
+    background:#e8eef9;
+    color:#10254a;
+    border-top-left-radius:4px;
+}
+.alex-msg.user{
+    margin-left:auto;
+    background:#092b68;
+    color:#fff;
+    border-top-right-radius:4px;
+}
+
+.alex-quick{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    padding:9px 12px;
+    background:#fff;
+    border-top:1px solid #e7ebf2;
+}
+.alex-quick button{
+    border:1px solid #d4dce9;
+    background:#fff;
+    color:#15315f;
+    border-radius:999px;
+    padding:6px 9px;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.alex-input-row{
+    display:flex;
+    gap:8px;
+    padding:12px;
+    background:#fff;
+    border-top:1px solid #e5e9f0;
+}
+#alex-input{
+    flex:1;
+    min-width:0;
+    resize:none;
+    border:1px solid #ccd5e2;
+    border-radius:12px;
+    padding:10px 11px;
+    font:inherit;
+    outline:none;
+}
+#alex-input:focus{border-color:#1976d2;}
+#alex-send{
+    border:0;
+    border-radius:12px;
+    padding:0 15px;
+    background:#092b68;
+    color:#fff;
+    cursor:pointer;
+    font-weight:600;
+}
+#alex-send:disabled{opacity:.6;cursor:not-allowed;}
+
+.alex-typing{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    width:max-content;
+}
+.alex-typing span{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#6f7f98;
+    animation:alexTyping 1s infinite ease-in-out;
+}
+.alex-typing span:nth-child(2){animation-delay:.15s;}
+.alex-typing span:nth-child(3){animation-delay:.3s;}
+@keyframes alexTyping{
+    0%,60%,100%{transform:translateY(0);opacity:.45;}
+    30%{transform:translateY(-4px);opacity:1;}
+}
+
+@media(max-width:600px){
+    #alex-launcher{
+        right:16px;
+        bottom:16px;
+        width:60px;
+        height:60px;
+    }
+    #alex-chat{
+        right:16px;
+        bottom:88px;
+        width:calc(100vw - 32px);
+        height:70vh;
+    }
+}
+</style>
+
+<button id="alex-launcher" type="button" aria-label="Open Alex AI" title="Alex AI">
+    <img src="alex-ai-icon.png" alt="Alex AI">
+</button>
+
+<div id="alex-chat" aria-hidden="true">
+    <div class="alex-chat-head">
+        <div class="alex-header-icon">
+            <img src="alex-ai-icon.png" alt="Alex AI">
+        </div>
+        <div class="alex-head-text">
+            <strong>Alex AI</strong>
+            <small>R Mohan Digital Assistant</small>
+        </div>
+        <button id="alex-close" type="button" aria-label="Close Alex">×</button>
+    </div>
+
+    <div id="alex-messages">
+        <div class="alex-msg bot">Hi! I'm Alex. Ask me anything about learning, programming, or R Mohan Digital.</div>
+    </div>
+
+    <div class="alex-quick">
+        <button type="button" data-q="Tell me about R Mohan Digital">R Mohan Digital</button>
+        <button type="button" data-q="What courses do you offer?">Courses</button>
+        <button type="button" data-q="Give me a BTech study plan">Study Plan</button>
+        <button type="button" data-q="Teach me programming">Programming</button>
+    </div>
+
+    <div class="alex-input-row">
+        <textarea id="alex-input" rows="1" placeholder="Ask Alex..."></textarea>
+        <button id="alex-send" type="button">Send</button>
+    </div>
+</div>
+
+<script>
+(function(){
+    const ALEX_API = "https://alex-ai-worker.rmohankiran74.workers.dev";
+
+    const launcher = document.getElementById("alex-launcher");
+    const chat = document.getElementById("alex-chat");
+    const closeButton = document.getElementById("alex-close");
+    const input = document.getElementById("alex-input");
+    const sendButton = document.getElementById("alex-send");
+    const messages = document.getElementById("alex-messages");
+
+    if(!launcher || !chat || !closeButton || !input || !sendButton || !messages) return;
+
+    function addMessage(message, type){
+        const element = document.createElement("div");
+        element.className = "alex-msg " + type;
+        element.textContent = message;
+        messages.appendChild(element);
+        messages.scrollTop = messages.scrollHeight;
+        return element;
+    }
+
+    function addTyping(){
+        const element = document.createElement("div");
+        element.className = "alex-msg bot alex-typing";
+        element.innerHTML = "<span></span><span></span><span></span>";
+        messages.appendChild(element);
+        messages.scrollTop = messages.scrollHeight;
+        return element;
+    }
+
+    async function askAlex(question){
+        question = question.trim();
+        if(!question) return;
+
+        addMessage(question, "user");
+        input.value = "";
+        sendButton.disabled = true;
+
+        const typing = addTyping();
+
+        try{
+            const response = await fetch(ALEX_API, {
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({message:question})
+            });
+
+            const data = await response.json();
+            typing.remove();
+
+            if(data.success){
+                addMessage(data.response || "I couldn't generate a response.", "bot");
+            }else{
+                addMessage(data.error || "Alex is unavailable right now.", "bot");
+            }
+        }catch(error){
+            typing.remove();
+            addMessage("I couldn't connect to Alex right now. Please try again.", "bot");
+        }finally{
+            sendButton.disabled = false;
+            input.focus();
+        }
+    }
+
+    launcher.addEventListener("click", function(){
+        chat.classList.add("open");
+        chat.setAttribute("aria-hidden","false");
+        input.focus();
+    });
+
+    closeButton.addEventListener("click", function(){
+        chat.classList.remove("open");
+        chat.setAttribute("aria-hidden","true");
+    });
+
+    sendButton.addEventListener("click", function(){
+        askAlex(input.value);
+    });
+
+    input.addEventListener("keydown", function(event){
+        if(event.key === "Enter" && !event.shiftKey){
+            event.preventDefault();
+            askAlex(input.value);
+        }
+    });
+
+    document.querySelectorAll(".alex-quick button").forEach(function(button){
+        button.addEventListener("click", function(){
+            askAlex(button.getAttribute("data-q"));
+        });
+    });
+})();
+</script>
+<!-- ======================= END ALEX AI ======================= -->
+
 </body>
 </html>
-
