@@ -3,22 +3,46 @@
 // STUDENT LOGIN AUTHENTICATION
 // File: js/auth.js
 //
-// Used ONLY by login.html
-//
 // Student login:
 // Student ID + Password + Puzzle
+//
+// PERSISTENT LOGIN:
+// Student stays logged in until Logout.
+// Closing/reopening the website or Android app does not
+// automatically sign the student out.
 //
 // DO NOT USE THIS FILE IN admin.html
 // ============================================================
 
+
+/* ============================================================
+   FIREBASE AUTH
+============================================================ */
+
 import {
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    setPersistence,
+    browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+/* ============================================================
+   FIRESTORE
+============================================================ */
 
 import {
     doc,
     getDoc
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+/* ============================================================
+   YOUR FIREBASE FILE
+   auth.js is inside /js/
+   firebase.js is also inside /js/
+============================================================ */
 
 import {
     auth,
@@ -26,49 +50,179 @@ import {
 } from "./firebase.js";
 
 
-// ============================================================
-// DOM
-// ============================================================
+
+/* ============================================================
+   VARIABLES
+============================================================ */
+
+let puzzleSolved = false;
+
+let puzzleTarget = null;
+
+let persistenceReady = false;
+
+
+/* ============================================================
+   PERSISTENT LOGIN STORAGE KEY
+============================================================ */
+
+const LAST_DASHBOARD_KEY =
+    "rmd_student_last_dashboard";
+
+
+
+/* ============================================================
+   DOM
+============================================================ */
 
 const loginForm =
-    document.getElementById("loginForm");
+    document.getElementById(
+        "loginForm"
+    );
+
 
 const loginEmail =
-    document.getElementById("loginEmail");
+    document.getElementById(
+        "loginEmail"
+    );
+
 
 const loginPassword =
-    document.getElementById("loginPassword");
+    document.getElementById(
+        "loginPassword"
+    );
+
 
 const loginButton =
-    document.getElementById("loginButton");
+    document.getElementById(
+        "loginButton"
+    );
+
 
 const loginMessage =
-    document.getElementById("loginMessage");
+    document.getElementById(
+        "loginMessage"
+    );
+
 
 const togglePassword =
-    document.getElementById("togglePassword");
+    document.getElementById(
+        "togglePassword"
+    );
+
 
 const puzzleGrid =
-    document.getElementById("puzzleGrid");
+    document.getElementById(
+        "puzzleGrid"
+    );
+
 
 const targetNumber =
-    document.getElementById("targetNumber");
+    document.getElementById(
+        "targetNumber"
+    );
+
 
 const puzzleStatus =
-    document.getElementById("puzzleStatus");
+    document.getElementById(
+        "puzzleStatus"
+    );
 
 
-// ============================================================
-// STUDENT ID FROM REGISTRATION
-// ============================================================
+
+/* ============================================================
+   SAVE LAST DASHBOARD
+============================================================ */
+
+function saveLastDashboard() {
+
+    try {
+
+        localStorage.setItem(
+            LAST_DASHBOARD_KEY,
+            "student-dashboard.html"
+        );
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Could not save dashboard state:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* ============================================================
+   CLEAR LAST DASHBOARD
+============================================================ */
+
+function clearLastDashboard() {
+
+    try {
+
+        localStorage.removeItem(
+            LAST_DASHBOARD_KEY
+        );
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Could not clear dashboard state:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* ============================================================
+   GET LAST DASHBOARD
+============================================================ */
+
+function getLastDashboard() {
+
+    try {
+
+        return localStorage.getItem(
+            LAST_DASHBOARD_KEY
+        );
+
+    }
+
+    catch {
+
+        return null;
+
+    }
+
+}
+
+
+
+/* ============================================================
+   STUDENT ID FROM REGISTRATION
+============================================================ */
 
 const urlParams =
     new URLSearchParams(
         window.location.search
     );
 
+
 const studentIdFromURL =
-    urlParams.get("studentId");
+    urlParams.get(
+        "studentId"
+    );
 
 
 console.log(
@@ -77,11 +231,14 @@ console.log(
 );
 
 
-// ============================================================
-// STUDENT ID VALIDATION
-// ============================================================
 
-function validStudentId(studentId) {
+/* ============================================================
+   STUDENT ID VALIDATION
+============================================================ */
+
+function validStudentId(
+    studentId
+) {
 
     return /^SM\d{8}$/.test(
         studentId
@@ -90,28 +247,38 @@ function validStudentId(studentId) {
 }
 
 
-// ============================================================
-// AUTO FILL STUDENT ID
-// ============================================================
+
+/* ============================================================
+   AUTO FILL STUDENT ID
+============================================================ */
 
 if (
     studentIdFromURL &&
-    validStudentId(studentIdFromURL)
+    validStudentId(
+        studentIdFromURL
+    )
 ) {
 
-    loginEmail.value =
-        studentIdFromURL.toUpperCase();
+    if (loginEmail) {
 
-    loginEmail.readOnly = true;
+        loginEmail.value =
+            studentIdFromURL.toUpperCase();
 
-    loginEmail.style.opacity = "0.85";
+        loginEmail.readOnly =
+            true;
+
+        loginEmail.style.opacity =
+            "0.85";
+
+    }
 
 }
 
 
-// ============================================================
-// PASSWORD SHOW / HIDE
-// ============================================================
+
+/* ============================================================
+   PASSWORD SHOW / HIDE
+============================================================ */
 
 if (
     togglePassword &&
@@ -124,6 +291,7 @@ if (
 
             event.preventDefault();
 
+
             if (
                 loginPassword.type ===
                 "password"
@@ -132,21 +300,27 @@ if (
                 loginPassword.type =
                     "text";
 
+
                 togglePassword.textContent =
                     "🙈";
+
 
                 togglePassword.setAttribute(
                     "aria-label",
                     "Hide password"
                 );
 
-            } else {
+            }
+
+            else {
 
                 loginPassword.type =
                     "password";
 
+
                 togglePassword.textContent =
                     "👁";
+
 
                 togglePassword.setAttribute(
                     "aria-label",
@@ -161,18 +335,10 @@ if (
 }
 
 
-// ============================================================
-// PUZZLE
-// ============================================================
 
-let puzzleSolved = false;
-
-let puzzleTarget = null;
-
-
-// ============================================================
-// RANDOM NUMBER
-// ============================================================
+/* ============================================================
+   PUZZLE RANDOM NUMBER
+============================================================ */
 
 function randomNumber() {
 
@@ -183,16 +349,23 @@ function randomNumber() {
 }
 
 
-// ============================================================
-// CREATE PUZZLE
-// ============================================================
+
+/* ============================================================
+   CREATE PUZZLE
+============================================================ */
 
 function createPuzzle() {
 
-    if (!puzzleGrid) return;
+    if (!puzzleGrid) {
+
+        return;
+
+    }
 
 
-    puzzleSolved = false;
+    puzzleSolved =
+        false;
+
 
     puzzleTarget =
         randomNumber();
@@ -225,7 +398,8 @@ function createPuzzle() {
     }
 
 
-    puzzleGrid.innerHTML = "";
+    puzzleGrid.innerHTML =
+        "";
 
 
     const numbers = [
@@ -235,123 +409,155 @@ function createPuzzle() {
     ];
 
 
-    // Shuffle numbers
+    /* Shuffle */
 
     numbers.sort(
-        () => Math.random() - 0.5
+        () =>
+            Math.random() -
+            0.5
     );
 
 
-    numbers.forEach(number => {
+    numbers.forEach(
+        number => {
 
-        const button =
-            document.createElement(
-                "button"
-            );
-
-        button.type =
-            "button";
-
-        button.textContent =
-            number;
-
-        button.className =
-            "puzzle-number";
+            const button =
+                document.createElement(
+                    "button"
+                );
 
 
-        button.addEventListener(
-            "click",
-            function () {
-
-                // Correct
-                if (
-                    number ===
-                    puzzleTarget
-                ) {
-
-                    puzzleSolved =
-                        true;
-
-                    puzzleStatus.textContent =
-                        "✓ Puzzle completed!";
-
-                    puzzleStatus.style.color =
-                        "#22c55e";
+            button.type =
+                "button";
 
 
-                    // Highlight correct
-                    button.style.borderColor =
-                        "#22c55e";
-
-                    button.style.color =
-                        "#22c55e";
+            button.textContent =
+                number;
 
 
-                    if (loginButton) {
+            button.className =
+                "puzzle-number";
 
-                        loginButton.disabled =
-                            false;
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    /* ========================================
+                       CORRECT NUMBER
+                    ======================================== */
+
+                    if (
+                        number ===
+                        puzzleTarget
+                    ) {
+
+                        puzzleSolved =
+                            true;
+
+
+                        puzzleStatus.textContent =
+                            "✓ Puzzle completed!";
+
+
+                        puzzleStatus.style.color =
+                            "#22c55e";
+
+
+                        button.style.borderColor =
+                            "#22c55e";
+
+
+                        button.style.color =
+                            "#22c55e";
+
+
+                        if (loginButton) {
+
+                            loginButton.disabled =
+                                false;
+
+                        }
+
+
+                        return;
 
                     }
 
-                    return;
+
+                    /* ========================================
+                       WRONG NUMBER
+                    ======================================== */
+
+                    puzzleStatus.textContent =
+                        "✕ Wrong number. Try again.";
+
+
+                    puzzleStatus.style.color =
+                        "#f87171";
+
                 }
+            );
 
 
-                // Wrong
-                puzzleStatus.textContent =
-                    "✕ Wrong number. Try again.";
+            puzzleGrid.appendChild(
+                button
+            );
 
-                puzzleStatus.style.color =
-                    "#f87171";
-
-            }
-        );
-
-
-        puzzleGrid.appendChild(
-            button
-        );
-
-    });
+        }
+    );
 
 }
 
 
-// ============================================================
-// START PUZZLE
-// ============================================================
+
+/* ============================================================
+   START PUZZLE
+============================================================ */
 
 createPuzzle();
 
 
-// ============================================================
-// LOGIN MESSAGE
-// ============================================================
+
+/* ============================================================
+   LOGIN MESSAGE
+============================================================ */
 
 function showMessage(
     message,
     type = "error"
 ) {
 
-    if (!loginMessage) return;
+    if (!loginMessage) {
+
+        return;
+
+    }
 
 
     loginMessage.textContent =
         message;
 
 
-    if (type === "success") {
+    if (
+        type === "success"
+    ) {
 
         loginMessage.style.color =
             "#22c55e";
 
-    } else if (type === "info") {
+    }
+
+    else if (
+        type === "info"
+    ) {
 
         loginMessage.style.color =
             "#38bdf8";
 
-    } else {
+    }
+
+    else {
 
         loginMessage.style.color =
             "#f87171";
@@ -361,9 +567,10 @@ function showMessage(
 }
 
 
-// ============================================================
-// STUDENT INTERNAL FIREBASE EMAIL
-// ============================================================
+
+/* ============================================================
+   STUDENT INTERNAL FIREBASE EMAIL
+============================================================ */
 
 function createStudentFirebaseEmail(
     studentId
@@ -380,11 +587,14 @@ function createStudentFirebaseEmail(
 }
 
 
-// ============================================================
-// FIREBASE ERROR
-// ============================================================
 
-function firebaseErrorMessage(error) {
+/* ============================================================
+   FIREBASE ERROR
+============================================================ */
+
+function firebaseErrorMessage(
+    error
+) {
 
     if (!error) {
 
@@ -393,43 +603,261 @@ function firebaseErrorMessage(error) {
     }
 
 
-    switch (error.code) {
+    switch (
+        error.code
+    ) {
 
         case "auth/invalid-credential":
+
             return "Incorrect Student ID or password.";
+
 
         case "auth/invalid-login-credentials":
+
             return "Incorrect Student ID or password.";
 
+
         case "auth/user-not-found":
+
             return "Student account not found.";
 
+
         case "auth/wrong-password":
+
             return "Incorrect password.";
 
+
         case "auth/invalid-email":
+
             return "Invalid Student ID.";
 
+
         case "auth/user-disabled":
+
             return "This student account has been disabled.";
 
+
         case "auth/too-many-requests":
+
             return "Too many login attempts. Please try again later.";
 
+
         case "auth/network-request-failed":
+
             return "Network error. Check your internet connection.";
 
+
         default:
-            return error.message ||
-                   "Unable to login.";
+
+            return (
+                error.message ||
+                "Unable to login."
+            );
+
     }
 
 }
 
 
-// ============================================================
-// STUDENT LOGIN
-// ============================================================
+
+/* ============================================================
+   ENABLE LOCAL FIREBASE AUTH PERSISTENCE
+============================================================ */
+
+async function enablePersistentLogin() {
+
+    if (persistenceReady) {
+
+        return;
+
+    }
+
+
+    await setPersistence(
+        auth,
+        browserLocalPersistence
+    );
+
+
+    persistenceReady =
+        true;
+
+
+    console.log(
+        "Firebase LOCAL persistence enabled."
+    );
+
+}
+
+
+
+/* ============================================================
+   ALREADY LOGGED-IN STUDENT
+===============================================================
+   When login.html opens again:
+   Firebase checks whether the previous student is still
+   authenticated.
+
+   If yes AND our dashboard state exists,
+   go directly to student-dashboard.html.
+============================================================ */
+
+onAuthStateChanged(
+    auth,
+    async function (user) {
+
+        if (!user) {
+
+            return;
+
+        }
+
+
+        const currentPath =
+            window.location.pathname
+                .toLowerCase();
+
+
+        /*
+         * Only redirect automatically from login.html.
+         */
+
+        if (
+            !currentPath.endsWith(
+                "/login.html"
+            ) &&
+            !currentPath.endsWith(
+                "login.html"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        const lastDashboard =
+            getLastDashboard();
+
+
+        /*
+         * If no saved dashboard exists, stay on login page.
+         */
+
+        if (!lastDashboard) {
+
+            return;
+
+        }
+
+
+        try {
+
+            /*
+             * Verify the Firebase user's profile again.
+             */
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const userSnap =
+                await getDoc(
+                    userRef
+                );
+
+
+            if (
+                !userSnap.exists()
+            ) {
+
+                clearLastDashboard();
+
+                await signOut(
+                    auth
+                );
+
+                return;
+
+            }
+
+
+            const data =
+                userSnap.data();
+
+
+            const role =
+                String(
+                    data.role || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const status =
+                String(
+                    data.status || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            /*
+             * Only an approved/active student may be
+             * automatically returned to the dashboard.
+             */
+
+            if (
+                role !== "student" ||
+                (
+                    status !== "approved" &&
+                    status !== "active"
+                )
+            ) {
+
+                clearLastDashboard();
+
+                await signOut(
+                    auth
+                );
+
+                return;
+
+            }
+
+
+            console.log(
+                "Existing student session found. Opening dashboard."
+            );
+
+
+            window.location.replace(
+                "student-dashboard.html"
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Persistent login check failed:",
+                error
+            );
+
+        }
+
+    }
+);
+
+
+
+/* ============================================================
+   STUDENT LOGIN
+============================================================ */
 
 if (loginForm) {
 
@@ -440,9 +868,9 @@ if (loginForm) {
             event.preventDefault();
 
 
-            // ------------------------------------------------
-            // PUZZLE CHECK
-            // ------------------------------------------------
+            /* ================================================
+               PUZZLE CHECK
+            ================================================= */
 
             if (!puzzleSolved) {
 
@@ -451,12 +879,13 @@ if (loginForm) {
                 );
 
                 return;
+
             }
 
 
-            // ------------------------------------------------
-            // STUDENT ID
-            // ------------------------------------------------
+            /* ================================================
+               STUDENT ID
+            ================================================= */
 
             const studentId =
                 loginEmail.value
@@ -464,17 +893,17 @@ if (loginForm) {
                     .toUpperCase();
 
 
-            // ------------------------------------------------
-            // PASSWORD
-            // ------------------------------------------------
+            /* ================================================
+               PASSWORD
+            ================================================= */
 
             const password =
                 loginPassword.value;
 
 
-            // ------------------------------------------------
-            // VALIDATE STUDENT ID
-            // ------------------------------------------------
+            /* ================================================
+               VALIDATE STUDENT ID
+            ================================================= */
 
             if (
                 !validStudentId(
@@ -486,15 +915,18 @@ if (loginForm) {
                     "Enter a valid Student ID."
                 );
 
+
                 loginEmail.focus();
 
+
                 return;
+
             }
 
 
-            // ------------------------------------------------
-            // PASSWORD
-            // ------------------------------------------------
+            /* ================================================
+               PASSWORD CHECK
+            ================================================= */
 
             if (!password) {
 
@@ -502,21 +934,28 @@ if (loginForm) {
                     "Please enter your password."
                 );
 
+
                 loginPassword.focus();
 
+
                 return;
+
             }
 
 
-            // ------------------------------------------------
-            // DISABLE
-            // ------------------------------------------------
+            /* ================================================
+               DISABLE LOGIN
+            ================================================= */
 
-            loginButton.disabled =
-                true;
+            if (loginButton) {
 
-            loginButton.textContent =
-                "Signing in...";
+                loginButton.disabled =
+                    true;
+
+                loginButton.textContent =
+                    "Signing in...";
+
+            }
 
 
             showMessage(
@@ -527,9 +966,16 @@ if (loginForm) {
 
             try {
 
-                // --------------------------------------------
-                // CREATE INTERNAL EMAIL
-                // --------------------------------------------
+                /* ============================================
+                   ENABLE PERSISTENT LOGIN BEFORE SIGN-IN
+                ============================================ */
+
+                await enablePersistentLogin();
+
+
+                /* ============================================
+                   CREATE INTERNAL FIREBASE EMAIL
+                ============================================ */
 
                 const firebaseEmail =
                     createStudentFirebaseEmail(
@@ -537,9 +983,15 @@ if (loginForm) {
                     );
 
 
-                // --------------------------------------------
-                // FIREBASE LOGIN
-                // --------------------------------------------
+                console.log(
+                    "Student Firebase email:",
+                    firebaseEmail
+                );
+
+
+                /* ============================================
+                   FIREBASE LOGIN
+                ============================================ */
 
                 const credential =
                     await signInWithEmailAndPassword(
@@ -559,9 +1011,9 @@ if (loginForm) {
                 );
 
 
-                // --------------------------------------------
-                // LOAD USER PROFILE
-                // --------------------------------------------
+                /* ============================================
+                   LOAD USER PROFILE
+                ============================================ */
 
                 const userRef =
                     doc(
@@ -577,15 +1029,29 @@ if (loginForm) {
                     );
 
 
-                if (!userSnap.exists()) {
+                /* ============================================
+                   PROFILE MUST EXIST
+                ============================================ */
 
-                    await auth.signOut();
+                if (
+                    !userSnap.exists()
+                ) {
+
+                    await signOut(
+                        auth
+                    );
+
+
+                    clearLastDashboard();
+
 
                     showMessage(
                         "Student profile not found."
                     );
 
+
                     return;
+
                 }
 
 
@@ -593,88 +1059,122 @@ if (loginForm) {
                     userSnap.data();
 
 
-                // --------------------------------------------
-                // CHECK ROLE
-                // --------------------------------------------
+                /* ============================================
+                   CHECK ROLE
+                ============================================ */
 
                 const role =
                     String(
                         userData.role || ""
                     )
-                        .trim()
-                        .toLowerCase();
+                    .trim()
+                    .toLowerCase();
 
 
                 if (
                     role !== "student"
                 ) {
 
-                    await auth.signOut();
+                    await signOut(
+                        auth
+                    );
+
+
+                    clearLastDashboard();
+
 
                     showMessage(
                         "This account is not a student account."
                     );
 
+
                     return;
+
                 }
 
 
-                // --------------------------------------------
-                // STATUS
-                // --------------------------------------------
+                /* ============================================
+                   CHECK STATUS
+                ============================================ */
 
                 const status =
                     String(
                         userData.status || ""
                     )
-                        .trim()
-                        .toLowerCase();
+                    .trim()
+                    .toLowerCase();
 
 
-                // --------------------------------------------
-                // REJECTED
-                // --------------------------------------------
+
+                /* ============================================
+                   REJECTED
+                ============================================ */
 
                 if (
                     status === "rejected"
                 ) {
 
-                    await auth.signOut();
+                    await signOut(
+                        auth
+                    );
+
+
+                    clearLastDashboard();
+
 
                     showMessage(
                         "Your registration was rejected."
                     );
 
+
                     return;
+
                 }
 
 
-                // --------------------------------------------
-                // PENDING
-                // --------------------------------------------
+
+                /* ============================================
+                   PENDING
+                ============================================ */
 
                 if (
                     status === "pending"
                 ) {
 
-                    await auth.signOut();
+                    await signOut(
+                        auth
+                    );
+
+
+                    clearLastDashboard();
+
 
                     showMessage(
                         "Your registration is still waiting for approval."
                     );
 
+
                     return;
+
                 }
 
 
-                // --------------------------------------------
-                // APPROVED / ACTIVE
-                // --------------------------------------------
+
+                /* ============================================
+                   APPROVED / ACTIVE
+                ============================================ */
 
                 if (
                     status === "approved" ||
                     status === "active"
                 ) {
+
+                    /*
+                     * Remember this dashboard.
+                     */
+
+                    saveLastDashboard();
+
 
                     showMessage(
                         "Login successful. Opening dashboard...",
@@ -682,37 +1182,55 @@ if (loginForm) {
                     );
 
 
+                    /*
+                     * Redirect to the student dashboard.
+                     */
+
                     setTimeout(
                         function () {
 
-                            window.location.href =
-                                "student-dashboard.html";
+                            window.location.replace(
+                                "student-dashboard.html"
+                            );
 
                         },
                         500
                     );
 
+
                     return;
+
                 }
 
 
-                // --------------------------------------------
-                // UNKNOWN STATUS
-                // --------------------------------------------
 
-                await auth.signOut();
+                /* ============================================
+                   UNKNOWN STATUS
+                ============================================ */
+
+                await signOut(
+                    auth
+                );
+
+
+                clearLastDashboard();
+
 
                 showMessage(
                     "Your student account status is not configured."
                 );
 
+            }
 
-            } catch (error) {
+            catch (error) {
 
                 console.error(
                     "Student login error:",
                     error
                 );
+
+
+                clearLastDashboard();
 
 
                 showMessage(
@@ -721,13 +1239,19 @@ if (loginForm) {
                     )
                 );
 
-            } finally {
+            }
 
-                loginButton.disabled =
-                    !puzzleSolved;
+            finally {
 
-                loginButton.textContent =
-                    "Login";
+                if (loginButton) {
+
+                    loginButton.disabled =
+                        !puzzleSolved;
+
+                    loginButton.textContent =
+                        "Login";
+
+                }
 
             }
 
@@ -737,9 +1261,67 @@ if (loginForm) {
 }
 
 
+
+/* ============================================================
+   GLOBAL LOGOUT FUNCTION
+===============================================================
+   Your dashboard can call:
+
+       logoutUser();
+
+   This completely removes the persistent login.
+============================================================ */
+
+window.logoutUser =
+    async function () {
+
+        try {
+
+            await signOut(
+                auth
+            );
+
+
+            clearLastDashboard();
+
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+
+            showMessage(
+                "Logout failed. Please try again."
+            );
+
+        }
+
+    };
+
+
+
+/* ============================================================
+   CONSOLE
+============================================================ */
+
 console.log(
     "R Mohan Digital Student Login loaded successfully."
 );
+
+
+console.log(
+    "Firebase persistent student login is enabled."
+);
+
 
 console.log(
     "Student puzzle is active only on login.html."
