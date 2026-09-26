@@ -734,7 +734,7 @@
 
     <div class="alex-info-box">
 
-        <button class="alex-close-btn" onclick="closeAlexInfo()">
+        <button type="button" class="alex-close-btn" onclick="closeAlexInfo(event)" aria-label="Close service information">
             ×
         </button>
 
@@ -1141,7 +1141,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.id === "alex-close" ||
                 this.id === "alex-send" ||
                 this.classList.contains("know-more-btn") ||
-                this.closest(".alex-quick")
+                this.classList.contains("alex-close-btn") ||
+                this.closest(".alex-quick") ||
+                this.closest("#alexInfoModal")
             ) {
                 return;
             }
@@ -1948,15 +1950,28 @@ Focus on teaching the visitor about ${serviceName}.
 
 
     window.closeAlexInfo =
-        function () {
+        function (event) {
+
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
 
             const modal =
                 document.getElementById(
                     "alexInfoModal"
                 );
 
+            const pageLoader =
+                document.getElementById("page-loader");
+
             if (modal) {
                 modal.classList.remove("show");
+            }
+
+            /* The service modal is independent from the page loader. */
+            if (pageLoader) {
+                pageLoader.classList.remove("active");
             }
         };
 
