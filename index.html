@@ -1140,6 +1140,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.id === "alex-launcher" ||
                 this.id === "alex-close" ||
                 this.id === "alex-send" ||
+                this.classList.contains("know-more-btn") ||
                 this.closest(".alex-quick")
             ) {
                 return;
@@ -1433,6 +1434,208 @@ document.addEventListener("DOMContentLoaded", function () {
         height:70vh;
     }
 }
+
+/* ================= SERVICE KNOW MORE ================= */
+
+.know-more-btn{
+    margin-top:18px;
+    padding:10px 18px;
+    border:0;
+    border-radius:9px;
+    background:#1455ff;
+    color:#fff;
+    font:600 14px/1.2 inherit;
+    cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.know-more-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(20,85,255,.24);
+    background:#0f48de;
+}
+
+.know-more-btn:active{
+    transform:scale(.98);
+}
+
+.know-more-btn:disabled{
+    opacity:.65;
+    cursor:wait;
+}
+
+/* ================= ALEX SERVICE MODAL ================= */
+
+.alex-info-modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(3,12,30,.68);
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+    z-index:100000;
+}
+
+.alex-info-modal.show{
+    display:flex;
+}
+
+.alex-info-box{
+    position:relative;
+    width:min(720px,100%);
+    max-height:88vh;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid rgba(15,23,42,.10);
+    border-radius:20px;
+    box-shadow:0 25px 80px rgba(0,0,0,.28);
+    animation:alexInfoOpen .22s ease;
+}
+
+@keyframes alexInfoOpen{
+    from{opacity:0;transform:translateY(14px) scale(.98);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+.alex-info-header{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:20px 24px;
+    background:#06152d;
+    color:#fff;
+}
+
+.alex-icon{
+    width:44px;
+    height:44px;
+    min-width:44px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:#020914;
+    border:1px solid rgba(0,174,255,.75);
+    color:#fff;
+    font-size:22px;
+    box-shadow:0 0 18px rgba(0,174,255,.25);
+}
+
+.alex-info-header h2{
+    margin:0;
+    font-size:20px;
+    color:#fff;
+}
+
+.alex-info-header span{
+    display:block;
+    margin-top:3px;
+    font-size:12px;
+    color:rgba(255,255,255,.70);
+}
+
+.alex-close-btn{
+    position:absolute;
+    top:14px;
+    right:16px;
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.10);
+    color:#fff;
+    font-size:25px;
+    line-height:1;
+    cursor:pointer;
+    z-index:2;
+}
+
+.alex-close-btn:hover{
+    background:rgba(255,255,255,.18);
+}
+
+.alex-info-content{
+    max-height:calc(88vh - 84px);
+    overflow-y:auto;
+    padding:24px;
+    color:#334155;
+    font-size:15px;
+    line-height:1.72;
+}
+
+.alex-info-content h3{
+    margin:0 0 12px;
+    color:#0f172a;
+    font-size:19px;
+}
+
+.alex-info-content p{
+    margin:0 0 12px;
+}
+
+.alex-info-content ul{
+    margin:8px 0 14px;
+    padding-left:20px;
+}
+
+.alex-info-content li{
+    margin:0 0 7px;
+}
+
+.alex-loading{
+    min-height:230px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.alex-loading p{
+    margin:13px 0 0;
+    color:#64748b !important;
+}
+
+.alex-spinner{
+    width:38px;
+    height:38px;
+    border:4px solid #e2e8f0;
+    border-top-color:#1455ff;
+    border-radius:50%;
+    animation:alexServiceSpin .8s linear infinite;
+}
+
+@keyframes alexServiceSpin{
+    to{transform:rotate(360deg);}
+}
+
+@media(max-width:600px){
+    .alex-info-modal{
+        padding:12px;
+    }
+
+    .alex-info-box{
+        width:100%;
+        max-height:92vh;
+        border-radius:16px;
+    }
+
+    .alex-info-header{
+        padding:17px 18px;
+    }
+
+    .alex-info-content{
+        max-height:calc(92vh - 78px);
+        padding:18px;
+        font-size:14px;
+    }
+
+    .know-more-btn{
+        width:100%;
+    }
+}
 </style>
     
 <button id="alex-launcher" type="button" aria-label="Open Alex AI" title="Alex AI">
@@ -1565,182 +1768,286 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 <!-- ======================= END ALEX AI ======================= -->
 
-    const ALEX_API = "https://alex-ai-worker.rmohankiran74.workers.dev";
+    <script>
+/* =========================================================
+   SERVICE KNOW MORE -> ALEX AI
+   ========================================================= */
 
+(function () {
 
-async function askAlexAboutService(serviceName) {
+    const ALEX_API =
+        "https://alex-ai-worker.rmohankiran74.workers.dev";
 
-    const modal = document.getElementById("alexInfoModal");
-    const title = document.getElementById("alexInfoTitle");
-    const content = document.getElementById("alexInfoContent");
+    async function askAlexAboutService(serviceName) {
 
-    if (!modal || !title || !content) {
-        console.error("Alex information elements not found.");
-        return;
-    }
+        const modal =
+            document.getElementById("alexInfoModal");
 
-    /* Open modal */
-    modal.classList.add("show");
+        const title =
+            document.getElementById("alexInfoTitle");
 
-    /* Set title */
-    title.textContent = serviceName;
+        const content =
+            document.getElementById("alexInfoContent");
 
-    /* Show loading */
-    content.innerHTML = `
-        <div class="alex-loading">
-            <div class="alex-spinner"></div>
-            <p>Alex is preparing information about ${escapeHtml(serviceName)}...</p>
-        </div>
-    `;
+        if (!modal || !title || !content) {
+            console.error(
+                "Alex service modal elements were not found."
+            );
+            return;
+        }
 
-    const prompt = `
+        /* Open modal immediately */
+        modal.classList.add("show");
+
+        title.textContent = serviceName;
+
+        content.innerHTML = `
+            <div class="alex-loading">
+                <div class="alex-spinner"></div>
+                <p>Alex is preparing information about ${escapeHtml(serviceName)}...</p>
+            </div>
+        `;
+
+        const prompt = `
 You are Alex AI for R Mohan Digital.
 
-A visitor clicked "Know More" for: ${serviceName}
+A visitor clicked "Know More" for the service:
+${serviceName}
 
-Explain this service clearly for a student or beginner.
+Give a detailed but easy-to-understand explanation specifically about ${serviceName}.
 
-Include:
-1. What ${serviceName} is
-2. What students can learn
+Structure your response with:
+1. What it is
+2. What students will learn
 3. Important topics
-4. Practical skills they can develop
-5. Real-world uses
+4. Practical skills
+5. Real-world applications
 6. Example projects
 7. Career opportunities
 8. Who should learn it
 
-Keep the explanation useful, professional and easy to understand.
-Do not mention that this information came from a prompt.
-Answer specifically about ${serviceName}.
+Use simple language.
+Be professional and helpful.
+Do not talk about this prompt.
+Do not invent claims about R Mohan Digital that were not provided.
+Focus on teaching the visitor about ${serviceName}.
 `;
 
-    try {
+        const controller =
+            new AbortController();
 
-        const response = await fetch(ALEX_API, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: prompt
-            })
-        });
+        const timeoutId =
+            setTimeout(function () {
+                controller.abort();
+            }, 20000);
 
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
+        try {
 
-        const data = await response.json();
+            const response =
+                await fetch(ALEX_API, {
+                    method: "POST",
 
-        if (data.success && data.response) {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-            content.innerHTML = formatAlexResponse(data.response);
+                    body: JSON.stringify({
+                        message: prompt
+                    }),
 
-        } else if (data.response) {
+                    signal: controller.signal
+                });
 
-            content.innerHTML = formatAlexResponse(data.response);
+            clearTimeout(timeoutId);
 
-        } else {
+            const rawText =
+                await response.text();
+
+            let data = null;
+
+            try {
+                data = JSON.parse(rawText);
+            }
+            catch (jsonError) {
+                console.error(
+                    "Alex returned non-JSON:",
+                    rawText
+                );
+
+                throw new Error(
+                    "Alex server returned an invalid response."
+                );
+            }
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    `Alex server error (${response.status}).`
+                );
+            }
+
+            if (
+                data &&
+                typeof data.response === "string" &&
+                data.response.trim()
+            ) {
+
+                content.innerHTML =
+                    formatAlexResponse(
+                        data.response
+                    );
+
+                return;
+            }
 
             throw new Error(
-                data.error || "Alex returned an empty response."
+                (data && data.error) ||
+                "Alex returned an empty response."
             );
+
         }
+        catch (error) {
 
-    } catch (error) {
+            clearTimeout(timeoutId);
 
-        console.error("Alex service error:", error);
+            console.error(
+                "Alex service error:",
+                error
+            );
 
-        content.innerHTML = `
-            <div>
-                <h3>Alex could not load the information</h3>
+            let message =
+                "Alex could not load this information right now. Please try again.";
 
-                <p>
-                    Alex is temporarily unavailable.
-                    Please try again in a moment.
-                </p>
-            </div>
-        `;
-    }
-}
+            if (error.name === "AbortError") {
 
+                message =
+                    "Alex took too long to respond. Please try again.";
 
-/* ================= CLOSE MODAL ================= */
+            }
+            else if (error && error.message) {
 
-function closeAlexInfo() {
+                message =
+                    error.message;
+            }
 
-    const modal = document.getElementById("alexInfoModal");
-
-    if (modal) {
-        modal.classList.remove("show");
-    }
-}
-
-
-/* ================= CLICK OUTSIDE MODAL ================= */
-
-document.addEventListener("click", function (event) {
-
-    const modal = document.getElementById("alexInfoModal");
-
-    if (!modal) return;
-
-    if (event.target === modal) {
-        closeAlexInfo();
-    }
-});
-
-
-/* ================= ESC KEY ================= */
-
-document.addEventListener("keydown", function (event) {
-
-    if (event.key === "Escape") {
-        closeAlexInfo();
+            content.innerHTML = `
+                <div>
+                    <h3>Alex AI unavailable</h3>
+                    <p>${escapeHtml(message)}</p>
+                </div>
+            `;
+        }
     }
 
-});
+
+    /* Make the inline onclick="askAlexAboutService(...)"
+       work from the HTML service buttons. */
+    window.askAlexAboutService =
+        askAlexAboutService;
 
 
-/* ================= BASIC HTML ESCAPE ================= */
+    window.closeAlexInfo =
+        function () {
 
-function escapeHtml(text) {
+            const modal =
+                document.getElementById(
+                    "alexInfoModal"
+                );
 
-    return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
+            if (modal) {
+                modal.classList.remove("show");
+            }
+        };
 
 
-/* ================= ALEX RESPONSE FORMAT ================= */
+    document.addEventListener(
+        "click",
+        function (event) {
 
-function formatAlexResponse(text) {
+            const modal =
+                document.getElementById(
+                    "alexInfoModal"
+                );
 
-    let safe = escapeHtml(text);
+            if (
+                modal &&
+                event.target === modal
+            ) {
+                window.closeAlexInfo();
+            }
+        }
+    );
 
-    /*
-     * Convert simple markdown-like formatting
-     * into readable HTML.
-     */
 
-    safe = safe.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    document.addEventListener(
+        "keydown",
+        function (event) {
 
-    safe = safe.replace(/^### (.*)$/gm, "<h3>$1</h3>");
+            if (event.key === "Escape") {
+                window.closeAlexInfo();
+            }
+        }
+    );
 
-    safe = safe.replace(/^## (.*)$/gm, "<h3>$1</h3>");
 
-    safe = safe.replace(/^# (.*)$/gm, "<h3>$1</h3>");
+    function escapeHtml(text) {
 
-    safe = safe.replace(/\n- (.*)/g, "<br>• $1");
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
-    safe = safe.replace(/\n/g, "<br>");
 
-    return safe;
-}
-    
+    function formatAlexResponse(text) {
+
+        let safe =
+            escapeHtml(text);
+
+        safe =
+            safe.replace(
+                /\*\*(.*?)\*\*/g,
+                "<strong>$1</strong>"
+            );
+
+        safe =
+            safe.replace(
+                /^### (.*)$/gm,
+                "<h3>$1</h3>"
+            );
+
+        safe =
+            safe.replace(
+                /^## (.*)$/gm,
+                "<h3>$1</h3>"
+            );
+
+        safe =
+            safe.replace(
+                /^# (.*)$/gm,
+                "<h3>$1</h3>"
+            );
+
+        safe =
+            safe.replace(
+                /\n- (.*)/g,
+                "<br>• $1"
+            );
+
+        safe =
+            safe.replace(
+                /\n/g,
+                "<br>"
+            );
+
+        return safe;
+    }
+
+})();
+</script>
+
 </body>
 </html>
