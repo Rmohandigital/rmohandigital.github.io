@@ -1565,5 +1565,182 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 <!-- ======================= END ALEX AI ======================= -->
 
+    const ALEX_API = "https://alex-ai-worker.rmohankiran74.workers.dev";
+
+
+async function askAlexAboutService(serviceName) {
+
+    const modal = document.getElementById("alexInfoModal");
+    const title = document.getElementById("alexInfoTitle");
+    const content = document.getElementById("alexInfoContent");
+
+    if (!modal || !title || !content) {
+        console.error("Alex information elements not found.");
+        return;
+    }
+
+    /* Open modal */
+    modal.classList.add("show");
+
+    /* Set title */
+    title.textContent = serviceName;
+
+    /* Show loading */
+    content.innerHTML = `
+        <div class="alex-loading">
+            <div class="alex-spinner"></div>
+            <p>Alex is preparing information about ${escapeHtml(serviceName)}...</p>
+        </div>
+    `;
+
+    const prompt = `
+You are Alex AI for R Mohan Digital.
+
+A visitor clicked "Know More" for: ${serviceName}
+
+Explain this service clearly for a student or beginner.
+
+Include:
+1. What ${serviceName} is
+2. What students can learn
+3. Important topics
+4. Practical skills they can develop
+5. Real-world uses
+6. Example projects
+7. Career opportunities
+8. Who should learn it
+
+Keep the explanation useful, professional and easy to understand.
+Do not mention that this information came from a prompt.
+Answer specifically about ${serviceName}.
+`;
+
+    try {
+
+        const response = await fetch(ALEX_API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: prompt
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success && data.response) {
+
+            content.innerHTML = formatAlexResponse(data.response);
+
+        } else if (data.response) {
+
+            content.innerHTML = formatAlexResponse(data.response);
+
+        } else {
+
+            throw new Error(
+                data.error || "Alex returned an empty response."
+            );
+        }
+
+    } catch (error) {
+
+        console.error("Alex service error:", error);
+
+        content.innerHTML = `
+            <div>
+                <h3>Alex could not load the information</h3>
+
+                <p>
+                    Alex is temporarily unavailable.
+                    Please try again in a moment.
+                </p>
+            </div>
+        `;
+    }
+}
+
+
+/* ================= CLOSE MODAL ================= */
+
+function closeAlexInfo() {
+
+    const modal = document.getElementById("alexInfoModal");
+
+    if (modal) {
+        modal.classList.remove("show");
+    }
+}
+
+
+/* ================= CLICK OUTSIDE MODAL ================= */
+
+document.addEventListener("click", function (event) {
+
+    const modal = document.getElementById("alexInfoModal");
+
+    if (!modal) return;
+
+    if (event.target === modal) {
+        closeAlexInfo();
+    }
+});
+
+
+/* ================= ESC KEY ================= */
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape") {
+        closeAlexInfo();
+    }
+
+});
+
+
+/* ================= BASIC HTML ESCAPE ================= */
+
+function escapeHtml(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* ================= ALEX RESPONSE FORMAT ================= */
+
+function formatAlexResponse(text) {
+
+    let safe = escapeHtml(text);
+
+    /*
+     * Convert simple markdown-like formatting
+     * into readable HTML.
+     */
+
+    safe = safe.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+    safe = safe.replace(/^### (.*)$/gm, "<h3>$1</h3>");
+
+    safe = safe.replace(/^## (.*)$/gm, "<h3>$1</h3>");
+
+    safe = safe.replace(/^# (.*)$/gm, "<h3>$1</h3>");
+
+    safe = safe.replace(/\n- (.*)/g, "<br>• $1");
+
+    safe = safe.replace(/\n/g, "<br>");
+
+    return safe;
+}
+    
 </body>
 </html>
