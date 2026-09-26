@@ -639,7 +639,7 @@
 
 </section>
 
-    <!-- ================= SERVICES ================= -->
+   <!-- ================= SERVICES ================= -->
 
 <section id="services" data-aos="zoom-in">
 
@@ -651,39 +651,112 @@
 
     <div class="services-container">
 
+        <!-- Programming -->
         <div class="service-card">
             <h3>💻 Programming</h3>
             <p>Learn C, Java, Python, Data Structures and problem solving.</p>
+
+            <button
+                class="know-more-btn"
+                onclick="askAlexAboutService('Programming')">
+                Know More
+            </button>
         </div>
 
+        <!-- Web Development -->
         <div class="service-card">
             <h3>🌐 Web Development</h3>
             <p>HTML, CSS, JavaScript, GitHub and modern website development.</p>
+
+            <button
+                class="know-more-btn"
+                onclick="askAlexAboutService('Web Development')">
+                Know More
+            </button>
         </div>
 
+        <!-- Artificial Intelligence -->
         <div class="service-card">
             <h3>🤖 Artificial Intelligence</h3>
             <p>Learn AI tools, prompts and machine learning fundamentals.</p>
+
+            <button
+                class="know-more-btn"
+                onclick="askAlexAboutService('Artificial Intelligence')">
+                Know More
+            </button>
         </div>
 
+        <!-- Digital Marketing -->
         <div class="service-card">
             <h3>📈 Digital Marketing</h3>
             <p>SEO, Social Media, Branding and online business growth.</p>
+
+            <button
+                class="know-more-btn"
+                onclick="askAlexAboutService('Digital Marketing')">
+                Know More
+            </button>
         </div>
 
+        <!-- Trading -->
         <div class="service-card">
             <h3>💹 Trading</h3>
             <p>Stock market basics, technical analysis and risk management.</p>
+
+            <button
+                class="know-more-btn"
+                onclick="askAlexAboutService('Trading')">
+                Know More
+            </button>
         </div>
 
+        <!-- Career Guidance -->
         <div class="service-card">
             <h3>🎯 Career Guidance</h3>
             <p>Resume building, interview preparation and project support.</p>
+
+            <button
+                class="know-more-btn"
+                onclick="askAlexAboutService('Career Guidance')">
+                Know More
+            </button>
         </div>
 
     </div>
 
 </section>
+
+
+<!-- ================= ALEX INFORMATION MODAL ================= -->
+
+<div id="alexInfoModal" class="alex-info-modal">
+
+    <div class="alex-info-box">
+
+        <button class="alex-close-btn" onclick="closeAlexInfo()">
+            ×
+        </button>
+
+        <div class="alex-info-header">
+            <div class="alex-icon">✦</div>
+
+            <div>
+                <h2 id="alexInfoTitle">Alex AI</h2>
+                <span>Powered by Alex AI</span>
+            </div>
+        </div>
+
+        <div id="alexInfoContent" class="alex-info-content">
+            <div class="alex-loading">
+                <div class="alex-spinner"></div>
+                <p>Alex is preparing the information...</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
     <!-- ================= COURSES ================= -->
 
